@@ -1,0 +1,47 @@
+:root {
+  --dark-square: darkseagreen;
+  --light-square: azure;
+}
+
+.square {
+  background-color: var(--light-square);
+  position: relative;
+  &.dark {
+    background-color: var(--dark-square);
+  }
+
+  .highlight-circle {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    transform: translate(50%, 50%);
+  }
+  .indicator {
+    position: absolute;
+    font-size: 1.25em;
+    color: var(--dark-square);
+  }
+  &.dark .indicator {
+    color: var(--light-square);
+  }
+  .indicator.row {
+    top: 0.25em;
+    left: 0.25em;
+  }
+  .indicator.col {
+    bottom: 0.25em;
+    right: 0.25em;
+  }
+}
+
+.board {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  grid-template-columns: repeat(8, 1fr);
+}
