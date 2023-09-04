@@ -3,6 +3,7 @@
   import Square from "./Square.svelte";
   import "./board.css";
 
+  // const currentSequence = null;
   const currentSequence = {
     start:
       "rnbqkbnr/1ppppppp/p7/8/8/P7/1PPPPPPP/RNBQKBNR w KQkq - 0 1",
@@ -45,26 +46,14 @@
     } else {
       if (
         boardDisabled &&
-        !currentSequence?.failed &&
-        !currentSequence?.finished
+        (!currentSequence ||
+          (!currentSequence.failed && !currentSequence.finished))
       ) {
         //switch to normal mode
         boardDisabled = false;
       }
       board = chess.board();
     }
-  }
-
-  function executeSequence(sequence) {
-    const { start, moves } = sequence;
-    chess.load(start);
-    /*
-    await piecemove
-    if move=next move in sequence:
-      execute move
-    else:
-      show popup: wrong move!
-    */
   }
 
   function getSquare(row, col) {
@@ -80,11 +69,16 @@
   }
 
   function updateSequence(move = null) {
-    const currentMove = currentSequence.moves[currentSequence.step];
+    // updates the currentSequence object based on the move recieved
+    // if not move provided, it will execute the next move in the sequence
+
+    // get the expected move
+    const expectedMove = currentSequence.moves[currentSequence.step];
 
     // Check if a move is provided and validate it
     if (move) {
-      if (JSON.stringify(move) === JSON.stringify(currentMove)) {
+      //compare move to expected move
+      if (JSON.stringify(move) === JSON.stringify(expectedMove)) {
         // correct move
         currentSequence.step++;
       } else {
@@ -98,7 +92,7 @@
       }
     } else {
       // auto move
-      movePiece(currentMove);
+      movePiece(expectedMove);
       currentSequence.step++;
     }
 
@@ -109,6 +103,19 @@
     }
 
     return true;
+  }
+
+  function resetSequence() {
+    // reset seq and board
+    chess.load(currentSequence.start);
+    highlightedSquares = [];
+    selectedSquare = null;
+    movesBack = 0;
+    boardDisabled = false;
+    currentSequence.step = 0;
+    currentSequence.failed = false;
+    currentSequence.finished = false;
+    updateBoard();
   }
 
   function loadMovesBack(movesBack) {
@@ -135,15 +142,20 @@
       highlightedSquares = getMoves(id);
       if (highlightedSquares.length) selectedSquare = id;
     } else if (highlightedSquares.includes(id)) {
-      // move selected piece to square
-
-      if (!updateSequence({ from: selectedSquare, to: id })) {
-        // wrong move
-        updateBoard();
+      // check if there is a sequence
+      if (currentSequence) {
+        if (!updateSequence({ from: selectedSquare, to: id })) {
+          // wrong move
+          updateBoard();
+        } else {
+          // correct move, move piece, and move the opposing side
+          movePiece({ from: selectedSquare, to: id });
+          updateSequence();
+          updateBoard();
+        }
       } else {
-        // correct move, move piece, and move the opposing side
+        // no sequence, move piece
         movePiece({ from: selectedSquare, to: id });
-        updateSequence();
         updateBoard();
       }
       highlightedSquares = [];
@@ -171,19 +183,7 @@
     {/each}
   {/each}
 </div>
-<button
-  on:click={() => {
-    chess.load(currentSequence.start);
-    highlightedSquares = [];
-    selectedSquare = null;
-    movesBack = 0;
-    boardDisabled = false;
-    currentSequence.step = 0;
-    currentSequence.failed = false;
-    currentSequence.finished = false;
-    updateBoard();
-  }}>reset</button
->
+<button on:click={resetSequence}>reset</button>
 <button
   on:click={() => {
     if (movesBack < chess.history().length) {
@@ -194,13 +194,17 @@
 >
 <button
   on:click={() => {
-    if (movesBack > 0 || (movesBack == 0 && currentSequence.failed)) {
+    if (
+      movesBack > 0 ||
+      (movesBack == 0 && currentSequence?.failed)
+    ) {
       movesBack--;
       updateBoard();
     }
   }}>next</button
 >
-{#if currentSequence.failed}
+
+{#if currentSequence?.failed}
   <button
     on:click={() => {
       boardDisabled = false;
@@ -210,7 +214,12 @@
     }}>retry last move</button
   >
 {/if}
-{#if currentSequence.finished}
+
+{#if !currentSequence?.finished && !currentSequence?.failed}
+  <button on:click={() => {}}>hint</button>
+{/if}
+
+{#if currentSequence?.finished}
   <button on:click={() => {}}>next sequence</button>
 {/if}
 

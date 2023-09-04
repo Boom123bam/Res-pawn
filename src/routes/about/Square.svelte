@@ -1,9 +1,16 @@
 <script>
-  export let id, squareColor, square, handlePieceClick, highlighted;
+  export let id,
+    squareColor,
+    square,
+    handlePieceClick,
+    highlighted,
+    hint = false;
 </script>
 
 <button
-  class={`square ${squareColor}${highlighted ? " highlighted" : ""}`}
+  class={`square ${squareColor}${highlighted ? " highlighted" : ""}${
+    hint ? " hint" : ""
+  }`}
   on:click={() => handlePieceClick(id)}
 >
   {#if square != undefined}
