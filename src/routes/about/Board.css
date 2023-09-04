@@ -1,6 +1,7 @@
 :root {
   --dark-square: darkseagreen;
   --light-square: azure;
+  --hint-square: yellow;
 }
 
 .square {
@@ -8,6 +9,12 @@
   position: relative;
   &.dark {
     background-color: var(--dark-square);
+  }
+  &.hint {
+    background-color: var(--hint-square);
+  }
+  &.solution {
+    background-color: var(--hint-square);
   }
 
   .highlight-circle {

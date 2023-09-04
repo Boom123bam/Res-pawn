@@ -3,6 +3,12 @@
   import Square from "./Square.svelte";
   import "./board.css";
 
+  const pointsToDeduct = {
+    hint: 1,
+    solution: 3,
+    fail: 2,
+  };
+
   // const currentSequence = null;
   const currentSequence = {
     start:
@@ -16,6 +22,9 @@
     step: 0,
     failed: false,
     finished: false,
+    deductedPoints: 0, // deduct points for each hint, move-reveal, fail
+    hint: false,
+    solution: false,
   };
 
   const chess = currentSequence
@@ -23,36 +32,47 @@
     : new Chess();
   const displayer = new Chess();
 
-  let board = chess.board();
-  let highlightedSquares = [];
-  let selectedSquare = null;
-  let movesBack = 0;
-  let boardDisabled = false;
+  let board = {
+    board: chess.board(),
+    highlightedSquares: [],
+    selectedSquare: null,
+    movesBack: 0,
+    disabled: false,
+  };
+
+  function resetBoard(disable = null, resetHintSol = false) {
+    board.highlightedSquares = [];
+    board.selectedSquare = null;
+    if (disable != null) {
+      board.disabled = disable;
+    }
+    if (resetHintSol) {
+      currentSequence.hint = false;
+      currentSequence.solution = false;
+    }
+  }
 
   function updateBoard() {
-    if (movesBack == -1) {
-      highlightedSquares = [];
-      selectedSquare = null;
-      boardDisabled = true;
+    if (board.movesBack == -1) {
+      // user got the sequence wrong, show the last move in displayer
+      resetBoard(true, true);
       displayer.load(currentSequence.failed);
-      board = displayer.board();
-    } else if (movesBack) {
+      board.board = displayer.board();
+    } else if (board.movesBack) {
       //switch to history mode
-      highlightedSquares = [];
-      selectedSquare = null;
-      loadMovesBack(movesBack);
-      boardDisabled = true;
-      board = displayer.board();
+      resetBoard(true, true);
+      loadMovesBack(board.movesBack);
+      board.board = displayer.board();
     } else {
       if (
-        boardDisabled &&
+        board.disabled &&
         (!currentSequence ||
           (!currentSequence.failed && !currentSequence.finished))
       ) {
         //switch to normal mode
-        boardDisabled = false;
+        board.disabled = false;
       }
-      board = chess.board();
+      board.board = chess.board();
     }
   }
 
@@ -82,12 +102,13 @@
         // correct move
         currentSequence.step++;
       } else {
-        // failed
-        movesBack = -1;
+        // wrong move
+        board.movesBack = -1;
         displayer.load(chess.fen());
         movePiece(move, true);
-        boardDisabled = true;
+        resetBoard(true);
         currentSequence.failed = displayer.fen();
+        currentSequence.deductedPoints += pointsToDeduct.fail;
         return false;
       }
     } else {
@@ -99,7 +120,7 @@
     if (currentSequence.step === currentSequence.moves.length) {
       // finished
       currentSequence.finished = true;
-      boardDisabled = true;
+      board.disabled = true;
     }
 
     return true;
@@ -108,13 +129,12 @@
   function resetSequence() {
     // reset seq and board
     chess.load(currentSequence.start);
-    highlightedSquares = [];
-    selectedSquare = null;
-    movesBack = 0;
-    boardDisabled = false;
+    resetBoard(false, true);
+    board.movesBack = 0;
     currentSequence.step = 0;
     currentSequence.failed = false;
     currentSequence.finished = false;
+    currentSequence.deductedPoints = 0;
     updateBoard();
   }
 
@@ -136,49 +156,51 @@
   }
 
   function handlePieceClick(id) {
-    if (boardDisabled) return;
-    if (highlightedSquares.length == 0) {
+    if (board.disabled) return;
+    if (board.highlightedSquares.length == 0) {
       // select the piece and highlight possible moves
-      highlightedSquares = getMoves(id);
-      if (highlightedSquares.length) selectedSquare = id;
-    } else if (highlightedSquares.includes(id)) {
+      board.highlightedSquares = getMoves(id);
+      if (board.highlightedSquares.length) board.selectedSquare = id;
+    } else if (board.highlightedSquares.includes(id)) {
       // check if there is a sequence
       if (currentSequence) {
-        if (!updateSequence({ from: selectedSquare, to: id })) {
-          // wrong move
-          updateBoard();
-        } else {
+        if (updateSequence({ from: board.selectedSquare, to: id })) {
           // correct move, move piece, and move the opposing side
-          movePiece({ from: selectedSquare, to: id });
+          movePiece({ from: board.selectedSquare, to: id });
           updateSequence();
-          updateBoard();
         }
+        resetBoard(null, true);
+        updateBoard();
       } else {
         // no sequence, move piece
-        movePiece({ from: selectedSquare, to: id });
+        movePiece({ from: board.selectedSquare, to: id });
         updateBoard();
       }
-      highlightedSquares = [];
-      selectedSquare = null;
+      resetBoard();
     } else {
       // un-select and un-highlight
-      highlightedSquares = [];
-      selectedSquare = null;
+      resetBoard();
     }
   }
 </script>
 
 <div class="board">
-  {#each board as row, rowNum}
+  {#each board.board as row, rowNum}
     {#each row as square, colNum}
       <Square
         id={getSquare(rowNum, colNum)}
         squareColor={chess.squareColor(getSquare(rowNum, colNum))}
-        highlighted={highlightedSquares.includes(
+        highlighted={board.highlightedSquares.includes(
           getSquare(rowNum, colNum)
         )}
         {square}
         {handlePieceClick}
+        hint={currentSequence.hint &&
+          currentSequence.moves[currentSequence.step].from ==
+            getSquare(rowNum, colNum)}
+        solution={currentSequence.solution &&
+          currentSequence.moves[currentSequence.step].to ==
+            getSquare(rowNum, colNum)}
       />
     {/each}
   {/each}
@@ -186,8 +208,8 @@
 <button on:click={resetSequence}>reset</button>
 <button
   on:click={() => {
-    if (movesBack < chess.history().length) {
-      movesBack++;
+    if (board.movesBack < chess.history().length) {
+      board.movesBack++;
       updateBoard();
     }
   }}>back</button
@@ -195,10 +217,10 @@
 <button
   on:click={() => {
     if (
-      movesBack > 0 ||
-      (movesBack == 0 && currentSequence?.failed)
+      board.movesBack > 0 ||
+      (board.movesBack == 0 && currentSequence?.failed)
     ) {
-      movesBack--;
+      board.movesBack--;
       updateBoard();
     }
   }}>next</button
@@ -207,16 +229,30 @@
 {#if currentSequence?.failed}
   <button
     on:click={() => {
-      boardDisabled = false;
+      board.disabled = false;
       currentSequence.failed = false;
-      movesBack = 0;
+      board.movesBack = 0;
       updateBoard();
     }}>retry last move</button
   >
 {/if}
 
-{#if !currentSequence?.finished && !currentSequence?.failed}
-  <button on:click={() => {}}>hint</button>
+{#if !currentSequence?.finished && !currentSequence?.failed && !currentSequence?.hint}
+  <button
+    on:click={() => {
+      currentSequence.hint = true;
+      currentSequence.deductedPoints += pointsToDeduct.hint;
+    }}>hint</button
+  >
+{/if}
+
+{#if !currentSequence?.finished && !currentSequence?.failed && currentSequence?.hint && !currentSequence.solution}
+  <button
+    on:click={() => {
+      currentSequence.solution = true;
+      currentSequence.deductedPoints += pointsToDeduct.solution;
+    }}>solution</button
+  >
 {/if}
 
 {#if currentSequence?.finished}

@@ -4,12 +4,13 @@
     square,
     handlePieceClick,
     highlighted,
-    hint = false;
+    hint,
+    solution;
 </script>
 
 <button
-  class={`square ${squareColor}${highlighted ? " highlighted" : ""}${
-    hint ? " hint" : ""
+  class={`square ${squareColor}${hint ? " hint" : ""}${
+    solution ? " solution" : ""
   }`}
   on:click={() => handlePieceClick(id)}
 >
