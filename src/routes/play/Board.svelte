@@ -38,6 +38,7 @@
     selectedSquare: null,
     movesBack: 0,
     disabled: false,
+    flipped: true,
   };
 
   function resetBoard(disable = null, resetHintSol = false) {
@@ -184,80 +185,94 @@
   }
 </script>
 
-<div class="board">
-  {#each board.board as row, rowNum}
-    {#each row as square, colNum}
-      <Square
-        id={getSquare(rowNum, colNum)}
-        squareColor={chess.squareColor(getSquare(rowNum, colNum))}
-        highlighted={board.highlightedSquares.includes(
-          getSquare(rowNum, colNum)
-        )}
-        {square}
-        {handlePieceClick}
-        hint={currentSequence.hint &&
-          currentSequence.moves[currentSequence.step].from ==
-            getSquare(rowNum, colNum)}
-        solution={currentSequence.solution &&
-          currentSequence.moves[currentSequence.step].to ==
-            getSquare(rowNum, colNum)}
-      />
+<div class="board-wrapper">
+  <div class={`board${board.flipped ? " flipped" : " normal"}`}>
+    {#each board.board as row, rowNum}
+      {#each row as square, colNum}
+        <Square
+          id={getSquare(rowNum, colNum)}
+          squareColor={chess.squareColor(getSquare(rowNum, colNum))}
+          highlighted={board.highlightedSquares.includes(
+            getSquare(rowNum, colNum)
+          )}
+          {square}
+          {handlePieceClick}
+          hint={currentSequence.hint &&
+            currentSequence.moves[currentSequence.step].from ==
+              getSquare(rowNum, colNum)}
+          solution={currentSequence.solution &&
+            currentSequence.moves[currentSequence.step].to ==
+              getSquare(rowNum, colNum)}
+          order={board.flipped
+            ? 63 - (rowNum * 8 + colNum)
+            : rowNum * 8 + colNum}
+          flipped={board.flipped}
+        />
+      {/each}
     {/each}
-  {/each}
+  </div>
+
+  <div class="buttons">
+    <button on:click={resetSequence}>reset</button>
+    <button
+      on:click={() => {
+        if (board.movesBack < chess.history().length) {
+          board.movesBack++;
+          updateBoard();
+        }
+      }}>back</button
+    >
+    <button
+      on:click={() => {
+        if (
+          board.movesBack > 0 ||
+          (board.movesBack == 0 && currentSequence?.failed)
+        ) {
+          board.movesBack--;
+          updateBoard();
+        }
+      }}>next</button
+    >
+    <button
+      on:click={() => {
+        board.flipped = !board.flipped;
+      }}>flip</button
+    >
+
+    {#if currentSequence?.failed}
+      <button
+        on:click={() => {
+          board.disabled = false;
+          currentSequence.failed = false;
+          board.movesBack = 0;
+          updateBoard();
+        }}>retry last move</button
+      >
+    {/if}
+
+    {#if !currentSequence?.finished && !currentSequence?.failed && !currentSequence?.hint}
+      <button
+        on:click={() => {
+          currentSequence.hint = true;
+          currentSequence.deductedPoints += pointsToDeduct.hint;
+        }}>hint</button
+      >
+    {/if}
+
+    {#if !currentSequence?.finished && !currentSequence?.failed && currentSequence?.hint && !currentSequence.solution}
+      <button
+        on:click={() => {
+          currentSequence.solution = true;
+          currentSequence.deductedPoints += pointsToDeduct.solution;
+        }}>solution</button
+      >
+    {/if}
+
+    {#if currentSequence?.finished}
+      <button on:click={() => {}}>next sequence</button>
+    {/if}
+  </div>
 </div>
-<button on:click={resetSequence}>reset</button>
-<button
-  on:click={() => {
-    if (board.movesBack < chess.history().length) {
-      board.movesBack++;
-      updateBoard();
-    }
-  }}>back</button
->
-<button
-  on:click={() => {
-    if (
-      board.movesBack > 0 ||
-      (board.movesBack == 0 && currentSequence?.failed)
-    ) {
-      board.movesBack--;
-      updateBoard();
-    }
-  }}>next</button
->
-
-{#if currentSequence?.failed}
-  <button
-    on:click={() => {
-      board.disabled = false;
-      currentSequence.failed = false;
-      board.movesBack = 0;
-      updateBoard();
-    }}>retry last move</button
-  >
-{/if}
-
-{#if !currentSequence?.finished && !currentSequence?.failed && !currentSequence?.hint}
-  <button
-    on:click={() => {
-      currentSequence.hint = true;
-      currentSequence.deductedPoints += pointsToDeduct.hint;
-    }}>hint</button
-  >
-{/if}
-
-{#if !currentSequence?.finished && !currentSequence?.failed && currentSequence?.hint && !currentSequence.solution}
-  <button
-    on:click={() => {
-      currentSequence.solution = true;
-      currentSequence.deductedPoints += pointsToDeduct.solution;
-    }}>solution</button
-  >
-{/if}
-
-{#if currentSequence?.finished}
-  <button on:click={() => {}}>next sequence</button>
-{/if}
 
 <style>
 </style>
