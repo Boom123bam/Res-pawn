@@ -45,12 +45,12 @@
         <button
           on:click={() => {
             showRightMenu = !showRightMenu;
-          }}>menu</button
+          }}>menu {user.displayName}</button
         >
       </li>
     {:else}
       <li>
-        <a href="/signin">Sign In</a>
+        <a href="/auth/signin">Sign In</a>
       </li>
     {/if}
   </ul>

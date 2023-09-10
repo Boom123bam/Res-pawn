@@ -38,7 +38,7 @@
     selectedSquare: null,
     movesBack: 0,
     disabled: false,
-    flipped: true,
+    flipped: currentSequence?.start.split(" ")[1] === "b", // flip board if black is first
   };
 
   function resetBoard(disable = null, resetHintSol = false) {
@@ -197,11 +197,11 @@
           )}
           {square}
           {handlePieceClick}
-          hint={currentSequence.hint &&
-            currentSequence.moves[currentSequence.step].from ==
+          hint={currentSequence?.hint &&
+            currentSequence?.moves[currentSequence?.step].from ==
               getSquare(rowNum, colNum)}
-          solution={currentSequence.solution &&
-            currentSequence.moves[currentSequence.step].to ==
+          solution={currentSequence?.solution &&
+            currentSequence?.moves[currentSequence?.step].to ==
               getSquare(rowNum, colNum)}
           order={board.flipped
             ? 63 - (rowNum * 8 + colNum)
