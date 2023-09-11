@@ -19,7 +19,7 @@
 >
   {#if square != undefined}
     <img
-      src={`src/lib/images/pieces/${square.type}-${square.color}.svg`}
+      src={`/src/lib/images/pieces/${square.type}-${square.color}.svg`}
       alt=""
     />
   {/if}
