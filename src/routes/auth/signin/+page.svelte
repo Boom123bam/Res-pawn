@@ -2,6 +2,7 @@
   import { signInWithEmailAndPassword } from "@firebase/auth";
   import { auth } from "../../../firebase";
   import { goto } from "$app/navigation";
+  import { storeUserData } from "../../../modules/localStorage";
 
   let email = "";
   let password = "";
@@ -22,6 +23,7 @@
         email,
         password
       );
+      storeUserData(userCredential.user);
       console.log("signed in");
       goto("/home"); // Redirect to the home page
     } catch (error) {

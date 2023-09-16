@@ -4,29 +4,18 @@
   import { sequenceData } from "./boardStore";
   import "./board.css";
 
-  // export let currentSequence = null;
-  export let currentSequence = {
-    start:
-      "rnbqkbnr/1ppppppp/p7/8/8/P7/1PPPPPPP/RNBQKBNR w KQkq - 0 1",
-    moves: [
-      { from: "e2", to: "e4" },
-      { from: "e7", to: "e5" },
-      { from: "f2", to: "f4" },
-      { from: "f7", to: "f5" },
-    ],
-    step: 0,
-    failed: false,
-    finished: false,
-    deductedPoints: 0, // deduct points for each hint, move-reveal, fail
-    hint: false,
-    solution: false,
-  };
-
-  const pointsToDeduct = {
-    hint: 1,
-    solution: 3,
-    fail: 2,
-  };
+  let currentSequence = null;
+  // const currentSequence = {
+  //   start:
+  //     "rnbqkb1r/pppp2pp/8/4P3/2B5/4p3/PPPP2PP/R1BQK1NR w KQkq - 0 7",
+  //   moves: ["d1f3", "d8h4", "e1d1", "h4c4"],
+  //   step: 0,
+  //   failed: false,
+  //   finished: false,
+  //   deductedPoints: 0,
+  //   hint: false,
+  //   solution: false,
+  // };
 
   let board = {
     chess: currentSequence
@@ -41,6 +30,30 @@
     flipped: currentSequence?.start.split(" ")[1] === "b", // flip board if black is first
   };
   board.board = board.chess.board();
+
+  sequenceData.subscribe((newSeqData) => {
+    if (newSeqData) {
+      currentSequence = {
+        start: newSeqData.fen,
+        moves: newSeqData.moves.split(" "),
+        step: 0,
+        failed: false,
+        finished: false,
+        deductedPoints: 0,
+        hint: false,
+        solution: false,
+      };
+      resetSequence();
+      updateBoard();
+    }
+  });
+
+  // deduct points for each hint, move-reveal, fail
+  const pointsToDeduct = {
+    hint: 1,
+    solution: 3,
+    fail: 2,
+  };
 
   function resetSequence() {
     // reset seq and board
@@ -99,8 +112,8 @@
   }
 
   function movePiece(move, useDisplayer = false) {
-    if (!useDisplayer) board.chess.move(`${move.from}${move.to}`);
-    else board.displayer.move(`${move.from}${move.to}`);
+    if (!useDisplayer) board.chess.move(move);
+    else board.displayer.move(move);
   }
 
   function updateSequence(move = null) {
@@ -113,7 +126,7 @@
     // Check if a move is provided and validate it
     if (move) {
       //compare move to expected move
-      if (JSON.stringify(move) === JSON.stringify(expectedMove)) {
+      if (move === expectedMove) {
         // correct move
         currentSequence.step++;
       } else {
@@ -167,16 +180,16 @@
     } else if (board.highlightedSquares.includes(id)) {
       // check if there is a sequence
       if (currentSequence) {
-        if (updateSequence({ from: board.selectedSquare, to: id })) {
+        if (updateSequence(board.selectedSquare + id)) {
           // correct move, move piece, and move the opposing side
-          movePiece({ from: board.selectedSquare, to: id });
+          movePiece(board.selectedSquare + id);
           updateSequence();
         }
         resetBoard(null, true);
         updateBoard();
       } else {
         // no sequence, move piece
-        movePiece({ from: board.selectedSquare, to: id });
+        movePiece(board.selectedSquare + id);
         updateBoard();
       }
       resetBoard();
@@ -202,11 +215,15 @@
           {square}
           {handlePieceClick}
           hint={currentSequence?.hint &&
-            currentSequence?.moves[currentSequence?.step].from ==
-              getSquare(rowNum, colNum)}
+            currentSequence?.moves[currentSequence?.step].substring(
+              0,
+              2
+            ) == getSquare(rowNum, colNum)}
           solution={currentSequence?.solution &&
-            currentSequence?.moves[currentSequence?.step].to ==
-              getSquare(rowNum, colNum)}
+            currentSequence?.moves[currentSequence?.step].substring(
+              2,
+              4
+            ) == getSquare(rowNum, colNum)}
           order={board.flipped
             ? 63 - (rowNum * 8 + colNum)
             : rowNum * 8 + colNum}

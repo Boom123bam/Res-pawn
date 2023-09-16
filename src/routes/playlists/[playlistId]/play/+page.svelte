@@ -1,23 +1,38 @@
 <script>
   import Board from "/src/components/Board.svelte";
-  let currentSequence = {
-    start:
-      "rnbqkbnr/1ppppppp/p7/8/8/P7/1PPPPPPP/RNBQKBNR w KQkq - 0 1",
-    moves: [
-      { from: "e2", to: "e4" },
-      { from: "e7", to: "e5" },
-      { from: "f2", to: "f4" },
-      { from: "f7", to: "f5" },
-    ],
-    step: 0,
-    failed: false,
-    finished: false,
-    deductedPoints: 0, // deduct points for each hint, move-reveal, fail
-    hint: false,
-    solution: false,
-  };
+  import { getSeqData } from "../../../../modules/firebase";
+  import { sequenceData } from "../../../../components/boardStore";
+  import { getSoonestSeq } from "../../../../modules/firebase";
+  import { getUserID } from "../../../../modules/localStorage";
+
+  async function loadSeq(id) {
+    const data = await getSeqData(id);
+    $sequenceData = data;
+  }
+
+  /*
+  repeat:
+    get next seq
+    play next seq
+    store int data
+  */
 </script>
 
-<Board {currentSequence} />
+<Board />
 
-<button on:click={() => {}}>asdf</button>
+<button
+  on:click={() => {
+    loadSeq("00J1t");
+  }}>load</button
+>
+
+<button
+  on:click={async () => {
+    const userID = await getUserID();
+    if (userID) {
+      console.log(
+        await getSoonestSeq(userID, "qWVckrPxsjQiByFsEFLz", 20000000)
+      );
+    }
+  }}>getseq</button
+>

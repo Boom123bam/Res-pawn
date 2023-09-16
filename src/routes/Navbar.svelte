@@ -1,15 +1,13 @@
 <script>
   import { page } from "$app/stores";
   import logo from "$lib/images/svelte-logo.svg";
-  import { auth } from "../firebase";
-  import { onAuthStateChanged } from "@firebase/auth";
+  import { getUserData } from "../modules/localStorage";
 
   let showRightMenu = false;
-  let user = auth.currentUser;
-
-  onAuthStateChanged(auth, (newUser) => {
-    user = newUser;
-  });
+  let user = null;
+  (async function getUser() {
+    user = await getUserData();
+  })();
 </script>
 
 <nav>
