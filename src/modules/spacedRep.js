@@ -1,10 +1,46 @@
-import { getSoonestSeq } from "./firebase";
+import { Timestamp } from "firebase/firestore";
 
-async function getNextSeq() {
-  const soonestSeq = await getSoonestSeq();
-  if (soonestSeq) {
-    return soonestSeq.id;
-  } else {
-    // get random seq in playlist
+function getSoonestSeq(seqsData, minsLimit = 20) {
+  // gets the seq object with the soonest nextReview
+  // returns the seqID if it is before (minsLimit) mins after the current time
+
+  let soonestTimestamp = null; // Start with a high value
+  let soonestSeqID = null;
+
+  const currentTimestamp = Timestamp.now();
+
+  // Calculate the timestamp x minutes later
+  const latestTime = new Timestamp(
+    currentTimestamp.seconds + minsLimit * 60,
+    currentTimestamp.nanoseconds
+  );
+
+  for (const seqID in seqsData) {
+    if (seqsData.hasOwnProperty(seqID)) {
+      const timestamp = seqsData[seqID].nextReview;
+      console.log(timestamp, latestTime);
+      if (
+        !soonestTimestamp ||
+        timestamp.seconds < soonestTimestamp.seconds
+      ) {
+        soonestTimestamp = timestamp;
+        if (timestamp.seconds < latestTime.seconds) {
+          soonestSeqID = seqID;
+        }
+      }
+    }
+  }
+
+  return soonestSeqID;
+}
+
+function getRandomSeq(seqIDs) {
+  return seqIDs[Math.floor(Math.random() * seqIDs.length)];
+}
+
+export function getNextSeq(playedSeqsData, unplayedSeqsIDs) {
+  const soonestSeqID = getSoonestSeq(playedSeqsData);
+  if (!soonestSeqID) {
+    return getRandomSeq(unplayedSeqsIDs);
   }
 }

@@ -3,6 +3,7 @@
   import { auth } from "../../../firebase";
   import { goto } from "$app/navigation";
   import { storeUserData } from "../../../modules/localStorage";
+  import { getUserData } from "../../../modules/firebase";
 
   let email = "";
   let password = "";
@@ -23,8 +24,10 @@
         email,
         password
       );
-      storeUserData(userCredential.user);
-      console.log("signed in");
+      const userData = await getUserData(userCredential.user.uid);
+      userData.id = userCredential.user.uid;
+      storeUserData(userData);
+      // signed in
       goto("/home"); // Redirect to the home page
     } catch (error) {
       errorMessage = error.message;

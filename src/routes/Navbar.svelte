@@ -1,12 +1,12 @@
 <script>
   import { page } from "$app/stores";
   import logo from "$lib/images/svelte-logo.svg";
-  import { getUserData } from "../modules/localStorage";
+  import { getLocalUserData } from "../modules/localStorage";
 
   let showRightMenu = false;
   let user = null;
   (async function getUser() {
-    user = await getUserData();
+    user = await getLocalUserData();
   })();
 </script>
 
@@ -43,7 +43,7 @@
         <button
           on:click={() => {
             showRightMenu = !showRightMenu;
-          }}>menu {user.displayName}</button
+          }}>menu {user.username}</button
         >
       </li>
     {:else}

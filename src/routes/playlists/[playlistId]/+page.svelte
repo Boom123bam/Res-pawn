@@ -1,14 +1,15 @@
 <script>
   /** @type {import('./$types').PageData} */
   export let data;
+  const { localPlaylistData } = data;
 </script>
 
 <p>playlist</p>
-<h1>{data.name}</h1>
-{#if data.description}
-  <p>{data.description}</p>
+<h1>{localPlaylistData.name}</h1>
+{#if localPlaylistData.description}
+  <p>{localPlaylistData.description}</p>
 {/if}
-<h3>{data.sequences.length} sequences</h3>
+<h3>{localPlaylistData.sequences.length} sequences</h3>
 <button
   on:click={() => {
     console.log(data);

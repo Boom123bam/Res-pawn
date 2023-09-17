@@ -1,14 +1,48 @@
 <script>
   import Board from "/src/components/Board.svelte";
-  import { getSeqData } from "../../../../modules/firebase";
+  import {
+    getAllUserSeqs,
+    getSeqData,
+  } from "../../../../modules/firebase";
   import { sequenceData } from "../../../../components/boardStore";
-  import { getSoonestSeq } from "../../../../modules/firebase";
-  import { getUserID } from "../../../../modules/localStorage";
+  import { getLocalUserData } from "../../../../modules/localStorage";
+  import { getNextSeq } from "../../../../modules/spacedRep";
 
   async function loadSeq(id) {
     const data = await getSeqData(id);
     $sequenceData = data;
   }
+
+  export let data; // data from layout.js
+  const { localPlaylistData, localUserSeqData } = data;
+
+  // get user data
+  let userData;
+  (async () => {
+    userData = await getLocalUserData();
+  })();
+
+  function filterObject(obj, keysToKeep) {
+    return Object.keys(obj).reduce((result, key) => {
+      if (keysToKeep.includes(key)) {
+        result[key] = obj[key];
+      }
+      return result;
+    }, {});
+  }
+
+  // store an object containing data of the seqs played in the current playlist
+  const playedSeqsData = filterObject(
+    localUserSeqData,
+    localPlaylistData.sequences
+  );
+
+  // store a list the seqIDs the user has not played (in localPlaylistData.seqs and not in localUserSeqData)
+  const unplayedSeqIDs = localPlaylistData.sequences.filter(
+    (item) => !Object.keys(localUserSeqData).includes(item)
+  );
+
+  console.log(playedSeqsData, unplayedSeqIDs);
 
   /*
   repeat:
@@ -16,6 +50,7 @@
     play next seq
     store int data
   */
+  getNextSeq(playedSeqsData, unplayedSeqIDs);
 </script>
 
 <Board />
@@ -24,15 +59,4 @@
   on:click={() => {
     loadSeq("00J1t");
   }}>load</button
->
-
-<button
-  on:click={async () => {
-    const userID = await getUserID();
-    if (userID) {
-      console.log(
-        await getSoonestSeq(userID, "qWVckrPxsjQiByFsEFLz", 20000000)
-      );
-    }
-  }}>getseq</button
 >
