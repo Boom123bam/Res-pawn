@@ -42,8 +42,6 @@
     (item) => !Object.keys(localUserSeqData).includes(item)
   );
 
-  console.log(playedSeqsData, unplayedSeqIDs);
-
   /*
   repeat:
     get next seq
@@ -51,12 +49,23 @@
     store int data
   */
   getNextSeq(playedSeqsData, unplayedSeqIDs);
+
+  sequenceData.subscribe((newSeqData) => {
+    if (newSeqData?.finished) {
+      console.log("finished seq");
+    }
+  });
 </script>
 
 <Board />
 
 <button
   on:click={() => {
-    loadSeq("00J1t");
+    loadSeq("0aZzt");
+  }}>load</button
+>
+<button
+  on:click={() => {
+    console.log(sequenceData);
   }}>load</button
 >

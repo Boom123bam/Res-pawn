@@ -3,24 +3,14 @@
   import Square from "./Square.svelte";
   import { sequenceData } from "./boardStore";
   import "./board.css";
+  import Promotion from "./Promotion.svelte";
 
   let currentSequence = null;
-  // const currentSequence = {
-  //   start:
-  //     "rnbqkb1r/pppp2pp/8/4P3/2B5/4p3/PPPP2PP/R1BQK1NR w KQkq - 0 7",
-  //   moves: ["d1f3", "d8h4", "e1d1", "h4c4"],
-  //   step: 0,
-  //   failed: false,
-  //   finished: false,
-  //   deductedPoints: 0,
-  //   hint: false,
-  //   solution: false,
-  // };
 
   let board = {
     chess: currentSequence
       ? new Chess(currentSequence.start)
-      : new Chess(),
+      : new Chess("8/6P1/2Pkr3/5K2/8/8/4p3/R7 b - - 1 69"),
     displayer: new Chess(),
     board: null,
     highlightedSquares: [],
@@ -28,11 +18,12 @@
     movesBack: 0,
     disabled: false,
     flipped: currentSequence?.start.split(" ")[1] === "b", // flip board if black is first
+    moveToPromote: "",
   };
   board.board = board.chess.board();
 
   sequenceData.subscribe((newSeqData) => {
-    if (newSeqData) {
+    if (newSeqData && !newSeqData?.finished) {
       currentSequence = {
         start: newSeqData.fen,
         moves: newSeqData.moves.split(" "),
@@ -58,7 +49,7 @@
   function resetSequence() {
     // reset seq and board
     board.chess.load(currentSequence.start);
-    resetBoard(false, true);
+    resetBoardHighlights(false, true);
     board.movesBack = 0;
     currentSequence.step = 0;
     currentSequence.failed = false;
@@ -67,7 +58,10 @@
     updateBoard();
   }
 
-  function resetBoard(disable = null, resetHintSol = false) {
+  function resetBoardHighlights(
+    disable = null,
+    resetHintSol = false
+  ) {
     // resets highlights and hints
     board.highlightedSquares = [];
     board.selectedSquare = null;
@@ -83,12 +77,12 @@
   function updateBoard() {
     if (board.movesBack == -1) {
       // user got the sequence wrong, show the last move in board.displayer
-      resetBoard(true, true);
+      resetBoardHighlights(true, true);
       board.displayer.load(currentSequence.failed);
       board.board = board.displayer.board();
     } else if (board.movesBack) {
       //switch to history mode
-      resetBoard(true, true);
+      resetBoardHighlights(true, true);
       loadMovesBack(board.movesBack);
       board.board = board.displayer.board();
     } else {
@@ -111,6 +105,21 @@
     }`;
   }
 
+  function checkIfPromotion(move) {
+    // check if the move is promotion
+    // if moveTo is last row and if piece is pawn
+
+    const piece = board.chess.get(move.substring(0, 2));
+    if (
+      piece.type == "p" &&
+      ((move[3] == "1" && piece.color == "b") ||
+        (move[3] == "8" && piece.color == "w"))
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   function movePiece(move, useDisplayer = false) {
     if (!useDisplayer) board.chess.move(move);
     else board.displayer.move(move);
@@ -131,12 +140,6 @@
         currentSequence.step++;
       } else {
         // wrong move
-        board.movesBack = -1;
-        board.displayer.load(board.chess.fen());
-        movePiece(move, true);
-        resetBoard(true);
-        currentSequence.failed = board.displayer.fen();
-        currentSequence.deductedPoints += pointsToDeduct.fail;
         return false;
       }
     } else {
@@ -149,6 +152,9 @@
       // finished
       currentSequence.finished = true;
       board.disabled = true;
+      // let user grade the seq
+      // update store
+      $sequenceData = currentSequence;
     }
 
     return true;
@@ -171,6 +177,36 @@
       });
   }
 
+  function handleMoveClick(move, promotion = "") {
+    // if the move is a promotion
+    if (!promotion & checkIfPromotion(move)) {
+      board.moveToPromote = move;
+      return;
+    }
+
+    move = move + promotion;
+    if (currentSequence) {
+      if (updateSequence(move)) {
+        // correct move, move piece
+        movePiece(move);
+        updateSequence(); // auto move opposing side
+      } else {
+        board.movesBack = -1;
+        board.displayer.load(board.chess.fen());
+        movePiece(move, true);
+        resetBoardHighlights(true);
+        currentSequence.failed = board.displayer.fen();
+        currentSequence.deductedPoints += pointsToDeduct.fail;
+      }
+      resetBoardHighlights(null, true);
+      updateBoard();
+    } else {
+      // no sequence, move piece
+      movePiece(move);
+      updateBoard();
+    }
+  }
+
   function handlePieceClick(id) {
     if (board.disabled) return;
     if (board.highlightedSquares.length == 0) {
@@ -178,29 +214,29 @@
       board.highlightedSquares = getMoves(id);
       if (board.highlightedSquares.length) board.selectedSquare = id;
     } else if (board.highlightedSquares.includes(id)) {
+      handleMoveClick(board.selectedSquare + id);
       // check if there is a sequence
-      if (currentSequence) {
-        if (updateSequence(board.selectedSquare + id)) {
-          // correct move, move piece, and move the opposing side
-          movePiece(board.selectedSquare + id);
-          updateSequence();
-        }
-        resetBoard(null, true);
-        updateBoard();
-      } else {
-        // no sequence, move piece
-        movePiece(board.selectedSquare + id);
-        updateBoard();
-      }
-      resetBoard();
+      resetBoardHighlights();
     } else {
       // un-select and un-highlight
-      resetBoard();
+      resetBoardHighlights();
     }
+  }
+
+  function handlePromotion(pieceTo) {
+    handleMoveClick(board.moveToPromote, pieceTo);
+    board.moveToPromote = "";
   }
 </script>
 
 <div class="board-wrapper">
+  {#if board.moveToPromote}
+    <Promotion
+      on:promotion={(event) => {
+        handlePromotion(event.detail);
+      }}
+    />
+  {/if}
   <div class={`board${board.flipped ? " flipped" : " normal"}`}>
     {#each board.board as row, rowNum}
       {#each row as square, colNum}

@@ -35,7 +35,7 @@
   main {
     /* position: absolute; */
     /* top: 3rem; */
-    width: min(85ch, 100% - 3rem);
+    width: min(65ch, 100% - 3rem);
     height: 100%;
     margin-inline: auto;
     padding-top: 5rem;
