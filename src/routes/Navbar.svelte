@@ -72,7 +72,7 @@
   }
 
   ul {
-    width: min(65ch, 100% - 3rem);
+    width: min(85ch, 100% - 3rem);
     margin: 0 auto;
     height: 100%;
     padding: 0;

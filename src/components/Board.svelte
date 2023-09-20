@@ -4,50 +4,51 @@
   import { sequenceData } from "./boardStore";
   import "./board.css";
   import Promotion from "./Promotion.svelte";
-  import GradeMenu from "./GradeMenu.svelte";
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
 
   let currentSequence = null;
 
   let board = {
-    chess: currentSequence
-      ? new Chess(currentSequence.start)
-      : new Chess("8/6P1/2Pkr3/5K2/8/8/4p3/R7 b - - 1 69"),
+    chess: new Chess(),
     displayer: new Chess(),
     board: null,
     highlightedSquares: [],
     selectedSquare: null,
     movesBack: 0,
     disabled: false,
-    flipped: currentSequence?.start.split(" ")[1] === "b", // flip board if black is first
+    flipped: false,
     moveToPromote: "",
-    showGradeMenu: false,
   };
   board.board = board.chess.board();
 
   sequenceData.subscribe((newSeqData) => {
     if (newSeqData && !newSeqData?.finished) {
-      currentSequence = {
-        start: newSeqData.fen,
-        moves: newSeqData.moves.split(" "),
-        step: 0,
-        failed: false,
-        finished: false,
-        deductedPoints: 0,
-        hint: false,
-        solution: false,
-        grade: null,
-      };
-      resetSequence();
-      updateBoard();
+      handleSeqLoad(newSeqData);
     }
   });
 
-  // deduct points for each hint, move-reveal, fail
-  const pointsToDeduct = {
-    hint: 1,
-    solution: 3,
-    fail: 2,
-  };
+  function handleSeqLoad(seqData) {
+    currentSequence = {
+      start: seqData.fen,
+      moves: seqData.moves.split(" "),
+      step: 0,
+      failed: false,
+      finished: false,
+      deductedPoints: 0,
+      hint: false,
+      solution: false,
+      stats: {
+        hintsUsed: 0,
+        solsUsed: 0,
+        timesFailed: 0,
+      },
+    };
+    (board.flipped = currentSequence.start.split(" ")[1] === "b"), // flip board if black is first
+      resetSequence();
+    updateBoard();
+  }
 
   function resetSequence() {
     // reset seq and board
@@ -155,8 +156,8 @@
       // finished
       currentSequence.finished = true;
       board.disabled = true;
-      // let user grade the seq
-      board.showGradeMenu = true;
+      // dispatch event and return stats
+      dispatch("finish", currentSequence.stats);
     }
 
     return true;
@@ -198,7 +199,7 @@
         movePiece(move, true);
         resetBoardHighlights(true);
         currentSequence.failed = board.displayer.fen();
-        currentSequence.deductedPoints += pointsToDeduct.fail;
+        currentSequence.stats.timesFailed++;
       }
       resetBoardHighlights(null, true);
       updateBoard();
@@ -229,23 +230,11 @@
     handleMoveClick(board.moveToPromote, e.detail);
     board.moveToPromote = "";
   }
-
-  function handleGradeSubmit(e) {
-    board.showGradeMenu = false;
-    currentSequence.grade = e.detail.value;
-    $sequenceData = currentSequence;
-    if (e.detail.goNext) {
-      // go to next seq
-    }
-  }
 </script>
 
-<div class="board-wrapper">
+<div class="board-component-wrapper">
   {#if board.moveToPromote}
     <Promotion on:promotion={handlePromotion} />
-  {/if}
-  {#if board.showGradeMenu}
-    <GradeMenu on:submit={handleGradeSubmit} />
   {/if}
   <div class={`board${board.flipped ? " flipped" : " normal"}`}>
     {#each board.board as row, rowNum}
@@ -321,7 +310,7 @@
       <button
         on:click={() => {
           currentSequence.hint = true;
-          currentSequence.deductedPoints += pointsToDeduct.hint;
+          currentSequence.stats.hintsUsed++;
         }}>hint</button
       >
     {/if}
@@ -330,7 +319,7 @@
       <button
         on:click={() => {
           currentSequence.solution = true;
-          currentSequence.deductedPoints += pointsToDeduct.solution;
+          currentSequence.stats.solsUsed++;
         }}>solution</button
       >
     {/if}

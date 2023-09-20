@@ -4,6 +4,28 @@
   --hint-square: yellow;
 }
 
+.board-component-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.buttons {
+  background-color: var(--secondary);
+  border-radius: var(--br);
+  border: var(--border);
+  display: flex;
+  overflow: hidden;
+  & button {
+    padding: 1rem;
+    &:hover {
+      background-color: var(--light-gray);
+    }
+  }
+}
+
 .square {
   cursor: unset;
   background-color: var(--light-square);
@@ -47,14 +69,6 @@
   }
 }
 
-.board-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  position: relative;
-}
-
 .board {
   /* width: 100%; */
   aspect-ratio: 1 / 1;
@@ -78,20 +92,6 @@
     }
     :nth-child(57) {
       border-top-right-radius: calc(var(--br) - 0.5rem);
-    }
-  }
-}
-
-.buttons {
-  background-color: var(--secondary);
-  border-radius: var(--br);
-  border: var(--border);
-  display: flex;
-  overflow: hidden;
-  & button {
-    padding: 1rem;
-    &:hover {
-      background-color: var(--light-gray);
     }
   }
 }

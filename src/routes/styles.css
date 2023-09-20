@@ -2,8 +2,8 @@
 @import "@fontsource/fira-mono";
 
 :root {
-  --font-big: "DM Sans", sans-serif;
-  --font-small: "DM Serif Display", serif;
+  --font-big: "Barlow Condensed", sans-serif;
+  --font-small: "Montserrat", sans-serif;
   --text: #10162f;
   --background: #fef1e5;
   --primary: #b8b6ce;
@@ -14,7 +14,8 @@
   --br: 1rem;
   --br-small: 0.5rem;
   --shadow: 0.25rem 0.25rem 0;
-  font-family: var(--font-big);
+  font-family: var(--font-small);
+  font-size: 0.75rem;
 }
 /***
     The new CSS reset - version 1.8.6 (last updated 15.6.2023)
@@ -141,6 +142,10 @@ body {
   background-color: var(--background);
 }
 
+.page-content {
+  padding-top: 5rem;
+}
+
 .visually-hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -160,4 +165,5 @@ body {
   padding: 0.5rem 2.25rem;
   cursor: pointer;
   border: 1px solid var(--accent);
+  font-weight: 700;
 }

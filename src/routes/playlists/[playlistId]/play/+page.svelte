@@ -6,7 +6,11 @@
   } from "../../../../modules/firebase";
   import { sequenceData } from "../../../../components/boardStore";
   import { getLocalUserData } from "../../../../modules/localStorage";
-  import { getNextSeq } from "../../../../modules/spacedRep";
+  import {
+    estimateGrade,
+    getNextSeq,
+  } from "../../../../modules/spacedRep";
+  import GradeMenu from "../../../../components/GradeMenu.svelte";
 
   async function loadSeq(id) {
     const data = await getSeqData(id);
@@ -43,12 +47,14 @@
     (item) => !Object.keys(localUserSeqData).includes(item)
   );
 
+  let showGradeMenu = true;
+  let grade = 1;
   /*
-  repeat:
-    get next seq
-    play next seq
-    store int data
-  */
+      repeat:
+      get next seq
+      play next seq
+      store int data
+      */
   getNextSeq(playedSeqsData, unplayedSeqIDs);
 
   sequenceData.subscribe((newSeqData) => {
@@ -56,17 +62,62 @@
       console.log("finished seq");
     }
   });
+
+  function handleGradeSubmit(e) {
+    showGradeMenu = false;
+    grade = e.detail.value;
+    if (e.detail.goNext) {
+      // update local data
+      // GO NEXT
+    }
+  }
+
+  function handleSeqFinish(e) {
+    grade = estimateGrade(e.detail);
+    showGradeMenu = true;
+  }
 </script>
 
-<Board />
+<div class="page-content">
+  <div class="board-wrapper">
+    <Board on:finish={handleSeqFinish} />
+    {#if showGradeMenu}
+      <div class="menu-wrapper">
+        <GradeMenu value={grade} on:submit={handleGradeSubmit} />
+      </div>
+    {/if}
+  </div>
 
-<button
-  on:click={() => {
-    loadSeq("0aZzt");
-  }}>load</button
->
-<button
-  on:click={() => {
-    console.log(sequenceData);
-  }}>load</button
->
+  <button
+    on:click={() => {
+      loadSeq("0aZzt");
+    }}>load</button
+  >
+  <button
+    on:click={() => {
+      console.log(sequenceData);
+    }}>load</button
+  >
+</div>
+
+<style>
+  .page-content {
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .board-wrapper {
+    max-width: 70ch;
+    position: relative;
+    & .menu-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+</style>

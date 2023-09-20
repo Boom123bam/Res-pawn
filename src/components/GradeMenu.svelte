@@ -4,9 +4,11 @@
 
   onMount(() => {
     window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       // this function is called when the component is destroyed
+      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
   });
@@ -18,7 +20,7 @@
   }
 
   // value ranges from 0 to 2
-  let value = 0;
+  export let value = 0;
   let mouseDown = false;
 
   function handleMouseMove(event) {
@@ -46,76 +48,73 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div
-  class="board-blocker"
-  on:mousemove={() => {
-    handleMouseMove(false);
-  }}
-  on:click={handleSubmit}
->
-  <div class="popup-window">
-    <button
-      class="close"
-      on:click={() => {
-        handleMouseMove(false);
-      }}
-    />
-    <div class="slider" id="slider">
-      <div
-        class="img-container"
-        style={`${mouseDown ? "bottom:1rem" : "bottom: 0"}; left:${
-          value * 40
-        }%;`}
-      >
-        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-        <img
-          on:mousedown={handleMouseDown}
-          on:mouseup={handleMouseUp}
-          src="https://i.imgur.com/R6Ky0xY.png"
-          alt=""
-          draggable="false"
-          class="queen"
-        />
-      </div>
-      <div class="button-tiles">
-        <button
-          on:click={() => {
-            value = 0;
-          }}
-        /><button
-          on:click={() => {
-            value = 0.5;
-          }}
-        /><button
-          on:click={() => {
-            value = 1;
-          }}
-        /><button
-          on:click={() => {
-            value = 1.5;
-          }}
-        /><button
-          on:click={() => {
-            value = 2;
-          }}
-        />
-        <p class="label left">again</p>
-        <p class="label mid">tricky</p>
-        <p class="label right">fluent</p>
-      </div>
-    </div>
-    <button
-      class="next cta"
-      on:click={() => {
-        handleMouseMove(true);
-      }}>next</button
+
+<div class="popup-window">
+  <button
+    class="close"
+    on:click={() => {
+      handleSubmit(false);
+    }}
+  />
+  <div class="slider" id="slider">
+    <div
+      class="img-container"
+      style={`${mouseDown ? "bottom:1rem" : "bottom: 0"}; left:${
+        value * 40
+      }%;`}
     >
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+      <img
+        on:mousedown={handleMouseDown}
+        on:mouseup={handleMouseUp}
+        src="https://i.imgur.com/R6Ky0xY.png"
+        alt=""
+        draggable="false"
+        class="queen"
+      />
+    </div>
+    <div class="button-tiles">
+      <button
+        on:click={() => {
+          value = 0;
+        }}
+      /><button
+        on:click={() => {
+          value = 0.5;
+        }}
+      /><button
+        on:click={() => {
+          value = 1;
+        }}
+      /><button
+        on:click={() => {
+          value = 1.5;
+        }}
+      /><button
+        on:click={() => {
+          value = 2;
+        }}
+      />
+      <p class="label left">again</p>
+      <p class="label mid">tricky</p>
+      <p class="label right">easy</p>
+    </div>
   </div>
+  <div class="text">
+    <h2>How hard was it?</h2>
+    <p>drag the queen along the tiles</p>
+  </div>
+  <button
+    class="next cta"
+    on:click={() => {
+      handleSubmit(true);
+    }}>next</button
+  >
 </div>
 
 <style>
   .popup-window {
-    padding: 5rem;
+    padding: 4.5rem 4.5rem 3.5rem 4.5rem;
     background-color: var(--secondary);
     border: var(--border);
     border-radius: var(--br);
@@ -123,7 +122,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     position: relative;
   }
 
@@ -196,6 +195,18 @@
     }
     &.right {
       grid-column: 5;
+    }
+  }
+
+  .text {
+    text-align: center;
+    & h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-top: 0.5rem;
+    }
+    & p {
+      margin-top: 0.75rem;
     }
   }
 </style>

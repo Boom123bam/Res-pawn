@@ -11,20 +11,12 @@
   <main>
     <slot />
   </main>
-
-  <footer>
-    <p>
-      visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn
-      SvelteKit
-    </p>
-  </footer>
 </div>
 
 <style>
   .app {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
   }
 
   header {
@@ -33,19 +25,8 @@
     width: 100%;
   }
   main {
-    /* position: absolute; */
-    /* top: 3rem; */
-    width: min(65ch, 100% - 3rem);
-    height: 100%;
+    min-height: 100svh;
+    width: min(75ch, 100% - 3rem);
     margin-inline: auto;
-    padding-top: 5rem;
-  }
-
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
   }
 </style>
