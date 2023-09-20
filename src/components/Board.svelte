@@ -4,6 +4,7 @@
   import { sequenceData } from "./boardStore";
   import "./board.css";
   import Promotion from "./Promotion.svelte";
+  import GradeMenu from "./GradeMenu.svelte";
 
   let currentSequence = null;
 
@@ -19,6 +20,7 @@
     disabled: false,
     flipped: currentSequence?.start.split(" ")[1] === "b", // flip board if black is first
     moveToPromote: "",
+    showGradeMenu: false,
   };
   board.board = board.chess.board();
 
@@ -33,6 +35,7 @@
         deductedPoints: 0,
         hint: false,
         solution: false,
+        grade: null,
       };
       resetSequence();
       updateBoard();
@@ -153,8 +156,7 @@
       currentSequence.finished = true;
       board.disabled = true;
       // let user grade the seq
-      // update store
-      $sequenceData = currentSequence;
+      board.showGradeMenu = true;
     }
 
     return true;
@@ -223,19 +225,27 @@
     }
   }
 
-  function handlePromotion(pieceTo) {
-    handleMoveClick(board.moveToPromote, pieceTo);
+  function handlePromotion(e) {
+    handleMoveClick(board.moveToPromote, e.detail);
     board.moveToPromote = "";
+  }
+
+  function handleGradeSubmit(e) {
+    board.showGradeMenu = false;
+    currentSequence.grade = e.detail.value;
+    $sequenceData = currentSequence;
+    if (e.detail.goNext) {
+      // go to next seq
+    }
   }
 </script>
 
 <div class="board-wrapper">
   {#if board.moveToPromote}
-    <Promotion
-      on:promotion={(event) => {
-        handlePromotion(event.detail);
-      }}
-    />
+    <Promotion on:promotion={handlePromotion} />
+  {/if}
+  {#if board.showGradeMenu}
+    <GradeMenu on:submit={handleGradeSubmit} />
   {/if}
   <div class={`board${board.flipped ? " flipped" : " normal"}`}>
     {#each board.board as row, rowNum}

@@ -21,6 +21,7 @@
     <img
       src={`/src/lib/images/pieces/${square.type}-${square.color}.svg`}
       alt=""
+      draggable="false"
     />
   {/if}
   {#if highlighted}

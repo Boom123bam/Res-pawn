@@ -10,6 +10,7 @@
 
   async function loadSeq(id) {
     const data = await getSeqData(id);
+    console.log(data);
     $sequenceData = data;
   }
 

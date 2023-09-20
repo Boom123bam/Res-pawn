@@ -10,7 +10,10 @@
   --secondary: #ffffff;
   --accent: #3a10e5;
   --light-gray: #eae9f2;
+  --border: 1px solid var(--text);
   --br: 1rem;
+  --br-small: 0.5rem;
+  --shadow: 0.25rem 0.25rem 0;
   font-family: var(--font-big);
 }
 /***
@@ -131,6 +134,7 @@ img {
 
 button {
   border: none;
+  cursor: pointer;
 }
 
 body {
@@ -147,4 +151,13 @@ body {
   position: absolute;
   width: 1px;
   white-space: nowrap;
+}
+
+.cta {
+  background-color: var(--accent);
+  color: var(--secondary);
+  border-radius: var(--br-small);
+  padding: 0.5rem 2.25rem;
+  cursor: pointer;
+  border: 1px solid var(--accent);
 }

@@ -5,11 +5,12 @@
 }
 
 .square {
+  cursor: unset;
   background-color: var(--light-square);
   position: relative;
   &.dark {
     background-color: var(--dark-square);
-    border: 1px solid var(--text);
+    border: var(--border);
   }
   &.hint {
     background-color: var(--hint-square);
@@ -84,7 +85,7 @@
 .buttons {
   background-color: var(--secondary);
   border-radius: var(--br);
-  border: 1px solid var(--text);
+  border: var(--border);
   display: flex;
   overflow: hidden;
   & button {
@@ -93,4 +94,14 @@
       background-color: var(--light-gray);
     }
   }
+}
+
+.board-blocker {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
