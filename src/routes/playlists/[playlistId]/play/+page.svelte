@@ -1,24 +1,23 @@
 <script>
   import Board from "/src/components/Board.svelte";
   import {
-    getAllUserSeqs,
     getSeqData,
+    updateUserSeqData,
   } from "../../../../modules/firebase";
   import { sequenceData } from "../../../../components/boardStore";
-  import { getLocalUserData } from "../../../../modules/localStorage";
+  import {
+    getLocalUserData,
+    storeUserSeqData,
+  } from "../../../../modules/localStorage";
   import {
     estimateGrade,
     getNextSeq,
+    updateSeqData,
   } from "../../../../modules/spacedRep";
   import GradeMenu from "../../../../components/GradeMenu.svelte";
 
-  async function loadSeq(id) {
-    const data = await getSeqData(id);
-    console.log(data);
-    $sequenceData = data;
-  }
-
   export let data; // data from layout.js
+
   const { localPlaylistData, localUserSeqData } = data;
 
   // get user data
@@ -26,15 +25,6 @@
   (async () => {
     userData = await getLocalUserData();
   })();
-
-  function filterObject(obj, keysToKeep) {
-    return Object.keys(obj).reduce((result, key) => {
-      if (keysToKeep.includes(key)) {
-        result[key] = obj[key];
-      }
-      return result;
-    }, {});
-  }
 
   // store an object containing data of the seqs played in the current playlist
   const playedSeqsData = filterObject(
@@ -47,28 +37,60 @@
     (item) => !Object.keys(localUserSeqData).includes(item)
   );
 
-  let showGradeMenu = true;
+  let showGradeMenu = false;
   let grade = 1;
-  /*
-      repeat:
-      get next seq
-      play next seq
-      store int data
-      */
-  getNextSeq(playedSeqsData, unplayedSeqIDs);
+  let seqsPlayedInSession = 0;
 
-  sequenceData.subscribe((newSeqData) => {
-    if (newSeqData?.finished) {
-      console.log("finished seq");
-    }
-  });
+  let currentSeqID = null;
+  handleNext();
+
+  async function loadSeq(id) {
+    console.log("loading", id);
+    const data = await getSeqData(id);
+    console.log("loaded", data);
+    $sequenceData = data;
+  }
+
+  function filterObject(obj, keysToKeep) {
+    return Object.keys(obj).reduce((result, key) => {
+      if (keysToKeep.includes(key)) {
+        result[key] = obj[key];
+      }
+      return result;
+    }, {});
+  }
 
   function handleGradeSubmit(e) {
     showGradeMenu = false;
+    seqsPlayedInSession++;
     grade = e.detail.value;
+
+    // if seq is new
+    if (unplayedSeqIDs.includes(currentSeqID)) {
+      // remove seq from unplayed
+      unplayedSeqIDs.splice(unplayedSeqIDs.indexOf(currentSeqID), 1);
+      // update and add to played
+      playedSeqsData[currentSeqID] = updateSeqData(grade);
+    } else {
+      // not new
+      playedSeqsData[currentSeqID] = updateSeqData(
+        grade,
+        playedSeqsData[currentSeqID]
+      );
+    }
+    storeUserSeqData(playedSeqsData);
+    console.log(
+      `updating user db ${currentSeqID} with:`,
+      playedSeqsData[currentSeqID]
+    );
+    updateUserSeqData(
+      userData.id,
+      currentSeqID,
+      playedSeqsData[currentSeqID]
+    ); // update data in db
     if (e.detail.goNext) {
-      // update local data
       // GO NEXT
+      handleNext();
     }
   }
 
@@ -76,28 +98,38 @@
     grade = estimateGrade(e.detail);
     showGradeMenu = true;
   }
+
+  function handleNext() {
+    currentSeqID = getNextSeq(
+      playedSeqsData,
+      unplayedSeqIDs,
+      currentSeqID
+    );
+    if (currentSeqID) loadSeq(currentSeqID);
+  }
+
+  /*
+      repeat:
+      get next seq
+      play next seq
+      store int data
+      */
 </script>
 
 <div class="page-content">
-  <div class="board-wrapper">
-    <Board on:finish={handleSeqFinish} />
-    {#if showGradeMenu}
-      <div class="menu-wrapper">
-        <GradeMenu value={grade} on:submit={handleGradeSubmit} />
-      </div>
-    {/if}
-  </div>
-
-  <button
-    on:click={() => {
-      loadSeq("0aZzt");
-    }}>load</button
-  >
-  <button
-    on:click={() => {
-      console.log(sequenceData);
-    }}>load</button
-  >
+  {#if currentSeqID}
+    <h1>{currentSeqID}</h1>
+    <div class="board-wrapper">
+      <Board on:finish={handleSeqFinish} />
+      {#if showGradeMenu}
+        <div class="menu-wrapper">
+          <GradeMenu value={grade} on:submit={handleGradeSubmit} />
+        </div>
+      {/if}
+    </div>
+  {:else}
+    <h1>no seqs left</h1>
+  {/if}
 </div>
 
 <style>

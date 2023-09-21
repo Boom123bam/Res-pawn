@@ -24,7 +24,9 @@
   board.board = board.chess.board();
 
   sequenceData.subscribe((newSeqData) => {
+    console.log("data change");
     if (newSeqData && !newSeqData?.finished) {
+      console.log("new data, loading");
       handleSeqLoad(newSeqData);
     }
   });
@@ -269,7 +271,7 @@
   </div>
 
   <div class="buttons">
-    <button on:click={resetSequence}>reset</button>
+    <!-- <button on:click={resetSequence}>reset</button> -->
     <button
       on:click={() => {
         if (board.movesBack < board.chess.history().length) {
