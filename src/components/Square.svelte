@@ -6,6 +6,7 @@
     highlighted,
     hint,
     solution,
+    lastMove,
     order,
     flipped;
 </script>
@@ -13,13 +14,13 @@
 <button
   class={`square ${squareColor}${hint ? " hint" : ""}${
     solution ? " solution" : ""
-  }`}
+  }${lastMove ? " last-move" : ""}`}
   style={`order: ${order}`}
   on:click={() => handlePieceClick(id)}
 >
   {#if square != undefined}
     <img
-      src={`/src/lib/images/pieces/${square.type}-${square.color}.svg`}
+      src={`/src/lib/images/pieces/set3/${square.type}-${square.color}.svg`}
       alt=""
       draggable="false"
     />

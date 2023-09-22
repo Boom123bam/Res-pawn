@@ -7,8 +7,6 @@ import {
   collection,
   doc,
   orderBy,
-  limit,
-  FieldPath,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -33,7 +31,7 @@ export async function getAllUserSeqs(userID) {
     return seqs;
   } else {
     // no docs
-    return null;
+    return {};
   }
 }
 
@@ -122,4 +120,21 @@ export async function updateUserSeqData(userID, seqID, newSeqData) {
     doc(db, `Users/${userID}/Sequences`, seqID),
     newSeqData
   );
+}
+
+export async function getAllPlaylists() {
+  const playlistsCollectionRef = collection(db, `Playlists`);
+  const q = query(playlistsCollectionRef);
+
+  const querySnapshot = await getDocs(q);
+  if (!querySnapshot.empty) {
+    const playlists = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    return playlists;
+  } else {
+    // no docs
+    return [];
+  }
 }

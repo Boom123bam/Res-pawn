@@ -42,6 +42,7 @@
   let seqsPlayedInSession = 0;
 
   let currentSeqID = null;
+  let showBottomNextButton = false;
   handleNext();
 
   async function loadSeq(id) {
@@ -91,6 +92,8 @@
     if (e.detail.goNext) {
       // GO NEXT
       handleNext();
+    } else {
+      showBottomNextButton = true;
     }
   }
 
@@ -100,6 +103,7 @@
   }
 
   function handleNext() {
+    showBottomNextButton = false;
     currentSeqID = getNextSeq(
       playedSeqsData,
       unplayedSeqIDs,
@@ -120,7 +124,13 @@
   {#if currentSeqID}
     <h1>{currentSeqID}</h1>
     <div class="board-wrapper">
-      <Board on:finish={handleSeqFinish} />
+      <Board on:finish={handleSeqFinish}>
+        <button
+          slot="after"
+          class={`next cta${showBottomNextButton ? "" : " hide"}`}
+          on:click={handleNext}>next</button
+        >
+      </Board>
       {#if showGradeMenu}
         <div class="menu-wrapper">
           <GradeMenu value={grade} on:submit={handleGradeSubmit} />
@@ -129,6 +139,7 @@
     </div>
   {:else}
     <h1>no seqs left</h1>
+    <button>return to ???</button>
   {/if}
 </div>
 
@@ -151,5 +162,9 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  }
+  button.next {
+    border-radius: var(--br);
+    padding-inline: 1rem;
   }
 </style>

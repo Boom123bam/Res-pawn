@@ -20,6 +20,7 @@
     disabled: false,
     flipped: false,
     moveToPromote: "",
+    lastMove: "e4d5",
   };
   board.board = board.chess.board();
 
@@ -47,8 +48,8 @@
         timesFailed: 0,
       },
     };
-    (board.flipped = currentSequence.start.split(" ")[1] === "b"), // flip board if black is first
-      resetSequence();
+    board.flipped = currentSequence.start.split(" ")[1] === "b"; // flip board if black is first
+    resetSequence();
     updateBoard();
   }
 
@@ -57,10 +58,11 @@
     board.chess.load(currentSequence.start);
     resetBoardHighlights(false, true);
     board.movesBack = 0;
-    currentSequence.step = 0;
+    currentSequence.step = 1;
     currentSequence.failed = false;
     currentSequence.finished = false;
     currentSequence.deductedPoints = 0;
+    movePiece(currentSequence.moves[0]);
     updateBoard();
   }
 
@@ -129,6 +131,8 @@
   function movePiece(move, useDisplayer = false) {
     if (!useDisplayer) board.chess.move(move);
     else board.displayer.move(move);
+    console.log(board.movesBack);
+    if (board.movesBack == 0) board.lastMove = move;
   }
 
   function updateSequence(move = null) {
@@ -194,7 +198,8 @@
       if (updateSequence(move)) {
         // correct move, move piece
         movePiece(move);
-        updateSequence(); // auto move opposing side
+        if (currentSequence.step !== currentSequence.moves.length)
+          updateSequence(); // auto move opposing side if not finished
       } else {
         board.movesBack = -1;
         board.displayer.load(board.chess.fen());
@@ -232,6 +237,44 @@
     handleMoveClick(board.moveToPromote, e.detail);
     board.moveToPromote = "";
   }
+
+  function handleBackButton() {
+    if (board.movesBack < board.chess.history().length) {
+      board.movesBack++;
+      updateBoard();
+    }
+  }
+
+  function handleNextButton() {
+    if (
+      board.movesBack > 0 ||
+      (board.movesBack == 0 && currentSequence?.failed)
+    ) {
+      board.movesBack--;
+      updateBoard();
+    }
+  }
+
+  function handleFlipButton() {
+    board.flipped = !board.flipped;
+  }
+
+  function handleRetryLastMoveButton() {
+    board.disabled = false;
+    currentSequence.failed = false;
+    board.movesBack = 0;
+    updateBoard();
+  }
+
+  function handleHintButton() {
+    currentSequence.hint = true;
+    currentSequence.stats.hintsUsed++;
+  }
+
+  function handleSolutionButton() {
+    currentSequence.solution = true;
+    currentSequence.stats.solsUsed++;
+  }
 </script>
 
 <div class="board-component-wrapper">
@@ -261,6 +304,11 @@
               2,
               4
             ) == getSquare(rowNum, colNum)}
+          lastMove={board.movesBack == 0 &&
+            (board.lastMove.substring(0, 2) ==
+              getSquare(rowNum, colNum) ||
+              board.lastMove.substring(2, 4) ==
+                getSquare(rowNum, colNum))}
           order={board.flipped
             ? 63 - (rowNum * 8 + colNum)
             : rowNum * 8 + colNum}
@@ -271,66 +319,31 @@
   </div>
 
   <div class="buttons">
-    <!-- <button on:click={resetSequence}>reset</button> -->
-    <button
-      on:click={() => {
-        if (board.movesBack < board.chess.history().length) {
-          board.movesBack++;
-          updateBoard();
-        }
-      }}>back</button
-    >
-    <button
-      on:click={() => {
-        if (
-          board.movesBack > 0 ||
-          (board.movesBack == 0 && currentSequence?.failed)
-        ) {
-          board.movesBack--;
-          updateBoard();
-        }
-      }}>next</button
-    >
-    <button
-      on:click={() => {
-        board.flipped = !board.flipped;
-      }}>flip</button
-    >
+    <div class="before">
+      <slot name="before" />
+    </div>
+    <div class="board-controls">
+      <!-- <button on:click={resetSequence}>reset</button> -->
+      <button on:click={handleBackButton}>back</button>
+      <button on:click={handleNextButton}>next</button>
+      <button on:click={handleFlipButton}>flip</button>
 
-    {#if currentSequence?.failed}
-      <button
-        on:click={() => {
-          board.disabled = false;
-          currentSequence.failed = false;
-          board.movesBack = 0;
-          updateBoard();
-        }}>retry last move</button
-      >
-    {/if}
+      {#if currentSequence?.failed}
+        <button on:click={handleRetryLastMoveButton}
+          >retry last move</button
+        >
+      {/if}
 
-    {#if !currentSequence?.finished && !currentSequence?.failed && !currentSequence?.hint}
-      <button
-        on:click={() => {
-          currentSequence.hint = true;
-          currentSequence.stats.hintsUsed++;
-        }}>hint</button
-      >
-    {/if}
+      {#if !currentSequence?.finished && !currentSequence?.failed && !currentSequence?.hint && board.movesBack == 0}
+        <button on:click={handleHintButton}>hint</button>
+      {/if}
 
-    {#if !currentSequence?.finished && !currentSequence?.failed && currentSequence?.hint && !currentSequence.solution}
-      <button
-        on:click={() => {
-          currentSequence.solution = true;
-          currentSequence.stats.solsUsed++;
-        }}>solution</button
-      >
-    {/if}
-
-    {#if currentSequence?.finished}
-      <button on:click={() => {}}>next sequence</button>
-    {/if}
+      {#if !currentSequence?.finished && !currentSequence?.failed && currentSequence?.hint && !currentSequence.solution}
+        <button on:click={handleSolutionButton}>solution</button>
+      {/if}
+    </div>
+    <div class="after">
+      <slot name="after" />
+    </div>
   </div>
 </div>
-
-<style>
-</style>

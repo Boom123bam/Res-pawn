@@ -136,6 +136,11 @@
     border-radius: var(--br-small);
   }
 
+  button.next {
+    border-radius: var(--br-small);
+    padding: 0.5rem 2.25rem;
+  }
+
   .slider {
     width: 25rem;
     position: relative;

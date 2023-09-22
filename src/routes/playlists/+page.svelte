@@ -1,12 +1,6 @@
 <script>
-  import { getPlaylistData } from "../../modules/firebase";
+  export let data;
+  const { playlists } = data;
 </script>
 
-<button
-  on:click={async () => {
-    const data = await getPlaylistData("qWVckrPxsjQiByFsEFLz");
-    console.log(data);
-  }}
->
-  asdf
-</button>
+<div class="page-content" />

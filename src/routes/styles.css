@@ -161,9 +161,11 @@ body {
 .cta {
   background-color: var(--accent);
   color: var(--secondary);
-  border-radius: var(--br-small);
-  padding: 0.5rem 2.25rem;
   cursor: pointer;
   border: 1px solid var(--accent);
   font-weight: 700;
+}
+
+.hide {
+  display: none;
 }
