@@ -11,6 +11,7 @@
     <p>{localPlaylistData.description}</p>
   {/if}
   <h3>{localPlaylistData.sequences.length} sequences</h3>
+  <a href={`/playlists/${localPlaylistData.id}/play`}>play</a>
   <button
     on:click={() => {
       console.log(data);

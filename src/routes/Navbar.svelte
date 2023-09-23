@@ -25,11 +25,11 @@
       <a href="/home">home</a>
     </li>
     <li
-      aria-current={$page.url.pathname === "/decks"
+      aria-current={$page.url.pathname === "/playlists"
         ? "page"
         : undefined}
     >
-      <a href="/decks">my decks</a>
+      <a href="/playlists">my playlists</a>
     </li>
     <li
       aria-current={$page.url.pathname.startsWith("/play")

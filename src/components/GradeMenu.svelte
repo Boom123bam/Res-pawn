@@ -49,7 +49,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 
-<div class="popup-window">
+<div class="popup-window popup">
   <button
     class="close"
     on:click={() => {
@@ -115,10 +115,7 @@
 <style>
   .popup-window {
     padding: 4.5rem 4.5rem 3.5rem 4.5rem;
-    background-color: var(--secondary);
-    border: var(--border);
     border-radius: var(--br);
-    box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,6 +1,7 @@
 import {
   getDoc,
   setDoc,
+  addDoc,
   query,
   where,
   getDocs,
@@ -108,8 +109,8 @@ export async function getSeqData(id) {
   try {
     const docRef = doc(db, `Sequences/${id}`);
     const docSnap = await getDoc(docRef);
-
-    return docSnap.data();
+    if (docSnap.data()) return docSnap.data();
+    else throw Error(`no seq with id:${id}`);
   } catch (error) {
     console.log(error);
   }
@@ -137,4 +138,12 @@ export async function getAllPlaylists() {
     // no docs
     return [];
   }
+}
+
+export async function createPlaylist(name, seqs) {
+  // Create a new user document with the provided data
+  const docRef = await addDoc(collection(db, "Playlists"), {
+    name,
+    sequences: seqs,
+  });
 }

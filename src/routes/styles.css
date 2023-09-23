@@ -8,7 +8,7 @@
   --background: #fef1e5;
   --primary: #b8b6ce;
   --secondary: #ffffff;
-  --accent: #3a10e5;
+  --accent: #4a65f0;
   --light-gray: #eae9f2;
   --border: 1px solid var(--text);
   --br: 1rem;
@@ -168,4 +168,10 @@ body {
 
 .hide {
   display: none;
+}
+
+.popup {
+  background-color: var(--secondary);
+  box-shadow: var(--shadow);
+  border: var(--border);
 }

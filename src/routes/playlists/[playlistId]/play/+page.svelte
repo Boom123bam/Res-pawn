@@ -123,7 +123,7 @@
 <div class="page-content">
   {#if currentSeqID}
     <h1>{currentSeqID}</h1>
-    <div class="board-wrapper">
+    <div class="board-container">
       <Board on:finish={handleSeqFinish}>
         <button
           slot="after"
@@ -153,8 +153,11 @@
     align-items: center;
     justify-content: center;
   }
-  .board-wrapper {
-    max-width: 70ch;
+  .board-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 90ch;
     position: relative;
     & .menu-wrapper {
       position: absolute;
@@ -162,6 +165,9 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  }
+  .menu-wrapper {
+    z-index: 20;
   }
   button.next {
     border-radius: var(--br);

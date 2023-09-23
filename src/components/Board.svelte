@@ -48,7 +48,7 @@
         timesFailed: 0,
       },
     };
-    board.flipped = currentSequence.start.split(" ")[1] === "b"; // flip board if black is first
+    board.flipped = currentSequence.start.split(" ")[1] === "w"; // flip board if black is first
     resetSequence();
     updateBoard();
   }
@@ -279,7 +279,11 @@
 
 <div class="board-component-wrapper">
   {#if board.moveToPromote}
-    <Promotion on:promotion={handlePromotion} />
+    <Promotion
+      on:promotion={handlePromotion}
+      color={board.chess.get(board.moveToPromote.substring(0, 2))
+        .color}
+    />
   {/if}
   <div class={`board${board.flipped ? " flipped" : " normal"}`}>
     {#each board.board as row, rowNum}
