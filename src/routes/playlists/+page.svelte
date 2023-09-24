@@ -1,17 +1,27 @@
 <script>
+  import PlaylistCard from "../../components/PlaylistCard.svelte";
+
   export let data;
   const { playlists } = data;
   console.log(playlists);
 </script>
 
 <div class="page-content">
-  {#each playlists as playlist}
-    <div class="playlist-card">
-      <a href={`/playlists/${playlist.id}`}>
-        <h2>{playlist.name}</h2>
-        <p>{playlist.description}</p>
-        <p>{`${playlist.sequences.length} seqs`}</p>
-      </a>
-    </div>
-  {/each}
+  <h1>Browse Playlists</h1>
+  <div class="card-grid">
+    {#each playlists as playlist}
+      <PlaylistCard playlistData={playlist} />
+    {/each}
+  </div>
 </div>
+
+<style>
+  h1 {
+    margin-bottom: 1rem;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+</style>

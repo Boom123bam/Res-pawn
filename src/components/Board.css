@@ -17,6 +17,7 @@
 }
 
 .buttons {
+  /* width: 60%; */
   position: relative;
   & .before,
   & .after {
@@ -34,20 +35,6 @@
   .after {
     right: 0;
     transform: translateX(calc(100% + 1rem));
-  }
-}
-
-.board-controls {
-  background-color: var(--secondary);
-  border-radius: var(--br);
-  border: var(--border);
-  display: flex;
-  overflow: hidden;
-  & button {
-    padding: 1rem;
-    &:hover {
-      background-color: var(--light-gray);
-    }
   }
 }
 

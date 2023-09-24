@@ -5,6 +5,7 @@
   import "./board.css";
   import Promotion from "./Promotion.svelte";
   import { createEventDispatcher } from "svelte";
+  import BoardControls from "./BoardControls.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -326,26 +327,23 @@
     <div class="before">
       <slot name="before" />
     </div>
-    <div class="board-controls">
-      <!-- <button on:click={resetSequence}>reset</button> -->
-      <button on:click={handleBackButton}>back</button>
-      <button on:click={handleNextButton}>next</button>
-      <button on:click={handleFlipButton}>flip</button>
-
-      {#if currentSequence?.failed}
-        <button on:click={handleRetryLastMoveButton}
-          >retry last move</button
-        >
-      {/if}
-
-      {#if !currentSequence?.finished && !currentSequence?.failed && !currentSequence?.hint && board.movesBack == 0}
-        <button on:click={handleHintButton}>hint</button>
-      {/if}
-
-      {#if !currentSequence?.finished && !currentSequence?.failed && currentSequence?.hint && !currentSequence.solution}
-        <button on:click={handleSolutionButton}>solution</button>
-      {/if}
-    </div>
+    <BoardControls
+      showRetryLastMove={currentSequence?.failed}
+      showHint={!currentSequence?.finished &&
+        !currentSequence?.failed &&
+        !currentSequence?.hint &&
+        board.movesBack == 0}
+      showSol={!currentSequence?.finished &&
+        !currentSequence?.failed &&
+        currentSequence?.hint &&
+        !currentSequence.solution}
+      on:back={handleBackButton}
+      on:next={handleNextButton}
+      on:flip={handleFlipButton}
+      on:retryLastMove={handleRetryLastMoveButton}
+      on:hint={handleHintButton}
+      on:solution={handleSolutionButton}
+    />
     <div class="after">
       <slot name="after" />
     </div>

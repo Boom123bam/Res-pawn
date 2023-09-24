@@ -26,7 +26,10 @@
   }
   main {
     min-height: 100svh;
-    width: min(75ch, 100% - 3rem);
     margin-inline: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>

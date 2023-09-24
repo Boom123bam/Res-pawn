@@ -8,6 +8,7 @@ import {
   collection,
   doc,
   orderBy,
+  limit,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -123,9 +124,9 @@ export async function updateUserSeqData(userID, seqID, newSeqData) {
   );
 }
 
-export async function getAllPlaylists() {
+export async function getAllPlaylists(amount = 10) {
   const playlistsCollectionRef = collection(db, `Playlists`);
-  const q = query(playlistsCollectionRef);
+  const q = query(playlistsCollectionRef, limit(amount));
 
   const querySnapshot = await getDocs(q);
   if (!querySnapshot.empty) {

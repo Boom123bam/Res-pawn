@@ -14,6 +14,8 @@
   --br: 1rem;
   --br-small: 0.5rem;
   --shadow: 0.25rem 0.25rem 0;
+  --button-icon-size: 2rem;
+  --nav-height: 3.75rem;
   font-family: var(--font-small);
   font-size: 0.75rem;
 }
@@ -142,8 +144,25 @@ body {
   background-color: var(--background);
 }
 
+h1,
+h2,
+h3 {
+  font-family: var(--font-big);
+}
+
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
 .page-content {
-  padding-top: 5rem;
+  padding-top: var(--nav-height);
+  width: min(75ch, 100% - 3rem);
 }
 
 .visually-hidden {
@@ -164,6 +183,7 @@ body {
   cursor: pointer;
   border: 1px solid var(--accent);
   font-weight: 700;
+  padding: 1rem 1.5rem;
 }
 
 .hide {
@@ -174,4 +194,10 @@ body {
   background-color: var(--secondary);
   box-shadow: var(--shadow);
   border: var(--border);
+}
+
+@media screen and (max-width: 400px) {
+  :root {
+    --button-icon-size: 1.5rem;
+  }
 }

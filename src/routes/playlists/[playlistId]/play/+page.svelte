@@ -122,13 +122,21 @@
 
 <div class="page-content">
   {#if currentSeqID}
-    <h1>{currentSeqID}</h1>
+    <div class="seq-info">
+      <h1>{localPlaylistData.name}</h1>
+      <h3>puzzle: {currentSeqID}</h3>
+    </div>
     <div class="board-container">
       <Board on:finish={handleSeqFinish}>
         <button
           slot="after"
           class={`next cta${showBottomNextButton ? "" : " hide"}`}
-          on:click={handleNext}>next</button
+          on:click={handleNext}
+          ><img
+            src={`/src/lib/images/icons/right-double-white.svg`}
+            alt=""
+            draggable="false"
+          /></button
         >
       </Board>
       {#if showGradeMenu}
@@ -138,12 +146,19 @@
       {/if}
     </div>
   {:else}
-    <h1>no seqs left</h1>
+    <h1>no puzzles left</h1>
     <button>return to ???</button>
   {/if}
 </div>
 
 <style>
+  .seq-info {
+    width: 100%;
+    margin-bottom: 1rem;
+    & h1 {
+      font-weight: 700;
+    }
+  }
   .page-content {
     height: 100svh;
     max-height: 100svh;
@@ -151,13 +166,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
   }
   .board-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    max-width: 90ch;
+    max-width: min(100svh - 20rem, 90ch);
     position: relative;
     & .menu-wrapper {
       position: absolute;
@@ -172,5 +187,9 @@
   button.next {
     border-radius: var(--br);
     padding-inline: 1rem;
+    & img {
+      width: var(--button-icon-size);
+      height: var(--button-icon-size);
+    }
   }
 </style>

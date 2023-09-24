@@ -1,6 +1,5 @@
 <script>
   import { page } from "$app/stores";
-  import logo from "$lib/images/svelte-logo.svg";
   import { getLocalUserData } from "../modules/localStorage";
 
   let showRightMenu = false;
@@ -14,36 +13,27 @@
   <ul>
     <li>
       <a href="/">
-        <img src={logo} alt="SvelteKit" />
+        <h2>RC</h2>
       </a>
     </li>
     <li
-      aria-current={$page.url.pathname === "/home"
-        ? "page"
-        : undefined}
+      aria-current={$page.url.pathname === "/" ? "page" : undefined}
     >
-      <a href="/home">home</a>
+      <a href="/">home</a>
     </li>
     <li
       aria-current={$page.url.pathname === "/playlists"
         ? "page"
         : undefined}
     >
-      <a href="/playlists">my playlists</a>
-    </li>
-    <li
-      aria-current={$page.url.pathname.startsWith("/play")
-        ? "page"
-        : undefined}
-    >
-      <a href="/play">play</a>
+      <a href="/playlists">playlists</a>
     </li>
     {#if user}
       <li>
         <button
           on:click={() => {
             showRightMenu = !showRightMenu;
-          }}>menu {user.username}</button
+          }}>{user.username}</button
         >
       </li>
     {:else}
@@ -65,26 +55,23 @@
 
 <style>
   nav {
-    height: 3rem;
+    height: var(--nav-height);
     position: relative;
     background-color: var(--secondary);
     border-bottom: 1px solid var(--text);
   }
 
   ul {
-    width: min(85ch, 100% - 3rem);
+    width: min(95ch, 100% - 5rem);
     margin: 0 auto;
     height: 100%;
     padding: 0;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    gap: 2rem;
+    gap: 4rem;
   }
 
-  li:first-child {
-    margin-right: auto;
-  }
   li:last-child {
     margin-left: auto;
   }
@@ -95,8 +82,9 @@
     align-items: center;
   }
 
-  li[aria-current="page"] {
-    border-bottom: 1px solid black;
+  li[aria-current="page"],
+  a:hover {
+    text-decoration: underline;
   }
 
   a {
