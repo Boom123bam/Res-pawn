@@ -9,6 +9,7 @@
   --primary: #b8b6ce;
   --secondary: #ffffff;
   --accent: #4a65f0;
+  --accent-light: #7287f1;
   --light-gray: #eae9f2;
   --border: 1px solid var(--text);
   --br: 1rem;
@@ -160,6 +161,23 @@ h3 {
   font-size: 1.5rem;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+input {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--text);
+  background-color: var(--light-gray);
+  &:focus {
+    background-color: var(--secondary);
+  }
+}
+
 .page-content {
   padding-top: var(--nav-height);
   width: min(75ch, 100% - 3rem);
@@ -181,9 +199,12 @@ h3 {
   background-color: var(--accent);
   color: var(--secondary);
   cursor: pointer;
-  border: 1px solid var(--accent);
+  /* border: 1px solid var(--accent); */
   font-weight: 700;
   padding: 1rem 1.5rem;
+  &:hover {
+    background-color: var(--accent-light);
+  }
 }
 
 .hide {

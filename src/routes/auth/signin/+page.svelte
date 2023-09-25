@@ -8,14 +8,9 @@
   let email = "";
   let password = "";
   let errorMessage = "";
+  let signedIn = false;
 
   const user = auth.currentUser;
-
-  if (user) {
-    // already signed in
-    console.log("already signed in");
-    goto("/home");
-  }
 
   async function handleSignIn() {
     try {
@@ -28,25 +23,65 @@
       userData.id = userCredential.user.uid;
       storeUserData(userData);
       // signed in
-      goto("/home"); // Redirect to the home page
+      // goto("/"); // Redirect to the home page
+      // location.reload();
+      signedIn = true;
     } catch (error) {
       errorMessage = error.message;
     }
   }
+
+  //TODO after sign in show button that refreshes and goes to home page
 </script>
 
-<h1>Login</h1>
+<div class="page-content">
+  {#if !signedIn}
+    <h2>Sign In</h2>
 
-{#if errorMessage}
-  <p style="color: red;">{errorMessage}</p>
-{/if}
+    {#if errorMessage}
+      <p style="color: red;">{errorMessage}</p>
+    {/if}
 
-<form>
-  <label for="email">Email:</label>
-  <input type="email" id="email" bind:value={email} />
+    <form>
+      <label for="email">Email:</label>
+      <input type="email" id="email" bind:value={email} />
 
-  <label for="password">Password:</label>
-  <input type="password" id="password" bind:value={password} />
+      <label for="password">Password:</label>
+      <input type="password" id="password" bind:value={password} />
 
-  <button type="button" on:click={handleSignIn}>Sign In</button>
-</form>
+      <button
+        type="button"
+        class="sign-in cta"
+        on:click={handleSignIn}>Sign In</button
+      >
+    </form>
+    <h3>Not registered?</h3>
+    <a href="/auth/signup" class="sign-up">Sign Up</a>
+  {:else}
+    <h2>Signed In</h2>
+    <button data-sveltekit-reload class="cta home"
+      ><a href="/">back to home</a>
+    </button>
+  {/if}
+</div>
+
+<style>
+  h2 {
+    margin-top: 1rem;
+  }
+  button.sign-in {
+    width: 10rem;
+    text-align: center;
+    border-radius: var(--br);
+    align-self: center;
+  }
+  .sign-up {
+    color: var(--accent);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  button.home {
+    margin-top: 1rem;
+  }
+</style>

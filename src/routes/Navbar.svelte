@@ -1,19 +1,15 @@
 <script>
   import { page } from "$app/stores";
-  import { getLocalUserData } from "../modules/localStorage";
+  import { userData } from "./userStore";
 
   let showRightMenu = false;
-  let user = null;
-  (async function getUser() {
-    user = await getLocalUserData();
-  })();
 </script>
 
 <nav>
   <ul>
     <li>
       <a href="/">
-        <h2>RC</h2>
+        <h2>ReChess</h2>
       </a>
     </li>
     <li
@@ -28,41 +24,46 @@
     >
       <a href="/playlists">playlists</a>
     </li>
-    {#if user}
-      <li>
+    {#if $userData}
+      <li class="user">
         <button
           on:click={() => {
             showRightMenu = !showRightMenu;
-          }}>{user.username}</button
+            console.log($userData);
+          }}>{$userData.displayName}</button
         >
+        {#if showRightMenu}
+          <div class="popup-menu popup">
+            <ul>
+              <li>
+                <a
+                  on:click={() => {
+                    showRightMenu = !showRightMenu;
+                  }}
+                  href="/auth/signout">Sign out</a
+                >
+              </li>
+            </ul>
+          </div>
+        {/if}
       </li>
     {:else}
-      <li>
+      <li class="user">
         <a href="/auth/signin">Sign In</a>
       </li>
     {/if}
   </ul>
-  {#if showRightMenu}
-    <div class="popup-menu">
-      <ul>
-        <li><a href="/profile">My profile</a></li>
-        <li><a href="/collections">My collections</a></li>
-        <li><a href="/auth/signout">Sign out</a></li>
-      </ul>
-    </div>
-  {/if}
 </nav>
 
 <style>
   nav {
     height: var(--nav-height);
-    position: relative;
     background-color: var(--secondary);
     border-bottom: 1px solid var(--text);
   }
 
-  ul {
-    width: min(95ch, 100% - 5rem);
+  nav > ul {
+    width: min(95ch, 100% - 3rem);
     margin: 0 auto;
     height: 100%;
     padding: 0;
@@ -70,21 +71,22 @@
     /* justify-content: center; */
     align-items: center;
     gap: 4rem;
-  }
 
-  li:last-child {
-    margin-left: auto;
-  }
+    & li.user {
+      margin-left: auto;
+      position: relative;
+    }
 
-  li {
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
+    & li {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
 
-  li[aria-current="page"],
-  a:hover {
-    text-decoration: underline;
+    & li[aria-current="page"],
+    a:hover {
+      text-decoration: underline;
+    }
   }
 
   a {
@@ -99,11 +101,15 @@
 
   .popup-menu {
     position: absolute;
-    right: 1rem;
-    background-color: var(--background);
+    right: 0;
+    /* transform: translateX(-50%); */
+    top: calc(var(--nav-height) + 0.5rem);
+    width: 10rem;
     & ul {
       display: flex;
       flex-direction: column;
+      gap: 1rem;
+      padding: 1rem 2.5rem;
     }
   }
 </style>

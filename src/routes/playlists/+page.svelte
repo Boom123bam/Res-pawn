@@ -17,7 +17,7 @@
 
 <style>
   h1 {
-    margin-bottom: 1rem;
+    margin: 1rem 0;
   }
   .card-grid {
     display: grid;

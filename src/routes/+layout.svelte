@@ -1,6 +1,17 @@
 <script>
+  import { auth } from "../firebase";
   import Navbar from "./Navbar.svelte";
   import "./styles.css";
+  import { userData } from "./userStore";
+
+  auth.onAuthStateChanged(function (user) {
+    console.log("auth state change", user);
+    if (user) {
+      userData.set(user);
+    } else {
+      userData.set(null);
+    }
+  });
 </script>
 
 <div class="app">

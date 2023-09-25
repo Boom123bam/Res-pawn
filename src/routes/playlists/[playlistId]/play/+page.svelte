@@ -6,10 +6,6 @@
   } from "../../../../modules/firebase";
   import { sequenceData } from "../../../../components/boardStore";
   import {
-    getLocalUserData,
-    storeUserSeqData,
-  } from "../../../../modules/localStorage";
-  import {
     estimateGrade,
     getNextSeq,
     updateSeqData,
@@ -18,13 +14,12 @@
 
   export let data; // data from layout.js
 
-  const { localPlaylistData, localUserSeqData } = data;
+  const { localPlaylistData } = data;
+  console.log(data);
 
   // get user data
-  let userData;
-  (async () => {
-    userData = await getLocalUserData();
-  })();
+  import { userData, userSeqData } from "../../../userStore";
+  console.log($userData);
 
   // store an object containing data of the seqs played in the current playlist
   const playedSeqsData = filterObject(
@@ -79,13 +74,13 @@
         playedSeqsData[currentSeqID]
       );
     }
-    storeUserSeqData(playedSeqsData);
+    userSeqData.set(playedSeqsData);
     console.log(
       `updating user db ${currentSeqID} with:`,
       playedSeqsData[currentSeqID]
     );
     updateUserSeqData(
-      userData.id,
+      $userData.uid,
       currentSeqID,
       playedSeqsData[currentSeqID]
     ); // update data in db
