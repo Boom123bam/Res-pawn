@@ -11,14 +11,15 @@
     updateSeqData,
   } from "../../../../modules/spacedRep";
   import GradeMenu from "../../../../components/GradeMenu.svelte";
+  import { storeUserSeqData } from "../../../../modules/localStorage";
 
   export let data; // data from layout.js
 
-  const { localPlaylistData } = data;
+  const { localPlaylistData, localUserSeqData } = data;
   console.log(data);
 
   // get user data
-  import { userData, userSeqData } from "../../../userStore";
+  import { userData } from "../../../userStore";
   console.log($userData);
 
   // store an object containing data of the seqs played in the current playlist
@@ -74,16 +75,17 @@
         playedSeqsData[currentSeqID]
       );
     }
-    userSeqData.set(playedSeqsData);
+    storeUserSeqData(playedSeqsData);
     console.log(
       `updating user db ${currentSeqID} with:`,
       playedSeqsData[currentSeqID]
     );
-    updateUserSeqData(
-      $userData.uid,
-      currentSeqID,
-      playedSeqsData[currentSeqID]
-    ); // update data in db
+    if ($userData)
+      updateUserSeqData(
+        $userData.uid,
+        currentSeqID,
+        playedSeqsData[currentSeqID]
+      ); // update data in db
     if (e.detail.goNext) {
       // GO NEXT
       handleNext();
@@ -129,7 +131,7 @@
           on:click={handleNext}
           ><img
             src={`/src/lib/images/icons/right-double-white.svg`}
-            alt=""
+            alt="next puzzle"
             draggable="false"
           /></button
         >

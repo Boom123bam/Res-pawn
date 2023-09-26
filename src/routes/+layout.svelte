@@ -5,7 +5,6 @@
   import { userData } from "./userStore";
 
   auth.onAuthStateChanged(function (user) {
-    console.log("auth state change", user);
     if (user) {
       userData.set(user);
     } else {

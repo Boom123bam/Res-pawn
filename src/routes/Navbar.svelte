@@ -29,7 +29,6 @@
         <button
           on:click={() => {
             showRightMenu = !showRightMenu;
-            console.log($userData);
           }}>{$userData.displayName}</button
         >
         {#if showRightMenu}

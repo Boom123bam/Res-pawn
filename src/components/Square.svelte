@@ -21,7 +21,7 @@
   {#if square != undefined}
     <img
       src={`/src/lib/images/pieces/set3/${square.type}-${square.color}.svg`}
-      alt=""
+      alt={`piece: ${square.type}-${square.color}`}
       draggable="false"
     />
   {/if}

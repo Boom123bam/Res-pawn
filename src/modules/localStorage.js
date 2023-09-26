@@ -4,16 +4,14 @@ import { getAllUserSeqs } from "./firebase";
 export async function updateLocalUserSeqData() {
   // if there is a user in local storage, fetch local seq data
   let user = await getLocalUserData();
-  let localUserSeqData = null;
 
-  if (user) {
-    localUserSeqData = await getLocalUserSeqData();
-    // if there is no seq data, fetch from database and store on local
-    if (!localUserSeqData) {
-      localUserSeqData = await getAllUserSeqs(user.id);
-      storeUserSeqData(localUserSeqData);
-    }
-  } else storeUserSeqData(null);
+  let localUserSeqData = await getLocalUserSeqData();
+  // if there is no seq data, fetch from database and store on local
+  if (user && !localUserSeqData) {
+    localUserSeqData = await getAllUserSeqs(user.id);
+  }
+  if (!localUserSeqData) localUserSeqData = {};
+  storeUserSeqData(localUserSeqData);
   return localUserSeqData;
 }
 
@@ -31,35 +29,35 @@ export async function updateLocalPlaylistData(playlistID) {
 
 export async function storeUserData(userData) {
   if (typeof window !== "undefined") {
-    localStorage.setItem("user", JSON.stringify(userData));
+    sessionStorage.setItem("user", JSON.stringify(userData));
   }
 }
 
 export async function getLocalUserData() {
   if (typeof window !== "undefined") {
-    return JSON.parse(localStorage.getItem("user"));
+    return JSON.parse(sessionStorage.getItem("user"));
   }
   return null;
 }
 
 export async function storePlaylistData(playlistData) {
   if (typeof window !== "undefined") {
-    localStorage.setItem("playlist", JSON.stringify(playlistData));
+    sessionStorage.setItem("playlist", JSON.stringify(playlistData));
   }
 }
 export async function getLocalPlaylistData() {
   if (typeof window !== "undefined") {
-    return JSON.parse(localStorage.getItem("playlist"));
+    return JSON.parse(sessionStorage.getItem("playlist"));
   }
 }
 
 export async function storeUserSeqData(seqData) {
   if (typeof window !== "undefined") {
-    localStorage.setItem("sequences", JSON.stringify(seqData));
+    sessionStorage.setItem("sequences", JSON.stringify(seqData));
   }
 }
 export async function getLocalUserSeqData() {
   if (typeof window !== "undefined") {
-    return JSON.parse(localStorage.getItem("sequences"));
+    return JSON.parse(sessionStorage.getItem("sequences"));
   }
 }

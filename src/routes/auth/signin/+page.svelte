@@ -2,7 +2,6 @@
   import { signInWithEmailAndPassword } from "@firebase/auth";
   import { auth } from "../../../firebase";
   import { goto } from "$app/navigation";
-  import { storeUserData } from "../../../modules/localStorage";
   import { getUserData } from "../../../modules/firebase";
 
   let email = "";
@@ -21,7 +20,6 @@
       );
       const userData = await getUserData(userCredential.user.uid);
       userData.id = userCredential.user.uid;
-      storeUserData(userData);
       // signed in
       // goto("/"); // Redirect to the home page
       // location.reload();
@@ -59,9 +57,7 @@
     <a href="/auth/signup" class="sign-up">Sign Up</a>
   {:else}
     <h2>Signed In</h2>
-    <button data-sveltekit-reload class="cta home"
-      ><a href="/">back to home</a>
-    </button>
+    <button class="cta home"><a href="/">back to home</a> </button>
   {/if}
 </div>
 

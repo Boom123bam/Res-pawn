@@ -17,7 +17,7 @@
   >
     <img
       src={`/src/lib/images/icons/left.svg`}
-      alt=""
+      alt="back"
       draggable="false"
     />
   </button>
@@ -29,7 +29,7 @@
   >
     <img
       src={`/src/lib/images/icons/right.svg`}
-      alt=""
+      alt="next"
       draggable="false"
     />
   </button>
@@ -44,7 +44,7 @@
     >
       <img
         src={`/src/lib/images/icons/refresh.svg`}
-        alt=""
+        alt="retry"
         draggable="false"
       />
     </button>
@@ -59,7 +59,7 @@
     >
       <img
         src={`/src/lib/images/icons/question.svg`}
-        alt=""
+        alt="hint/solution"
         draggable="false"
       />
     </button>
@@ -74,7 +74,7 @@
     >
       <img
         src={`/src/lib/images/icons/question.svg`}
-        alt=""
+        alt="hint/solution"
         draggable="false"
       />
     </button>
@@ -87,7 +87,7 @@
   >
     <img
       src={`/src/lib/images/icons/flip.svg`}
-      alt=""
+      alt="flip board"
       draggable="false"
     />
   </button>

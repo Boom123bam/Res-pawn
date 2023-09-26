@@ -55,7 +55,12 @@
     on:click={() => {
       handleSubmit(false);
     }}
-  />
+    ><img
+      src={`/src/lib/images/icons/close-white.svg`}
+      alt="close"
+      draggable="false"
+    /></button
+  >
   <div class="slider" id="slider">
     <div
       class="img-container"
@@ -68,7 +73,7 @@
         on:mousedown={handleMouseDown}
         on:mouseup={handleMouseUp}
         src="https://i.imgur.com/R6Ky0xY.png"
-        alt=""
+        alt="queen slider"
         draggable="false"
         class="queen"
       />
@@ -206,6 +211,7 @@
       font-size: 1.25rem;
       font-weight: 800;
       margin-top: 0.5rem;
+      font-family: var(--font-small);
     }
     & p {
       margin-top: 0.75rem;
