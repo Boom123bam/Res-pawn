@@ -14,7 +14,7 @@
       rating: {`${playlistData.rating[0]}-${playlistData.rating[1]}`}
     </div>
     <div class="content">
-      <h4 class="name">{playlistData.name}</h4>
+      <h5 class="name">{playlistData.name}</h5>
       <p class="length">{playlistData.sequences.length} puzzles</p>
       <p class="description">{playlistData.description}</p>
     </div>

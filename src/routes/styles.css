@@ -18,7 +18,7 @@
   --button-icon-size: 2rem;
   --nav-height: 3.75rem;
   font-family: var(--font-small);
-  font-size: 0.75rem;
+  /* font-size: 0.75rem; */
 }
 /***
     The new CSS reset - version 1.8.6 (last updated 15.6.2023)
@@ -147,33 +147,42 @@ body {
 
 h1,
 h2,
-h3,
-h4,
-h5 {
+h3 {
   font-family: var(--font-big);
 }
 
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   font-weight: 700;
+  line-height: 90%;
 }
 
 h1 {
   font-size: 6rem;
+  line-height: 90%;
 }
 h2 {
   font-size: 4rem;
 }
 h3 {
-  font-size: 3rem;
+  font-size: 2.25rem;
 }
 h4 {
   font-size: 2rem;
 }
 h5 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+}
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  font-size: 0.75rem;
 }
 
 form {
@@ -194,8 +203,14 @@ input {
 }
 
 .page-content {
+  width: 100%;
   padding-top: var(--nav-height);
-  width: min(75ch, 100% - 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & section {
+    width: min(80ch, 100% - 3rem);
+  }
 }
 
 .visually-hidden {
@@ -210,7 +225,7 @@ input {
   white-space: nowrap;
 }
 
-.cta {
+button.cta {
   background-color: var(--accent);
   color: var(--secondary);
   cursor: pointer;
@@ -220,6 +235,19 @@ input {
   &:hover {
     background-color: var(--accent-light);
   }
+}
+
+button.ghost {
+  color: var(--accent);
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.subheading {
+  font-size: 1rem;
 }
 
 .hide {
@@ -232,8 +260,40 @@ input {
   border: var(--border);
 }
 
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.tiles-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--text);
+  color: var(--secondary);
+  &:before {
+    content: "";
+    background-color: var(--text);
+    position: absolute;
+    width: 100rem;
+    height: 100rem;
+    top: 50%;
+    left: 50%;
+    background: url(/src/lib/images/tiles-white.png);
+    background-size: 20rem;
+    opacity: 0.1;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+}
+
 @media screen and (max-width: 400px) {
   :root {
     --button-icon-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 4rem;
   }
 }

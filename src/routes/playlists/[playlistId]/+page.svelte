@@ -10,30 +10,33 @@
   }
 </script>
 
-<div class="hero-wrapper">
-  <div class="hero-background">
-    <div class="hero-content-container">
-      <p>Playlist</p>
-      <h1 class="title">{localPlaylistData.name}</h1>
-      {#if localPlaylistData.description}
-        <p class="description">{localPlaylistData.description}</p>
-      {/if}
-      <h3 class="length">
-        {localPlaylistData.sequences.length} puzzles
-      </h3>
-    </div>
-  </div>
-  <a class="play" href={`/playlists/${localPlaylistData.id}/play`}>
-    <button class="cta">play</button>
-  </a>
-</div>
 <div class="page-content">
-  <h4>Other playlists</h4>
-  <div class="card-grid">
-    {#each playlists as playlist}
-      <PlaylistCard playlistData={playlist} />
-    {/each}
-  </div>
+  <section class="hero-wrapper">
+    <div class="hero tiles-bg">
+      <div class="hero-content-container">
+        <p>Playlist</p>
+        <h1 class="title">{localPlaylistData.name}</h1>
+        {#if localPlaylistData.description}
+          <p class="description">{localPlaylistData.description}</p>
+        {/if}
+        <h3 class="length">
+          {localPlaylistData.sequences.length} puzzles
+        </h3>
+      </div>
+    </div>
+    <a class="play" href={`/playlists/${localPlaylistData.id}/play`}>
+      <button class="cta">play</button>
+    </a>
+  </section>
+
+  <section class="other-playlists">
+    <h4>Other playlists</h4>
+    <div class="card-grid">
+      {#each playlists as playlist}
+        <PlaylistCard playlistData={playlist} />
+      {/each}
+    </div>
+  </section>
 </div>
 
 <style>
@@ -41,36 +44,16 @@
     position: relative;
     width: 100%;
   }
-  .hero-background {
-    width: 100%;
-    margin-top: var(--nav-height);
-    position: relative;
-    overflow: hidden;
-    background-color: var(--text);
+  .hero {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5rem 0;
-
-    &:before {
-      content: "";
-      background-color: black;
-      position: absolute;
-      width: 100rem;
-      height: 100rem;
-      top: 50%;
-      left: 50%;
-      background: url(/src/lib/images/tiles-white.png);
-      background-size: 20rem;
-      opacity: 0.1;
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
   }
   .hero-content-container {
     border: 1px solid var(--secondary);
     background-color: var(--text);
     z-index: 5;
-    color: var(--secondary);
     padding: 3rem 2.5rem;
     width: min(80%, 60rem);
   }
@@ -97,11 +80,10 @@
       font-family: var(--font-big);
     }
   }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    margin-top: 0.5rem;
+  section.other-playlists {
+    margin-top: 3rem;
+    & h4 {
+      margin-bottom: 0.5rem;
+    }
   }
 </style>
