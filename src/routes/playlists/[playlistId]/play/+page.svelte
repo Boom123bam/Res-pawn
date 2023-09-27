@@ -120,8 +120,8 @@
 <div class="page-content">
   {#if currentSeqID}
     <div class="seq-info">
-      <h1>{localPlaylistData.name}</h1>
-      <h3>puzzle: {currentSeqID}</h3>
+      <h3>{localPlaylistData.name}</h3>
+      <h5>puzzle: {currentSeqID}</h5>
     </div>
     <div class="board-container">
       <Board on:finish={handleSeqFinish}>
@@ -143,7 +143,7 @@
       {/if}
     </div>
   {:else}
-    <h1>no puzzles left</h1>
+    <h2>no puzzles left</h2>
     <button>return to ???</button>
   {/if}
 </div>
@@ -152,9 +152,6 @@
   .seq-info {
     width: 100%;
     margin-bottom: 1rem;
-    & h1 {
-      font-weight: 700;
-    }
   }
   .page-content {
     height: 100svh;

@@ -14,7 +14,7 @@
       rating: {`${playlistData.rating[0]}-${playlistData.rating[1]}`}
     </div>
     <div class="content">
-      <h2 class="name">{playlistData.name}</h2>
+      <h4 class="name">{playlistData.name}</h4>
       <p class="length">{playlistData.sequences.length} puzzles</p>
       <p class="description">{playlistData.description}</p>
     </div>
@@ -43,9 +43,6 @@
   }
   .content {
     padding: 1.5rem 1.75rem;
-  }
-  h2.name {
-    font-weight: 700;
   }
   p.length {
     font-family: var(--font-big);

@@ -28,7 +28,7 @@
   </a>
 </div>
 <div class="page-content">
-  <h2>Other playlists</h2>
+  <h4>Other playlists</h4>
   <div class="card-grid">
     {#each playlists as playlist}
       <PlaylistCard playlistData={playlist} />
@@ -43,7 +43,6 @@
   }
   .hero-background {
     width: 100%;
-    /* height: 20rem; */
     margin-top: var(--nav-height);
     position: relative;
     overflow: hidden;
@@ -77,7 +76,6 @@
   }
   h1.title {
     font-size: 3rem;
-    font-weight: 700;
     margin-bottom: 1.5rem;
   }
   p.description {

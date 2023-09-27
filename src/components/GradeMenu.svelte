@@ -209,7 +209,6 @@
     text-align: center;
     & h2 {
       font-size: 1.25rem;
-      font-weight: 800;
       margin-top: 0.5rem;
       font-family: var(--font-small);
     }

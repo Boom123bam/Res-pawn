@@ -7,7 +7,7 @@
 </script>
 
 <div class="page-content">
-  <h1>Browse Playlists</h1>
+  <h3>Browse Playlists</h3>
   <div class="card-grid">
     {#each playlists as playlist}
       <PlaylistCard playlistData={playlist} />
@@ -16,7 +16,7 @@
 </div>
 
 <style>
-  h1 {
+  h3 {
     margin: 1rem 0;
   }
   .card-grid {

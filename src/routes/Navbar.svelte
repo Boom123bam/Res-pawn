@@ -9,7 +9,7 @@
   <ul>
     <li>
       <a href="/">
-        <h2>ReChess</h2>
+        <h4>ReChess</h4>
       </a>
     </li>
     <li

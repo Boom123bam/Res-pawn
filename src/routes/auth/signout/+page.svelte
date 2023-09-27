@@ -19,4 +19,4 @@
   handleSignOut();
 </script>
 
-<h1>{errorMessage}</h1>
+<h3>{errorMessage}</h3>
