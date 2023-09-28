@@ -10,12 +10,12 @@
         <button class="ghost learn-more">learn more</button>
       </div>
     </div>
-    <img
+    <!-- <img
       src={`/src/lib/images/hero.png`}
       class="bg"
       alt="hero"
       draggable="false"
-    />
+    /> -->
     <!-- <h2>The Science of Spaced Repetition</h2>
     <p>
       At the core of ReChess is the concept of spaced repetition—a
