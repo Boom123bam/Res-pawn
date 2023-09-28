@@ -56,7 +56,7 @@
       handleSubmit(false);
     }}
     ><img
-      src={`/src/lib/images/icons/close-white.svg`}
+      src={`/images/icons/close-white.svg`}
       alt="close"
       draggable="false"
     /></button

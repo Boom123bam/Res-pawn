@@ -33,32 +33,34 @@
 </script>
 
 <div class="page-content">
-  {#if !signedIn}
-    <h2>Sign In</h2>
+  <section>
+    {#if !signedIn}
+      <h2>Sign In</h2>
 
-    {#if errorMessage}
-      <p style="color: red;">{errorMessage}</p>
+      {#if errorMessage}
+        <p style="color: red;">{errorMessage}</p>
+      {/if}
+
+      <form>
+        <label for="email">Email:</label>
+        <input type="email" id="email" bind:value={email} />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" bind:value={password} />
+
+        <button
+          type="button"
+          class="sign-in cta"
+          on:click={handleSignIn}>Sign In</button
+        >
+      </form>
+      <h3>Not registered?</h3>
+      <a href="/auth/signup" class="sign-up">Sign Up</a>
+    {:else}
+      <h2>Signed In</h2>
+      <button class="cta home"><a href="/">back to home</a> </button>
     {/if}
-
-    <form>
-      <label for="email">Email:</label>
-      <input type="email" id="email" bind:value={email} />
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" bind:value={password} />
-
-      <button
-        type="button"
-        class="sign-in cta"
-        on:click={handleSignIn}>Sign In</button
-      >
-    </form>
-    <h3>Not registered?</h3>
-    <a href="/auth/signup" class="sign-up">Sign Up</a>
-  {:else}
-    <h2>Signed In</h2>
-    <button class="cta home"><a href="/">back to home</a> </button>
-  {/if}
+  </section>
 </div>
 
 <style>

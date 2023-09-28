@@ -55,30 +55,32 @@
 </script>
 
 <div class="page-content">
-  <h1>Sign Up</h1>
+  <section>
+    <h1>Sign Up</h1>
 
-  {#if errorMessage}
-    <h3 style="color: red;">{errorMessage}</h3>
-  {/if}
+    {#if errorMessage}
+      <h3 style="color: red;">{errorMessage}</h3>
+    {/if}
 
-  <form>
-    <label for="username">username:</label>
-    <input type="text" id="username" bind:value={username} />
+    <form>
+      <label for="username">username:</label>
+      <input type="text" id="username" bind:value={username} />
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" bind:value={email} />
+      <label for="email">Email:</label>
+      <input type="email" id="email" bind:value={email} />
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" bind:value={password} />
+      <label for="password">Password:</label>
+      <input type="password" id="password" bind:value={password} />
 
-    <button
-      type="button"
-      class="cta sign-up"
-      on:click={() => {
-        register(username, email, password);
-      }}>Sign Up</button
-    >
-  </form>
+      <button
+        type="button"
+        class="cta sign-up"
+        on:click={() => {
+          register(username, email, password);
+        }}>Sign Up</button
+      >
+    </form>
+  </section>
 </div>
 
 <style>

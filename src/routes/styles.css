@@ -12,7 +12,7 @@
   --accent-light: #7287f1;
   --light-gray: #eae9f2;
   --dark-gray: #333;
-  --border: 3px solid var(--text);
+  --border: 1px solid var(--text);
   --br: 1rem;
   --br-small: 0.5rem;
   --shadow: 0.25rem 0.25rem 0;
@@ -286,7 +286,7 @@ button.ghost {
     height: 100rem;
     top: 50%;
     left: 50%;
-    background: url(/src/lib/images/tiles-white.png);
+    background: url(/images/tiles-white.png);
     background-size: 20rem;
     opacity: 0.1;
     transform: translate(-50%, -50%) rotate(45deg);

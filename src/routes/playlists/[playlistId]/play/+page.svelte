@@ -130,7 +130,7 @@
           class={`next cta${showBottomNextButton ? "" : " hide"}`}
           on:click={handleNext}
           ><img
-            src={`/src/lib/images/icons/right-double-white.svg`}
+            src={`/images/icons/right-double-white.svg`}
             alt="next puzzle"
             draggable="false"
           /></button

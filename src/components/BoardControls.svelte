@@ -16,7 +16,7 @@
     }}
   >
     <img
-      src={`/src/lib/images/icons/left.svg`}
+      src={`/images/icons/left.svg`}
       alt="back"
       draggable="false"
     />
@@ -28,7 +28,7 @@
     }}
   >
     <img
-      src={`/src/lib/images/icons/right.svg`}
+      src={`/images/icons/right.svg`}
       alt="next"
       draggable="false"
     />
@@ -43,7 +43,7 @@
       }}
     >
       <img
-        src={`/src/lib/images/icons/refresh.svg`}
+        src={`/images/icons/refresh.svg`}
         alt="retry"
         draggable="false"
       />
@@ -58,7 +58,7 @@
       }}
     >
       <img
-        src={`/src/lib/images/icons/question.svg`}
+        src={`/images/icons/question.svg`}
         alt="hint/solution"
         draggable="false"
       />
@@ -73,7 +73,7 @@
       }}
     >
       <img
-        src={`/src/lib/images/icons/question.svg`}
+        src={`/images/icons/question.svg`}
         alt="hint/solution"
         draggable="false"
       />
@@ -86,7 +86,7 @@
     }}
   >
     <img
-      src={`/src/lib/images/icons/flip.svg`}
+      src={`/images/icons/flip.svg`}
       alt="flip board"
       draggable="false"
     />

@@ -18,28 +18,28 @@
   >
     <button on:click={() => handleSelect("q")}>
       <img
-        src={`/src/lib/images/pieces/set3/q-${color}.svg`}
+        src={`/images/pieces/set3/q-${color}.svg`}
         alt="queen"
         draggable="false"
       />
     </button>
     <button on:click={() => handleSelect("b")}>
       <img
-        src={`/src/lib/images/pieces/set3/b-${color}.svg`}
+        src={`/images/pieces/set3/b-${color}.svg`}
         alt="bishop"
         draggable="false"
       />
     </button>
     <button on:click={() => handleSelect("r")}>
       <img
-        src={`/src/lib/images/pieces/set3/r-${color}.svg`}
+        src={`/images/pieces/set3/r-${color}.svg`}
         alt="rook"
         draggable="false"
       />
     </button>
     <button on:click={() => handleSelect("n")}>
       <img
-        src={`/src/lib/images/pieces/set3/n-${color}.svg`}
+        src={`/images/pieces/set3/n-${color}.svg`}
         alt="knight"
         draggable="false"
       />
