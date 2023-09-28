@@ -1,12 +1,16 @@
 <script>
   import { auth } from "../firebase";
-  import Navbar from "./Navbar.svelte";
+  import Navbar from "../components/Navbar.svelte";
   import "./styles.css";
   import { userData } from "./userStore";
+  import Footer from "../components/Footer.svelte";
+  import { page } from "$app/stores";
 
   auth.onAuthStateChanged(function (user) {
     if (user) {
-      userData.set(user);
+      const { uid, displayName } = user;
+      const data = { uid, displayName };
+      userData.set(data);
     } else {
       userData.set(null);
     }
@@ -21,6 +25,12 @@
   <main>
     <slot />
   </main>
+
+  {#if !$page.url.pathname.endsWith("play")}
+    <footer>
+      <Footer />
+    </footer>
+  {/if}
 </div>
 
 <style>

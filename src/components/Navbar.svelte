@@ -1,6 +1,6 @@
 <script>
   import { page } from "$app/stores";
-  import { userData } from "./userStore";
+  import { userData } from "../routes/userStore";
 
   let showRightMenu = false;
 </script>
@@ -58,7 +58,7 @@
   nav {
     height: var(--nav-height);
     background-color: var(--secondary);
-    border-bottom: 1px solid var(--text);
+    border-bottom: var(--border);
   }
 
   nav > ul {

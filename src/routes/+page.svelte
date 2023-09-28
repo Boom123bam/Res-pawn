@@ -59,11 +59,11 @@
     <h2>How it works</h2>
     <div class="cards-container">
       <div class="card">
-        <div class="left">
+        <div class="black">
           <h1>1</h1>
           <h5>Choose Your Challenge</h5>
         </div>
-        <div class="right">
+        <div class="white">
           <p>
             Choose from a diverse range of playlists, with various
             difficulties and themes.
@@ -71,11 +71,11 @@
         </div>
       </div>
       <div class="card">
-        <div class="left">
+        <div class="black">
           <h1>2</h1>
           <h5>Solve Puzzles</h5>
         </div>
-        <div class="right">
+        <div class="white">
           <p>
             Dive into the chess puzzles and put your skills to the
             test.
@@ -83,11 +83,11 @@
         </div>
       </div>
       <div class="card">
-        <div class="left">
+        <div class="black">
           <h1>3</h1>
           <h5>Rate Your Experience</h5>
         </div>
-        <div class="right">
+        <div class="white">
           <p>
             After each puzzle, provide feedback on its difficulty
             level.
@@ -95,11 +95,11 @@
         </div>
       </div>
       <div class="card">
-        <div class="left">
+        <div class="black">
           <h1>4</h1>
           <h5>Spaced Repetition</h5>
         </div>
-        <div class="right">
+        <div class="white">
           <p>
             The algorithm determines when to reintroduce puzzles
             you've solved to enhance your pattern recognition skills.
@@ -111,7 +111,9 @@
 
   <section class="bottom-cta">
     <h1>Start playing now</h1>
-    <button><h3>Browse puzzles</h3></button>
+    <a href="/playlists">
+      <button><h3>Browse puzzles</h3></button>
+    </a>
   </section>
 </div>
 
@@ -119,15 +121,17 @@
   section.hero {
     width: min(80ch, 100% - 3rem);
     position: relative;
-    height: calc(100svh - var(--nav-height));
-    min-height: 35rem;
+    min-height: calc(100svh - var(--nav-height));
+    /* min-height: 35rem; */
     /* overflow: hidden; */
     display: flex;
     flex-direction: column;
+    justify-content: center;
     & img.bg {
       position: absolute;
       right: 0;
-      top: calc(50% - 16rem);
+      top: calc(45% - 14rem);
+
       max-width: none;
       width: min(110vw + 15rem, 65rem);
       height: auto;
@@ -140,20 +144,17 @@
         width: 150%;
         object-fit: cover;
         align-self: flex-end;
-        transform: translateY(-5rem);
-        margin-top: auto;
+        margin-bottom: 0.5rem;
       }
     }
   }
   section.hero > .content {
-    position: relative;
-    top: 45%;
-    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 1.5rem;
     padding-right: 15rem;
+    margin-bottom: 3rem;
     & .buttons {
       display: flex;
       gap: 0.5rem;
@@ -165,6 +166,8 @@
       padding-right: 0;
       top: 2.5rem;
       transform: none;
+      margin-bottom: -7.5rem;
+      margin-top: 1.5rem;
       & .buttons {
         flex-direction: column;
         margin-top: 2rem;
@@ -174,8 +177,6 @@
 
   section.features {
     width: 100%;
-    /* width: 100svw; */
-    /* position: absolute; */
     display: flex;
     justify-content: center;
     padding: 7.5rem 0;
@@ -193,6 +194,8 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      max-width: 25rem;
+      margin-inline: auto;
     }
   }
 
@@ -222,26 +225,39 @@
     overflow: hidden;
     aspect-ratio: 2;
     text-align: center;
-    & .left,
-    .right {
+    transition: 0.1s;
+
+    & .black,
+    .white {
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1.25rem;
     }
-    & .left {
+    & .black {
       flex-direction: column;
       gap: 0.5rem;
       background-color: var(--text);
       color: var(--secondary);
     }
-    & .right {
+    & .white {
       background-color: var(--secondary);
     }
+    &:nth-child(3) .black,
+    &:nth-child(4) .black {
+      order: 1;
+    }
     @media screen and (max-width: 800px) {
-      &:nth-child(2n) .left {
+      &:nth-child(2) .black {
         order: 1;
       }
+      &:nth-child(3) .black {
+        order: 0;
+      }
+    }
+    &:hover {
+      transform: translateY(-0.25rem);
+      box-shadow: 0 0.25rem;
     }
   }
   section.bottom-cta {
@@ -261,6 +277,9 @@
       background-color: var(--text);
       padding: 1.3rem 2.5rem;
       border-radius: var(--br-small);
+      &:hover {
+        background-color: var(--dark-gray);
+      }
     }
   }
 </style>

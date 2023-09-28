@@ -2,7 +2,7 @@
   import { Chess } from "chess.js";
   import Square from "./Square.svelte";
   import { sequenceData } from "./boardStore";
-  import "./board.css";
+  import "./Board.css";
   import Promotion from "./Promotion.svelte";
   import { createEventDispatcher } from "svelte";
   import BoardControls from "./BoardControls.svelte";
