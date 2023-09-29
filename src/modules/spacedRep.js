@@ -48,7 +48,6 @@ export function getNextSeq(
   unplayedSeqsIDs,
   prevSeqID = null
 ) {
-  console.log("getting next");
   const soonestSeqID = getSoonestSeq(playedSeqsData);
   if (!soonestSeqID || prevSeqID == soonestSeqID) {
     if (unplayedSeqsIDs.length) return getRandomSeq(unplayedSeqsIDs);

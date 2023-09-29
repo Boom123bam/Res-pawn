@@ -26,9 +26,7 @@
   board.board = board.chess.board();
 
   sequenceData.subscribe((newSeqData) => {
-    console.log("data change");
     if (newSeqData && !newSeqData?.finished) {
-      console.log("new data, loading");
       handleSeqLoad(newSeqData);
     }
   });
@@ -132,7 +130,6 @@
   function movePiece(move, useDisplayer = false) {
     if (!useDisplayer) board.chess.move(move);
     else board.displayer.move(move);
-    console.log(board.movesBack);
     if (board.movesBack == 0) board.lastMove = move;
   }
 

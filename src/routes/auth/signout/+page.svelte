@@ -10,9 +10,9 @@
       if (typeof window !== "undefined") {
         sessionStorage.removeItem("user");
       }
-      console.log("signed out");
       goto("/auth/signin"); // Redirect to the login page
     } catch (error) {
+      console.error("error signing out", error);
       errorMessage = error.message;
     }
   }

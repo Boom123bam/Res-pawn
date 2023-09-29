@@ -10,14 +10,6 @@
     checkIfUsernameTaken,
   } from "../../../modules/firebase";
 
-  const user = auth.currentUser;
-
-  if (user) {
-    // already signed in
-    console.log("already signed in");
-    // goto("/home");
-  }
-
   let username = "";
   let email = "";
   let password = "";

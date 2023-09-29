@@ -8,7 +8,6 @@ export const ssr = false; // disable ssr because local storage
 
 export async function load({ params }) {
   // fetch p data from local
-  console.log("layout.js load with params:", params);
   let localPlaylistData = null;
   let localUserSeqData = null;
   try {
