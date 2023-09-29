@@ -57,6 +57,7 @@ export async function getUserData(id) {
 
 export async function getPlaylistData(id) {
   try {
+    console.log("getting data for playlist with id: ", id);
     const docRef = doc(db, `Playlists/${id}`);
     const docSnap = await getDoc(docRef);
 
@@ -65,9 +66,11 @@ export async function getPlaylistData(id) {
       const data = docSnap.data();
       // Add the document ID to the data
       data.id = docSnap.id;
+      console.log("data: ", data);
       return data;
     } else {
       // Document does not exist
+      console.log("playlist doc not found");
       return null;
     }
   } catch (error) {
