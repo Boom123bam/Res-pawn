@@ -16,7 +16,7 @@
   --br: 1rem;
   --br-small: 0.5rem;
   --shadow: 0.25rem 0.25rem 0;
-  --button-icon-size: 2rem;
+  --button-icon-size: 1.5rem;
   --nav-height: 3.75rem;
   font-family: var(--font-small);
   /* font-size: 0.75rem; */
@@ -192,6 +192,11 @@ p {
   font-size: 0.75rem;
 }
 
+small {
+  font-size: 0.5rem;
+  display: block;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -293,13 +298,13 @@ button.ghost:hover {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   :root {
-    --button-icon-size: 1.5rem;
+    --button-icon-size: 1.25rem;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   h1 {
     font-size: 4rem;
   }

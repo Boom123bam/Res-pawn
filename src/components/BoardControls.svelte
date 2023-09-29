@@ -95,22 +95,20 @@
 
 <style>
   .board-controls {
-    height: 4rem;
-    padding-inline: 2.25rem;
+    /* height: 4rem; */
     background-color: var(--secondary);
     border-radius: var(--br);
     border: var(--border);
     display: flex;
-    gap: 1.25rem;
-    justify-content: space-evenly;
+    /* gap: 1.25rem; */
     overflow: hidden;
   }
   .board-controls button {
-    /* padding: 3%; */
+    padding: 0.5rem 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-inline: 1rem;
+    /* padding-inline: 1rem; */
   }
   .board-controls button:hover {
     background-color: var(--light-gray);
@@ -136,10 +134,9 @@
       background-color: var(--secondary);
     }
   }
-  @media screen and (max-width: 400px) {
-    .board-controls {
-      padding: 0;
-      gap: 0;
+  @media screen and (max-width: 600px) {
+    .board-controls button {
+      padding: 0.5rem 1rem;
     }
   }
 </style>

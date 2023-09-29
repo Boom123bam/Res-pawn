@@ -108,6 +108,7 @@
   <div class="text">
     <h2>How hard was it?</h2>
     <p>drag the queen along the tiles</p>
+    <small>(or tap on the tiles)</small>
   </div>
   <button
     class="next cta"
@@ -119,7 +120,8 @@
 
 <style>
   .popup-window {
-    padding: 4.5rem 4.5rem 3.5rem 4.5rem;
+    padding: 12%;
+    padding-bottom: 3.5rem;
     border-radius: var(--br);
     display: flex;
     flex-direction: column;
@@ -144,7 +146,7 @@
   }
 
   .slider {
-    width: 25rem;
+    width: 100%;
     position: relative;
   }
 
@@ -214,5 +216,10 @@
     font-size: 1.25rem;
     margin-top: 0.5rem;
     font-family: var(--font-small);
+  }
+  @media screen and (max-width: 500px) {
+    .popup-window {
+      padding: 3rem 1rem 2.5rem 1rem;
+    }
   }
 </style>

@@ -118,57 +118,79 @@
 </script>
 
 <div class="page-content">
-  {#if currentSeqID}
-    <div class="seq-info">
-      <h3>{localPlaylistData.name}</h3>
-      <h5>puzzle: {currentSeqID}</h5>
-    </div>
-    <div class="board-container">
-      <Board on:finish={handleSeqFinish}>
-        <button
-          slot="after"
-          class={`next cta${showBottomNextButton ? "" : " hide"}`}
-          on:click={handleNext}
-          ><img
-            src={`/images/icons/right-double-white.svg`}
-            alt="next puzzle"
-            draggable="false"
-          /></button
-        >
-      </Board>
-      {#if showGradeMenu}
-        <div class="menu-wrapper">
-          <GradeMenu value={grade} on:submit={handleGradeSubmit} />
+  <section class="main">
+    <div class="grid-container">
+      {#if currentSeqID}
+        <div class="seq-info">
+          <h3>{localPlaylistData.name}</h3>
+          <small>puzzle: {currentSeqID}</small>
         </div>
+        <div class="board-container">
+          <Board on:finish={handleSeqFinish}>
+            <button
+              slot="after"
+              class={`next cta${showBottomNextButton ? "" : " hide"}`}
+              on:click={handleNext}
+              ><img
+                src={`/images/icons/right-double-white.svg`}
+                alt="next puzzle"
+                draggable="false"
+              /></button
+            >
+          </Board>
+          {#if showGradeMenu}
+            <div class="menu-wrapper">
+              <GradeMenu
+                value={grade}
+                on:submit={handleGradeSubmit}
+              />
+            </div>
+          {/if}
+        </div>
+      {:else}
+        <h2>no puzzles left</h2>
+        <button>return to ???</button>
       {/if}
     </div>
-  {:else}
-    <h2>no puzzles left</h2>
-    <button>return to ???</button>
-  {/if}
+  </section>
 </div>
 
 <style>
   .seq-info {
-    width: 100%;
-    margin-bottom: 1rem;
+    /* width: 100%; */
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    /* align-items: center; */
   }
-  .page-content {
-    height: 100svh;
+  section.main {
+    height: calc(100svh - var(--nav-height));
+    width: min(90ch, 100% - 1rem);
     max-height: 100svh;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    padding: 1rem 0;
     /* justify-content: center; */
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    align-items: start;
+    width: 100%;
+    height: 100%;
   }
   .board-container {
     display: flex;
     justify-content: center;
+    width: min(100vh - 10rem, 100%);
     width: 100%;
-    /* max-width: min(100svh - 15rem, 90ch); */
-    /* max-height: 1rem; */
+    /* max-width: min(100svw - 5rem, 60ch); */
     position: relative;
+    flex-grow: 1;
+    height: 100%;
+    align-self: center;
   }
   .board-container .menu-wrapper {
     position: absolute;
@@ -178,9 +200,11 @@
   }
   .menu-wrapper {
     z-index: 20;
+    width: min(100% - 2rem, 35rem);
   }
   button.next {
     border-radius: var(--br);
+    padding: 0;
     padding-inline: 1rem;
   }
   button.next img {
@@ -188,8 +212,26 @@
     height: var(--button-icon-size);
   }
   @media screen and (max-height: 600px) {
+    .seq-info {
+      flex-direction: row;
+      align-items: end;
+      justify-content: center;
+      margin-inline: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .grid-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+  /* @media screen and (orientation: landscape) and (max-height: 600px) {
     .page-content {
       flex-direction: row;
     }
-  }
+  } */
 </style>

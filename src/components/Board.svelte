@@ -279,73 +279,76 @@
 </script>
 
 <div class="board-component-wrapper">
-  {#if board.moveToPromote}
-    <Promotion
-      on:promotion={handlePromotion}
-      color={board.chess.get(board.moveToPromote.substring(0, 2))
-        .color}
-    />
-  {/if}
-  <div class={`board${board.flipped ? " flipped" : " normal"}`}>
-    {#each board.board as row, rowNum}
-      {#each row as square, colNum}
-        <Square
-          id={getSquare(rowNum, colNum)}
-          squareColor={board.chess.squareColor(
-            getSquare(rowNum, colNum)
-          )}
-          highlighted={board.highlightedSquares.includes(
-            getSquare(rowNum, colNum)
-          )}
-          {square}
-          {handlePieceClick}
-          hint={currentSequence?.hint &&
-            currentSequence?.moves[currentSequence?.step].substring(
-              0,
-              2
-            ) == getSquare(rowNum, colNum)}
-          solution={currentSequence?.solution &&
-            currentSequence?.moves[currentSequence?.step].substring(
-              2,
-              4
-            ) == getSquare(rowNum, colNum)}
-          lastMove={board.movesBack == 0 &&
-            (board.lastMove.substring(0, 2) ==
-              getSquare(rowNum, colNum) ||
-              board.lastMove.substring(2, 4) ==
-                getSquare(rowNum, colNum))}
-          order={board.flipped
-            ? 63 - (rowNum * 8 + colNum)
-            : rowNum * 8 + colNum}
-          flipped={board.flipped}
-        />
+  <div class="board-wrapper">
+    {#if board.moveToPromote}
+      <Promotion
+        on:promotion={handlePromotion}
+        color={board.chess.get(board.moveToPromote.substring(0, 2))
+          .color}
+      />
+    {/if}
+    <div class={`board${board.flipped ? " flipped" : " normal"}`}>
+      {#each board.board as row, rowNum}
+        {#each row as square, colNum}
+          <Square
+            id={getSquare(rowNum, colNum)}
+            squareColor={board.chess.squareColor(
+              getSquare(rowNum, colNum)
+            )}
+            highlighted={board.highlightedSquares.includes(
+              getSquare(rowNum, colNum)
+            )}
+            {square}
+            {handlePieceClick}
+            hint={currentSequence?.hint &&
+              currentSequence?.moves[currentSequence?.step].substring(
+                0,
+                2
+              ) == getSquare(rowNum, colNum)}
+            solution={currentSequence?.solution &&
+              currentSequence?.moves[currentSequence?.step].substring(
+                2,
+                4
+              ) == getSquare(rowNum, colNum)}
+            lastMove={board.movesBack == 0 &&
+              (board.lastMove.substring(0, 2) ==
+                getSquare(rowNum, colNum) ||
+                board.lastMove.substring(2, 4) ==
+                  getSquare(rowNum, colNum))}
+            order={board.flipped
+              ? 63 - (rowNum * 8 + colNum)
+              : rowNum * 8 + colNum}
+            flipped={board.flipped}
+          />
+        {/each}
       {/each}
-    {/each}
-  </div>
-
-  <div class="buttons">
-    <div class="before">
-      <slot name="before" />
     </div>
-    <BoardControls
-      showRetryLastMove={currentSequence?.failed}
-      showHint={!currentSequence?.finished &&
-        !currentSequence?.failed &&
-        !currentSequence?.hint &&
-        board.movesBack == 0}
-      showSol={!currentSequence?.finished &&
-        !currentSequence?.failed &&
-        currentSequence?.hint &&
-        !currentSequence.solution}
-      on:back={handleBackButton}
-      on:next={handleNextButton}
-      on:flip={handleFlipButton}
-      on:retryLastMove={handleRetryLastMoveButton}
-      on:hint={handleHintButton}
-      on:solution={handleSolutionButton}
-    />
-    <div class="after">
-      <slot name="after" />
+    <div class="buttons-wrapper">
+      <div class="buttons">
+        <div class="before">
+          <slot name="before" />
+        </div>
+        <BoardControls
+          showRetryLastMove={currentSequence?.failed}
+          showHint={!currentSequence?.finished &&
+            !currentSequence?.failed &&
+            !currentSequence?.hint &&
+            board.movesBack == 0}
+          showSol={!currentSequence?.finished &&
+            !currentSequence?.failed &&
+            currentSequence?.hint &&
+            !currentSequence.solution}
+          on:back={handleBackButton}
+          on:next={handleNextButton}
+          on:flip={handleFlipButton}
+          on:retryLastMove={handleRetryLastMoveButton}
+          on:hint={handleHintButton}
+          on:solution={handleSolutionButton}
+        />
+        <div class="after">
+          <slot name="after" />
+        </div>
+      </div>
     </div>
   </div>
 </div>
