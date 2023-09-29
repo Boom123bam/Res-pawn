@@ -40,7 +40,7 @@
   /* width: min(100vw - 1rem, 100vh - var(--nav-height) - 8rem); */
 }
 
-.buttons {
+.board-wrapper .buttons {
   position: absolute;
 }
 

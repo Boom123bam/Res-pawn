@@ -1,3 +1,7 @@
+<script>
+  let howSection;
+</script>
+
 <div class="page-content">
   <section class="hero">
     <div class="content">
@@ -6,8 +10,17 @@
         Get better at chess with Spaced Repetition
       </p>
       <div class="buttons">
-        <button class="cta play-now">play puzzles</button>
-        <button class="ghost learn-more">learn more</button>
+        <button class="cta play-now">
+          <a href="/playlists"> play puzzles </a>
+        </button>
+        <button
+          on:click={() =>
+            howSection.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+            })}
+          class="ghost learn-more">learn more</button
+        >
       </div>
     </div>
     <img
@@ -55,7 +68,7 @@
     </div>
   </section>
 
-  <section class="how-it-works">
+  <section class="how-it-works" bind:this={howSection}>
     <h2>How it works</h2>
     <div class="cards-container">
       <div class="card">

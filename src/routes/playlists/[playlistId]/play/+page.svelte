@@ -167,8 +167,8 @@
   section.main {
     height: calc(100svh - var(--nav-height));
     width: min(90ch, 100% - 1rem);
-    max-height: 100svh;
-    overflow: hidden;
+    /* max-height: 100svh; */
+    /* overflow: hidden; */
     display: flex;
     align-items: center;
     padding: 1rem 0;
