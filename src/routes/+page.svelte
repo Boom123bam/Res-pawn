@@ -127,25 +127,25 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    & img.bg {
-      position: absolute;
-      right: 0;
-      top: calc(45% - 14rem);
-
-      max-width: none;
-      width: min(110vw + 15rem, 65rem);
-      height: auto;
+  }
+  section.hero img.bg {
+    position: absolute;
+    right: 0;
+    top: calc(45% - 14rem);
+    max-width: none;
+    width: min(110vw + 15rem, 65rem);
+    height: auto;
+    object-fit: cover;
+    object-position: top;
+    z-index: -1;
+  }
+  @media screen and (max-width: 600px) {
+    section.hero img.bg {
+      position: unset;
+      width: 150%;
       object-fit: cover;
-      object-position: top;
-      z-index: -1;
-
-      @media screen and (max-width: 600px) {
-        position: unset;
-        width: 150%;
-        object-fit: cover;
-        align-self: flex-end;
-        margin-bottom: 0.5rem;
-      }
+      align-self: flex-end;
+      margin-bottom: 0.5rem;
     }
   }
   section.hero > .content {
@@ -155,26 +155,29 @@
     gap: 1.5rem;
     padding-right: 15rem;
     margin-bottom: 3rem;
-    & .buttons {
-      display: flex;
-      gap: 0.5rem;
-      & button {
-        border-radius: var(--br-small);
-      }
-    }
-    @media screen and (max-width: 600px) {
+  }
+  section.hero > .content .buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  section.hero > .content .buttons button {
+    border-radius: var(--br-small);
+  }
+  @media screen and (max-width: 600px) {
+    section.hero > .content {
       padding-right: 0;
       top: 2.5rem;
       transform: none;
       margin-bottom: -7.5rem;
       margin-top: 1.5rem;
-      & .buttons {
-        flex-direction: column;
-        margin-top: 2rem;
-      }
+    }
+    section.hero > .content .buttons {
+      flex-direction: column;
+      margin-top: 2rem;
     }
   }
 
+  /* section.features */
   section.features {
     width: 100%;
     display: flex;
@@ -187,18 +190,21 @@
     text-align: center;
     width: min(100ch, 100% - 5rem);
     gap: 3rem;
-    @media screen and (max-width: 800px) {
+  }
+  @media screen and (max-width: 800px) {
+    .features-container {
       grid-template-columns: 1fr;
     }
-    & .feature {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-width: 25rem;
-      margin-inline: auto;
-    }
+  }
+  .features-container .feature {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 25rem;
+    margin-inline: auto;
   }
 
+  /* section.how-it-works */
   section.how-it-works {
     display: flex;
     flex-direction: column;
@@ -213,7 +219,9 @@
     gap: 1rem;
     padding: 1.25rem;
     border-radius: var(--br);
-    @media screen and (max-width: 800px) {
+  }
+  @media screen and (max-width: 800px) {
+    .cards-container {
       max-width: 25rem;
       grid-template-columns: 1fr;
     }
@@ -226,40 +234,41 @@
     aspect-ratio: 2;
     text-align: center;
     transition: 0.1s;
-
-    & .black,
-    .white {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem;
-    }
-    & .black {
-      flex-direction: column;
-      gap: 0.5rem;
-      background-color: var(--text);
-      color: var(--secondary);
-    }
-    & .white {
-      background-color: var(--secondary);
-    }
-    &:nth-child(3) .black,
-    &:nth-child(4) .black {
+  }
+  .card .black,
+  .card .white {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+  }
+  .card .black {
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--text);
+    color: var(--secondary);
+  }
+  .card .white {
+    background-color: var(--secondary);
+  }
+  .card:nth-child(3) .black,
+  .card:nth-child(4) .black {
+    order: 1;
+  }
+  @media screen and (max-width: 800px) {
+    .card:nth-child(2) .black {
       order: 1;
     }
-    @media screen and (max-width: 800px) {
-      &:nth-child(2) .black {
-        order: 1;
-      }
-      &:nth-child(3) .black {
-        order: 0;
-      }
-    }
-    &:hover {
-      transform: translateY(-0.25rem);
-      box-shadow: 0 0.25rem;
+    .card:nth-child(3) .black {
+      order: 0;
     }
   }
+
+  .card:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 0.25rem;
+  }
+
   section.bottom-cta {
     background-color: var(--accent);
     color: white;
@@ -272,14 +281,14 @@
     border-top: var(--border);
     text-align: center;
     padding-inline: 1.5rem;
+  }
 
-    & button {
-      background-color: var(--text);
-      padding: 1.3rem 2.5rem;
-      border-radius: var(--br-small);
-      &:hover {
-        background-color: var(--dark-gray);
-      }
-    }
+  section.bottom-cta button {
+    background-color: var(--text);
+    padding: 1.3rem 2.5rem;
+    border-radius: var(--br-small);
+  }
+  section.bottom-cta button:hover {
+    background-color: var(--dark-gray);
   }
 </style>

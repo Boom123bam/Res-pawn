@@ -104,20 +104,20 @@
     gap: 1.25rem;
     justify-content: space-evenly;
     overflow: hidden;
-    & button {
-      /* padding: 3%; */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-inline: 1rem;
-      & img {
-        width: var(--button-icon-size);
-        height: var(--button-icon-size);
-      }
-      &:hover {
-        background-color: var(--light-gray);
-      }
-    }
+  }
+  .board-controls button {
+    /* padding: 3%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 1rem;
+  }
+  .board-controls button:hover {
+    background-color: var(--light-gray);
+  }
+  .board-controls button img {
+    width: var(--button-icon-size);
+    height: var(--button-icon-size);
   }
   button.retry {
     animation-name: color-pulse;

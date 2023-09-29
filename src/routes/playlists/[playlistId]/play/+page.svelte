@@ -166,14 +166,15 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    max-width: min(100svh - 20rem, 90ch);
+    /* max-width: min(100svh - 15rem, 90ch); */
+    /* max-height: 1rem; */
     position: relative;
-    & .menu-wrapper {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+  }
+  .board-container .menu-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .menu-wrapper {
     z-index: 20;
@@ -181,9 +182,14 @@
   button.next {
     border-radius: var(--br);
     padding-inline: 1rem;
-    & img {
-      width: var(--button-icon-size);
-      height: var(--button-icon-size);
+  }
+  button.next img {
+    width: var(--button-icon-size);
+    height: var(--button-icon-size);
+  }
+  @media screen and (max-height: 600px) {
+    .page-content {
+      flex-direction: row;
     }
   }
 </style>

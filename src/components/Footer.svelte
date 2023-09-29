@@ -28,9 +28,9 @@
     align-items: center;
     gap: 5rem;
     padding: 2.5rem 0;
-    & a:hover {
-      text-decoration: underline;
-    }
+  }
+  .content-wrapper a:hover {
+    text-decoration: underline;
   }
   .contact {
     margin-left: auto;

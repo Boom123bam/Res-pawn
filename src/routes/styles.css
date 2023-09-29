@@ -204,9 +204,9 @@ input {
   margin-bottom: 2rem;
   border: 1px solid var(--text);
   background-color: var(--light-gray);
-  &:focus {
-    background-color: var(--secondary);
-  }
+}
+input:focus {
+  background-color: var(--secondary);
 }
 
 .page-content {
@@ -215,9 +215,9 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  & section {
-    width: min(80ch, 100% - 3rem);
-  }
+}
+.page-content section {
+  width: min(80ch, 100% - 3rem);
 }
 
 .visually-hidden {
@@ -239,18 +239,18 @@ button.cta {
   /* border: 1px solid var(--accent); */
   font-weight: 700;
   padding: 1rem 1.5rem;
-  &:hover {
-    background-color: var(--accent-light);
-  }
+}
+button.cta:hover {
+  background-color: var(--accent-light);
 }
 
 button.ghost {
   color: var(--accent);
   font-weight: 700;
   padding: 1rem 1.5rem;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
+}
+button.ghost:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .subheading {
@@ -278,19 +278,19 @@ button.ghost {
   overflow: hidden;
   background-color: var(--text);
   color: var(--secondary);
-  &:before {
-    content: "";
-    background-color: var(--text);
-    position: absolute;
-    width: 100rem;
-    height: 100rem;
-    top: 50%;
-    left: 50%;
-    background: url(/images/tiles-white.png);
-    background-size: 20rem;
-    opacity: 0.1;
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
+}
+.tiles-bg:before {
+  content: "";
+  background-color: var(--text);
+  position: absolute;
+  width: 100rem;
+  height: 100rem;
+  top: 50%;
+  left: 50%;
+  background: url(/images/tiles-white.png);
+  background-size: 20rem;
+  opacity: 0.1;
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 @media screen and (max-width: 400px) {

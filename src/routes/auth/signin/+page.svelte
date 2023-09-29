@@ -75,9 +75,9 @@
   }
   .sign-up {
     color: var(--accent);
-    &:hover {
-      text-decoration: underline;
-    }
+  }
+  .sign-up:hover {
+    text-decoration: underline;
   }
   button.home {
     margin-top: 1rem;

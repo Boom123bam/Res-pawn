@@ -64,17 +64,17 @@
     display: grid;
     gap: 5%;
     grid-template-columns: repeat(4, 1fr);
-    & button {
-      padding: 15%;
-      border-radius: var(--br-small);
-      &:hover {
-        background-color: color-mix(
-          in oklab,
-          var(--primary) 50%,
-          rgba(0, 0, 0, 0) 50%
-        );
-      }
-    }
+  }
+  .buttons-container button {
+    padding: 15%;
+    border-radius: var(--br-small);
+  }
+  .buttons-container button:hover {
+    background-color: color-mix(
+      in oklab,
+      var(--primary) 50%,
+      rgba(0, 0, 0, 0) 50%
+    );
   }
 
   .buttons-container.w {

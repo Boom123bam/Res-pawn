@@ -30,11 +30,10 @@
     height: 18rem;
     /* width: 18rem; */
     transition: box-shadow 0.25s, transform 0.25s;
-
-    &:hover {
-      box-shadow: 0.5rem 0.5rem 0;
-      transform: translate(-0.25rem, -0.25rem);
-    }
+  }
+  .card:hover {
+    box-shadow: 0.5rem 0.5rem 0;
+    transform: translate(-0.25rem, -0.25rem);
   }
   .top-banner {
     border-top-right-radius: var(--br);
@@ -43,9 +42,9 @@
   }
   .content {
     padding: 1.5rem 1.75rem;
-    & h3 {
-      margin-bottom: 0.25rem;
-    }
+  }
+  .content h3 {
+    margin-bottom: 0.25rem;
   }
   p.length {
     font-family: var(--font-big);

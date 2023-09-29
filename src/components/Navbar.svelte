@@ -70,22 +70,19 @@
     /* justify-content: center; */
     align-items: center;
     gap: 4rem;
-
-    & li.user {
-      margin-left: auto;
-      position: relative;
-    }
-
-    & li {
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
-
-    & li[aria-current="page"],
-    a:hover {
-      text-decoration: underline;
-    }
+  }
+  nav > ul li[aria-current="page"],
+  nav > ul a:hover {
+    text-decoration: underline;
+  }
+  nav > ul li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  nav > ul li.user {
+    margin-left: auto;
+    position: relative;
   }
 
   a {
@@ -104,11 +101,11 @@
     /* transform: translateX(-50%); */
     top: calc(var(--nav-height) + 0.5rem);
     width: 10rem;
-    & ul {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem 2.5rem;
-    }
+  }
+  .popup-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 2.5rem;
   }
 </style>

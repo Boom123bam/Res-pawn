@@ -67,23 +67,24 @@
   h3.length {
     font-size: 1.5rem;
   }
+
   a.play {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 50%);
     z-index: 10;
-    & button {
-      padding: 1.25rem 5rem;
-      border-radius: var(--br-small);
-      font-size: 2.5rem;
-      font-family: var(--font-big);
-    }
+  }
+  a.play button {
+    padding: 1.25rem 5rem;
+    border-radius: var(--br-small);
+    font-size: 2.5rem;
+    font-family: var(--font-big);
   }
   section.other-playlists {
     margin-top: 3rem;
-    & h4 {
-      margin-bottom: 0.5rem;
-    }
+  }
+  section.other-playlists h4 {
+    margin-bottom: 0.5rem;
   }
 </style>

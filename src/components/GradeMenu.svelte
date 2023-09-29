@@ -154,66 +154,65 @@
     display: flex;
     justify-content: center;
     transition: 0.1s;
-
-    & .queen {
-      cursor: pointer;
-      width: 150%;
-      object-fit: cover;
-      position: absolute;
-      z-index: 10;
-      overflow: visible;
-      height: auto;
-      max-block-size: none;
-      max-inline-size: none;
-      bottom: -1.5rem;
-    }
+  }
+  .img-container .queen {
+    cursor: pointer;
+    width: 150%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 10;
+    overflow: visible;
+    height: auto;
+    max-block-size: none;
+    max-inline-size: none;
+    bottom: -1.5rem;
   }
 
   .button-tiles {
     display: grid;
     row-gap: 0.25rem;
     grid-template-columns: repeat(5, 1fr);
-    & button {
-      width: 100%;
-      height: 1.5rem;
-      background: black;
-    }
-    & :nth-child(1) {
-      background-color: #db7676;
-    }
-    & :nth-child(2) {
-      background-color: #f2a864;
-    }
-    & :nth-child(3) {
-      background-color: #f4d566;
-    }
-    & :nth-child(4) {
-      background-color: #e3ef98;
-    }
-    & :nth-child(5) {
-      background-color: #b1eb8d;
-    }
+  }
+  .button-tiles :nth-child(5) {
+    background-color: #b1eb8d;
+  }
+  .button-tiles :nth-child(4) {
+    background-color: #e3ef98;
+  }
+  .button-tiles :nth-child(3) {
+    background-color: #f4d566;
+  }
+  .button-tiles :nth-child(2) {
+    background-color: #f2a864;
+  }
+  .button-tiles :nth-child(1) {
+    background-color: #db7676;
+  }
+  .button-tiles button {
+    width: 100%;
+    height: 1.5rem;
+    background: black;
   }
 
   .label {
     text-align: center;
-    &.mid {
-      grid-column: 3;
-    }
-    &.right {
-      grid-column: 5;
-    }
+  }
+  .label.right {
+    grid-column: 5;
+  }
+  .label.mid {
+    grid-column: 3;
   }
 
   .text {
     text-align: center;
-    & h2 {
-      font-size: 1.25rem;
-      margin-top: 0.5rem;
-      font-family: var(--font-small);
-    }
-    & p {
-      margin-top: 0.75rem;
-    }
+  }
+  .text p {
+    margin-top: 0.75rem;
+  }
+  .text h2 {
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    font-family: var(--font-small);
   }
 </style>
