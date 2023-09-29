@@ -4,11 +4,11 @@
     updateProfile,
   } from "@firebase/auth";
   import { auth } from "../../../firebase";
-  import { goto } from "$app/navigation";
   import {
     addUserToCollection,
     checkIfUsernameTaken,
   } from "../../../modules/firebase";
+  import { userData } from "../../userStore";
 
   let username = "";
   let email = "";
@@ -38,8 +38,6 @@
 
       // add uid and username to database
       await addUserToCollection(newUser.user.uid, name);
-
-      goto("/home");
     } catch (err) {
       errorMessage = err.message;
     }
@@ -48,34 +46,46 @@
 
 <div class="page-content">
   <section>
-    <h1>Sign Up</h1>
+    {#if !$userData}
+      <h3>Sign Up</h3>
 
-    {#if errorMessage}
-      <h3 style="color: red;">{errorMessage}</h3>
-    {/if}
+      {#if errorMessage}
+        <h4 style="color: red;">{errorMessage}</h4>
+      {/if}
 
-    <form>
-      <label for="username">username:</label>
-      <input type="text" id="username" bind:value={username} />
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" bind:value={username} />
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" bind:value={email} />
+        <label for="email">Email:</label>
+        <input type="email" id="email" bind:value={email} />
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" bind:value={password} />
+        <label for="password">Password:</label>
+        <input type="password" id="password" bind:value={password} />
 
-      <button
-        type="button"
-        class="cta sign-up"
-        on:click={() => {
-          register(username, email, password);
-        }}>Sign Up</button
+        <button
+          type="button"
+          class="cta sign-up"
+          on:click={() => {
+            register(username, email, password);
+          }}>Sign Up</button
+        >
+      </form>
+      <h4>Have an account?</h4>
+      <a href="/auth/signin" class="link">Sign In</a>
+    {:else}
+      <h3>Already signed in</h3>
+      <button class="cta"
+        ><a href="/playlists">go to playlists</a></button
       >
-    </form>
+    {/if}
   </section>
 </div>
 
 <style>
+  h3 {
+    margin: 1rem 0;
+  }
   button.sign-up {
     width: 10rem;
     text-align: center;

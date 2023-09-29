@@ -155,15 +155,6 @@
     object-position: top;
     z-index: -1;
   }
-  @media screen and (max-width: 600px) {
-    section.hero img.bg {
-      position: unset;
-      width: 150%;
-      object-fit: cover;
-      align-self: flex-end;
-      margin-bottom: 0.5rem;
-    }
-  }
   section.hero > .content {
     display: flex;
     flex-direction: column;
@@ -180,6 +171,14 @@
     border-radius: var(--br-small);
   }
   @media screen and (max-width: 600px) {
+    section.hero img.bg {
+      position: unset;
+      width: 150%;
+      object-fit: cover;
+      align-self: flex-end;
+      margin-bottom: 0.5rem;
+    }
+
     section.hero > .content {
       padding-right: 0;
       top: 2.5rem;
@@ -207,11 +206,7 @@
     width: min(100ch, 100% - 5rem);
     gap: 3rem;
   }
-  @media screen and (max-width: 800px) {
-    .features-container {
-      grid-template-columns: 1fr;
-    }
-  }
+
   .features-container .feature {
     display: flex;
     flex-direction: column;
@@ -236,12 +231,7 @@
     padding: 1.25rem;
     border-radius: var(--br);
   }
-  @media screen and (max-width: 800px) {
-    .cards-container {
-      max-width: 25rem;
-      grid-template-columns: 1fr;
-    }
-  }
+
   .card {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -272,6 +262,15 @@
     order: 1;
   }
   @media screen and (max-width: 800px) {
+    .features-container {
+      grid-template-columns: 1fr;
+    }
+
+    .cards-container {
+      max-width: 25rem;
+      grid-template-columns: 1fr;
+    }
+
     .card:nth-child(2) .black {
       order: 1;
     }
