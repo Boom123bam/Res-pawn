@@ -14,7 +14,8 @@
       rating: {`${playlistData.rating[0]}-${playlistData.rating[1]}`}
     </div>
     <div class="content">
-      <h3 class="name">{playlistData.name}</h3>
+      <h3 class="name desktop">{playlistData.name}</h3>
+      <h4 class="mobile">{playlistData.name}</h4>
       <p class="length">{playlistData.sequences.length} puzzles</p>
       <p class="description">{playlistData.description}</p>
     </div>
@@ -50,5 +51,22 @@
     font-family: var(--font-big);
     font-size: 1rem;
     margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    .card {
+      height: 15rem;
+    }
+    .content {
+      /* display: flex; */
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .top-banner {
+      padding: 0.5rem 1rem;
+    }
+    p.length {
+      margin-bottom: 0.25rem;
+    }
   }
 </style>

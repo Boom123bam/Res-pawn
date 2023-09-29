@@ -6,9 +6,9 @@
   <section class="hero">
     <div class="content">
       <h1>Recognise Patterns, Fast</h1>
-      <p class="subheading">
+      <h5 class="subheading">
         Get better at chess with Spaced Repetition
-      </p>
+      </h5>
       <div class="buttons">
         <button class="cta play-now">
           <a href="/playlists"> play puzzles </a>
@@ -131,6 +131,9 @@
 </div>
 
 <style>
+  .page-content {
+    margin-bottom: 0;
+  }
   section.hero {
     width: min(80ch, 100% - 3rem);
     position: relative;

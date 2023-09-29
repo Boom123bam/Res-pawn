@@ -37,10 +37,6 @@
     {#if !signedIn}
       <h2>Sign In</h2>
 
-      {#if errorMessage}
-        <p style="color: red;">{errorMessage}</p>
-      {/if}
-
       <form>
         <label for="email">Email:</label>
         <input type="email" id="email" bind:value={email} />
@@ -53,6 +49,10 @@
           class="sign-in cta"
           on:click={handleSignIn}>Sign In</button
         >
+
+        {#if errorMessage}
+          <h5 class="error">{errorMessage}</h5>
+        {/if}
       </form>
       <h3>Not registered?</h3>
       <a href="/auth/signup" class="sign-up">Sign Up</a>
@@ -81,5 +81,12 @@
   }
   button.home {
     margin-top: 1rem;
+  }
+  .error {
+    align-self: center;
+    color: red;
+  }
+  h3 {
+    margin-top: 3rem;
   }
 </style>

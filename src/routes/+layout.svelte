@@ -1,6 +1,7 @@
 <script>
   import { auth } from "../firebase";
   import Navbar from "../components/Navbar.svelte";
+  import "./reset.css";
   import "./styles.css";
   import { userData } from "./userStore";
   import Footer from "../components/Footer.svelte";

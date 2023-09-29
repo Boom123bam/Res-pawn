@@ -21,126 +21,6 @@
   font-family: var(--font-small);
   /* font-size: 0.75rem; */
 }
-/***
-    The new CSS reset - version 1.8.6 (last updated 15.6.2023)
-    GitHub page: https://github.com/elad2412/the-new-css-reset
-***/
-
-/*
-    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
-    - The "symbol *" part is to solve Firefox SVG sprite bug
-    - The "html" element is exclude, because otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
- */
-*:where(
-    :not(html, iframe, canvas, img, svg, video, audio):not(
-        svg *,
-        symbol *
-      )
-  ) {
-  all: unset;
-  display: revert;
-}
-
-/* Preferred box-sizing value */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Reapply the pointer cursor for anchor tags */
-a,
-button {
-  cursor: revert;
-}
-
-/* Remove list styles (bullets/numbers) */
-ol,
-ul,
-menu {
-  list-style: none;
-}
-
-/* For images to not be able to exceed their container */
-img {
-  max-inline-size: 100%;
-  max-block-size: 100%;
-}
-
-/* removes spacing between cells in tables */
-table {
-  border-collapse: collapse;
-}
-
-/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
-input,
-textarea {
-  -webkit-user-select: auto;
-}
-
-/* revert the 'white-space' property for textarea elements on Safari */
-textarea {
-  white-space: revert;
-}
-
-/* minimum style to allow to style meter element */
-meter {
-  -webkit-appearance: revert;
-  appearance: revert;
-}
-
-/* preformatted text - use only for this feature */
-:where(pre) {
-  all: revert;
-}
-
-/* reset default text opacity of input placeholder */
-::placeholder {
-  color: unset;
-}
-
-/* remove default dot (•) sign */
-::marker {
-  content: initial;
-}
-
-/* fix the feature of 'hidden' attribute.
-   display:revert; revert to element instead of attribute */
-:where([hidden]) {
-  display: none;
-}
-
-/* revert for bug in Chromium browsers
-   - fix for the content editable attribute will work properly.
-   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
-:where([contenteditable]:not([contenteditable="false"])) {
-  -moz-user-modify: read-write;
-  -webkit-user-modify: read-write;
-  overflow-wrap: break-word;
-  -webkit-line-break: after-white-space;
-  -webkit-user-select: auto;
-}
-
-/* apply back the draggable feature - exist only in Chromium and Safari */
-:where([draggable="true"]) {
-  -webkit-user-drag: element;
-}
-
-/* Revert Modal native behavior */
-:where(dialog:modal) {
-  all: revert;
-}
-
-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-button {
-  border: none;
-  cursor: pointer;
-}
 
 body {
   background-color: var(--background);
@@ -220,21 +100,10 @@ input:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 1rem;
 }
 .page-content section {
   width: min(80ch, 100% - 3rem);
-}
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: auto;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap;
 }
 
 button.cta {
@@ -256,10 +125,6 @@ button.ghost {
 }
 button.ghost:hover {
   background-color: rgba(0, 0, 0, 0.05);
-}
-
-.subheading {
-  font-size: 1rem;
 }
 
 .hide {
@@ -297,15 +162,34 @@ button.ghost:hover {
   opacity: 0.1;
   transform: translate(-50%, -50%) rotate(45deg);
 }
-
-@media screen and (max-width: 600px) {
-  :root {
-    --button-icon-size: 1.25rem;
-  }
+.mobile {
+  display: none;
 }
 
 @media screen and (max-width: 700px) {
   h1 {
     font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    --button-icon-size: 1.25rem;
+  }
+  .card-grid {
+    gap: 0.5rem;
+  }
+
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .card-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -96,29 +96,16 @@
           </li>
           {#if $userData}
             <li class="user">
-              <button
-                on:click={() => {
-                  showRightMenu = !showRightMenu;
-                }}>{$userData.displayName}</button
-              >
-              {#if showRightMenu}
-                <div class="popup-menu popup">
-                  <ul>
-                    <li>
-                      <a
-                        on:click={() => {
-                          showRightMenu = !showRightMenu;
-                        }}
-                        href="/auth/signout">Sign out</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              {/if}
+              <a href="/auth/signout">sign out</a>
+            </li>
+            <li class="user-info">
+              <small>
+                signed in as {$userData.displayName}
+              </small>
             </li>
           {:else}
             <li class="user">
-              <a href="/auth/signin">Sign In</a>
+              <a href="/auth/signin">sign In</a>
             </li>
           {/if}
         </ul>
@@ -202,14 +189,20 @@
     height: 100%;
     background-color: var(--secondary);
     transform: translateX(100%);
-    display: flex;
-    flex-direction: column;
     align-items: end;
     text-align: right;
     padding-top: 2rem;
   }
+  .mobile-menu ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   .mobile-menu li {
-    padding: 1rem 2rem 0 0;
+    padding: 2rem 2rem;
+  }
+  .mobile-menu .user-info {
+    margin-top: auto;
   }
 
   @media screen and (max-width: 600px) {

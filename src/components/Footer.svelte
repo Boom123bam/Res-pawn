@@ -26,7 +26,7 @@
     margin-inline: auto;
     display: flex;
     align-items: center;
-    gap: 5rem;
+    gap: 3rem;
     padding: 2.5rem 0;
   }
   .content-wrapper a:hover {

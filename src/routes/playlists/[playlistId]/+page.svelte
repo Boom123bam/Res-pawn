@@ -87,4 +87,9 @@
   section.other-playlists h4 {
     margin-bottom: 0.5rem;
   }
+  @media screen and (max-width: 600px) {
+    section.other-playlists {
+      margin-top: 5rem;
+    }
+  }
 </style>
