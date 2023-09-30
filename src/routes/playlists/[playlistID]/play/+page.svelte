@@ -21,15 +21,16 @@
   import { userData } from "../../../userStore";
 
   // store an object containing data of the seqs played in the current playlist
-  const playedSeqsData = filterObject(
-    localUserSeqData,
-    localPlaylistData.sequences
-  );
+  const playedSeqsData = localUserSeqData
+    ? filterObject(localUserSeqData, localPlaylistData.sequences)
+    : {};
 
   // store a list the seqIDs the user has not played (in localPlaylistData.seqs and not in localUserSeqData)
-  const unplayedSeqIDs = localPlaylistData.sequences.filter(
-    (item) => !Object.keys(localUserSeqData).includes(item)
-  );
+  const unplayedSeqIDs = localUserSeqData
+    ? localPlaylistData.sequences.filter(
+        (item) => !Object.keys(localUserSeqData).includes(item)
+      )
+    : localPlaylistData.sequences;
 
   let showGradeMenu = false;
   let grade = 1;
@@ -124,6 +125,7 @@
           <div class="puzzle-info landscape">
             <small>puzzle: {$sequenceData.puzzleId}</small>
             <h5>rating: {$sequenceData.rating}</h5>
+            <!-- <h5>{JSON.stringify(playedSeqsData)} times played</h5> -->
           </div>
           <div class="to-play">
             {#if $sequenceData.fen.split(" ")[1] === "w"}
@@ -157,9 +159,11 @@
             </div>
           {/if}
         </div>
-      {:else}
+      {:else if !currentSeqID}
         <h2>no puzzles left</h2>
         <button>return to ???</button>
+      {:else}
+        <h3>loading...</h3>
       {/if}
     </div>
   </section>

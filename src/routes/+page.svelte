@@ -10,9 +10,9 @@
         Get better at chess with Spaced Repetition
       </h5>
       <div class="buttons">
-        <button class="cta play-now">
-          <a href="/playlists"> play puzzles </a>
-        </button>
+        <a href="/playlists">
+          <button class="cta play-now"> play puzzles </button>
+        </a>
         <button
           on:click={() =>
             howSection.scrollIntoView({

@@ -8,9 +8,9 @@ export async function updateLocalUserSeqData() {
   let localUserSeqData = await getLocalUserSeqData();
   // if there is no seq data, fetch from database and store on local
   if (user && !localUserSeqData) {
-    localUserSeqData = await getAllUserSeqs(user.id);
+    localUserSeqData = await getAllUserSeqs(user.uid);
   }
-  if (!localUserSeqData) localUserSeqData = {};
+  if (!localUserSeqData) localUserSeqData = null;
   storeUserSeqData(localUserSeqData);
   return localUserSeqData;
 }

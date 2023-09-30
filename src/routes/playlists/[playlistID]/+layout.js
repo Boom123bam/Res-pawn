@@ -18,8 +18,6 @@ export async function load({ params }) {
   } catch (errorObj) {
     throw error(404, errorObj.message);
   }
-  // get local (user playlist data)
-  // if does not match
 
   return { localPlaylistData, localUserSeqData };
 }
