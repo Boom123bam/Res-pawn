@@ -38,7 +38,7 @@
 
   {#if showRetryLastMove}
     <button
-      class="flasing"
+      class="flashing"
       title="retry last move"
       on:click={() => {
         dispatch("retryLastMove");

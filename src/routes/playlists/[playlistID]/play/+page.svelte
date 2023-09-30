@@ -184,6 +184,7 @@
     flex-direction: column;
     gap: 1rem;
     /* align-items: center; */
+    position: relative;
   }
   section.main {
     height: calc(100vh - var(--nav-height));
@@ -271,6 +272,11 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+    }
+    .to-play {
+      position: absolute;
+      right: 0;
+      transform: translateX(calc(100% + 1rem));
     }
   }
 </style>

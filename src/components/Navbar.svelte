@@ -4,6 +4,7 @@
 
   let showRightMenu = false;
   let showMobileMenu = false;
+  // TODO: if on play page and no user data, show button saying sign in to save progress
 </script>
 
 <nav>
