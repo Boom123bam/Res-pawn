@@ -149,11 +149,13 @@
             <button
               slot="after"
               class={`next cta${showBottomNextButton ? "" : " hide"}`}
+              title="next puzzle"
               on:click={handleNext}
               ><img
                 src={`/images/icons/right-double-white.svg`}
                 alt="next puzzle"
                 draggable="false"
+                class="icon"
               /></button
             >
           </Board>
@@ -216,7 +218,8 @@
     position: relative;
     flex-grow: 1;
     height: 100%;
-    align-self: center;
+    /* align-self: center; */
+    /* align-items: center; */
   }
   .board-container .menu-wrapper {
     position: absolute;
@@ -232,10 +235,6 @@
     border-radius: var(--br);
     padding: 0;
     padding-inline: 1rem;
-  }
-  button.next img {
-    width: var(--button-icon-size);
-    height: var(--button-icon-size);
   }
   .to-play {
     display: flex;

@@ -17,6 +17,7 @@
     }}
   >
     <img
+      class="icon"
       src={`/images/icons/left.svg`}
       alt="back"
       draggable="false"
@@ -30,6 +31,7 @@
     }}
   >
     <img
+      class="icon"
       src={`/images/icons/right.svg`}
       alt="next"
       draggable="false"
@@ -45,6 +47,7 @@
       }}
     >
       <img
+        class="icon"
         src={`/images/icons/refresh.svg`}
         alt="retry"
         draggable="false"
@@ -60,6 +63,7 @@
       }}
     >
       <img
+        class="icon"
         src={`/images/icons/question.svg`}
         alt="hint/solution"
         draggable="false"
@@ -75,6 +79,7 @@
       }}
     >
       <img
+        class="icon"
         src={`/images/icons/question.svg`}
         alt="hint/solution"
         draggable="false"
@@ -88,6 +93,7 @@
     }}
   >
     <img
+      class="icon"
       src={`/images/icons/flip.svg`}
       alt="flip board"
       draggable="false"
@@ -114,10 +120,6 @@
   }
   .board-controls button:hover {
     background-color: var(--light-gray);
-  }
-  .board-controls button img {
-    width: var(--button-icon-size);
-    height: var(--button-icon-size);
   }
   .flashing {
     animation-name: color-pulse;

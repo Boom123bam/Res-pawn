@@ -323,7 +323,24 @@
     <div class="buttons-wrapper">
       <div class="buttons">
         <div class="before">
-          <slot name="before" />
+          <!-- <slot name="before" /> -->
+          <a
+            href={board.movesBack === -1
+              ? `https://lichess.org/analysis/standard/${currentSequence.failed}`
+              : board.movesBack
+              ? `https://lichess.org/analysis/standard/${board.displayer.fen()}`
+              : `https://lichess.org/analysis/standard/${board.chess.fen()}`}
+            target="_blank"
+          >
+            <button class="analyze" title="analyze in lichess"
+              ><img
+                src={`/images/icons/search-white.svg`}
+                alt="back"
+                draggable="false"
+                class="icon"
+              /></button
+            >
+          </a>
         </div>
         <BoardControls
           showRetryLastMove={currentSequence?.failed}

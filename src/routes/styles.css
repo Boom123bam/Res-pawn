@@ -9,6 +9,7 @@
   --primary: #b8b6ce;
   --secondary: #ffffff;
   --accent: #4a65f0;
+  --accent2: #ffb4b4;
   --accent-light: #7287f1;
   --light-gray: #eae9f2;
   --dark-gray: #333;
@@ -169,6 +170,10 @@ button.ghost:hover {
 }
 .link:hover {
   text-decoration: underline;
+}
+.icon {
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
 }
 
 @media screen and (max-width: 700px) {
