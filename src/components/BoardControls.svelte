@@ -4,6 +4,7 @@
   export let showRetryLastMove;
   export let showHint;
   export let showSol;
+  export let flashingNext;
 
   const dispatch = createEventDispatcher();
 </script>
@@ -23,6 +24,7 @@
   </button>
   <button
     title="next move"
+    class={`${flashingNext ? "flashing" : ""}`}
     on:click={() => {
       dispatch("next");
     }}
@@ -36,7 +38,7 @@
 
   {#if showRetryLastMove}
     <button
-      class="retry"
+      class="flasing"
       title="retry last move"
       on:click={() => {
         dispatch("retryLastMove");
@@ -117,7 +119,7 @@
     width: var(--button-icon-size);
     height: var(--button-icon-size);
   }
-  button.retry {
+  .flashing {
     animation-name: color-pulse;
     animation-duration: 2s;
     animation-iteration-count: infinite;
