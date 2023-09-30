@@ -133,17 +133,44 @@
   z-index: 10;
 }
 
+.board.normal :nth-child(1)::before {
+  border-top-left-radius: calc(var(--br) - 0.5rem);
+}
+.board.normal :nth-child(64)::before {
+  border-bottom-right-radius: calc(var(--br) - 0.5rem);
+}
+
+.board.flipped :nth-child(64)::before {
+  border-top-left-radius: calc(var(--br) - 0.5rem);
+}
+.board.flipped :nth-child(1)::before {
+  border-bottom-right-radius: calc(var(--br) - 0.5rem);
+}
+
 .board.flipped :nth-child(57) {
   border-top-right-radius: calc(var(--br) - 0.5rem);
 }
+.board.flipped :nth-child(57)::before {
+  border-top-right-radius: calc(var(--br) - 0.5rem);
+}
+
 .board.flipped :nth-child(8) {
+  border-bottom-left-radius: calc(var(--br) - 0.5rem);
+}
+.board.flipped :nth-child(8)::before {
   border-bottom-left-radius: calc(var(--br) - 0.5rem);
 }
 
 .board.normal :nth-child(57) {
   border-bottom-left-radius: calc(var(--br) - 0.5rem);
 }
+.board.normal :nth-child(57)::before {
+  border-bottom-left-radius: calc(var(--br) - 0.5rem);
+}
 .board.normal :nth-child(8) {
+  border-top-right-radius: calc(var(--br) - 0.5rem);
+}
+.board.normal :nth-child(8)::before {
   border-top-right-radius: calc(var(--br) - 0.5rem);
 }
 
