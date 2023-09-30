@@ -107,12 +107,12 @@
   left: 0;
   transform: translate(50%, 50%);
 }
+.square.last-move::before {
+  background-color: lightblue;
+}
 .square.hint::before,
 .square.solution::before {
   background-color: yellow;
-}
-.square.last-move::before {
-  background-color: lightblue;
 }
 .square.last-move::before,
 .square.hint::before,
