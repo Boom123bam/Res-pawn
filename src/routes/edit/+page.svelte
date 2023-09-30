@@ -6,7 +6,7 @@
   <button
     class="cta"
     on:click={() => {
-      createPlaylist("test2", [1, 2, 3]);
+      // createPlaylist("", []);
     }}>add</button
   >
 </div>

@@ -22,7 +22,10 @@ export async function updateLocalPlaylistData(playlistID) {
     // if so, fetch from db and store on local
     localPlaylistData = await getPlaylistData(playlistID);
     if (localPlaylistData) await storePlaylistData(localPlaylistData);
-    else throw Error("Playlist Not found");
+    else {
+      console.error("playlist not in session storage");
+      throw Error("Playlist Not found");
+    }
   }
   return localPlaylistData;
 }

@@ -1,23 +1,28 @@
 <script>
   export let playlistData;
+  console.log(playlistData);
 </script>
 
 <a
   data-sveltekit-preload-data="tap"
-  href={`/playlists/${playlistData.id}`}
+  href={`/playlists/${playlistData?.id}`}
 >
   <div class="card">
     <div
       class="top-banner"
-      style={`background-color: ${playlistData.color};`}
+      style={`background-color: ${playlistData?.color};`}
     >
-      rating: {`${playlistData.rating[0]}-${playlistData.rating[1]}`}
+      rating: {`${playlistData?.rating[0]}-${playlistData?.rating[1]}`}
     </div>
     <div class="content">
-      <h3 class="name desktop">{playlistData.name}</h3>
-      <h4 class="mobile">{playlistData.name}</h4>
-      <p class="length">{playlistData.sequences.length} puzzles</p>
-      <p class="description">{playlistData.description}</p>
+      <h3 class="name desktop">{playlistData?.name}</h3>
+      <h4 class="mobile">{playlistData?.name}</h4>
+      <p class="length">{playlistData?.sequences?.length} puzzles</p>
+      <p class="description">
+        {playlistData?.description
+          ? playlistData.description
+          : "no description"}
+      </p>
     </div>
   </div>
 </a>

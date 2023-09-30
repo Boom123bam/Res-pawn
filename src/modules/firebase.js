@@ -14,7 +14,6 @@ import { db } from "../firebase";
 
 export async function getAllUserSeqs(userID) {
   // returns all the seqs in user/seqs
-  console.log(`Users/${userID}/Sequences`);
   const seqsCollectionRef = collection(
     db,
     `Users/${userID}/Sequences`
@@ -50,7 +49,7 @@ export async function getUserData(id) {
       return null;
     }
   } catch (error) {
-    console.error("Error getting user document:", error);
+    console.error("Error getting user data document:", error);
     return null;
   }
 }
@@ -68,10 +67,11 @@ export async function getPlaylistData(id) {
       return data;
     } else {
       // Document does not exist
+      console.error(`playlist doc with ID ${id} not found`);
       return null;
     }
   } catch (error) {
-    console.log(error);
+    console.error(`error getting playlist doc with ID ${id}`, error);
     return null;
   }
 }
@@ -99,10 +99,11 @@ export async function addUserToCollection(userID, username) {
 
     // Create a new user document with the provided data
     await setDoc(doc(db, "Users", userID), docData);
-
-    console.log("User document added");
   } catch (error) {
-    console.error("Error adding user document: ", error);
+    console.error(
+      `Error adding user document with ID:${userID}`,
+      error
+    );
   }
 }
 
@@ -113,7 +114,7 @@ export async function getSeqData(id) {
     if (docSnap.data()) return docSnap.data();
     else throw Error(`no seq with id:${id}`);
   } catch (error) {
-    console.log(error);
+    console.error(`error getting seq data with id ${id}`);
   }
 }
 
@@ -147,4 +148,5 @@ export async function createPlaylist(name, seqs) {
     name,
     sequences: seqs,
   });
+  console.log(`added playlist ${name} with ${seqs.length} seqs`);
 }

@@ -1,7 +1,6 @@
 <script>
   import { signInWithEmailAndPassword } from "@firebase/auth";
   import { auth } from "../../../firebase";
-  import { goto } from "$app/navigation";
   import { getUserData } from "../../../modules/firebase";
 
   let email = "";
@@ -20,22 +19,17 @@
       );
       const userData = await getUserData(userCredential.user.uid);
       userData.id = userCredential.user.uid;
-      // signed in
-      // goto("/"); // Redirect to the home page
-      // location.reload();
       signedIn = true;
     } catch (error) {
       errorMessage = error.message;
     }
   }
-
-  //TODO after sign in show button that refreshes and goes to home page
 </script>
 
 <div class="page-content">
   <section>
     {#if !signedIn}
-      <h2>Sign In</h2>
+      <h3>Sign In</h3>
 
       <form>
         <label for="email">Email:</label>
@@ -54,17 +48,17 @@
           <h5 class="error">{errorMessage}</h5>
         {/if}
       </form>
-      <h3>Not registered?</h3>
-      <a href="/auth/signup" class="sign-up">Sign Up</a>
+      <h4>Not registered?</h4>
+      <a href="/auth/signup" class="link">Sign Up</a>
     {:else}
-      <h2>Signed In</h2>
+      <h3>Signed In</h3>
       <button class="cta home"><a href="/">back to home</a> </button>
     {/if}
   </section>
 </div>
 
 <style>
-  h2 {
+  h3 {
     margin-top: 1rem;
   }
   button.sign-in {
@@ -73,12 +67,6 @@
     border-radius: var(--br);
     align-self: center;
   }
-  .sign-up {
-    color: var(--accent);
-  }
-  .sign-up:hover {
-    text-decoration: underline;
-  }
   button.home {
     margin-top: 1rem;
   }
@@ -86,7 +74,7 @@
     align-self: center;
     color: red;
   }
-  h3 {
+  h4 {
     margin-top: 3rem;
   }
 </style>

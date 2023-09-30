@@ -16,11 +16,9 @@
   export let data; // data from layout.js
 
   const { localPlaylistData, localUserSeqData } = data;
-  console.log(data);
 
   // get user data
   import { userData } from "../../../userStore";
-  console.log($userData);
 
   // store an object containing data of the seqs played in the current playlist
   const playedSeqsData = filterObject(
@@ -42,9 +40,7 @@
   handleNext();
 
   async function loadSeq(id) {
-    console.log("loading", id);
     const data = await getSeqData(id);
-    console.log("loaded", data);
     $sequenceData = data;
   }
 
@@ -76,10 +72,6 @@
       );
     }
     storeUserSeqData(playedSeqsData);
-    console.log(
-      `updating user db ${currentSeqID} with:`,
-      playedSeqsData[currentSeqID]
-    );
     if ($userData)
       updateUserSeqData(
         $userData.uid,

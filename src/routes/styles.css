@@ -165,6 +165,12 @@ button.ghost:hover {
 .mobile {
   display: none;
 }
+.link {
+  color: var(--accent);
+}
+.link:hover {
+  text-decoration: underline;
+}
 
 @media screen and (max-width: 700px) {
   h1 {
