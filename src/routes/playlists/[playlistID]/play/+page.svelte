@@ -177,6 +177,9 @@
 </div>
 
 <style>
+  .page-content {
+    margin-bottom: 0;
+  }
   .seq-info {
     /* width: 100%; */
     margin-bottom: 0.5rem;
@@ -195,7 +198,6 @@
     display: flex;
     align-items: center;
     padding: 1rem 0;
-    margin-bottom: 0;
     /* justify-content: center; */
   }
   .grid-container {
