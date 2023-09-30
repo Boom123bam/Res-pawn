@@ -195,6 +195,7 @@
     display: flex;
     align-items: center;
     padding: 1rem 0;
+    margin-bottom: 0;
     /* justify-content: center; */
   }
   .grid-container {
