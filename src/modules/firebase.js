@@ -148,4 +148,5 @@ export async function createPlaylist(name, seqs) {
     name,
     sequences: seqs,
   });
+  console.log(`added playlist ${name} with ${seqs.length} seqs`);
 }
