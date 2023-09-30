@@ -112,10 +112,28 @@
 <div class="page-content">
   <section class="main">
     <div class="grid-container">
-      {#if currentSeqID}
+      {#if $sequenceData && currentSeqID}
         <div class="seq-info">
-          <h3>{localPlaylistData.name}</h3>
-          <small>puzzle: {currentSeqID}</small>
+          <div class="playlist-name">
+            <small class="landscape">playing:</small>
+            <h4>{localPlaylistData.name}</h4>
+            <small class="portrait"
+              >rating: {$sequenceData.rating}</small
+            >
+          </div>
+          <div class="puzzle-info landscape">
+            <small>puzzle: {$sequenceData.puzzleId}</small>
+            <h5>rating: {$sequenceData.rating}</h5>
+          </div>
+          <div class="to-play">
+            {#if $sequenceData.fen.split(" ")[1] === "w"}
+              <img src="/images/pieces/set3/k-b.svg" alt="" />
+            {:else}
+              <img src="/images/pieces/set3/k-w.svg" alt="" />
+            {/if}
+            <span class="landscape">to play</span>
+          </div>
+          <!-- <p>themes: {$sequenceData.themes}</p> -->
         </div>
         <div class="board-container">
           <Board on:finish={handleSeqFinish}>
@@ -153,10 +171,11 @@
     margin-bottom: 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 1rem;
     /* align-items: center; */
   }
   section.main {
+    height: calc(100vh - var(--nav-height));
     height: calc(100svh - var(--nav-height));
     width: min(90ch, 100% - 1rem);
     /* max-height: 100svh; */
@@ -168,7 +187,7 @@
   }
   .grid-container {
     display: grid;
-    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-columns: 2fr 10fr 2fr;
     align-items: start;
     width: 100%;
     height: 100%;
@@ -203,7 +222,33 @@
     width: var(--button-icon-size);
     height: var(--button-icon-size);
   }
+  .to-play {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .to-play img {
+    width: 2rem;
+  }
+  .landscape {
+    display: block;
+  }
+  .portrait {
+    display: none;
+  }
   @media screen and (max-height: 600px) {
+    section.main {
+      padding: 0.25rem 0;
+    }
+  }
+
+  @media screen and (orientation: portrait) {
+    .portrait {
+      display: block;
+    }
+    .landscape {
+      display: none;
+    }
     .seq-info {
       flex-direction: row;
       align-items: end;
@@ -211,9 +256,6 @@
       margin-inline: 0.5rem;
       margin-bottom: 0.25rem;
     }
-  }
-
-  @media screen and (max-width: 800px) {
     .grid-container {
       display: flex;
       flex-direction: column;
@@ -221,9 +263,4 @@
       text-align: center;
     }
   }
-  /* @media screen and (orientation: landscape) and (max-height: 600px) {
-    .page-content {
-      flex-direction: row;
-    }
-  } */
 </style>

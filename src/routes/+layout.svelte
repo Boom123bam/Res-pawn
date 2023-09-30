@@ -46,6 +46,7 @@
     width: 100%;
   }
   main {
+    min-height: 100vh;
     min-height: 100svh;
     margin-inline: auto;
     width: 100%;

@@ -125,7 +125,7 @@
 }
 .square.dark {
   background-color: var(--dark-square);
-  border: var(--border);
+  /* border: var(--border); */
 }
 .square img {
   width: var(--piece-size);
@@ -147,7 +147,7 @@
   border-top-right-radius: calc(var(--br) - 0.5rem);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 600px), screen and (max-height: 600px) {
   .board {
     padding: 0.25rem;
   }

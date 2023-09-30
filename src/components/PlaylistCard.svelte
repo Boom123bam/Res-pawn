@@ -8,12 +8,12 @@
   href={`/playlists/${playlistData?.id}`}
 >
   <div class="card">
-    <div
+    <p
       class="top-banner"
       style={`background-color: ${playlistData?.color};`}
     >
       rating: {`${playlistData?.rating[0]}-${playlistData?.rating[1]}`}
-    </div>
+    </p>
     <div class="content">
       <h3 class="name desktop">{playlistData?.name}</h3>
       <h4 class="mobile">{playlistData?.name}</h4>

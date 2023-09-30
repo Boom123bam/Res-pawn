@@ -137,6 +137,7 @@
   section.hero {
     width: min(80ch, 100% - 3rem);
     position: relative;
+    min-height: calc(100vh - var(--nav-height));
     min-height: calc(100svh - var(--nav-height));
     /* min-height: 35rem; */
     /* overflow: hidden; */

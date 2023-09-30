@@ -50,7 +50,6 @@ h6 {
 
 h1 {
   font-size: 6rem;
-  line-height: 90%;
 }
 h2 {
   font-size: 4rem;
@@ -175,6 +174,9 @@ button.ghost:hover {
 @media screen and (max-width: 700px) {
   h1 {
     font-size: 4rem;
+  }
+  h2 {
+    font-size: 3rem;
   }
 }
 

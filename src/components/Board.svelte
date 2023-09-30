@@ -335,6 +335,7 @@
             !currentSequence?.failed &&
             currentSequence?.hint &&
             !currentSequence.solution}
+          flashingNext={board.movesBack > 0}
           on:back={handleBackButton}
           on:next={handleNextButton}
           on:flip={handleFlipButton}
