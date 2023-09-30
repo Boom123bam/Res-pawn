@@ -7,13 +7,16 @@
   import {
     addUserToCollection,
     checkIfUsernameTaken,
+    storeAllUserSeqData,
   } from "../../../modules/firebase";
   import { userData } from "../../userStore";
+  import { getLocalUserSeqData } from "../../../modules/localStorage";
 
   let username = "";
   let email = "";
   let password = "";
   let errorMessage = "";
+  let savedProgress = false;
 
   async function register(name, email, password) {
     try {
@@ -33,11 +36,22 @@
         password
       );
 
-      // add username to auth
-      await updateProfile(newUser.user, { displayName: name });
+      const uid = newUser.user.uid;
+      const displayName = name;
 
+      // update store to show username because username is null
+      const data = { uid, displayName };
+      userData.set(data);
+
+      // add username to auth
+      await updateProfile(newUser.user, { displayName });
       // add uid and username to database
       await addUserToCollection(newUser.user.uid, name);
+      const seqData = await getLocalUserSeqData();
+      if (seqData) {
+        await storeAllUserSeqData(newUser.user.uid, seqData);
+        savedProgress = true;
+      }
     } catch (err) {
       errorMessage = err.message;
     }
@@ -75,8 +89,11 @@
       <a href="/auth/signin" class="link">Sign In</a>
     {:else}
       <h3>Already signed in</h3>
-      <button class="cta"
-        ><a href="/playlists">go to playlists</a></button
+      {#if savedProgress}
+        <h5>Progress has been saved</h5>
+      {/if}
+      <a href="/playlists">
+        <button class="cta">go to playlists</button></a
       >
     {/if}
   </section>

@@ -1,14 +1,17 @@
 <script>
   import { signInWithEmailAndPassword } from "@firebase/auth";
   import { auth } from "../../../firebase";
-  import { getUserData } from "../../../modules/firebase";
+  import {
+    getUserData,
+    storeAllUserSeqData,
+  } from "../../../modules/firebase";
+  import { getLocalUserSeqData } from "../../../modules/localStorage";
 
   let email = "";
   let password = "";
   let errorMessage = "";
   let signedIn = false;
-
-  const user = auth.currentUser;
+  let savedProgress = false;
 
   async function handleSignIn() {
     try {
@@ -20,6 +23,11 @@
       const userData = await getUserData(userCredential.user.uid);
       userData.id = userCredential.user.uid;
       signedIn = true;
+      const seqData = await getLocalUserSeqData();
+      if (seqData) {
+        await storeAllUserSeqData(userCredential.user.uid, seqData);
+        savedProgress = true;
+      }
     } catch (error) {
       errorMessage = error.message;
     }
@@ -52,7 +60,10 @@
       <a href="/auth/signup" class="link">Sign Up</a>
     {:else}
       <h3>Signed In</h3>
-      <button class="cta home"><a href="/">back to home</a> </button>
+      {#if savedProgress}
+        <h5>Progress has been saved</h5>
+      {/if}
+      <a href="/"> <button class="cta home">back to home </button></a>
     {/if}
   </section>
 </div>
@@ -76,5 +87,8 @@
   }
   h4 {
     margin-top: 3rem;
+  }
+  h5 {
+    margin-top: 0.5rem;
   }
 </style>

@@ -1,6 +1,5 @@
 <script>
   export let playlistData;
-  console.log(playlistData);
 </script>
 
 <a

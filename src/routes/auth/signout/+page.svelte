@@ -2,6 +2,7 @@
   import { signOut } from "@firebase/auth";
   import { auth } from "../../../firebase";
   import { goto } from "$app/navigation";
+  import { storeUserSeqData } from "../../../modules/localStorage";
   let errorMessage = "";
 
   async function handleSignOut() {
@@ -10,6 +11,7 @@
       if (typeof window !== "undefined") {
         sessionStorage.removeItem("user");
       }
+      storeUserSeqData(null);
       goto("/auth/signin"); // Redirect to the login page
     } catch (error) {
       console.error("error signing out", error);

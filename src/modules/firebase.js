@@ -150,3 +150,14 @@ export async function createPlaylist(name, seqs) {
   });
   console.log(`added playlist ${name} with ${seqs.length} seqs`);
 }
+
+export async function storeAllUserSeqData(uid, data) {
+  for (const seqID in data) {
+    if (data.hasOwnProperty(seqID)) {
+      await setDoc(
+        doc(db, `Users/${uid}/Sequences`, seqID),
+        data[seqID]
+      );
+    }
+  }
+}
