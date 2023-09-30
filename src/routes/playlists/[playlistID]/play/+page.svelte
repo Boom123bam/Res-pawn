@@ -118,6 +118,13 @@
           <div class="playlist-name">
             <small class="landscape">playing:</small>
             <h4>{localPlaylistData.name}</h4>
+            <h6>
+              played {Object.keys(playedSeqsData).includes(
+                currentSeqID
+              )
+                ? playedSeqsData[currentSeqID].timesStudied
+                : "0"} times
+            </h6>
             <small class="portrait"
               >rating: {$sequenceData.rating}</small
             >
@@ -255,7 +262,6 @@
     }
     .seq-info {
       flex-direction: row;
-      align-items: end;
       justify-content: center;
       margin-inline: 0.5rem;
       margin-bottom: 0.25rem;
