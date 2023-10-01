@@ -95,6 +95,7 @@
   position: absolute;
   font-size: 1em;
   font-weight: 700;
+  line-height: 75%;
   color: var(--dark-square);
 }
 .square .highlight-circle {

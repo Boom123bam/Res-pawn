@@ -9,7 +9,24 @@
     lastMove,
     order,
     flipped;
+
+  const pieces = ["p", "r", "n", "b", "q", "k"];
 </script>
+
+<svelte:head>
+  {#each pieces as piece}
+    <link
+      rel="preload"
+      as="image"
+      href={`/images/pieces/set3/${piece}-b.svg`}
+    />
+    <link
+      rel="preload"
+      as="image"
+      href={`/images/pieces/set3/${piece}-w.svg`}
+    />
+  {/each}
+</svelte:head>
 
 <button
   class={`square ${squareColor}${hint ? " hint" : ""}${
