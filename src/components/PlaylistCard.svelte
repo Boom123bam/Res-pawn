@@ -42,7 +42,7 @@
 
 <style>
   .card {
-    box-shadow: 0 0.25rem 0;
+    box-shadow: 0 0.25rem 0 var(--text);
     border: var(--border);
     border-radius: var(--br);
     background-color: var(--secondary);

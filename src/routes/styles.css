@@ -16,7 +16,7 @@
   --border: 1px solid var(--text);
   --br: 1rem;
   --br-small: 0.5rem;
-  --shadow: 0.25rem 0.25rem 0;
+  --shadow: 0.25rem 0.25rem 0 var(--text);
   --button-icon-size: 1.5rem;
   --nav-height: 3.75rem;
   font-family: var(--font-small);
@@ -25,6 +25,7 @@
 
 body {
   background-color: var(--background);
+  color: var(--text);
 }
 
 h1,
@@ -204,6 +205,19 @@ button.ghost {
   .link:hover {
     text-decoration: underline;
   }
+}
+
+body.dark {
+  --background: rgb(51, 51, 51);
+  --secondary: rgb(78, 78, 78);
+  --text: white;
+  --accent: rgb(159, 159, 255);
+  --border: 1px solid white;
+  --primary: #68647d;
+  --shadow: 0.25rem 0.25rem 0 var(--text);
+}
+body.dark .top-banner {
+  color: black;
 }
 
 /* @media screen and (max-width: 400px) {

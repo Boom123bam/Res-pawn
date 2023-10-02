@@ -6,6 +6,11 @@
   --piece-size: 80%;
 }
 
+body.dark {
+  --light-square: rgb(175, 175, 175);
+  --dark-square: var(--primary);
+}
+
 .board-wrapper {
   touch-action: manipulation;
   width: 100%;

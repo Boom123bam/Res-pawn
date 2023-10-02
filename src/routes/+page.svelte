@@ -296,7 +296,7 @@
 
   section.bottom-cta {
     background-color: var(--accent);
-    color: white;
+    color: var(--secondary);
     width: 100%;
     display: flex;
     flex-direction: column;

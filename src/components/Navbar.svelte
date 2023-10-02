@@ -4,6 +4,21 @@
 
   let showRightMenu = false;
   let showMobileMenu = false;
+
+  if (typeof window !== "undefined") {
+    let theme = localStorage.getItem("theme");
+    if (!theme)
+      theme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light";
+
+    if (theme == "dark") {
+      document.body.classList.add("dark");
+    } else if (theme == "light") {
+      document.body.classList.remove("dark");
+    }
+  }
 </script>
 
 <nav>
@@ -60,6 +75,11 @@
         </a>
       </li>
     {/if}
+    <li>
+      <button on:click={() => document.body.classList.toggle("dark")}>
+        toggle dark mode
+      </button>
+    </li>
   </ul>
 
   <ul class="mobile">
@@ -155,7 +175,7 @@
 
   a {
     text-decoration: none;
-    color: black;
+    color: var(--text);
     display: block;
   }
 
