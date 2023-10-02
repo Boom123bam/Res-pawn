@@ -81,7 +81,7 @@
         </a>
       </li>
     {/if}
-    <li>
+    <li class="dark-toggle">
       <button on:click={toggleDarkmode}>
         {#if theme == "dark"}
           <Svg name="sun" />
@@ -221,6 +221,9 @@
     padding: 0.5rem 1rem;
     border-radius: var(--br-small);
     font-weight: 400;
+  }
+  .dark-toggle {
+    margin-left: -1rem;
   }
   .mobile-menu {
     border-left: var(--border);
