@@ -5,6 +5,7 @@ import { Timestamp } from "firebase/firestore";
 const maxEasiness = 6;
 const minsLimit = 10; // mins in the future to look for seqs in
 const defaultEasiness = 1.5;
+const easinessChangeMultiplier = 1.5;
 
 function getSoonestSeq(seqsData) {
   // gets the seq object with the soonest nextReview
@@ -78,7 +79,8 @@ function getTimeToNextReview(easiness) {
 }
 
 function getEasinessChange(grade) {
-  return grade - 1;
+  // initial grade ranges from 0 to 2
+  return (grade - 1) * easinessChangeMultiplier;
 }
 
 function clamp(value, max = Infinity, min = 0) {
@@ -108,20 +110,3 @@ export function updateSeqData(grade, seqData = null) {
     );
   return seqData;
 }
-
-/*
-def update_card(card, q):
-    # q is 0:forgor, 1:okay, 2:good
-    if q == 0:
-        if card["interval_index"] > 0:
-            card["interval_index"] -= 1
-    elif q == 1:
-        pass
-    else:
-        if card["interval_index"] < len(intervals) - 1:
-            card["interval_index"] += 1
-    card["next_review"] = datetime.datetime.now() + datetime.timedelta(
-        minutes=intervals[card["interval_index"]]
-    )
-    card["times_studied"] += 1    
-*/
