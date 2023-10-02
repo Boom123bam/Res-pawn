@@ -1,14 +1,14 @@
 <script>
   import { page } from "$app/stores";
   import { userData } from "../routes/userStore";
-  import DarkToggle from "./DarkToggle.svelte";
   import Svg from "./Svg.svelte";
 
   let showRightMenu = false;
   let showMobileMenu = false;
+  let theme = "light";
 
   if (typeof window !== "undefined") {
-    let theme = localStorage.getItem("theme");
+    // let theme = localStorage.getItem("theme");
     if (!theme)
       theme = window.matchMedia("(prefers-color-scheme: dark)")
         .matches
@@ -20,6 +20,10 @@
     } else if (theme == "light") {
       document.body.classList.remove("dark");
     }
+  }
+  function toggleDarkmode() {
+    document.body.classList.toggle("dark");
+    theme = theme == "dark" ? "light" : "dark";
   }
 </script>
 
@@ -78,8 +82,12 @@
       </li>
     {/if}
     <li>
-      <button on:click={() => document.body.classList.toggle("dark")}>
-        toggle dark mode
+      <button on:click={toggleDarkmode}>
+        {#if theme == "dark"}
+          <Svg name="sun" />
+        {:else}
+          <Svg name="moon" />
+        {/if}
       </button>
     </li>
   </ul>
