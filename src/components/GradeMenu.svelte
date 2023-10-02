@@ -15,13 +15,13 @@
 
   const dispatch = createEventDispatcher();
 
-  function handleSubmit(goNext) {
-    dispatch("submit", { value, goNext });
-  }
-
   // value ranges from 0 to 2
   export let value = 0;
   let mouseDown = false;
+
+  function handleSubmit(goNext) {
+    dispatch("submit", { value, goNext });
+  }
 
   function handleMouseMove(event) {
     if (mouseDown) {

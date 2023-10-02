@@ -217,7 +217,7 @@
         await movePiece(move);
         if (currentSequence.step !== currentSequence.moves.length) {
           updateBoard();
-          await timeout(500);
+          await timeout(250);
           await updateSequence(); // auto move opposing side if not finished
         }
       } else {

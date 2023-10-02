@@ -16,7 +16,6 @@
   $: {
     if (moveTo) {
       const [x, y] = getTranslatePercent(moveTo);
-      console.log(`${id}${moveTo}:${x},${y}`);
       transformStyle = `transform: translate(${x}%, ${y}%);`;
     }
   }

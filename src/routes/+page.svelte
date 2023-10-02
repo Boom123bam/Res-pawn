@@ -2,6 +2,14 @@
   let howSection;
 </script>
 
+<svelte:head>
+  <title>ReChess - Practice Chess Pattern Recognition</title>
+  <meta
+    name="description"
+    content="Play puzzles and improve your chess skills by practicing pattern recognition with spaced repetition."
+  />
+</svelte:head>
+
 <div class="page-content">
   <section class="hero">
     <div class="content">

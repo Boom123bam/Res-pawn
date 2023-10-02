@@ -10,6 +10,16 @@
   }
 </script>
 
+<svelte:head>
+  <title>{`${localPlaylistData.name}`}</title>
+  <meta
+    name="description"
+    content="${localPlaylistData?.description
+      ? localPlaylistData.description
+      : `Play chess puzzles:  ${localPlaylistData.name}`}"
+  />
+</svelte:head>
+
 <div class="page-content">
   <section class="hero-wrapper">
     <div class="hero tiles-bg">

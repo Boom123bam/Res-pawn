@@ -110,6 +110,16 @@
       */
 </script>
 
+<svelte:head>
+  <title>{`Play - ${localPlaylistData.name}`}</title>
+  <meta
+    name="description"
+    content="${localPlaylistData?.description
+      ? localPlaylistData.description
+      : `Play chess puzzles:  ${localPlaylistData.name}`}"
+  />
+</svelte:head>
+
 <div class="page-content">
   <section class="main">
     <div class="grid-container">

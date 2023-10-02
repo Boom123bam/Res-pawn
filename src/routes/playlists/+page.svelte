@@ -5,6 +5,14 @@
   const { playlists } = data;
 </script>
 
+<svelte:head>
+  <title>Browse Playlists</title>
+  <meta
+    name="description"
+    content="Chess puzzles playlists for any levels of play. Play puzzles and improve your pattern recognition skills."
+  />
+</svelte:head>
+
 <div class="page-content">
   <section>
     <h3>Browse Playlists</h3>
