@@ -8,9 +8,27 @@
     solution,
     lastMove,
     order,
-    flipped;
+    flipped,
+    moveTo;
+
+  // let style = "tranform: translate(50%, 50%)";
+  let transformStyle = "";
+  $: {
+    if (moveTo) {
+      const [x, y] = getTranslatePercent(moveTo);
+      console.log(`${id}${moveTo}:${x},${y}`);
+      transformStyle = `transform: translate(${x}%, ${y}%);`;
+    }
+  }
 
   const pieces = ["p", "r", "n", "b", "q", "k"];
+  function getTranslatePercent(moveTo) {
+    // returns x, y % movement of piece
+    const letters = "abcdefgh";
+    const y = id[1] - moveTo[1];
+    const x = letters.indexOf(moveTo[0]) - letters.indexOf(id[0]);
+    return flipped ? [-x * 100, -y * 100] : [x * 100, y * 100];
+  }
 </script>
 
 <svelte:head>
@@ -32,15 +50,22 @@
   class={`square ${squareColor}${hint ? " hint" : ""}${
     solution ? " solution" : ""
   }${lastMove ? " last-move" : ""}`}
-  style={`order: ${order}`}
+  style={`order: ${order};`}
   on:click={() => handlePieceClick(id)}
 >
   {#if square != undefined}
-    <img
-      src={`/images/pieces/set3/${square.type}-${square.color}.svg`}
-      alt={`piece: ${square.type}-${square.color}`}
-      draggable="false"
-    />
+    <div
+      class="piece-container"
+      style={moveTo
+        ? `${transformStyle} + z-index: 20;`
+        : "transform: none; z-index:10"}
+    >
+      <img
+        src={`/images/pieces/set3/${square.type}-${square.color}.svg`}
+        alt={`piece: ${square.type}-${square.color}`}
+        draggable="false"
+      />
+    </div>
   {/if}
   {#if highlighted}
     <div class="highlight-circle" />

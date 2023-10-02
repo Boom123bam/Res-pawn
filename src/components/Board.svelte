@@ -22,6 +22,7 @@
     flipped: false,
     moveToPromote: "",
     lastMove: "e4d5",
+    movePlaying: null,
   };
   board.board = board.chess.board();
 
@@ -31,7 +32,7 @@
     }
   });
 
-  function handleSeqLoad(seqData) {
+  async function handleSeqLoad(seqData) {
     currentSequence = {
       start: seqData.fen,
       moves: seqData.moves.split(" "),
@@ -50,6 +51,9 @@
     board.flipped = currentSequence.start.split(" ")[1] === "w"; // flip board if black is first
     resetSequence();
     updateBoard();
+    await timeout(100);
+    await movePiece(currentSequence.moves[0]);
+    updateBoard();
   }
 
   function resetSequence() {
@@ -61,8 +65,6 @@
     currentSequence.failed = false;
     currentSequence.finished = false;
     currentSequence.deductedPoints = 0;
-    movePiece(currentSequence.moves[0]);
-    updateBoard();
   }
 
   function resetBoardHighlights(
@@ -127,13 +129,26 @@
     return false;
   }
 
-  function movePiece(move, useDisplayer = false) {
+  function timeout(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function movePiece(
+    move,
+    useDisplayer = false,
+    duration = 0.1
+  ) {
+    // play animation
+    board.movePlaying = move;
+
     if (!useDisplayer) board.chess.move(move);
     else board.displayer.move(move);
     if (board.movesBack == 0) board.lastMove = move;
+    await timeout(duration * 1000);
+    board.movePlaying = null;
   }
 
-  function updateSequence(move = null) {
+  async function updateSequence(move = null) {
     // updates the currentSequence object based on the move recieved
     // if not move provided, it will execute the next move in the sequence
 
@@ -152,7 +167,10 @@
       }
     } else {
       // auto move
-      movePiece(expectedMove);
+      await movePiece(expectedMove);
+      if (currentSequence.step == currentSequence.length - 2) {
+        console.error(`step out of range: ${currentSequence.step}`);
+      }
       currentSequence.step++;
     }
 
@@ -184,7 +202,7 @@
       });
   }
 
-  function handleMoveClick(move, promotion = "") {
+  async function handleMoveClick(move, promotion = "") {
     // if the move is a promotion
     if (!promotion & checkIfPromotion(move)) {
       board.moveToPromote = move;
@@ -193,24 +211,28 @@
 
     move = move + promotion;
     if (currentSequence) {
-      if (updateSequence(move)) {
+      resetBoardHighlights(null, true);
+      if (await updateSequence(move)) {
         // correct move, move piece
-        movePiece(move);
-        if (currentSequence.step !== currentSequence.moves.length)
-          updateSequence(); // auto move opposing side if not finished
+        await movePiece(move);
+        if (currentSequence.step !== currentSequence.moves.length) {
+          updateBoard();
+          await timeout(500);
+          await updateSequence(); // auto move opposing side if not finished
+        }
       } else {
+        // wrong move
         board.movesBack = -1;
         board.displayer.load(board.chess.fen());
-        movePiece(move, true);
         resetBoardHighlights(true);
+        await movePiece(move, true);
         currentSequence.failed = board.displayer.fen();
         currentSequence.stats.timesFailed++;
       }
-      resetBoardHighlights(null, true);
       updateBoard();
     } else {
       // no sequence, move piece
-      movePiece(move);
+      await movePiece(move);
       updateBoard();
     }
   }
@@ -316,6 +338,12 @@
               ? 63 - (rowNum * 8 + colNum)
               : rowNum * 8 + colNum}
             flipped={board.flipped}
+            moveTo={board.movePlaying
+              ? board.movePlaying.substring(0, 2) ==
+                getSquare(rowNum, colNum)
+                ? board.movePlaying.substring(2, 4)
+                : null
+              : null}
           />
         {/each}
       {/each}

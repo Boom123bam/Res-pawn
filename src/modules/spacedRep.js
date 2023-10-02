@@ -4,7 +4,7 @@ import { Timestamp } from "firebase/firestore";
 
 const maxEasiness = 6;
 const minsLimit = 10; // mins in the future to look for seqs in
-const defaultEasiness = 1;
+const defaultEasiness = 1.5;
 
 function getSoonestSeq(seqsData) {
   // gets the seq object with the soonest nextReview
