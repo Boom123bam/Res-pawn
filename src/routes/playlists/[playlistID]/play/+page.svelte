@@ -146,9 +146,15 @@
           </div>
           <div class="to-play">
             {#if $sequenceData.fen.split(" ")[1] === "w"}
-              <img src="/images/pieces/set3/k-b.svg" alt="" />
+              <img
+                src="/images/pieces/set3/k-b.svg"
+                alt="black king"
+              />
             {:else}
-              <img src="/images/pieces/set3/k-w.svg" alt="" />
+              <img
+                src="/images/pieces/set3/k-w.svg"
+                alt="white king"
+              />
             {/if}
             <span class="landscape">to play</span>
           </div>

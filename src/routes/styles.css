@@ -191,6 +191,7 @@ button.ghost:hover {
   }
   .card-grid {
     gap: 0.5rem;
+    grid-template-columns: 1fr;
   }
 
   .desktop {
@@ -201,8 +202,8 @@ button.ghost:hover {
   }
 }
 
-@media screen and (max-width: 400px) {
+/* @media screen and (max-width: 400px) {
   .card-grid {
     grid-template-columns: 1fr;
   }
-}
+} */

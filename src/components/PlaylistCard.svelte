@@ -23,6 +23,20 @@
           : "no description"}
       </p>
     </div>
+    <div class="play-button-wrapper">
+      <a
+        data-sveltekit-preload-data="tap"
+        href={`/playlists/${playlistData?.id}/play`}
+        ><button title="play playlist" class="cta">
+          <img
+            src={`/images/icons/play-white.svg`}
+            alt="play"
+            draggable="false"
+            class="icon"
+          />
+        </button></a
+      >
+    </div>
   </div>
 </a>
 
@@ -35,6 +49,8 @@
     height: 18rem;
     /* width: 18rem; */
     transition: box-shadow 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
   }
   .card:hover {
     box-shadow: 0.5rem 0.5rem 0;
@@ -57,6 +73,31 @@
     margin-bottom: 1rem;
   }
 
+  .play-button-wrapper {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    transition: 0.2s;
+    transform: scale(0);
+  }
+  .card:hover .play-button-wrapper {
+    transform: scale(1);
+  }
+
+  .play-button-wrapper button {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .play-button-wrapper img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
   @media screen and (max-width: 600px) {
     .card {
       height: 15rem;
@@ -71,6 +112,10 @@
     }
     p.length {
       margin-bottom: 0.25rem;
+    }
+    .play-button-wrapper {
+      transform: none;
+      transition: none;
     }
   }
 </style>

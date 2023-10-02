@@ -363,7 +363,7 @@
             <button class="analyze" title="analyze in lichess"
               ><img
                 src={`/images/icons/search-white.svg`}
-                alt="back"
+                alt="analyze"
                 draggable="false"
                 class="icon"
               /></button
