@@ -4,7 +4,6 @@
 
   let showRightMenu = false;
   let showMobileMenu = false;
-  // TODO: if on play page and no user data, show button saying sign in to save progress
 </script>
 
 <nav>
@@ -50,7 +49,15 @@
       </li>
     {:else}
       <li class="user">
-        <a href="/auth/signin">Sign In</a>
+        <a href="/auth/signin">
+          {#if $page.url.pathname.endsWith("/play")}
+            <button class="cta sign-in">
+              Sign In to save progress</button
+            >
+          {:else}
+            <button class="cta sign-in"> Sign In </button>
+          {/if}
+        </a>
       </li>
     {/if}
   </ul>
@@ -183,6 +190,11 @@
     top: var(--nav-height);
     background-color: #00000050;
     z-index: -1;
+  }
+  button.sign-in {
+    padding: 0.5rem 1rem;
+    border-radius: var(--br-small);
+    font-weight: 400;
   }
   .mobile-menu {
     border-left: var(--border);
