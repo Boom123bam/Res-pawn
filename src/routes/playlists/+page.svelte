@@ -3,6 +3,7 @@
 
   export let data;
   const { playlists } = data;
+  console.log(playlists);
 </script>
 
 <svelte:head>
