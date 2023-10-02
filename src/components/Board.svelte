@@ -6,6 +6,7 @@
   import Promotion from "./Promotion.svelte";
   import { createEventDispatcher } from "svelte";
   import BoardControls from "./BoardControls.svelte";
+  import Svg from "./Svg.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -361,12 +362,7 @@
             target="_blank"
           >
             <button class="analyze" title="analyze in lichess"
-              ><img
-                src={`/images/icons/search-white.svg`}
-                alt="analyze"
-                draggable="false"
-                class="icon"
-              /></button
+              ><Svg name="search" /></button
             >
           </a>
         </div>

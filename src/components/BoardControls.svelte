@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import Svg from "./Svg.svelte";
 
   export let showRetryLastMove;
   export let showHint;
@@ -16,12 +17,7 @@
       dispatch("back");
     }}
   >
-    <img
-      class="icon"
-      src={`/images/icons/left.svg`}
-      alt="back"
-      draggable="false"
-    />
+    <Svg name="left" />
   </button>
   <button
     title="next move"
@@ -30,12 +26,7 @@
       dispatch("next");
     }}
   >
-    <img
-      class="icon"
-      src={`/images/icons/right.svg`}
-      alt="next"
-      draggable="false"
-    />
+    <Svg name="right" />
   </button>
 
   {#if showRetryLastMove}
@@ -46,12 +37,7 @@
         dispatch("retryLastMove");
       }}
     >
-      <img
-        class="icon"
-        src={`/images/icons/refresh.svg`}
-        alt="retry"
-        draggable="false"
-      />
+      <Svg name="refresh" />
     </button>
   {/if}
 
@@ -62,12 +48,7 @@
         dispatch("hint");
       }}
     >
-      <img
-        class="icon"
-        src={`/images/icons/question.svg`}
-        alt="hint/solution"
-        draggable="false"
-      />
+      <Svg name="question" />
     </button>
   {/if}
 
@@ -78,12 +59,7 @@
         dispatch("solution");
       }}
     >
-      <img
-        class="icon"
-        src={`/images/icons/question.svg`}
-        alt="hint/solution"
-        draggable="false"
-      />
+      <Svg name="question" />
     </button>
   {/if}
   <button
@@ -92,12 +68,7 @@
       dispatch("flip");
     }}
   >
-    <img
-      class="icon"
-      src={`/images/icons/flip.svg`}
-      alt="flip board"
-      draggable="false"
-    />
+    <Svg name="flip" />
   </button>
 </div>
 

@@ -1,6 +1,8 @@
 <script>
   import { page } from "$app/stores";
   import { userData } from "../routes/userStore";
+  import DarkToggle from "./DarkToggle.svelte";
+  import Svg from "./Svg.svelte";
 
   let showRightMenu = false;
   let showMobileMenu = false;
@@ -90,11 +92,7 @@
     </li>
     <li class="hamburger">
       <button on:click={() => (showMobileMenu = !showMobileMenu)}>
-        <img
-          src={`/images/icons/hamburger.svg`}
-          alt="menu"
-          draggable="false"
-        />
+        <Svg name="burger" />
       </button>
     </li>
   </ul>

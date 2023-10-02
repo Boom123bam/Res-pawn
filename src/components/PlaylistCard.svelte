@@ -1,4 +1,6 @@
 <script>
+  import Svg from "./Svg.svelte";
+
   export let playlistData;
 </script>
 
@@ -28,12 +30,7 @@
         data-sveltekit-preload-data="tap"
         href={`/playlists/${playlistData?.id}/play`}
         ><button title="play playlist" class="cta">
-          <img
-            src={`/images/icons/play-white.svg`}
-            alt="play"
-            draggable="false"
-            class="icon"
-          />
+          <Svg name="play" fill="white" stroke="white" />
         </button></a
       >
     </div>

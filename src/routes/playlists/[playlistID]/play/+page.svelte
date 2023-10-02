@@ -19,6 +19,7 @@
 
   // get user data
   import { userData } from "../../../userStore";
+  import Svg from "../../../../components/Svg.svelte";
 
   // store an object containing data of the seqs played in the current playlist
   const playedSeqsData = localUserSeqData
@@ -167,13 +168,9 @@
               class={`next cta${showBottomNextButton ? "" : " hide"}`}
               title="next puzzle"
               on:click={handleNext}
-              ><img
-                src={`/images/icons/right-double-white.svg`}
-                alt="next puzzle"
-                draggable="false"
-                class="icon"
-              /></button
             >
+              <Svg name="doubleRight" />
+            </button>
           </Board>
           {#if showGradeMenu}
             <div class="menu-wrapper">

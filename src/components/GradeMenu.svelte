@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
+  import Svg from "./Svg.svelte";
 
   onMount(() => {
     window.addEventListener("mouseup", handleMouseUp);
@@ -55,12 +56,9 @@
     on:click={() => {
       handleSubmit(false);
     }}
-    ><img
-      src={`/images/icons/close-white.svg`}
-      alt="close"
-      draggable="false"
-    /></button
   >
+    <Svg name="close" color="var(--secondary)" />
+  </button>
   <div class="slider" id="slider">
     <div
       class="img-container"
