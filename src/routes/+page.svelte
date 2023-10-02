@@ -214,6 +214,7 @@
     text-align: center;
     width: min(100ch, 100% - 5rem);
     gap: 3rem;
+    z-index: 1;
   }
 
   .features-container .feature {

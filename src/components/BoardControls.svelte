@@ -118,9 +118,7 @@
     align-items: center;
     /* padding-inline: 1rem; */
   }
-  .board-controls button:hover {
-    background-color: var(--light-gray);
-  }
+
   .flashing {
     animation-name: color-pulse;
     animation-duration: 2s;
@@ -141,6 +139,11 @@
   @media screen and (max-width: 600px) {
     .board-controls button {
       padding: 0.5rem 1rem;
+    }
+  }
+  @media (hover: hover) {
+    .board-controls button:hover {
+      background-color: var(--light-gray);
     }
   }
 </style>

@@ -114,17 +114,11 @@ button.cta {
   font-weight: 700;
   padding: 1rem 1.5rem;
 }
-button.cta:hover {
-  background-color: var(--accent-light);
-}
 
 button.ghost {
   color: var(--accent);
   font-weight: 700;
   padding: 1rem 1.5rem;
-}
-button.ghost:hover {
-  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .hide {
@@ -168,9 +162,7 @@ button.ghost:hover {
 .link {
   color: var(--accent);
 }
-.link:hover {
-  text-decoration: underline;
-}
+
 .icon {
   width: var(--button-icon-size);
   height: var(--button-icon-size);
@@ -199,6 +191,18 @@ button.ghost:hover {
   }
   .mobile {
     display: block;
+  }
+}
+
+@media (hover: hover) {
+  button.ghost:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  button.cta:hover {
+    background-color: var(--accent-light);
+  }
+  .link:hover {
+    text-decoration: underline;
   }
 }
 

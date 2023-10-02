@@ -42,6 +42,7 @@
 
 <style>
   .card {
+    box-shadow: 0 0.25rem 0;
     border: var(--border);
     border-radius: var(--br);
     background-color: var(--secondary);
@@ -52,10 +53,7 @@
     position: relative;
     overflow: hidden;
   }
-  .card:hover {
-    box-shadow: 0.5rem 0.5rem 0;
-    transform: translate(-0.25rem, -0.25rem);
-  }
+
   .top-banner {
     border-top-right-radius: var(--br);
     border-top-left-radius: var(--br);
@@ -77,11 +75,6 @@
     position: absolute;
     bottom: 1.5rem;
     right: 1.5rem;
-    transition: 0.2s;
-    transform: scale(0);
-  }
-  .card:hover .play-button-wrapper {
-    transform: scale(1);
   }
 
   .play-button-wrapper button {
@@ -96,6 +89,27 @@
   .play-button-wrapper img {
     width: 2.5rem;
     height: 2.5rem;
+  }
+
+  @media (hover: none) {
+    .play-button-wrapper button {
+      background-color: var(--accent2);
+    }
+  }
+
+  @media (hover: hover) {
+    .card:hover {
+      box-shadow: 0 0 0;
+      transform: translateY(0.25rem);
+    }
+
+    .play-button-wrapper {
+      transition: 0.2s;
+      transform: scale(0);
+    }
+    .card:hover .play-button-wrapper {
+      transform: scale(1);
+    }
   }
 
   @media screen and (max-width: 600px) {
@@ -116,6 +130,9 @@
     .play-button-wrapper {
       transform: none;
       transition: none;
+    }
+    .play-button-wrapper button {
+      background-color: var(--accent2);
     }
   }
 </style>
