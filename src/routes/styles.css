@@ -17,7 +17,7 @@
   --br: 1rem;
   --br-small: 0.5rem;
   --shadow: 0.25rem 0.25rem 0 var(--text);
-  --button-icon-size: 1.5rem;
+  --icon-size: 1.5rem;
   --nav-height: 3.75rem;
   font-family: var(--font-small);
   /* font-size: 0.75rem; */
@@ -171,8 +171,8 @@ button.ghost {
 }
 
 .icon {
-  width: var(--button-icon-size);
-  height: var(--button-icon-size);
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 
 @media screen and (max-width: 700px) {
@@ -186,7 +186,7 @@ button.ghost {
 
 @media screen and (max-width: 600px) {
   :root {
-    --button-icon-size: 1.25rem;
+    --icon-size: 1.25rem;
   }
   .card-grid {
     gap: 0.5rem;
