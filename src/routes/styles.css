@@ -93,6 +93,12 @@ input {
 }
 input:focus {
   background-color: var(--secondary);
+  outline: 1px solid var(--text);
+}
+*:focus {
+  /* text-decoration: underline; */
+  outline: 2px solid var(--text);
+  outline-offset: 0.25rem;
 }
 
 .page-content {
