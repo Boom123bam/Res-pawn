@@ -105,7 +105,7 @@
 
     .play-button-wrapper {
       transition: 0.2s;
-      transform: scale(0);
+      transform: scale(0) rotate(180deg);
     }
     .card:hover .play-button-wrapper {
       transform: scale(1);
