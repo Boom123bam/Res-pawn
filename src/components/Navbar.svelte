@@ -135,7 +135,11 @@
             </li>
           {:else}
             <li class="user">
-              <a href="/auth/signin">sign In</a>
+              {#if $page.url.pathname.endsWith("/play")}
+                <a href="/auth/signin">sign In to save progress</a>
+              {:else}
+                <a href="/auth/signin">sign In</a>
+              {/if}
             </li>
           {/if}
           <li class="dark-toggle">
@@ -272,7 +276,7 @@
     width: 100%;
     justify-content: end;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 750px) {
     .desktop {
       display: none;
     }
