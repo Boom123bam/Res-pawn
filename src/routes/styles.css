@@ -214,14 +214,16 @@ button.ghost {
 }
 
 body.dark {
-  --background: rgb(51, 51, 51);
-  --secondary: rgb(78, 78, 78);
-  --text: white;
+  --background: #10162f;
+  --secondary: rgb(45, 45, 45);
+  --text: #fef1e5;
   --accent: rgb(159, 159, 255);
-  --border: 1px solid white;
+  --accent2: #ac8282;
+  --border: 1px solid var(--text);
   --primary: #68647d;
   --shadow: 0.25rem 0.25rem 0 var(--text);
 }
+/*playlist card*/
 body.dark .top-banner {
   color: black;
 }
