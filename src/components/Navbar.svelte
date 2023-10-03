@@ -81,7 +81,7 @@
         </a>
       </li>
     {/if}
-    <li class="dark-toggle">
+    <li class="dark-toggle" title="toggle dark mode">
       <button on:click={toggleDarkmode}>
         {#if theme == "dark"}
           <Svg name="sun" />
@@ -143,7 +143,10 @@
             </li>
           {/if}
           <li class="dark-toggle">
-            <button on:click={toggleDarkmode}>
+            <button
+              on:click={toggleDarkmode}
+              title="toggle dark mode"
+            >
               {#if theme == "dark"}
                 <span>light</span>
                 <Svg name="sun" />
