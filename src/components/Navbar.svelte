@@ -269,7 +269,8 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-left: auto;
+    width: 100%;
+    justify-content: end;
   }
   @media screen and (max-width: 600px) {
     .desktop {
