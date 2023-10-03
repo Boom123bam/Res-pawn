@@ -142,6 +142,17 @@
               <a href="/auth/signin">sign In</a>
             </li>
           {/if}
+          <li class="dark-toggle">
+            <button on:click={toggleDarkmode}>
+              {#if theme == "dark"}
+                <span>light</span>
+                <Svg name="sun" />
+              {:else}
+                <span>dark</span>
+                <Svg name="moon" />
+              {/if}
+            </button>
+          </li>
         </ul>
       </div>
     </div>
@@ -222,8 +233,12 @@
     border-radius: var(--br-small);
     font-weight: 400;
   }
-  .dark-toggle {
-    margin-left: -1rem;
+  .desktop .dark-toggle {
+    margin-left: -3rem;
+  }
+  .desktop .dark-toggle button {
+    height: 100%;
+    padding-inline: 1rem;
   }
   .mobile-menu {
     border-left: var(--border);
@@ -244,9 +259,17 @@
     padding: 2rem 2rem;
   }
   .mobile-menu .user-info {
+    order: 10;
+  }
+  .mobile-menu .dark-toggle {
     margin-top: auto;
   }
-
+  .mobile-menu .dark-toggle button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+  }
   @media screen and (max-width: 600px) {
     .desktop {
       display: none;
