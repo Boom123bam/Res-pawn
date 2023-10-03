@@ -214,12 +214,12 @@ button.ghost {
 }
 
 body.dark {
-  --background: #10162f;
-  --secondary: rgb(45, 45, 45);
-  --text: #fef1e5;
+  --secondary: #10162f;
+  --background: rgb(45, 45, 45);
+  --text: #d5c8bc;
   --accent: rgb(159, 159, 255);
   --accent2: #ac8282;
-  --border: 1px solid var(--text);
+  --border: 1px solid #555;
   --primary: #68647d;
   --shadow: 0.25rem 0.25rem 0 var(--text);
 }
