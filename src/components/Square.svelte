@@ -50,6 +50,7 @@
     solution ? " solution" : ""
   }${lastMove ? " last-move" : ""}`}
   style={`order: ${order};`}
+  tabIndex="-1"
   on:click={() => handlePieceClick(id)}
 >
   {#if square != undefined}
