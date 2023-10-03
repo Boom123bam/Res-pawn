@@ -239,6 +239,8 @@
   .desktop .dark-toggle button {
     height: 100%;
     padding-inline: 1rem;
+    display: flex;
+    align-items: center;
   }
   .mobile-menu {
     border-left: var(--border);
