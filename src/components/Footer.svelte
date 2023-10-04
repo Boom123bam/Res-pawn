@@ -1,7 +1,7 @@
 <section class="footer">
   <div class="content-wrapper">
     <a href="/">
-      <h3 class="logo">ReChess</h3>
+      <h3 class="logo">ResPawn</h3>
     </a>
     <a href="/">
       <h5>home</h5>

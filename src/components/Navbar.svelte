@@ -27,7 +27,7 @@
   <ul class="desktop">
     <li>
       <a href="/">
-        <h4>ReChess</h4>
+        <h4>ReSpawn</h4>
       </a>
     </li>
     <li
@@ -91,7 +91,7 @@
   <ul class="mobile">
     <li>
       <a href="/">
-        <h4>ReChess</h4>
+        <h4>ResPawn</h4>
       </a>
     </li>
     <li class="hamburger">

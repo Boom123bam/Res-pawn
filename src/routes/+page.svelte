@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>ReChess - Practice Chess Pattern Recognition</title>
+  <title>ResPawn - Practice Chess Pattern Recognition</title>
   <meta
     name="description"
     content="Play puzzles and improve your chess skills by practicing pattern recognition with spaced repetition."
@@ -39,7 +39,7 @@
     />
     <!-- <h2>The Science of Spaced Repetition</h2>
     <p>
-      At the core of ReChess is the concept of spaced repetition—a
+      At the core of ResPawn is the concept of spaced repetition—a
       scientifically proven technique for optimizing memory retention.
       We've tailored this technique specifically for chess enthusiasts
       like you. By systematically revisiting and reinforcing chess
@@ -52,7 +52,7 @@
       <div class="feature">
         <h3>20k+ Puzzles</h3>
         <p>
-          ReChess uses the top puzzles from the Lichess puzzles
+          ResPawn uses the top puzzles from the Lichess puzzles
           database, so whether you're a novice or an experienced
           player, there's always a challenge that matches your skill
           level.
