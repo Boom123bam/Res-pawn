@@ -70,7 +70,7 @@
       <img
         on:mousedown={handleMouseDown}
         on:mouseup={handleMouseUp}
-        src="https://i.imgur.com/R6Ky0xY.png"
+        src="/images/queen.png"
         alt="queen slider"
         draggable="false"
         class="queen"
