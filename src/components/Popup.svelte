@@ -37,4 +37,10 @@
     height: 1.5rem;
     border-radius: var(--br-small);
   }
+
+  @media screen and (max-width: 500px) {
+    .popup-window {
+      padding: 3rem 1rem 2.5rem 1rem;
+    }
+  }
 </style>
