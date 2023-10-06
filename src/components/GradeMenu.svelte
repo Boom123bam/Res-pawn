@@ -15,16 +15,17 @@
   });
 
   const dispatch = createEventDispatcher();
+  // TODO fix audio play on mount
 
-  const moveAudio = new Audio("/sound/move.mp3");
+  // const moveAudio = new Audio("/sound/move.mp3");
 
   // value ranges from 0 to 2
   export let value = 0;
 
-  $: value,
-    (() => {
-      moveAudio.cloneNode(true).play();
-    })();
+  // $: value,
+  //   (() => {
+  //     // moveAudio.cloneNode(true).play();
+  //   })();
   let mouseDown = false;
 
   function handleClose() {
