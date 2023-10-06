@@ -20,6 +20,7 @@
   // get user data
   import { userData } from "../../../userStore";
   import Svg from "../../../../components/Svg.svelte";
+  import Popup from "../../../../components/Popup.svelte";
 
   // store an object containing data of the seqs played in the current playlist
   const playedSeqsData = localUserSeqData
@@ -33,6 +34,7 @@
       )
     : localPlaylistData.sequences;
 
+  let showSeqInfoPopup = false;
   let showGradeMenu = false;
   let grade = 1;
   let seqsPlayedInSession = 0;
@@ -123,6 +125,15 @@
 
 <div class="page-content">
   <section class="main">
+    {#if showSeqInfoPopup}
+      <div class="popup-wrapper">
+        <Popup on:close={() => (showSeqInfoPopup = false)}>
+          <p>
+            {JSON.stringify($sequenceData, null, 2)}
+          </p>
+        </Popup>
+      </div>
+    {/if}
     <div class="grid-container">
       {#if $sequenceData && currentSeqID}
         <div class="seq-info">
@@ -159,6 +170,12 @@
             {/if}
             <span class="landscape">to play</span>
           </div>
+          <button
+            class="info"
+            on:click={() => (showSeqInfoPopup = true)}
+          >
+            <Svg name="info" />
+          </button>
           <!-- <p>themes: {$sequenceData.themes}</p> -->
         </div>
         <div class="board-container">
@@ -173,7 +190,7 @@
             </button>
           </Board>
           {#if showGradeMenu}
-            <div class="menu-wrapper">
+            <div class="popup-wrapper">
               <GradeMenu
                 value={grade}
                 on:submit={handleGradeSubmit}
@@ -234,13 +251,11 @@
     /* align-self: center; */
     /* align-items: center; */
   }
-  .board-container .menu-wrapper {
+  .popup-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-  .menu-wrapper {
     z-index: 20;
     width: min(100% - 2rem, 35rem);
   }
@@ -291,7 +306,14 @@
     .to-play {
       position: absolute;
       right: 0;
-      transform: translateX(calc(100% + 1rem));
+      top: 50%;
+      transform: translate(calc(100% + 1rem), -50%);
+    }
+    button.info {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(calc(-100% - 1rem), -50%);
     }
   }
 </style>
