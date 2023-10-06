@@ -169,7 +169,7 @@
               title="next puzzle"
               on:click={handleNext}
             >
-              <Svg name="doubleRight" />
+              <Svg name="doubleRight" color="var(--secondary)" />
             </button>
           </Board>
           {#if showGradeMenu}
