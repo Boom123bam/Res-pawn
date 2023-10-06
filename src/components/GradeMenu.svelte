@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
   import Svg from "./Svg.svelte";
+  import Popup from "./Popup.svelte";
 
   onMount(() => {
     window.addEventListener("mouseup", handleMouseUp);
@@ -19,6 +20,10 @@
   // value ranges from 0 to 2
   export let value = 0;
   let mouseDown = false;
+
+  function handleClose() {
+    handleSubmit(false);
+  }
 
   function handleSubmit(goNext) {
     dispatch("submit", { value, goNext });
@@ -50,15 +55,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 
-<div class="popup-window popup">
-  <button
-    class="close"
-    on:click={() => {
-      handleSubmit(false);
-    }}
-  >
-    <Svg name="close" color="var(--secondary)" />
-  </button>
+<Popup on:close={handleClose}>
   <div class="slider" id="slider">
     <div
       class="img-container"
@@ -114,30 +111,9 @@
       handleSubmit(true);
     }}>next</button
   >
-</div>
+</Popup>
 
 <style>
-  .popup-window {
-    padding: 12%;
-    padding-bottom: 3.5rem;
-    border-radius: var(--br);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    position: relative;
-  }
-
-  button.close {
-    position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
-    background-color: var(--text);
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: var(--br-small);
-  }
-
   button.next {
     border-radius: var(--br-small);
     padding: 0.5rem 2.25rem;
