@@ -8,6 +8,9 @@
   import BoardControls from "./BoardControls.svelte";
   import Svg from "./Svg.svelte";
 
+  const moveAudio = new Audio("/sound/move.mp3");
+  const captureAudio = new Audio("/sound/capture.mp3");
+
   const dispatch = createEventDispatcher();
 
   let currentSequence = null;
@@ -139,6 +142,10 @@
     useDisplayer = false,
     duration = 0.1
   ) {
+    if (board.chess.get(move.substring(2, 4))) {
+      captureAudio.play();
+    } else moveAudio.play();
+
     // play animation
     board.movePlaying = move;
 
