@@ -30,17 +30,25 @@
         <h4>ReSpawn</h4>
       </a>
     </li>
-    <li
+    <!-- <li
       aria-current={$page.url.pathname === "/" ? "page" : undefined}
     >
       <a href="/">home</a>
-    </li>
+    </li> -->
     <li
       aria-current={$page.url.pathname === "/playlists"
         ? "page"
         : undefined}
     >
       <a href="/playlists">playlists</a>
+    </li>
+    <li
+      aria-current={$page.url.pathname ===
+      "/article/spaced-repetition"
+        ? "page"
+        : undefined}
+    >
+      <a href="/article/spaced-repetition">spaced repetition</a>
     </li>
     {#if $userData}
       <li class="user">
