@@ -25,6 +25,7 @@
     align-items: center;
     gap: 1.5rem;
     position: relative;
+    word-wrap: break-word;
   }
 
   button.close {
