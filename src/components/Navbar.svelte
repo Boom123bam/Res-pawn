@@ -27,7 +27,7 @@
   <ul class="desktop">
     <li>
       <a href="/">
-        <h4>ReSpawn</h4>
+        <h4>ResPawn</h4>
       </a>
     </li>
     <!-- <li
