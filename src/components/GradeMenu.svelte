@@ -16,8 +16,15 @@
 
   const dispatch = createEventDispatcher();
 
+  const moveAudio = new Audio("/sound/move.mp3");
+
   // value ranges from 0 to 2
   export let value = 0;
+
+  $: value,
+    (() => {
+      moveAudio.cloneNode(true).play();
+    })();
   let mouseDown = false;
 
   function handleClose() {
@@ -47,6 +54,7 @@
   function handleMouseUp(e) {
     if (mouseDown) {
       mouseDown = false;
+      // moveAudio.play();
     }
   }
 </script>
@@ -76,22 +84,27 @@
       <button
         on:click={() => {
           value = 0;
+          // moveAudio.play();
         }}
       /><button
         on:click={() => {
           value = 0.5;
+          // moveAudio.play();
         }}
       /><button
         on:click={() => {
           value = 1;
+          // moveAudio.play();
         }}
       /><button
         on:click={() => {
           value = 1.5;
+          // moveAudio.play();
         }}
       /><button
         on:click={() => {
           value = 2;
+          // moveAudio.play();
         }}
       />
       <p class="label left">again</p>
@@ -189,10 +202,5 @@
     font-size: 1.25rem;
     margin-top: 0.5rem;
     font-family: var(--font-small);
-  }
-  @media screen and (max-width: 500px) {
-    .popup-window {
-      padding: 3rem 1rem 2.5rem 1rem;
-    }
   }
 </style>
