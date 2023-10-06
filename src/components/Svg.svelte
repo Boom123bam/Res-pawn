@@ -1,7 +1,6 @@
 <script>
   export let name;
-  export let width = "var(--icon-size)";
-  export let height = "var(--icon-size)";
+  export let size = "var(--icon-size)";
   export let color = "var(--text)";
   export let focusable = false;
 
@@ -110,7 +109,7 @@
   class={$$props.class}
   {focusable}
   fill="none"
-  style={`width:${width}; height:${height}`}
+  style={`width:${size}; height:${size}`}
   viewBox="0 0 {displayIcon.box} {displayIcon.box}"
   >{@html displayIcon.svg}</svg
 >
