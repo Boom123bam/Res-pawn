@@ -7,11 +7,52 @@
   import { createEventDispatcher } from "svelte";
   import BoardControls from "./BoardControls.svelte";
   import Svg from "./Svg.svelte";
+  import { browser } from "$app/environment";
 
-  let moveAudio;
-  let captureAudio;
+  function play(audioBuffer) {
+    if (browser) {
+      let source = context.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(context.destination);
+      source.start();
+    }
+  }
+
+  let moveBuffer;
+  let captureBuffer;
+  let context;
+
+  if (browser) {
+    let AudioContext =
+      window.AudioContext || window.webkitAudioContext;
+    context = new AudioContext(); // Make it crossbrowser
+    window
+      .fetch("/sound/capture.mp3")
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) =>
+        context.decodeAudioData(
+          arrayBuffer,
+          (audioBuffer) => {
+            captureBuffer = audioBuffer;
+          },
+          (error) => console.error(error)
+        )
+      );
+    window
+      .fetch("/sound/move.mp3")
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) =>
+        context.decodeAudioData(
+          arrayBuffer,
+          (audioBuffer) => {
+            moveBuffer = audioBuffer;
+          },
+          (error) => console.error(error)
+        )
+      );
+  }
+
   const dispatch = createEventDispatcher();
-
   let currentSequence = null;
 
   let board = {
@@ -57,11 +98,6 @@
     await timeout(100);
     await movePiece(currentSequence.moves[0]);
     updateBoard();
-  }
-
-  function playAudio(name) {
-    if (name == "move") moveAudio.play();
-    if (name == "capture") captureAudio.play();
   }
 
   function resetSequence() {
@@ -147,8 +183,8 @@
     duration = 0.1
   ) {
     if (board.chess.get(move.substring(2, 4))) {
-      playAudio("capture");
-    } else playAudio("move");
+      play(captureBuffer);
+    } else play(moveBuffer);
 
     // play animation
     board.movePlaying = move;
@@ -308,13 +344,6 @@
     currentSequence.stats.solsUsed++;
   }
 </script>
-
-<audio preload id="capture-audio" bind:this={moveAudio}>
-  <source src="/sound/move.mp3" type="audio/mpeg" />
-</audio>
-<audio preload id="move-audio" bind:this={captureAudio}>
-  <source src="/sound/capture.mp3" type="audio/mpeg" />
-</audio>
 
 <div class="board-component-wrapper">
   <div class="board-wrapper">
