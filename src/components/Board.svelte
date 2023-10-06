@@ -8,9 +8,8 @@
   import BoardControls from "./BoardControls.svelte";
   import Svg from "./Svg.svelte";
 
-  const moveAudio = new Audio("/sound/move.mp3");
-  const captureAudio = new Audio("/sound/capture.mp3");
-
+  let moveAudio;
+  let captureAudio;
   const dispatch = createEventDispatcher();
 
   let currentSequence = null;
@@ -58,6 +57,11 @@
     await timeout(100);
     await movePiece(currentSequence.moves[0]);
     updateBoard();
+  }
+
+  function playAudio(name) {
+    if (name == "move") moveAudio.play();
+    if (name == "capture") captureAudio.play();
   }
 
   function resetSequence() {
@@ -143,8 +147,8 @@
     duration = 0.1
   ) {
     if (board.chess.get(move.substring(2, 4))) {
-      captureAudio.play();
-    } else moveAudio.play();
+      playAudio("capture");
+    } else playAudio("move");
 
     // play animation
     board.movePlaying = move;
@@ -304,6 +308,13 @@
     currentSequence.stats.solsUsed++;
   }
 </script>
+
+<audio preload id="capture-audio" bind:this={moveAudio}>
+  <source src="/sound/move.mp3" type="audio/mpeg" />
+</audio>
+<audio preload id="move-audio" bind:this={captureAudio}>
+  <source src="/sound/capture.mp3" type="audio/mpeg" />
+</audio>
 
 <div class="board-component-wrapper">
   <div class="board-wrapper">
