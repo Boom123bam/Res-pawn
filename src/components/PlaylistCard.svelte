@@ -30,7 +30,7 @@
         data-sveltekit-preload-data="tap"
         href={`/playlists/${playlistData?.id}/play`}
         ><button title="play playlist" class="cta">
-          <Svg name="play" color="white" size="2rem" />
+          <Svg name="play" color="white" size="2.25rem" />
         </button></a
       >
     </div>
