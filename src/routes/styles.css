@@ -126,7 +126,7 @@ button.ghost {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .popup {
