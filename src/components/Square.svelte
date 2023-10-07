@@ -178,4 +178,10 @@
     width: var(--piece-size);
     height: var(--piece-size);
   }
+  @media screen and (max-width: 600px),
+    screen and (max-height: 600px) {
+    .square .indicator {
+      font-size: 0.75em;
+    }
+  }
 </style>

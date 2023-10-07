@@ -230,3 +230,10 @@ body.dark .top-banner {
     grid-template-columns: 1fr;
   }
 } */
+
+button:has(svg) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min-content;
+}

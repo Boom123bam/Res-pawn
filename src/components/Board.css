@@ -92,9 +92,6 @@ body.dark {
     padding: 0.25rem;
     border-radius: var(--br-small);
   }
-  .square .indicator {
-    font-size: 0.75em;
-  }
   :root {
     --piece-size: 90%;
   }
