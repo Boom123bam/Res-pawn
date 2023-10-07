@@ -71,6 +71,14 @@
                   on:click={() => {
                     showRightMenu = !showRightMenu;
                   }}
+                  href="/settings">Settings</a
+                >
+              </li>
+              <li>
+                <a
+                  on:click={() => {
+                    showRightMenu = !showRightMenu;
+                  }}
                   href="/auth/signout">Sign out</a
                 >
               </li>
@@ -139,6 +147,9 @@
             <a href="/playlists">playlists</a>
           </li>
           {#if $userData}
+            <li>
+              <a href="/settings">settings</a>
+            </li>
             <li class="user">
               <a href="/auth/signout">sign out</a>
             </li>
