@@ -8,6 +8,7 @@
   import BoardControls from "./BoardControls.svelte";
   import Svg from "./Svg.svelte";
   import { browser } from "$app/environment";
+  import { getSetting } from "../modules/localStorage";
 
   function play(audioBuffer) {
     if (browser) {
@@ -67,6 +68,7 @@
     moveToPromote: "",
     lastMove: "e4d5",
     movePlaying: null,
+    showAllSquareNames: getSetting("showAllSquareNames"),
   };
   board.board = board.chess.board();
 
@@ -391,6 +393,7 @@
                   ? board.movePlaying.substring(2, 4)
                   : null
                 : null}
+              showAllSquareNames={board.showAllSquareNames}
             />
           {/each}
         {/each}

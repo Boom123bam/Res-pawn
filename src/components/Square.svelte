@@ -9,7 +9,8 @@
     lastMove,
     order,
     flipped,
-    moveTo;
+    moveTo,
+    showAllSquareNames;
 
   // let style = "tranform: translate(50%, 50%)";
   let transformStyle = "";
@@ -70,7 +71,11 @@
   {#if highlighted}
     <div class="highlight-circle" />
   {/if}
-  {#if !flipped}
+  {#if showAllSquareNames}
+    <div class="row indicator">
+      {id}
+    </div>
+  {:else if !flipped}
     {#if id[1] == "1"}
       <div class="col indicator">
         {id[0]}

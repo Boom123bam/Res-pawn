@@ -13,9 +13,16 @@ export function getSettings() {
   }
 }
 
+export function getSetting(name) {
+  if (browser) {
+    const settings = localStorage.getItem("settings");
+    if (settings) return JSON.parse(settings)[name];
+    else return null;
+  }
+}
+
 export function updateSettings(newSettings) {
   // uses spread operator to change only the settings provided
-  console.log(newSettings);
   if (browser) {
     const settings = localStorage.getItem("settings");
     if (settings) {
