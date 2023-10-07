@@ -30,9 +30,7 @@
           e: getNewEasiness(data[data.length - 1].e, grade),
           change,
           time: getTimeToNextReview(
-            data[data.length - 1].e +
-              data[data.length - 1].change +
-              change
+            getNewEasiness(data[data.length - 1].e, grade)
           ),
         },
       ];
@@ -73,7 +71,9 @@
     <div class="data">
       {#each data as dataChunk}
         <div class="line-segment">
-          <div class="e">{dataChunk.e}</div>
+          <div class="e">
+            {dataChunk.e.toPrecision(7).replace(/\.?0+$/, "")}
+          </div>
           <div class="change">
             {dataChunk.change >= 0 ? "+" : ""}{dataChunk.change}
           </div>
@@ -90,11 +90,21 @@
         >
       {/each}
     </div>
-    <button on:click={() => (data = [])}>reset</button>
+    <button class="cta reset" on:click={() => (data = [])}
+      >reset</button
+    >
   </section>
 </div>
 
 <style>
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  button.reset {
+    margin-inline: auto;
+  }
   .grade-buttons {
     display: flex;
     gap: 1rem;
@@ -106,7 +116,7 @@
     background-color: var(--secondary);
   }
   .data {
-    padding: 10rem 0;
+    padding: 5rem 0;
     width: 100%;
     display: flex;
     font-size: 0.5rem;
