@@ -24,7 +24,7 @@
           bind:checked={settings.sound}
         />
         <label for="sound-switch" />
-        <h6>show indicator on hover</h6>
+        <h6>show square name on hover</h6>
         <input
           type="checkbox"
           id="squares-switch"
