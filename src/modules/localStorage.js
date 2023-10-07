@@ -15,12 +15,12 @@ export function getSettings() {
 
 export function updateSettings(newSettings) {
   // uses spread operator to change only the settings provided
+  console.log(newSettings);
   if (browser) {
     const settings = localStorage.getItem("settings");
     if (settings) {
-      newSettings = JSON.parse(settings);
-      newSettings = { ...settings, newSettings };
+      newSettings = { ...JSON.parse(settings), ...newSettings };
     }
-    return newSettings;
+    storeSettings(newSettings);
   }
 }
