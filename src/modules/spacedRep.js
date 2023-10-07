@@ -6,6 +6,7 @@ const maxEasiness = 6;
 const minsLimit = 10; // mins in the future to look for seqs in
 const defaultEasiness = 1.5;
 const easinessChangeMultiplier = 1.5;
+const chanceOfRandomSeq = 0.3;
 
 function getSoonestSeq(seqsData) {
   // gets the seq object with the soonest nextReview
@@ -49,6 +50,10 @@ export function getNextSeq(
   unplayedSeqsIDs,
   prevSeqID = null
 ) {
+  if (Math.random() < chanceOfRandomSeq) {
+    // play random unplayed seq
+    return getRandomSeq(unplayedSeqsIDs);
+  }
   const soonestSeqID = getSoonestSeq(playedSeqsData);
   if (!soonestSeqID || prevSeqID == soonestSeqID) {
     if (unplayedSeqsIDs.length) return getRandomSeq(unplayedSeqsIDs);
