@@ -39,7 +39,6 @@
       >
     </form>
   </section>
-  <button on:click={() => console.log(settings)}>log</button>
 </div>
 
 <style>
