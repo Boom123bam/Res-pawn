@@ -2,10 +2,15 @@
 
 import { Timestamp } from "firebase/firestore";
 
+// ALL percentages are in decimal (e.g. 25% = 0.25)
+
 const maxEasiness = 6;
-const minsLimit = 10; // mins in the future to look for seqs in
+const minsLimit = 5; // mins in the future to look for seqs in
 const defaultEasiness = 1.5;
-const easinessChangeMultiplier = 1.5;
+const easinessChangeMultiplier = 1.15;
+const randomNextReviewDifference = 0.15; // max % added/subtracted to next Review Time
+const gradeShiftPercentage = 0.25; // positive shift % aplpied to grade
+
 const chanceOfRandomSeq = 0.3;
 
 function getSoonestSeq(seqsData) {
@@ -72,20 +77,18 @@ export function estimateGrade(stats) {
 
 function getTimeToNextReview(easiness) {
   // time in mins
-  // switch (easiness) {
-  //   case 0:
-  //     return 2;
-  //   case 0.5:
-  //     return 5;
-  //   case 1:
-  //     return 15;
-  // }
-  return 5.7 * easiness ** 4.5;
+  const time = 5.7 * easiness ** 4.5;
+  const percentage =
+    1 + (Math.random() * 2 - 1) * randomNextReviewDifference;
+  return time * percentage;
 }
 
 function getEasinessChange(grade) {
   // initial grade ranges from 0 to 2
-  return (grade - 1) * easinessChangeMultiplier;
+  return (
+    (grade - 1 + 0.25 * gradeShiftPercentage) *
+    easinessChangeMultiplier
+  );
 }
 
 function clamp(value, max = Infinity, min = 0) {
