@@ -11,7 +11,7 @@
     updateSeqData,
   } from "../../../../modules/spacedRep";
   import GradeMenu from "../../../../components/GradeMenu.svelte";
-  import { storeUserSeqData } from "../../../../modules/localStorage";
+  import { storeUserSeqData } from "../../../../modules/sessionStorage";
 
   export let data; // data from layout.js
 

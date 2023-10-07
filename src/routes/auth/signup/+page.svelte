@@ -10,7 +10,7 @@
     storeAllUserSeqData,
   } from "../../../modules/firebase";
   import { userData } from "../../userStore";
-  import { getLocalUserSeqData } from "../../../modules/localStorage";
+  import { getLocalUserSeqData } from "../../../modules/sessionStorage";
 
   let username = "";
   let email = "";

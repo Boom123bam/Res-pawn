@@ -5,7 +5,7 @@
     getUserData,
     storeAllUserSeqData,
   } from "../../../modules/firebase";
-  import { getLocalUserSeqData } from "../../../modules/localStorage";
+  import { getLocalUserSeqData } from "../../../modules/sessionStorage";
 
   let email = "";
   let password = "";

@@ -2,7 +2,7 @@ import { error } from "@sveltejs/kit";
 import {
   updateLocalPlaylistData,
   updateLocalUserSeqData,
-} from "../../../modules/localStorage";
+} from "../../../modules/sessionStorage";
 
 export const ssr = false; // disable ssr because local storage
 

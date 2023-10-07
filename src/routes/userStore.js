@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { storeUserData } from "../modules/localStorage";
+import { storeUserData } from "../modules/sessionStorage";
 
 // export const userData = writable(null);
 
