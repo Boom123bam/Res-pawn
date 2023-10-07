@@ -2,13 +2,18 @@
   import { page } from "$app/stores";
   import { userData } from "../routes/userStore";
   import Svg from "./Svg.svelte";
+  import {
+    getSetting,
+    updateSettings,
+  } from "../modules/localStorage";
+  import { browser } from "$app/environment";
 
   let showRightMenu = false;
   let showMobileMenu = false;
   let theme = "light";
 
-  if (typeof window !== "undefined") {
-    let theme = localStorage.getItem("theme");
+  if (browser) {
+    theme = getSetting("theme");
     if (!theme) theme = "light";
 
     if (theme == "dark") {
@@ -20,6 +25,7 @@
   function toggleDarkmode() {
     document.body.classList.toggle("dark");
     theme = theme == "dark" ? "light" : "dark";
+    updateSettings({ theme });
   }
 </script>
 
