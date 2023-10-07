@@ -7,7 +7,7 @@ import { Timestamp } from "firebase/firestore";
 const maxEasiness = 6;
 const minsLimit = 5; // mins in the future to look for seqs in
 const defaultEasiness = 1.5;
-const easinessChangeMultiplier = 1.15;
+const easinessChangeMultiplier = 1.25;
 const randomNextReviewDifference = 0.15; // max % added/subtracted to next Review Time
 const gradeShiftPercentage = 0.25; // positive shift % aplpied to grade
 
@@ -75,7 +75,7 @@ export function estimateGrade(stats) {
   return 1.5;
 }
 
-function getTimeToNextReview(easiness) {
+export function getTimeToNextReview(easiness) {
   // time in mins
   const time = 5.7 * easiness ** 4.5;
   const percentage =
@@ -83,11 +83,10 @@ function getTimeToNextReview(easiness) {
   return time * percentage;
 }
 
-function getEasinessChange(grade) {
+export function getEasinessChange(grade) {
   // initial grade ranges from 0 to 2
   return (
-    (grade - 1 + 0.25 * gradeShiftPercentage) *
-    easinessChangeMultiplier
+    (grade - 1 + 2 * gradeShiftPercentage) * easinessChangeMultiplier
   );
 }
 
@@ -95,6 +94,11 @@ function clamp(value, max = Infinity, min = 0) {
   if (value > max) return max;
   if (value < min) return min;
   return value;
+}
+
+export function getNewEasiness(oldEasiness, grade) {
+  const change = getEasinessChange(grade);
+  return clamp(oldEasiness + change, maxEasiness);
 }
 
 export function updateSeqData(grade, seqData = null) {
@@ -105,10 +109,11 @@ export function updateSeqData(grade, seqData = null) {
     };
   }
   seqData.timesStudied++;
-  seqData.easiness = clamp(
-    seqData.easiness + getEasinessChange(grade),
-    maxEasiness
-  );
+  // seqData.easiness = clamp(
+  //   seqData.easiness + getEasinessChange(grade),
+  //   maxEasiness
+  // );
+  seqData.easiness = getNewEasiness(seqData.easiness, grade);
   seqData.nextReview =
     // Calculate the next review time
     new Timestamp(
