@@ -1,11 +1,11 @@
 import { browser } from "$app/environment";
 
-export function storeUserSettings(settings) {
+export function storeSettings(settings) {
   if (browser)
     localStorage.setItem("settings", JSON.stringify(settings));
 }
 
-export function getUserSettings() {
+export function getSettings() {
   if (browser) {
     const settings = localStorage.getItem("settings");
     if (settings) return JSON.parse(settings);

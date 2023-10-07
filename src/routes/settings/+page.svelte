@@ -1,9 +1,9 @@
 <script>
   import {
-    getUserSettings,
-    storeUserSettings,
+    getSettings,
+    storeSettings,
   } from "../../modules/localStorage";
-  let settings = getUserSettings();
+  let settings = getSettings();
   if (!settings) {
     settings = {
       sound: true,
@@ -35,8 +35,7 @@
       <button
         type="submit"
         class="save cta"
-        on:click={() => storeUserSettings(settings)}
-        >Save Changes</button
+        on:click={() => storeSettings(settings)}>Save Changes</button
       >
     </form>
   </section>
