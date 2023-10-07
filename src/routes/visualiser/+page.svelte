@@ -2,15 +2,17 @@
   import {
     getEasinessChange,
     getTimeToNextReview,
+    getNewEasiness,
   } from "../../modules/spacedRep";
   const grades = [0, 0.5, 1, 1.5, 2];
   const easinessChanges = grades.map((grade) =>
     getEasinessChange(grade)
   );
-  const defaultEasiness = 1.5;
+  const defaultEasiness = 1.15;
   let data = [];
 
-  function handleChange(change) {
+  function handleChange(grade) {
+    const change = getEasinessChange(grade);
     if (!data.length) {
       data = [
         ...data,
@@ -24,7 +26,8 @@
       data = [
         ...data,
         {
-          e: data[data.length - 1].e + data[data.length - 1].change,
+          // e: data[data.length - 1].e + data[data.length - 1].change,
+          e: getNewEasiness(data[data.length - 1].e, grade),
           change,
           time: getTimeToNextReview(
             data[data.length - 1].e +
@@ -79,9 +82,11 @@
       {/each}
     </div>
     <div class="grade-buttons">
-      {#each easinessChanges as change}
-        <button on:click={() => handleChange(change)}
-          >{change >= 0 ? "+" : ""}{change}</button
+      {#each grades as grade, i}
+        <button on:click={() => handleChange(grade)}
+          >{easinessChanges[i] >= 0 ? "+" : ""}{easinessChanges[
+            i
+          ]}</button
         >
       {/each}
     </div>
@@ -134,8 +139,8 @@
     height: 0.5rem;
     background-color: var(--accent);
     border-radius: 50%;
-    right: -0.25rem;
-    top: -0.25rem;
+    right: -0.15rem;
+    top: -0.15rem;
     position: absolute;
     z-index: 1;
   }
