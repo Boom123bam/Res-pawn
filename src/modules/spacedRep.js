@@ -4,7 +4,7 @@ import { Timestamp } from "firebase/firestore";
 
 // ALL percentages are in decimal (e.g. 25% = 0.25)
 
-const maxEasiness = 6;
+const maxEasiness = 8;
 const minsLimit = 5; // mins in the future to look for seqs in
 const defaultEasiness = 1.5;
 const easinessChangeMultiplier = 1.25;
