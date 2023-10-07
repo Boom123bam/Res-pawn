@@ -1,4 +1,4 @@
-// Module containind spaced repetition logic
+// Module containing spaced repetition logic
 
 import { Timestamp } from "firebase/firestore";
 
