@@ -10,48 +10,9 @@
   import { browser } from "$app/environment";
   import { getSetting } from "../modules/localStorage";
 
-  function play(audioBuffer) {
-    if (browser) {
-      let source = context.createBufferSource();
-      source.buffer = audioBuffer;
-      source.connect(context.destination);
-      source.start();
-    }
-  }
-
   let moveBuffer;
   let captureBuffer;
   let context;
-
-  if (browser) {
-    let AudioContext =
-      window.AudioContext || window.webkitAudioContext;
-    context = new AudioContext(); // Make it crossbrowser
-    window
-      .fetch("/sound/capture.mp3")
-      .then((response) => response.arrayBuffer())
-      .then((arrayBuffer) =>
-        context.decodeAudioData(
-          arrayBuffer,
-          (audioBuffer) => {
-            captureBuffer = audioBuffer;
-          },
-          (error) => console.error(error)
-        )
-      );
-    window
-      .fetch("/sound/move.mp3")
-      .then((response) => response.arrayBuffer())
-      .then((arrayBuffer) =>
-        context.decodeAudioData(
-          arrayBuffer,
-          (audioBuffer) => {
-            moveBuffer = audioBuffer;
-          },
-          (error) => console.error(error)
-        )
-      );
-  }
 
   const dispatch = createEventDispatcher();
   let currentSequence = null;
@@ -69,6 +30,7 @@
     lastMove: "e4d5",
     movePlaying: null,
     showIndicatorOnHover: getSetting("showIndicatorOnHover"),
+    soundOn: getSetting("sound"),
   };
   board.board = board.chess.board();
 
@@ -77,6 +39,46 @@
       handleSeqLoad(newSeqData);
     }
   });
+
+  // Audio
+  if (browser) {
+    let AudioContext =
+      window.AudioContext || window.webkitAudioContext;
+    context = new AudioContext(); // Make it crossbrowser
+    window
+      .fetch("/sfx/capture.mp3")
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) =>
+        context.decodeAudioData(
+          arrayBuffer,
+          (audioBuffer) => {
+            captureBuffer = audioBuffer;
+          },
+          (error) => console.error(error)
+        )
+      );
+    window
+      .fetch("/sfx/move.mp3")
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) =>
+        context.decodeAudioData(
+          arrayBuffer,
+          (audioBuffer) => {
+            moveBuffer = audioBuffer;
+          },
+          (error) => console.error(error)
+        )
+      );
+  }
+
+  function playAudio(audioBuffer) {
+    if (browser) {
+      let source = context.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(context.destination);
+      source.start();
+    }
+  }
 
   async function handleSeqLoad(seqData) {
     currentSequence = {
@@ -184,9 +186,11 @@
     useDisplayer = false,
     duration = 0.1
   ) {
-    if (board.chess.get(move.substring(2, 4))) {
-      play(captureBuffer);
-    } else play(moveBuffer);
+    if (board.soundOn) {
+      if (board.chess.get(move.substring(2, 4))) {
+        playAudio(captureBuffer);
+      } else playAudio(moveBuffer);
+    }
 
     // play animation
     board.movePlaying = move;
