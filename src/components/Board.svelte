@@ -68,7 +68,7 @@
     moveToPromote: "",
     lastMove: "e4d5",
     movePlaying: null,
-    showAllSquareNames: getSetting("showAllSquareNames"),
+    showIndicatorOnHover: getSetting("showIndicatorOnHover"),
   };
   board.board = board.chess.board();
 
@@ -393,7 +393,7 @@
                   ? board.movePlaying.substring(2, 4)
                   : null
                 : null}
-              showAllSquareNames={board.showAllSquareNames}
+              showIndicatorOnHover={board.showIndicatorOnHover}
             />
           {/each}
         {/each}

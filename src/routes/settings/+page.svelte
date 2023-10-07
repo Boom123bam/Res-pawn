@@ -7,7 +7,7 @@
   if (!settings) {
     settings = {
       sound: true,
-      showAllSquareNames: false,
+      showIndicatorOnHover: false,
     };
   }
 </script>
@@ -24,11 +24,11 @@
           bind:checked={settings.sound}
         />
         <label for="sound-switch" />
-        <h6>Show all square names</h6>
+        <h6>show indicator on hover</h6>
         <input
           type="checkbox"
           id="squares-switch"
-          bind:checked={settings.showAllSquareNames}
+          bind:checked={settings.showIndicatorOnHover}
         />
         <label for="squares-switch" />
       </fieldset>
