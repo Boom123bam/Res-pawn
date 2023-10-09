@@ -201,8 +201,8 @@
       {:else if !currentSeqID}
         <h2>no puzzles left</h2>
         <button>return to ???</button>
-      {:else}
-        <h3>loading...</h3>
+        <!-- {:else}
+        <h3>loading...</h3> -->
       {/if}
     </div>
   </section>
