@@ -7,6 +7,7 @@
     updateSettings,
   } from "../modules/localStorage";
   import { browser } from "$app/environment";
+  import logo from "$lib/logo.svg";
 
   let showRightMenu = false;
   let showMobileMenu = false;
@@ -32,7 +33,8 @@
 <nav>
   <ul class="desktop">
     <li>
-      <a href="/">
+      <a class="logo" href="/">
+        <img src={logo} alt="ResPawn logo" />
         <h4>ResPawn</h4>
       </a>
     </li>
@@ -112,7 +114,8 @@
 
   <ul class="mobile">
     <li>
-      <a href="/">
+      <a class="logo" href="/">
+        <img src={logo} alt="ResPawn logo" />
         <h4>ResPawn</h4>
       </a>
     </li>
@@ -195,7 +198,7 @@
   }
 
   nav > ul {
-    width: min(95ch, 100% - 3rem);
+    width: min(120ch, 100% - 3rem);
     margin: 0 auto;
     height: 100%;
     padding: 0;
@@ -222,6 +225,26 @@
     text-decoration: none;
     color: var(--text);
     display: block;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .logo img {
+    transition: transform 0.2s;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .logo:hover img {
+    transform: translateY(-0.25rem);
+  }
+
+  .logo h4 {
+    font-size: 1.5rem;
   }
 
   a:has(img) {
