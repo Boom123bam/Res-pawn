@@ -10,6 +10,7 @@
   import { browser } from "$app/environment";
   import { getSetting } from "../modules/localStorage";
 
+  // audio
   let moveBuffer;
   let captureBuffer;
   let context;
@@ -276,12 +277,21 @@
         }
       } else {
         // wrong move
-        board.movesBack = -1;
         board.displayer.load(board.chess.fen());
         resetBoardHighlights(true);
         await movePiece(move, true);
-        currentSequence.failed = board.displayer.fen();
-        currentSequence.stats.timesFailed++;
+        // check if checkmate (somtimes there are 2 answers for the last move)
+        if (board.displayer.isCheckmate()) {
+          currentSequence.finished = true;
+          board.disabled = true;
+          // dispatch event and return stats
+          dispatch("finish", currentSequence.stats);
+          movePiece(move);
+        } else {
+          board.movesBack = -1;
+          currentSequence.failed = board.displayer.fen();
+          currentSequence.stats.timesFailed++;
+        }
       }
       updateBoard();
     } else {
