@@ -171,6 +171,9 @@
   section.hero > .content .buttons button {
     border-radius: var(--br-small);
   }
+  section.bottom-cta {
+    margin-bottom: 0;
+  }
   @media screen and (max-width: 600px) {
     section.hero img.bg {
       position: unset;
