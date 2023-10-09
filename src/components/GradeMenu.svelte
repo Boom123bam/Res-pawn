@@ -5,11 +5,9 @@
 
   const handleMouseMove = (e) => {
     handleMove(e.clientX);
-    console.log("d");
   };
   const handleTouchMove = (e) => {
     handleMove(e.targetTouches[0].pageX);
-    console.log("g");
   };
   onMount(() => {
     window.addEventListener("mouseup", handleMouseUp);
