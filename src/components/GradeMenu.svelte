@@ -3,13 +3,20 @@
   import { createEventDispatcher } from "svelte";
   import Popup from "./Popup.svelte";
 
+  const handleMouseMove = (e) => {
+    handleMove(e.clientX);
+    console.log("d");
+  };
+  const handleTouchMove = (e) => {
+    handleMove(e.targetTouches[0].pageX);
+    console.log("g");
+  };
   onMount(() => {
     window.addEventListener("mouseup", handleMouseUp);
-    window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       // this function is called when the component is destroyed
-      window.removeEventListener("mousemove", handleMouseMove);
+
       window.removeEventListener("mouseup", handleMouseUp);
     };
   });
@@ -21,6 +28,8 @@
 
   // value ranges from 0 to 2
   export let value = 0;
+
+  let slider;
 
   // $: value,
   //   (() => {
@@ -36,11 +45,10 @@
     dispatch("submit", { value, goNext });
   }
 
-  function handleMouseMove(event) {
+  function handleMove(x) {
     if (mouseDown) {
       const componentWidth = slider.clientWidth;
-      const mouseX =
-        event.clientX - slider.getBoundingClientRect().left;
+      const mouseX = x - slider.getBoundingClientRect().left;
 
       // Calculate the mouse position as a percentage
       let intValue = Math.floor((mouseX / componentWidth) * 5);
@@ -51,11 +59,15 @@
   }
   function handleMouseDown(e) {
     mouseDown = true;
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove);
   }
   function handleMouseUp(e) {
     if (mouseDown) {
       mouseDown = false;
       // moveAudio.play();
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
     }
   }
 </script>
@@ -64,7 +76,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 
 <Popup on:close={handleClose}>
-  <div class="slider" id="slider">
+  <div class="slider" bind:this={slider}>
     <div
       class="img-container"
       style={`${mouseDown ? "bottom:1rem" : "bottom: 0"}; left:${
@@ -75,6 +87,8 @@
       <img
         on:mousedown={handleMouseDown}
         on:mouseup={handleMouseUp}
+        on:touchstart={handleMouseDown}
+        on:touchend={handleMouseUp}
         src="/images/queen.png"
         alt="queen slider"
         draggable="false"
