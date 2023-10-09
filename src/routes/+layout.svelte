@@ -38,20 +38,24 @@
   .app {
     display: flex;
     flex-direction: column;
+    height: 100vh;
   }
 
   header {
-    position: fixed;
+    position: sticky;
     z-index: 100;
     width: 100%;
   }
   main {
-    min-height: 100vh;
-    min-height: 100svh;
     margin-inline: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  footer {
+    margin-top: auto;
   }
 </style>

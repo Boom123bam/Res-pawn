@@ -98,18 +98,6 @@ input:focus {
   outline-offset: 0.25rem;
 }
 
-.page-content {
-  width: 100%;
-  padding-top: var(--nav-height);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-.page-content section {
-  width: min(80ch, 100% - 3rem);
-}
-
 button.cta {
   background-color: var(--accent);
   color: var(--secondary);
@@ -236,4 +224,8 @@ button:has(svg) {
   align-items: center;
   justify-content: center;
   width: min-content;
+}
+
+main section {
+  width: min(80ch, 100% - 3rem);
 }
