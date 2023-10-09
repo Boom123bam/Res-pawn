@@ -189,14 +189,14 @@
               <Svg name="doubleRight" color="var(--secondary)" />
             </button>
           </Board>
-          {#if showGradeMenu}
-            <div class="popup-wrapper">
-              <GradeMenu
-                value={grade}
-                on:submit={handleGradeSubmit}
-              />
-            </div>
-          {/if}
+          <!-- {#if showGradeMenu} -->
+          <div
+            class="popup-wrapper"
+            style={`display: ${showGradeMenu ? "block" : "none"};`}
+          >
+            <GradeMenu value={grade} on:submit={handleGradeSubmit} />
+          </div>
+          <!-- {/if} -->
         </div>
       {:else if !currentSeqID}
         <h2>no puzzles left</h2>
