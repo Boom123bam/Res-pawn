@@ -115,6 +115,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
   }
   .square .indicator.col {
     bottom: 0.25em;
