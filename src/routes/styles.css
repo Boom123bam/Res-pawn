@@ -229,3 +229,7 @@ button:has(svg) {
 main section {
   width: min(80ch, 100% - 3rem);
 }
+
+main section:last-child {
+  margin-bottom: 5rem;
+}

@@ -52,7 +52,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem;
   }
 
   footer {
