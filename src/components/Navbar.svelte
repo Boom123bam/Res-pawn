@@ -198,7 +198,7 @@
   }
 
   nav > ul {
-    width: min(120ch, 100% - 3rem);
+    width: min(90ch, 100% - 3rem);
     margin: 0 auto;
     height: 100%;
     padding: 0;
@@ -235,8 +235,8 @@
 
   .logo img {
     transition: transform 0.2s;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   .logo:hover img {
@@ -244,7 +244,7 @@
   }
 
   .logo h4 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   a:has(img) {

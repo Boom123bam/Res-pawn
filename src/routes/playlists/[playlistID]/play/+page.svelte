@@ -211,7 +211,7 @@
   section.main {
     height: calc(100vh - var(--nav-height));
     height: calc(100svh - var(--nav-height));
-    width: min(90ch, 100% - 0.5rem);
+    width: min(75ch, 100% - 0.5rem);
     /* max-height: 100svh; */
     /* overflow: hidden; */
     display: flex;

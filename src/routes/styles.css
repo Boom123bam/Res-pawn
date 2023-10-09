@@ -18,9 +18,9 @@
   --br-small: 0.5rem;
   --shadow: 0.25rem 0.25rem 0 var(--text);
   --icon-size: 1.5rem;
-  --nav-height: 4.5rem;
+  --nav-height: 4rem;
   font-family: var(--font-small);
-  /* font-size: 0.75rem; */
+  font-size: 1.125rem;
 }
 
 body {
@@ -113,6 +113,10 @@ button.ghost {
   padding: 1rem 1.5rem;
 }
 
+button.float {
+  transition: transform 0.1s, background-color 0.1s;
+}
+
 .hide {
   display: none !important;
 }
@@ -192,6 +196,9 @@ button.ghost {
   }
   button.cta:hover {
     background-color: var(--accent-light);
+  }
+  button.float:hover {
+    transform: translateY(-0.25rem);
   }
   .link:hover {
     text-decoration: underline;

@@ -22,7 +22,7 @@
     /* display: flex; */
   }
   .content-wrapper {
-    width: min(80ch, 100% - 3rem);
+    width: min(90ch, 100% - 3rem);
     margin-inline: auto;
     display: flex;
     align-items: center;
