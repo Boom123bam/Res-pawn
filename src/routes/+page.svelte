@@ -3,22 +3,59 @@
 </script>
 
 <svelte:head>
+  <!-- HTML Meta Tags -->
   <title>ResPawn - Practice Chess Pattern Recognition</title>
   <meta
     name="description"
     content="Play puzzles and improve your chess skills by practicing pattern recognition with spaced repetition."
   />
+
+  <!-- Facebook Meta Tags -->
+  <meta
+    property="og:url"
+    content="https://idyllic-faloodeh-8a65c0.netlify.app/"
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:title"
+    content="ResPawn - Practice Chess Pattern Recognition"
+  />
+  <meta
+    property="og:description"
+    content="Play puzzles and improve your chess skills by practicing pattern recognition with spaced repetition."
+  />
+  <meta property="og:image" content="/images/thumbnail.png" />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    property="twitter:domain"
+    content="idyllic-faloodeh-8a65c0.netlify.app"
+  />
+  <meta
+    property="twitter:url"
+    content="https://idyllic-faloodeh-8a65c0.netlify.app/"
+  />
+  <meta
+    name="twitter:title"
+    content="ResPawn - Practice Chess Pattern Recognition"
+  />
+  <meta
+    name="twitter:description"
+    content="Play puzzles and improve your chess skills by practicing pattern recognition with spaced repetition."
+  />
+  <meta name="twitter:image" content="/images/thumbnail.png" />
 </svelte:head>
 
 <section class="hero">
   <div class="content">
     <h1>Recognise Patterns, Fast</h1>
     <h5 class="subheading">
-      Get better at chess with Spaced Repetition
+      Practice pattern recognition with spaced repetition
     </h5>
     <div class="buttons">
       <a href="/playlists">
-        <button class="cta play-now"> play puzzles </button>
+        <button class="cta float play-now"> play puzzles </button>
       </a>
       <button
         on:click={() =>
@@ -26,7 +63,7 @@
             behavior: "smooth",
             block: "nearest",
           })}
-        class="ghost learn-more">learn more</button
+        class="ghost float learn-more">learn more</button
       >
     </div>
   </div>
@@ -129,13 +166,13 @@
 <section class="bottom-cta">
   <h1>Start playing now</h1>
   <a href="/playlists">
-    <button><h3>Browse puzzles</h3></button>
+    <button class="float"><h3>Browse puzzles</h3></button>
   </a>
 </section>
 
 <style>
   section.hero {
-    width: min(80ch, 100% - 3rem);
+    width: min(75ch, 100% - 3rem);
     position: relative;
     min-height: calc(100vh - var(--nav-height));
     min-height: calc(100svh - var(--nav-height));
@@ -207,7 +244,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
-    width: min(100ch, 100% - 5rem);
+    width: min(90ch, 100% - 5rem);
     gap: 3rem;
     z-index: 1;
   }
@@ -266,7 +303,7 @@
   .card:nth-child(4) .black {
     order: 1;
   }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 850px) {
     .features-container {
       grid-template-columns: 1fr;
     }

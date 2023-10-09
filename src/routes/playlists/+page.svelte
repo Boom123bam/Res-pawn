@@ -11,6 +11,10 @@
     name="description"
     content="Chess puzzles playlists for any levels of play. Play puzzles and improve your pattern recognition skills."
   />
+  <meta
+    name="keywords"
+    content="pattern recognition, chess puzzles, practice chess"
+  />
 </svelte:head>
 
 <section>

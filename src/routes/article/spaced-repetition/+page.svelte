@@ -7,6 +7,10 @@
     name="description"
     content="This article explains what spaced repetition is and how to use it to improve your chess game."
   />
+  <meta
+    name="keywords"
+    content="pattern recognition, chess puzzles, practice chess"
+  />
 </svelte:head>
 
 <section>
