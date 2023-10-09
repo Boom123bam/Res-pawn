@@ -225,11 +225,3 @@ button:has(svg) {
   justify-content: center;
   width: min-content;
 }
-
-main section {
-  width: min(80ch, 100% - 3rem);
-}
-
-main section:last-child {
-  margin-bottom: 5rem;
-}

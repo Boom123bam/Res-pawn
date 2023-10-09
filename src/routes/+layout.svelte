@@ -6,6 +6,7 @@
   import { userData } from "./userStore";
   import Footer from "../components/Footer.svelte";
   import { page } from "$app/stores";
+  import "./layout.css";
 
   auth.onAuthStateChanged(function (user) {
     if (user) {
@@ -33,28 +34,3 @@
     </footer>
   {/if}
 </div>
-
-<style>
-  .app {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-
-  header {
-    position: sticky;
-    z-index: 100;
-    width: 100%;
-  }
-  main {
-    margin-inline: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  footer {
-    margin-top: auto;
-  }
-</style>
