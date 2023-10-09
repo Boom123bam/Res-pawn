@@ -12,34 +12,32 @@
   }
 </script>
 
-<div class="page-content">
-  <section>
-    <h3>Settings</h3>
-    <form>
-      <fieldset>
-        <h6>Sound</h6>
-        <input
-          type="checkbox"
-          id="sound-switch"
-          bind:checked={settings.sound}
-        />
-        <label for="sound-switch" />
-        <h6>show square name on hover</h6>
-        <input
-          type="checkbox"
-          id="squares-switch"
-          bind:checked={settings.showIndicatorOnHover}
-        />
-        <label for="squares-switch" />
-      </fieldset>
-      <button
-        type="submit"
-        class="save cta"
-        on:click={() => storeSettings(settings)}>Save Changes</button
-      >
-    </form>
-  </section>
-</div>
+<section>
+  <h3>Settings</h3>
+  <form>
+    <fieldset>
+      <h6>Sound</h6>
+      <input
+        type="checkbox"
+        id="sound-switch"
+        bind:checked={settings.sound}
+      />
+      <label for="sound-switch" />
+      <h6>show square name on hover</h6>
+      <input
+        type="checkbox"
+        id="squares-switch"
+        bind:checked={settings.showIndicatorOnHover}
+      />
+      <label for="squares-switch" />
+    </fieldset>
+    <button
+      type="submit"
+      class="save cta"
+      on:click={() => storeSettings(settings)}>Save Changes</button
+    >
+  </form>
+</section>
 
 <style>
   button.save {

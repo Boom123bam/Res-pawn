@@ -123,95 +123,82 @@
   />
 </svelte:head>
 
-<div class="page-content">
-  <section class="main">
-    {#if showSeqInfoPopup}
-      <div class="popup-wrapper">
-        <Popup on:close={() => (showSeqInfoPopup = false)}>
-          <p>
-            {JSON.stringify($sequenceData, null, 2)}
-          </p>
-        </Popup>
-      </div>
-    {/if}
-    <div class="grid-container">
-      {#if $sequenceData && currentSeqID}
-        <div class="seq-info">
-          <div class="playlist-name">
-            <small class="landscape">playing:</small>
-            <h4>{localPlaylistData.name}</h4>
-            <h6>
-              played {Object.keys(playedSeqsData).includes(
-                currentSeqID
-              )
-                ? playedSeqsData[currentSeqID].timesStudied
-                : "0"} times
-            </h6>
-            <small class="portrait"
-              >rating: {$sequenceData.rating}</small
-            >
-          </div>
-          <div class="puzzle-info landscape">
-            <small>puzzle: {$sequenceData.puzzleId}</small>
-            <h5>rating: {$sequenceData.rating}</h5>
-            <!-- <h5>{JSON.stringify(playedSeqsData)} times played</h5> -->
-          </div>
-          <div class="to-play">
-            {#if $sequenceData.fen.split(" ")[1] === "w"}
-              <img
-                src="/images/pieces/set3/k-b.svg"
-                alt="black king"
-              />
-            {:else}
-              <img
-                src="/images/pieces/set3/k-w.svg"
-                alt="white king"
-              />
-            {/if}
-            <span class="landscape">to play</span>
-          </div>
-          <button
-            class="info"
-            on:click={() => (showSeqInfoPopup = true)}
-          >
-            <Svg name="info" />
-          </button>
-          <!-- <p>themes: {$sequenceData.themes}</p> -->
-        </div>
-        <div class="board-container">
-          <Board on:finish={handleSeqFinish}>
-            <button
-              slot="after"
-              class={`next cta${showBottomNextButton ? "" : " hide"}`}
-              title="next puzzle"
-              on:click={handleNext}
-            >
-              <Svg name="doubleRight" color="var(--secondary)" />
-            </button>
-          </Board>
-          <!-- {#if showGradeMenu} -->
-          <div
-            class="popup-wrapper"
-            style={`display: ${showGradeMenu ? "block" : "none"};`}
-          >
-            <GradeMenu value={grade} on:submit={handleGradeSubmit} />
-          </div>
-          <!-- {/if} -->
-        </div>
-      {:else if !currentSeqID}
-        <h2>no puzzles left</h2>
-        <button>return to ???</button>
-        <!-- {:else}
-        <h3>loading...</h3> -->
-      {/if}
+<section class="main">
+  {#if showSeqInfoPopup}
+    <div class="popup-wrapper">
+      <Popup on:close={() => (showSeqInfoPopup = false)}>
+        <p>
+          {JSON.stringify($sequenceData, null, 2)}
+        </p>
+      </Popup>
     </div>
-  </section>
-</div>
+  {/if}
+  <div class="grid-container">
+    {#if $sequenceData && currentSeqID}
+      <div class="seq-info">
+        <div class="playlist-name">
+          <small class="landscape">playing:</small>
+          <h4>{localPlaylistData.name}</h4>
+          <h6>
+            played {Object.keys(playedSeqsData).includes(currentSeqID)
+              ? playedSeqsData[currentSeqID].timesStudied
+              : "0"} times
+          </h6>
+          <small class="portrait"
+            >rating: {$sequenceData.rating}</small
+          >
+        </div>
+        <div class="puzzle-info landscape">
+          <small>puzzle: {$sequenceData.puzzleId}</small>
+          <h5>rating: {$sequenceData.rating}</h5>
+          <!-- <h5>{JSON.stringify(playedSeqsData)} times played</h5> -->
+        </div>
+        <div class="to-play">
+          {#if $sequenceData.fen.split(" ")[1] === "w"}
+            <img src="/images/pieces/set3/k-b.svg" alt="black king" />
+          {:else}
+            <img src="/images/pieces/set3/k-w.svg" alt="white king" />
+          {/if}
+          <span class="landscape">to play</span>
+        </div>
+        <button
+          class="info"
+          on:click={() => (showSeqInfoPopup = true)}
+        >
+          <Svg name="info" />
+        </button>
+        <!-- <p>themes: {$sequenceData.themes}</p> -->
+      </div>
+      <div class="board-container">
+        <Board on:finish={handleSeqFinish}>
+          <button
+            slot="after"
+            class={`next cta${showBottomNextButton ? "" : " hide"}`}
+            title="next puzzle"
+            on:click={handleNext}
+          >
+            <Svg name="doubleRight" color="var(--secondary)" />
+          </button>
+        </Board>
+        <!-- {#if showGradeMenu} -->
+        <div
+          class="popup-wrapper"
+          style={`display: ${showGradeMenu ? "block" : "none"};`}
+        >
+          <GradeMenu value={grade} on:submit={handleGradeSubmit} />
+        </div>
+        <!-- {/if} -->
+      </div>
+    {:else if !currentSeqID}
+      <h2>no puzzles left</h2>
+      <button>return to ???</button>
+      <!-- {:else}
+        <h3>loading...</h3> -->
+    {/if}
+  </div>
+</section>
 
 <style>
-  .page-content {
-    margin-bottom: 0;
-  }
   .seq-info {
     /* width: 100%; */
     margin-bottom: 0.5rem;

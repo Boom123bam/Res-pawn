@@ -20,34 +20,32 @@
   />
 </svelte:head>
 
-<div class="page-content">
-  <section class="hero-wrapper">
-    <div class="hero tiles-bg">
-      <div class="hero-content-container">
-        <p>Playlist</p>
-        <h1 class="title">{localPlaylistData.name}</h1>
-        {#if localPlaylistData.description}
-          <p class="description">{localPlaylistData.description}</p>
-        {/if}
-        <h3 class="length">
-          {localPlaylistData.sequences.length} puzzles
-        </h3>
-      </div>
+<section class="hero-wrapper">
+  <div class="hero tiles-bg">
+    <div class="hero-content-container">
+      <p>Playlist</p>
+      <h1 class="title">{localPlaylistData.name}</h1>
+      {#if localPlaylistData.description}
+        <p class="description">{localPlaylistData.description}</p>
+      {/if}
+      <h3 class="length">
+        {localPlaylistData.sequences.length} puzzles
+      </h3>
     </div>
-    <a class="play" href={`/playlists/${localPlaylistData.id}/play`}>
-      <button class="cta">play</button>
-    </a>
-  </section>
+  </div>
+  <a class="play" href={`/playlists/${localPlaylistData.id}/play`}>
+    <button class="cta">play</button>
+  </a>
+</section>
 
-  <section class="other-playlists">
-    <h4>Other playlists</h4>
-    <div class="card-grid">
-      {#each playlists as playlist}
-        <PlaylistCard playlistData={playlist} />
-      {/each}
-    </div>
-  </section>
-</div>
+<section class="other-playlists">
+  <h4>Other playlists</h4>
+  <div class="card-grid">
+    {#each playlists as playlist}
+      <PlaylistCard playlistData={playlist} />
+    {/each}
+  </div>
+</section>
 
 <style>
   .hero-wrapper {

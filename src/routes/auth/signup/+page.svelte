@@ -58,46 +58,44 @@
   }
 </script>
 
-<div class="page-content">
-  <section>
-    {#if !$userData}
-      <h3>Sign Up</h3>
+<section>
+  {#if !$userData}
+    <h3>Sign Up</h3>
 
-      {#if errorMessage}
-        <h4 style="color: red;">{errorMessage}</h4>
-      {/if}
-
-      <form>
-        <label for="username">Username:</label>
-        <input type="text" id="username" bind:value={username} />
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" bind:value={email} />
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" bind:value={password} />
-
-        <button
-          type="button"
-          class="cta sign-up"
-          on:click={() => {
-            register(username, email, password);
-          }}>Sign Up</button
-        >
-      </form>
-      <h4>Have an account?</h4>
-      <a href="/auth/signin" class="link">Sign In</a>
-    {:else}
-      <h3>Already signed in</h3>
-      {#if savedProgress}
-        <h5>Progress has been saved</h5>
-      {/if}
-      <a href="/playlists">
-        <button class="cta">go to playlists</button></a
-      >
+    {#if errorMessage}
+      <h4 style="color: red;">{errorMessage}</h4>
     {/if}
-  </section>
-</div>
+
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" bind:value={username} />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" bind:value={email} />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" bind:value={password} />
+
+      <button
+        type="button"
+        class="cta sign-up"
+        on:click={() => {
+          register(username, email, password);
+        }}>Sign Up</button
+      >
+    </form>
+    <h4>Have an account?</h4>
+    <a href="/auth/signin" class="link">Sign In</a>
+  {:else}
+    <h3>Already signed in</h3>
+    {#if savedProgress}
+      <h5>Progress has been saved</h5>
+    {/if}
+    <a href="/playlists">
+      <button class="cta">go to playlists</button></a
+    >
+  {/if}
+</section>
 
 <style>
   h3 {

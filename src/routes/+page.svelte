@@ -10,34 +10,33 @@
   />
 </svelte:head>
 
-<div class="page-content">
-  <section class="hero">
-    <div class="content">
-      <h1>Recognise Patterns, Fast</h1>
-      <h5 class="subheading">
-        Get better at chess with Spaced Repetition
-      </h5>
-      <div class="buttons">
-        <a href="/playlists">
-          <button class="cta play-now"> play puzzles </button>
-        </a>
-        <button
-          on:click={() =>
-            howSection.scrollIntoView({
-              behavior: "smooth",
-              block: "nearest",
-            })}
-          class="ghost learn-more">learn more</button
-        >
-      </div>
+<section class="hero">
+  <div class="content">
+    <h1>Recognise Patterns, Fast</h1>
+    <h5 class="subheading">
+      Get better at chess with Spaced Repetition
+    </h5>
+    <div class="buttons">
+      <a href="/playlists">
+        <button class="cta play-now"> play puzzles </button>
+      </a>
+      <button
+        on:click={() =>
+          howSection.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+          })}
+        class="ghost learn-more">learn more</button
+      >
     </div>
-    <img
-      src={`/images/hero.png`}
-      class="bg"
-      alt="hero"
-      draggable="false"
-    />
-    <!-- <h2>The Science of Spaced Repetition</h2>
+  </div>
+  <img
+    src={`/images/hero.png`}
+    class="bg"
+    alt="hero"
+    draggable="false"
+  />
+  <!-- <h2>The Science of Spaced Repetition</h2>
     <p>
       At the core of ResPawn is the concept of spaced repetition—a
       scientifically proven technique for optimizing memory retention.
@@ -46,102 +45,95 @@
       patterns, you'll sharpen your tactical skills and gain a deeper
       understanding of the game.
     </p> -->
-  </section>
-  <section class="features tiles-bg">
-    <div class="features-container">
-      <div class="feature">
-        <h3>20k+ Puzzles</h3>
-        <p>
-          ResPawn uses the top puzzles from the Lichess puzzles
-          database, so whether you're a novice or an experienced
-          player, there's always a challenge that matches your skill
-          level.
-        </p>
+</section>
+<section class="features tiles-bg">
+  <div class="features-container">
+    <div class="feature">
+      <h3>20k+ Puzzles</h3>
+      <p>
+        ResPawn uses the top puzzles from the Lichess puzzles
+        database, so whether you're a novice or an experienced player,
+        there's always a challenge that matches your skill level.
+      </p>
+    </div>
+    <div class="feature">
+      <h3>Quality over Quantity</h3>
+      <p>
+        Repeating and mastering a select few puzzles is more
+        beneficial than skimming through countless variations.
+      </p>
+    </div>
+    <div class="feature">
+      <h3>Spaced Repetition</h3>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+        impedit culpa adipisci corrupti pariatur mollitia eum
+        dignissimos delectus, aperiam suscipit.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works" bind:this={howSection}>
+  <h2>How it works</h2>
+  <div class="cards-container">
+    <div class="card">
+      <div class="black">
+        <h1>1</h1>
+        <h5>Choose Your Challenge</h5>
       </div>
-      <div class="feature">
-        <h3>Quality over Quantity</h3>
+      <div class="white">
         <p>
-          Repeating and mastering a select few puzzles is more
-          beneficial than skimming through countless variations.
-        </p>
-      </div>
-      <div class="feature">
-        <h3>Spaced Repetition</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Odio impedit culpa adipisci corrupti pariatur mollitia eum
-          dignissimos delectus, aperiam suscipit.
+          Choose from a diverse range of playlists, with various
+          difficulties and themes.
         </p>
       </div>
     </div>
-  </section>
-
-  <section class="how-it-works" bind:this={howSection}>
-    <h2>How it works</h2>
-    <div class="cards-container">
-      <div class="card">
-        <div class="black">
-          <h1>1</h1>
-          <h5>Choose Your Challenge</h5>
-        </div>
-        <div class="white">
-          <p>
-            Choose from a diverse range of playlists, with various
-            difficulties and themes.
-          </p>
-        </div>
+    <div class="card">
+      <div class="black">
+        <h1>2</h1>
+        <h5>Solve Puzzles</h5>
       </div>
-      <div class="card">
-        <div class="black">
-          <h1>2</h1>
-          <h5>Solve Puzzles</h5>
-        </div>
-        <div class="white">
-          <p>
-            Dive into the chess puzzles and put your skills to the
-            test.
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="black">
-          <h1>3</h1>
-          <h5>Rate Your Experience</h5>
-        </div>
-        <div class="white">
-          <p>
-            After each puzzle, provide feedback on its difficulty
-            level.
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="black">
-          <h1>4</h1>
-          <h5>Spaced Repetition</h5>
-        </div>
-        <div class="white">
-          <p>
-            The algorithm determines when to reintroduce puzzles
-            you've solved to enhance your pattern recognition skills.
-          </p>
-        </div>
+      <div class="white">
+        <p>
+          Dive into the chess puzzles and put your skills to the test.
+        </p>
       </div>
     </div>
-  </section>
+    <div class="card">
+      <div class="black">
+        <h1>3</h1>
+        <h5>Rate Your Experience</h5>
+      </div>
+      <div class="white">
+        <p>
+          After each puzzle, provide feedback on its difficulty level.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="black">
+        <h1>4</h1>
+        <h5>Spaced Repetition</h5>
+      </div>
+      <div class="white">
+        <p>
+          The algorithm determines when to reintroduce puzzles you've
+          solved to enhance your pattern recognition skills.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="bottom-cta">
-    <h1>Start playing now</h1>
-    <a href="/playlists">
-      <button><h3>Browse puzzles</h3></button>
-    </a>
-  </section>
-</div>
+<section class="bottom-cta">
+  <h1>Start playing now</h1>
+  <a href="/playlists">
+    <button><h3>Browse puzzles</h3></button>
+  </a>
+</section>
 
 <style>
-  .page-content {
-    margin-bottom: 0;
-  }
   section.hero {
     width: min(80ch, 100% - 3rem);
     position: relative;

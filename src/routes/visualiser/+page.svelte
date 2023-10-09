@@ -66,35 +66,32 @@
   }
 </script>
 
-<div class="page-content">
-  <section>
-    <div class="data">
-      {#each data as dataChunk}
-        <div class="line-segment">
-          <div class="e">
-            {dataChunk.e.toPrecision(7).replace(/\.?0+$/, "")}
-          </div>
-          <div class="change">
-            {dataChunk.change >= 0 ? "+" : ""}{dataChunk.change}
-          </div>
-          <div class="time">{formatTimePeriod(dataChunk.time)}</div>
+<section>
+  <div class="data">
+    {#each data as dataChunk}
+      <div class="line-segment">
+        <div class="e">
+          {dataChunk.e.toPrecision(7).replace(/\.?0+$/, "")}
         </div>
-      {/each}
-    </div>
-    <div class="grade-buttons">
-      {#each grades as grade, i}
-        <button on:click={() => handleChange(grade)}
-          >{easinessChanges[i] >= 0 ? "+" : ""}{easinessChanges[
-            i
-          ]}</button
-        >
-      {/each}
-    </div>
-    <button class="cta reset" on:click={() => (data = [])}
-      >reset</button
-    >
-  </section>
-</div>
+        <div class="change">
+          {dataChunk.change >= 0 ? "+" : ""}{dataChunk.change}
+        </div>
+        <div class="time">{formatTimePeriod(dataChunk.time)}</div>
+      </div>
+    {/each}
+  </div>
+  <div class="grade-buttons">
+    {#each grades as grade, i}
+      <button on:click={() => handleChange(grade)}
+        >{easinessChanges[i] >= 0 ? "+" : ""}{easinessChanges[
+          i
+        ]}</button
+      >
+    {/each}
+  </div>
+  <button class="cta reset" on:click={() => (data = [])}>reset</button
+  >
+</section>
 
 <style>
   section {

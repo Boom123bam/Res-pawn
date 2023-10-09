@@ -13,16 +13,14 @@
   />
 </svelte:head>
 
-<div class="page-content">
-  <section>
-    <h3>Browse Playlists</h3>
-    <div class="card-grid">
-      {#each playlists as playlist}
-        <PlaylistCard playlistData={playlist} />
-      {/each}
-    </div>
-  </section>
-</div>
+<section>
+  <h3>Browse Playlists</h3>
+  <div class="card-grid">
+    {#each playlists as playlist}
+      <PlaylistCard playlistData={playlist} />
+    {/each}
+  </div>
+</section>
 
 <style>
   h3 {

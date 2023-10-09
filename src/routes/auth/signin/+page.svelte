@@ -34,39 +34,37 @@
   }
 </script>
 
-<div class="page-content">
-  <section>
-    {#if !signedIn}
-      <h3>Sign In</h3>
+<section>
+  {#if !signedIn}
+    <h3>Sign In</h3>
 
-      <form>
-        <label for="email">Email:</label>
-        <input type="email" id="email" bind:value={email} />
+    <form>
+      <label for="email">Email:</label>
+      <input type="email" id="email" bind:value={email} />
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" bind:value={password} />
+      <label for="password">Password:</label>
+      <input type="password" id="password" bind:value={password} />
 
-        <button
-          type="button"
-          class="sign-in cta"
-          on:click={handleSignIn}>Sign In</button
-        >
+      <button
+        type="button"
+        class="sign-in cta"
+        on:click={handleSignIn}>Sign In</button
+      >
 
-        {#if errorMessage}
-          <h5 class="error">{errorMessage}</h5>
-        {/if}
-      </form>
-      <h4>Not registered?</h4>
-      <a href="/auth/signup" class="link">Sign Up</a>
-    {:else}
-      <h3>Signed In</h3>
-      {#if savedProgress}
-        <h5>Progress has been saved</h5>
+      {#if errorMessage}
+        <h5 class="error">{errorMessage}</h5>
       {/if}
-      <a href="/"> <button class="cta home">back to home </button></a>
+    </form>
+    <h4>Not registered?</h4>
+    <a href="/auth/signup" class="link">Sign Up</a>
+  {:else}
+    <h3>Signed In</h3>
+    {#if savedProgress}
+      <h5>Progress has been saved</h5>
     {/if}
-  </section>
-</div>
+    <a href="/"> <button class="cta home">back to home </button></a>
+  {/if}
+</section>
 
 <style>
   h3 {
