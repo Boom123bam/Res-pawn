@@ -308,10 +308,12 @@
     display: flex;
     flex-direction: column;
   }
-  .mobile-menu li {
-    padding: 2rem 2rem;
+  .mobile-menu a,
+  .mobile-menu button {
+    padding: 1.5rem 2rem;
   }
   .mobile-menu .user-info {
+    padding: 0 2rem 1rem;
     order: 10;
   }
   .mobile-menu .dark-toggle {
