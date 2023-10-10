@@ -418,12 +418,44 @@
       <div class="buttons">
         <div class="before">
           <!-- <slot name="before" /> -->
+          <!-- <a
+            href={
+            board.movesBack === -1
+              ? `https://www.chess.com/analysis?fen=${
+                  currentSequence.failed
+                }&flip=${
+                  currentSequence.start.split(" ")[1] === "w"
+                }&tab=analysis`
+              : board.movesBack
+              ? `https://www.chess.com/analysis?fen=${board.displayer.fen()}&flip=${
+                  currentSequence.start.split(" ")[1] === "w"
+                }&tab=analysis`
+              : `https://www.chess.com/analysis?fen=${board.chess.fen()}&flip=${
+                  currentSequence.start.split(" ")[1] === "w"
+                }&tab=analysis`
+                }
+            target="_blank"
+          > -->
           <a
             href={board.movesBack === -1
-              ? `https://lichess.org/analysis/standard/${currentSequence.failed}`
+              ? `https://lichess.org/analysis/standard/${
+                  currentSequence.failed
+                }?color=${
+                  currentSequence.start.split(" ")[1] === "w"
+                    ? "black"
+                    : "white"
+                }`
               : board.movesBack
-              ? `https://lichess.org/analysis/standard/${board.displayer.fen()}`
-              : `https://lichess.org/analysis/standard/${board.chess.fen()}`}
+              ? `https://lichess.org/analysis/standard/${board.displayer.fen()}?color=${
+                  currentSequence.start.split(" ")[1] === "w"
+                    ? "black"
+                    : "white"
+                }`
+              : `https://lichess.org/analysis/standard/${board.chess.fen()}?color=${
+                  currentSequence.start.split(" ")[1] === "w"
+                    ? "black"
+                    : "white"
+                }`}
             target="_blank"
           >
             <button class="analyze" title="analyze in lichess"
