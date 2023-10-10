@@ -273,6 +273,9 @@
   }
 
   @media screen and (orientation: portrait) {
+    section.main {
+      padding: 0.5rem 0;
+    }
     .portrait {
       display: block;
     }
