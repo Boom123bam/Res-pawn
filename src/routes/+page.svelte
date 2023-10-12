@@ -445,12 +445,16 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
     padding: 6rem 0;
     align-items: center;
     border-top: var(--border);
     text-align: center;
     padding-inline: 1.5rem;
+  }
+
+  section.bottom-cta h1 {
+    margin-bottom: 1.5rem;
   }
 
   section.bottom-cta button {
