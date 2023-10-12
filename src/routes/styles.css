@@ -227,10 +227,6 @@ body.dark {
   --shadow-down: none;
 }
 
-/*playlist card*/
-body.dark .top-banner {
-  color: black;
-}
 body.dark .tiles-bg {
   color: black;
   background-color: var(--secondary);

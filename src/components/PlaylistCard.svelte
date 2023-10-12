@@ -56,6 +56,11 @@
     border-top-left-radius: var(--br);
     padding: 0.75rem 1.75rem;
   }
+
+  :global(body.dark) .top-banner {
+    color: black;
+  }
+
   .content {
     padding: 1.5rem 1.75rem;
   }

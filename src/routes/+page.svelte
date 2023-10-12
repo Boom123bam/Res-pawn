@@ -386,7 +386,7 @@
     overflow: hidden;
     aspect-ratio: 2;
     text-align: center;
-    transition: 0.1s;
+    transition: transform 0.1s, box-shadow 0.1s, opacity 0.5s;
   }
   .card .black,
   .card .white {
@@ -401,6 +401,14 @@
   }
   .card .white {
     background-color: var(--secondary);
+  }
+  :global(body.dark) .card .black {
+    background-color: var(--secondary);
+    color: var(--text);
+  }
+  :global(body.dark) .card .white {
+    background-color: var(--text);
+    color: var(--secondary);
   }
   .third.card .black,
   .fourth.card .black {
@@ -424,9 +432,14 @@
     }
   }
 
+  .cards-container:hover .card {
+    opacity: 0.25;
+  }
+
   .card:hover {
-    transform: translateY(-0.25rem);
+    transform: translateY(-0.25rem) scale(1.02);
     box-shadow: var(--shadow-down);
+    opacity: 1 !important;
   }
 
   section.bottom-cta {
@@ -449,6 +462,14 @@
     border-radius: var(--br-small);
   }
   section.bottom-cta button:hover {
+    background-color: var(--dark-gray);
+  }
+
+  :global(body.dark) section.bottom-cta button {
+    background-color: var(--secondary);
+    color: var(--text);
+  }
+  :global(body.dark) section.bottom-cta button:hover {
     background-color: var(--dark-gray);
   }
 </style>
