@@ -21,7 +21,7 @@
 </svelte:head>
 
 <section class="hero-wrapper">
-  <div class="hero tiles-bg">
+  <div class="hero tiles-bg invert">
     <div class="hero-content-container">
       <p>Playlist</p>
       <h1 class="title">{localPlaylistData.name}</h1>
@@ -60,7 +60,7 @@
   }
   .hero-content-container {
     border: 1px solid var(--secondary);
-    background-color: var(--text);
+    background-color: inherit;
     z-index: 5;
     padding: 3rem 2.5rem;
     width: min(80%, 60rem);
