@@ -1,0 +1,155 @@
+<div class="container-container-container">
+  <div class="container-container">
+    <div class="container">
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+      <div class="tile dark" />
+      <div class="tile" />
+    </div>
+  </div>
+</div>
+
+<style>
+  .container-container-container {
+    width: 30rem;
+    height: 15rem;
+    perspective: 1000;
+    -webkit-perspective: 1000;
+    perspective-origin: bottom;
+  }
+
+  .container-container {
+    padding: 15%;
+    transform-origin: top;
+    transform: rotatex(60deg);
+    transition: 1s;
+    width: 100%;
+    height: 200%;
+    transform-style: preserve-3d;
+  }
+
+  .container {
+    /*   transform: rotate(45deg); */
+    animation: rotation 20s linear infinite;
+    border: 1rem solid var(--text);
+    background-color: var(--primary);
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    transform-style: preserve-3d;
+  }
+
+  :global(body.dark) .container {
+    border-color: var(--secondary);
+  }
+
+  .tile {
+    transition: 3s;
+    background: var(--secondary);
+  }
+  .tile.dark {
+    background: var(--text);
+  }
+  .tile:hover {
+    transition: 0.1s;
+    transform: translate3d(0, 0, 0.25rem);
+    background: lightblue !important;
+  }
+
+  @keyframes rotation {
+    0% {
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .container-container-container {
+      width: 20rem;
+      height: 10rem;
+      perspective: 1000;
+      -webkit-perspective: 1000;
+      perspective-origin: bottom;
+    }
+  }
+</style>

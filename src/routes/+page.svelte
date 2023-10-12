@@ -1,6 +1,7 @@
 <script>
   let howSection; // binds to html of 'how this works section'
   import Saos from "saos";
+  import ChessBoard3d from "../components/ChessBoard3d.svelte";
 </script>
 
 <svelte:head>
@@ -220,7 +221,13 @@
   <h1>Start playing now</h1>
 
   <Saos
-    animation={"fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275); 0.1s both"}
+    animation={"fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.1s both"}
+  >
+    <ChessBoard3d />
+  </Saos>
+
+  <Saos
+    animation={"fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275) both"}
     animation_out={"fade-out-down 0.25s both"}
     top={100}
   >
@@ -438,7 +445,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 2.5rem;
     padding: 6rem 0;
     align-items: center;
     border-top: var(--border);
