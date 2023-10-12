@@ -4,7 +4,7 @@
     getSeqData,
     updateUserSeqData,
   } from "../../../../modules/firebase";
-  import { sequenceData } from "../../../../components/boardStore";
+  import { sequenceData } from "../../../../stores/boardStore";
   import {
     estimateGrade,
     getNextSeq,

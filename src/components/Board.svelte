@@ -1,7 +1,7 @@
 <script>
   import { Chess } from "chess.js";
   import Square from "./Square.svelte";
-  import { sequenceData } from "./boardStore";
+  import { sequenceData } from "../stores/boardStore";
   import "./Board.css";
   import Promotion from "./Promotion.svelte";
   import { createEventDispatcher } from "svelte";
