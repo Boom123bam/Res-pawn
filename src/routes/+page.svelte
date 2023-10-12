@@ -1,5 +1,6 @@
 <script>
-  let howSection;
+  let howSection; // binds to html of 'how this works section'
+  import Saos from "saos";
 </script>
 
 <svelte:head>
@@ -49,10 +50,17 @@
 
 <section class="hero">
   <div class="content">
-    <h1>Recognise Patterns, Fast</h1>
-    <h5 class="subheading">
-      Practice pattern recognition with spaced repetition
-    </h5>
+    <Saos animation={"slide-left 0.25s"}>
+      <h1>Recognise Patterns, Fast</h1>
+    </Saos>
+    <Saos
+      animation={"slide-left 0.25s 0.1s forwards"}
+      css_animation={"opacity:0;"}
+    >
+      <h5 class="subheading">
+        Practice pattern recognition with spaced repetition
+      </h5>
+    </Saos>
     <div class="buttons">
       <a href="/playlists">
         <button class="cta float play-now"> play puzzles </button>
@@ -83,94 +91,191 @@
       understanding of the game.
     </p> -->
 </section>
-<section class="features tiles-bg">
+<section class="features tiles-bg invert">
   <div class="features-container">
-    <div class="feature">
-      <h3>20k+ Puzzles</h3>
-      <p>
-        ResPawn uses the top puzzles from the Lichess puzzles
-        database, so whether you're a novice or an experienced player,
-        there's always a challenge that matches your skill level.
-      </p>
-    </div>
-    <div class="feature">
-      <h3>Quality over Quantity</h3>
-      <p>
-        Repeating and mastering a select few puzzles is more
-        beneficial than skimming through countless variations.
-      </p>
-    </div>
-    <div class="feature">
-      <h3>Spaced Repetition</h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
-        impedit culpa adipisci corrupti pariatur mollitia eum
-        dignissimos delectus, aperiam suscipit.
-      </p>
-    </div>
+    <Saos
+      animation={"slide-left 0.25s 0s both"}
+      animation_out={"fade-out-down 0.25s both"}
+      top={100}
+    >
+      <div class="feature">
+        <h3>20k+ Puzzles</h3>
+        <p>
+          ResPawn uses the top puzzles from the Lichess puzzles
+          database, so whether you're a novice or an experienced
+          player, there's always a challenge that matches your skill
+          level.
+        </p>
+      </div>
+    </Saos>
+    <Saos
+      animation={"slide-left 0.25s 0.1s both"}
+      animation_out={"fade-out-down 0.25s both"}
+      top={100}
+    >
+      <div class="feature">
+        <h3>Quality over Quantity</h3>
+        <p>
+          Repeating and mastering a select few puzzles is more
+          beneficial than skimming through countless variations.
+        </p>
+      </div>
+    </Saos>
+    <Saos
+      animation={"slide-left 0.25s 0.2s both"}
+      animation_out={"fade-out-down 0.25s both"}
+      top={100}
+    >
+      <div class="feature">
+        <h3>Spaced Repetition</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Odio impedit culpa adipisci corrupti pariatur mollitia eum
+          dignissimos delectus, aperiam suscipit.
+        </p>
+      </div>
+    </Saos>
   </div>
 </section>
 
 <section class="how-it-works" bind:this={howSection}>
   <h2>How it works</h2>
   <div class="cards-container">
-    <div class="card">
-      <div class="black">
-        <h1>1</h1>
-        <h5>Choose Your Challenge</h5>
+    <Saos
+      animation={"scale 0.25s 0s both"}
+      animation_out={"fade-out-down 0.25s 0.1s both"}
+      top={100}
+    >
+      <div class="card first">
+        <div class="black invert">
+          <h1>1</h1>
+          <h5>Choose Your Challenge</h5>
+        </div>
+        <div class="white">
+          <p>
+            Choose from a diverse range of playlists, with various
+            difficulties and themes.
+          </p>
+        </div>
       </div>
-      <div class="white">
-        <p>
-          Choose from a diverse range of playlists, with various
-          difficulties and themes.
-        </p>
+    </Saos>
+    <Saos
+      animation={"scale 0.25s 0.1s both"}
+      animation_out={"fade-out-down 0.25s both"}
+      top={100}
+    >
+      <div class="card second">
+        <div class="black invert">
+          <h1>2</h1>
+          <h5>Solve Puzzles</h5>
+        </div>
+        <div class="white">
+          <p>
+            Dive into the chess puzzles and put your skills to the
+            test.
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="black">
-        <h1>2</h1>
-        <h5>Solve Puzzles</h5>
+    </Saos>
+    <Saos
+      animation={"scale 0.25s 0s both"}
+      animation_out={"fade-out-down 0.25s 0.1s both"}
+      top={100}
+    >
+      <div class="card third">
+        <div class="black invert">
+          <h1>3</h1>
+          <h5>Rate Your Experience</h5>
+        </div>
+        <div class="white">
+          <p>
+            After each puzzle, provide feedback on its difficulty
+            level.
+          </p>
+        </div>
       </div>
-      <div class="white">
-        <p>
-          Dive into the chess puzzles and put your skills to the test.
-        </p>
+    </Saos>
+    <Saos
+      animation={"scale 0.25s 0.1s both"}
+      animation_out={"fade-out-down 0.25s both"}
+      top={100}
+    >
+      <div class="card fourth">
+        <div class="black invert">
+          <h1>4</h1>
+          <h5>Spaced Repetition</h5>
+        </div>
+        <div class="white">
+          <p>
+            The algorithm determines when to reintroduce puzzles
+            you've solved to enhance your pattern recognition skills.
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="black">
-        <h1>3</h1>
-        <h5>Rate Your Experience</h5>
-      </div>
-      <div class="white">
-        <p>
-          After each puzzle, provide feedback on its difficulty level.
-        </p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="black">
-        <h1>4</h1>
-        <h5>Spaced Repetition</h5>
-      </div>
-      <div class="white">
-        <p>
-          The algorithm determines when to reintroduce puzzles you've
-          solved to enhance your pattern recognition skills.
-        </p>
-      </div>
-    </div>
+    </Saos>
   </div>
 </section>
 
 <section class="bottom-cta">
   <h1>Start playing now</h1>
-  <a href="/playlists">
-    <button class="float"><h3>Browse puzzles</h3></button>
-  </a>
+
+  <Saos
+    animation={"fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275); 0.1s both"}
+    animation_out={"fade-out-down 0.25s both"}
+    top={100}
+  >
+    <a href="/playlists">
+      <button class="float"><h3>Browse puzzles</h3></button>
+    </a>
+  </Saos>
 </section>
 
 <style>
+  @keyframes -global-slide-left {
+    0% {
+      transform: translateX(-5rem) skewX(-5deg);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) skewX(0deg);
+      opacity: 100;
+    }
+  }
+  @keyframes -global-scale {
+    0% {
+      transform: scale(0.7) rotate(5deg);
+      opacity: 0;
+    }
+    100% {
+      transform: none;
+      opacity: 100;
+    }
+  }
+  @keyframes -global-fade-in-up {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(5rem);
+      transform: translateY(5rem) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  @keyframes -global-fade-out-down {
+    0% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+    100% {
+      opacity: 0;
+      -webkit-transform: translateY(5rem);
+      transform: translateY(5rem);
+    }
+  }
+
   section.hero {
     width: min(75ch, 100% - 3rem);
     position: relative;
@@ -293,14 +398,12 @@
   .card .black {
     flex-direction: column;
     gap: 0.5rem;
-    background-color: var(--text);
-    color: var(--secondary);
   }
   .card .white {
     background-color: var(--secondary);
   }
-  .card:nth-child(3) .black,
-  .card:nth-child(4) .black {
+  .third.card .black,
+  .fourth.card .black {
     order: 1;
   }
   @media screen and (max-width: 850px) {
@@ -313,17 +416,17 @@
       grid-template-columns: 1fr;
     }
 
-    .card:nth-child(2) .black {
+    .second.card .black {
       order: 1;
     }
-    .card:nth-child(3) .black {
+    .third.card .black {
       order: 0;
     }
   }
 
   .card:hover {
     transform: translateY(-0.25rem);
-    box-shadow: 0 0.25rem;
+    box-shadow: var(--shadow-down);
   }
 
   section.bottom-cta {
