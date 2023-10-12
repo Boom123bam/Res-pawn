@@ -107,7 +107,7 @@
   .container {
     /*   transform: rotate(45deg); */
     animation: rotation 20s linear infinite;
-    border: 1rem solid var(--text);
+    border: 0.75rem solid var(--text);
     background-color: var(--primary);
     width: 100%;
     height: 100%;
@@ -143,13 +143,20 @@
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 750px) {
+    .container-container-container {
+      width: 26rem;
+      height: 13rem;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .container {
+      border: 0.5rem solid var(--text);
+    }
+
     .container-container-container {
       width: 20rem;
       height: 10rem;
-      perspective: 1000;
-      -webkit-perspective: 1000;
-      perspective-origin: bottom;
     }
   }
 </style>
