@@ -17,6 +17,7 @@
   --br: 1rem;
   --br-small: 0.5rem;
   --shadow: 0.25rem 0.25rem 0 var(--text);
+  --shadow-down: 0 0.25rem 0 var(--text);
   --icon-size: 1.5rem;
   --nav-height: 4rem;
   font-family: var(--font-small);
@@ -136,8 +137,6 @@ button.float {
 .tiles-bg {
   position: relative;
   overflow: hidden;
-  background-color: var(--text);
-  color: var(--secondary);
 }
 .tiles-bg:before {
   content: "";
@@ -162,6 +161,11 @@ button.float {
 .icon {
   width: var(--icon-size);
   height: var(--icon-size);
+}
+
+.invert {
+  background-color: var(--text);
+  color: var(--secondary);
 }
 
 @media screen and (max-width: 700px) {
@@ -190,6 +194,12 @@ button.float {
   }
 }
 
+@media screen and (max-width: 500px) {
+  :root {
+    font-size: 1rem;
+  }
+}
+
 @media (hover: hover) {
   button.ghost:hover {
     background-color: rgba(0, 0, 0, 0.05);
@@ -213,11 +223,20 @@ body.dark {
   --accent2: #ac8282;
   --border: 1px solid #555;
   --primary: #68647d;
-  --shadow: 0.25rem 0.25rem 0 var(--text);
+  --shadow: none;
+  --shadow-down: none;
 }
+
 /*playlist card*/
 body.dark .top-banner {
   color: black;
+}
+body.dark .tiles-bg {
+  color: black;
+  background-color: var(--secondary);
+  color: var(--text);
+  border-top: var(--border);
+  border-bottom: var(--border);
 }
 
 /* @media screen and (max-width: 400px) {
