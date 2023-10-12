@@ -29,15 +29,17 @@
     gap: 3rem;
     padding: 2.5rem 0;
   }
-  .content-wrapper a:hover {
-    text-decoration: underline;
-  }
   .contact {
     margin-left: auto;
     text-align: right;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+  }
+  @media (hover: hover) {
+    .content-wrapper a:hover {
+      text-decoration: underline;
+    }
   }
   @media screen and (max-width: 600px) {
     .content-wrapper {

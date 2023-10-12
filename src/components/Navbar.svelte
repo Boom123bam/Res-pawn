@@ -207,8 +207,7 @@
     align-items: center;
     gap: 4rem;
   }
-  nav > ul li[aria-current="page"],
-  nav > ul a:hover {
+  nav > ul li[aria-current="page"] {
     text-decoration: underline;
   }
   nav > ul li {
@@ -239,8 +238,13 @@
     height: 1.5rem;
   }
 
-  .logo:hover img {
-    transform: translateY(-0.25rem);
+  @media (hover: hover) {
+    .logo:hover img {
+      transform: translateY(-0.25rem);
+    }
+    nav > ul a:hover {
+      text-decoration: underline;
+    }
   }
 
   .logo h4 {

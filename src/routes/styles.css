@@ -213,6 +213,27 @@ button.float {
   .link:hover {
     text-decoration: underline;
   }
+  /* 
+  .link-animation {
+    position: relative;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .link-animation:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 5%;
+    background-color: var(--text);
+    bottom: 0;
+    transition: 0.5s;
+  }
+
+  .link-animation:hover:before {
+    width: 100%;
+  } */
 }
 
 body.dark {

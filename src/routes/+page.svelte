@@ -432,16 +432,6 @@
     }
   }
 
-  .cards-container:hover .card {
-    opacity: 0.25;
-  }
-
-  .card:hover {
-    transform: translateY(-0.25rem) scale(1.02);
-    box-shadow: var(--shadow-down);
-    opacity: 1 !important;
-  }
-
   section.bottom-cta {
     background-color: var(--accent);
     color: var(--secondary);
@@ -461,15 +451,27 @@
     padding: 1.3rem 2.5rem;
     border-radius: var(--br-small);
   }
-  section.bottom-cta button:hover {
-    background-color: var(--dark-gray);
-  }
 
   :global(body.dark) section.bottom-cta button {
     background-color: var(--secondary);
     color: var(--text);
   }
-  :global(body.dark) section.bottom-cta button:hover {
-    background-color: var(--dark-gray);
+
+  @media (hover: hover) {
+    .cards-container:hover .card {
+      opacity: 0.25;
+    }
+
+    .card:hover {
+      transform: translateY(-0.25rem) scale(1.02);
+      box-shadow: var(--shadow-down);
+      opacity: 1 !important;
+    }
+    section.bottom-cta button:hover {
+      background-color: var(--dark-gray);
+    }
+    :global(body.dark) section.bottom-cta button:hover {
+      background-color: var(--dark-gray);
+    }
   }
 </style>
