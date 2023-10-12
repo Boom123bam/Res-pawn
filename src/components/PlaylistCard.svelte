@@ -39,7 +39,7 @@
 
 <style>
   .card {
-    box-shadow: 0 0.25rem 0 var(--text);
+    box-shadow: var(--shadow-down);
     border: var(--border);
     border-radius: var(--br);
     background-color: var(--secondary);
@@ -92,7 +92,7 @@
 
   @media (hover: hover) {
     .card:hover {
-      box-shadow: 0 0 0;
+      box-shadow: none;
       transform: translateY(0.25rem);
     }
 
