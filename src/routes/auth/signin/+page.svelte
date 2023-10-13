@@ -56,7 +56,7 @@
       {/if}
     </form>
     <h4>Not registered?</h4>
-    <a href="/auth/signup" class="link">Sign Up</a>
+    <a href="/auth/signup" class="link color">Sign Up</a>
   {:else}
     <h3>Signed In</h3>
     {#if savedProgress}
