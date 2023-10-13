@@ -1,54 +1,54 @@
+<script>
+  import Svg from "./Svg.svelte";
+</script>
+
 <section class="footer">
-  <div class="content-wrapper">
-    <a href="/">
-      <h3 class="logo">ResPawn</h3>
+  <div class="logos">
+    <a href="https://github.com/Boom123bam/ResPawn" target="_blank">
+      <Svg name="github" color="var(--text)" size="2.5rem" />
     </a>
-    <a href="/">
+    <a href="https://discord.gg/b83Mkaghtb" target="_blank">
+      <Svg name="discord" color="var(--text)" size="2.5rem" />
+    </a>
+  </div>
+  <div class="links">
+    <h3>Links</h3>
+    <a class="link" href="/">
       <h5>home</h5>
     </a>
-    <a href="/playlists">
+    <a class="link" href="/playlists">
       <h5>browse</h5>
     </a>
-    <div class="contact">
-      <h4>Contact</h4>
-      <h5>name@email.com</h5>
-    </div>
+    <a class="link" href="/article/spaced-repetition">
+      <h5>about spaced repetition</h5>
+    </a>
+  </div>
+  <div class="contact">
+    contact: <a class="link" href="mailto:webmaster@example.com"
+      >name@email.com</a
+    >
   </div>
 </section>
 
 <style>
-  section.footer {
-    border-top: var(--border);
-    /* display: flex; */
-  }
-  .content-wrapper {
-    width: min(90ch, 100% - 3rem);
-    margin-inline: auto;
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    padding: 2.5rem 0;
-  }
-  .contact {
-    margin-left: auto;
-    text-align: right;
+  section.footer,
+  .links {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    align-items: center;
   }
-  @media (hover: hover) {
-    .content-wrapper a:hover {
-      text-decoration: underline;
-    }
+  section.footer {
+    gap: 2.75rem;
+    margin: 5rem 0;
   }
-  @media screen and (max-width: 600px) {
-    .content-wrapper {
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .contact {
-      text-align: center;
-      margin-left: unset;
-    }
+  .logos {
+    display: flex;
+    gap: 1.75rem;
+  }
+  .links {
+    gap: 1rem;
+  }
+  .contact a {
+    font-weight: 700;
   }
 </style>
