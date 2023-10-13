@@ -103,6 +103,10 @@ input:focus {
   outline-offset: 0.25rem;
 }
 
+b {
+  font-weight: 700;
+}
+
 button.cta {
   background-color: var(--accent);
   color: var(--secondary);
@@ -141,6 +145,8 @@ button.float {
 .tiles-bg {
   position: relative;
   overflow: hidden;
+  border-top: var(--border);
+  border-bottom: var(--border);
 }
 .tiles-bg:before {
   content: "";
@@ -155,6 +161,12 @@ button.float {
   opacity: 0.1;
   transform: translate(-50%, -50%) rotate(45deg);
 }
+body.dark .tiles-bg {
+  color: black;
+  background-color: var(--secondary);
+  color: var(--text);
+}
+
 .mobile {
   display: none;
 }
@@ -250,14 +262,6 @@ body.dark {
   --primary: #68647d;
   --shadow: none;
   --shadow-down: none;
-}
-
-body.dark .tiles-bg {
-  color: black;
-  background-color: var(--secondary);
-  color: var(--text);
-  border-top: var(--border);
-  border-bottom: var(--border);
 }
 
 /* @media screen and (max-width: 400px) {
