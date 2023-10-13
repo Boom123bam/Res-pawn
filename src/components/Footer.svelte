@@ -47,7 +47,8 @@
   }
   section.footer {
     gap: 2.75rem;
-    margin: 5rem 0;
+    padding: 5rem 0;
+    border-top: var(--border);
   }
   .logos {
     display: flex;
