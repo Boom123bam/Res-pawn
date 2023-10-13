@@ -59,7 +59,10 @@
       css_animation={"opacity:0;"}
     >
       <h5 class="subheading">
-        Practice pattern recognition with spaced repetition
+        Practice pattern recognition with <a
+          class="link color"
+          href="/article/spaced-repetition">spaced repetition</a
+        > by playing puzzles!
       </h5>
     </Saos>
     <div class="buttons">
