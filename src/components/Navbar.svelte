@@ -96,13 +96,13 @@
               Sign In to save progress</button
             >
           {:else}
-            <button class="cta sign-in"> Sign In </button>
+            <button class="cta sign-in float"> Sign In </button>
           {/if}
         </a>
       </li>
     {/if}
     <li class="dark-toggle" title="toggle dark mode">
-      <button on:click={toggleDarkmode}>
+      <button class="float" on:click={toggleDarkmode}>
         {#if theme == "dark"}
           <Svg name="sun" />
         {:else}

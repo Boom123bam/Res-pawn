@@ -122,7 +122,7 @@ button.ghost {
   padding: 1rem 1.5rem;
 }
 
-button.float {
+.float {
   transition: transform 0.1s, background-color 0.1s;
 }
 
@@ -223,7 +223,7 @@ body.dark .tiles-bg {
   button.cta:hover {
     background-color: var(--accent-light);
   }
-  button.float:hover {
+  .float:hover {
     transform: translateY(-0.25rem);
   }
   .link:hover {
