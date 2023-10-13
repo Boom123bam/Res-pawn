@@ -4,10 +4,18 @@
 
 <section class="footer">
   <div class="logos">
-    <a href="https://github.com/Boom123bam/ResPawn" target="_blank">
+    <a
+      class="float"
+      href="https://github.com/Boom123bam/ResPawn"
+      target="_blank"
+    >
       <Svg name="github" color="var(--text)" size="2.5rem" />
     </a>
-    <a href="https://discord.gg/b83Mkaghtb" target="_blank">
+    <a
+      class="float"
+      href="https://discord.gg/b83Mkaghtb"
+      target="_blank"
+    >
       <Svg name="discord" color="var(--text)" size="2.5rem" />
     </a>
   </div>
@@ -24,8 +32,8 @@
     </a>
   </div>
   <div class="contact">
-    contact: <a class="link" href="mailto:webmaster@example.com"
-      >name@email.com</a
+    contact: <a class="link" href="mailto:brandon.tgchf@gmail.com"
+      >brandon.tgchf@gmail.com</a
     >
   </div>
 </section>
