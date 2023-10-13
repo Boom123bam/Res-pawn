@@ -330,7 +330,7 @@
   section.bottom-cta {
     margin-bottom: 0;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     section.hero img.bg {
       position: unset;
       width: 150%;
