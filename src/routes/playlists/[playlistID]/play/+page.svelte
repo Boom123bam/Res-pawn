@@ -127,9 +127,28 @@
   {#if showSeqInfoPopup}
     <div class="popup-wrapper">
       <Popup on:close={() => (showSeqInfoPopup = false)}>
-        <p>
-          {JSON.stringify($sequenceData, null, 2)}
-        </p>
+        <div class="info-popup-data">
+          <p>
+            <b>id</b>: {$sequenceData.puzzleId}
+          </p>
+          <p>
+            <b>themes</b>: {$sequenceData.themes}
+          </p>
+          <p>
+            <b>rating</b>: {$sequenceData.rating}
+          </p>
+          <p>
+            <b>rating deviation</b>: {$sequenceData.ratingDeviation}
+          </p>
+          <p>
+            <b>game URL</b>: {$sequenceData.gameUrl}
+          </p>
+          {#if $sequenceData.openingTags}
+            <p>
+              <b>opening tags</b>: {$sequenceData.openingTags}
+            </p>
+          {/if}
+        </div>
       </Popup>
     </div>
   {/if}
@@ -151,7 +170,6 @@
         <div class="puzzle-info landscape">
           <small>puzzle: {$sequenceData.puzzleId}</small>
           <h5>rating: {$sequenceData.rating}</h5>
-          <!-- <h5>{JSON.stringify(playedSeqsData)} times played</h5> -->
         </div>
         <div class="to-play">
           {#if $sequenceData.fen.split(" ")[1] === "w"}
@@ -167,7 +185,6 @@
         >
           <Svg name="info" />
         </button>
-        <!-- <p>themes: {$sequenceData.themes}</p> -->
       </div>
       <div class="board-container">
         <Board on:finish={handleSeqFinish}>
@@ -191,7 +208,7 @@
       </div>
     {:else if !currentSeqID}
       <h2>no puzzles left</h2>
-      <button>return to ???</button>
+      <!-- <button>return to ???</button> -->
       <!-- {:else}
         <h3>loading...</h3> -->
     {/if}
@@ -199,6 +216,11 @@
 </section>
 
 <style>
+  .info-popup-data {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
   .seq-info {
     /* width: 100%; */
     margin-bottom: 0.5rem;
