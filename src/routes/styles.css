@@ -158,7 +158,7 @@ button.float {
 .mobile {
   display: none;
 }
-.link {
+.link.color {
   color: var(--accent);
 }
 

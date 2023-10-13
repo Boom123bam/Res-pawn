@@ -85,7 +85,7 @@
       >
     </form>
     <h4>Have an account?</h4>
-    <a href="/auth/signin" class="link">Sign In</a>
+    <a href="/auth/signin" class="link color">Sign In</a>
   {:else}
     <h3>Already signed in</h3>
     {#if savedProgress}
