@@ -306,6 +306,9 @@
     object-position: top;
     z-index: -1;
   }
+  :global(body.dark) section.hero img.bg {
+    opacity: 0.75;
+  }
   section.hero > .content {
     display: flex;
     flex-direction: column;
