@@ -69,7 +69,6 @@
       <button
         on:click={() =>
           howSection.scrollIntoView({
-            behavior: "smooth",
             block: "nearest",
           })}
         class="ghost float learn-more">learn more</button
@@ -223,7 +222,9 @@
   <Saos
     animation={"fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.1s both"}
   >
-    <ChessBoard3d />
+    <div class="chess-board-container">
+      <ChessBoard3d />
+    </div>
   </Saos>
 
   <Saos
