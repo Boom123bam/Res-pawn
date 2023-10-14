@@ -120,9 +120,8 @@
       <div class="feature">
         <h3>Spaced Repetition</h3>
         <p>
-          After a puzzle is played, you will provide a rating on how
-          challenging the puzzle was. ResPawn uses a spaced repetition
-          algorithm to determine the next time the puzzle appears.
+          A spaced repetition algorithm is used to determine when the
+          optimal time to present you with each puzzle is.
         </p>
       </div>
     </Saos>
@@ -219,25 +218,42 @@
       </div>
     </Saos>
   </div>
-  <ExpandableCard title="What is spaced repetition?">
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-      quidem laborum nisi quis, maxime iste libero, repellendus
-      cupiditate hic quod, excepturi quibusdam sint? Eos quo cum aut
-      velit natus sunt necessitatibus animi est vitae, voluptas
-      tempora beatae nobis soluta voluptatibus quae nihil. In
-      distinctio voluptatem optio nulla sapiente esse commodi.
-    </p>
+  <ExpandableCard title="What is Spaced Repetition?">
+    <div class="dropdown-content">
+      <img src="/images/SRgraph.png" alt="spaced repetition graph" />
+      <span><i>graph of spaced repetition</i></span>
+
+      <p>
+        Spaced Repetition is a learning technique that enhances memory
+        retention through review and repetition of material over
+        increasing intervals of time (shown by the graph above). This
+        makes learning more effective and efficient. It is widely used
+        in various educational contexts to maximize the efficiency of
+        study and training.
+      </p>
+      <p>
+        <a class="link color" href="/article/spaced-repetition"
+          >learn more about Spaced Repetition</a
+        >
+      </p>
+    </div>
   </ExpandableCard>
-  <ExpandableCard title="How does ResPawn use Spaced repetition?">
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-      quidem laborum nisi quis, maxime iste libero, repellendus
-      cupiditate hic quod, excepturi quibusdam sint? Eos quo cum aut
-      velit natus sunt necessitatibus animi est vitae, voluptas
-      tempora beatae nobis soluta voluptatibus quae nihil. In
-      distinctio voluptatem optio nulla sapiente esse commodi.
-    </p>
+  <ExpandableCard title="How does ResPawn use Spaced Repetition?">
+    <div class="dropdown-content">
+      <img
+        src="/images/feedback-system.png"
+        alt="spaced repetition graph"
+      />
+      <span><i>ResPawn feedback system</i></span>
+      <p>
+        After a puzzle is played, you will provide a rating on how
+        challenging the puzzle was (as shown by the image above).
+        ResPawn uses this rating and runs a spaced repetition
+        algorithm to determine when the puzzle appears next. A higher
+        difficulty rating will result in sooner review time, vice
+        versa.
+      </p>
+    </div>
   </ExpandableCard>
 </section>
 
@@ -264,6 +280,24 @@
 </section>
 
 <style>
+  .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .dropdown-content span {
+    font-size: 0.75rem;
+    margin: 0.25rem 0;
+  }
+  .dropdown-content p {
+    margin: 2rem 0 1rem;
+    line-height: 150%;
+  }
+  .dropdown-content img {
+    width: min(100%, 30rem);
+    border: var(--border);
+    border-radius: var(--br-small);
+  }
   @keyframes -global-slide-left {
     0% {
       transform: translateX(-5rem) skewX(-5deg);
@@ -413,6 +447,7 @@
     gap: 1rem;
     padding: 1.25rem;
     border-radius: var(--br);
+    margin-bottom: 2rem;
   }
 
   .card {
