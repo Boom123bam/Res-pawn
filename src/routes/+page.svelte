@@ -248,7 +248,7 @@
     animation={"fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.1s both"}
   >
     <div class="chess-board-container">
-      <!-- <ChessBoard3d /> -->
+      <ChessBoard3d />
     </div>
   </Saos>
 
@@ -486,6 +486,7 @@
     border-top: var(--border);
     text-align: center;
     padding-inline: 1.5rem;
+    overflow: hidden;
   }
 
   section.bottom-cta h1 {
