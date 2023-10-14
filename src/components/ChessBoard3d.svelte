@@ -170,8 +170,8 @@
       border: 0.4rem solid var(--text);
     }
     .container-container-container {
-      width: 12rem;
-      height: 6rem;
+      width: 14rem;
+      height: 7rem;
       perspective: 400;
       -webkit-perspective: 400;
     }
