@@ -20,14 +20,11 @@
       Recognition
     </h2>
     <h5>
-      <!-- Learn how to become a better player by utilising spaced
-        repetition to help you memorise and recognise patterns more
-        efficiently. -->
-      Picture yourself in a chess match, facing a challenging position.
-      Suddenly, in a flash of recognition, you realize you've encountered
-      a similar puzzle in the past. That's the power of pattern recognition,
-      and this article will explore how you can recognise more patterns
-      faster with the help of spaced repetition.
+      Ever wonder how grandmasters can look at a puzzle for less than
+      half of a second and know the solution? The answer lies in
+      pattern recognition, and this article will explore how you can
+      recognise more patterns faster with the help of spaced
+      repetition.
     </h5>
     <img src="/images/SRgraph.png" alt="spaced repetition graph" />
 
@@ -35,8 +32,8 @@
     <p>
       Spaced Repetition is just what the name suggests: reviewing
       material at intervals, where each interval is longer than the
-      last. This straightforward method has a robust scientific
-      backing for its effectiveness, with a <a
+      last (shown by the graph above). This straightforward method has
+      a robust scientific backing for its effectiveness, with a <a
         href="https://www.edapp.com/blog/evidence-around-spaced-repetition/"
         target="_blank">wealth of evidence spanning over 30 years.</a
       >
@@ -44,12 +41,12 @@
     <h3>Why is spaced repetition effective?</h3>
     <p>
       The optimal time to review a piece of information is when we are
-      just about to forget it, and each time we review something, it
-      takes longer to forget it. The spaced repetition algorithm is
+      just about to forget it, and each time we review something, we
+      retain it for longer. The spaced repetition algorithm is
       effective because it takes into account both of those factors.
       After each review, it tries to predict when to show it to you
       for the best results. This way you can minimise the amount of
-      time spent on studying
+      time spent on studying.
     </p>
     <h3>The power of pattern recognition</h3>
     <p>
@@ -57,19 +54,18 @@
       its core, chess is about recognizing and capitalizing on
       patterns. Imagine having the uncanny ability to see the best
       move in an instant, as if your mind were a finely tuned chess
-      engine. This is the power of pattern recognition.
+      engine.
     </p>
     <p>
       So, how can we significantly enhance our pattern recognition?
-      The answer lies in puzzles-chess puzzles provide an endless
+      The answer lies in chess puzzles. Puzzles provide an endless
       stream of pattern after pattern, each capable of turning the
       outcome of a game around. But finding the solution once after
-      several minutes of playing possible scenarios your head doesn't
-      guarantee that you will spot it again when it comes up in a
-      game. So, how can we increase that chances of finding it in game
-      drastically? That is the problem that ResPawn tries to solve,
-      let's delve deeper into how ResPawn can elevate your chess
-      skills.
+      minutes of playing possible scenarios your head doesn't
+      guarantee that you'll spot it again when it comes up in a game.
+      So, how can we increase that chances of finding it in game? That
+      is the problem that ResPawn tries to solve, let's delve deeper
+      into how ResPawn can elevate your chess skills.
     </p>
     <h3>Spaced Repetition for Chess</h3>
     <p>
@@ -115,6 +111,8 @@
     margin-bottom: 1rem;
   }
   img {
+    border: var(--border);
+    border-radius: var(--br);
     width: min(100%, 45rem);
     align-self: center;
     margin-bottom: 5rem;
