@@ -45,7 +45,7 @@
       retain it for longer. The spaced repetition algorithm is
       effective because it takes into account both of those factors.
       After each review, it tries to predict when to show it to you
-      for the best results. This way you can minimise the amount of
+      for the best results. This way, you can minimise the amount of
       time spent on studying.
     </p>
     <h3>The power of pattern recognition</h3>
@@ -61,18 +61,18 @@
       The answer lies in chess puzzles. Puzzles provide an endless
       stream of pattern after pattern, each capable of turning the
       outcome of a game around. But finding the solution once after
-      minutes of playing possible scenarios your head doesn't
+      minutes of playing possible scenarios in your head doesn't
       guarantee that you'll spot it again when it comes up in a game.
-      So, how can we increase that chances of finding it in game? That
-      is the problem that ResPawn tries to solve, let's delve deeper
-      into how ResPawn can elevate your chess skills.
+      So, how can we increase the chances of finding it in a game?
+      That is the problem that ResPawn tries to solve. Let's delve
+      deeper into how ResPawn can elevate your chess skills.
     </p>
     <h3>Spaced Repetition for Chess</h3>
     <p>
       After each puzzle is played, you have the ability to rate the
       puzzle based on how challenging it was. Based on that rating,
       ResPawn uses a spaced repetition algorithm to determine when the
-      best time to review the puzzle.
+      best time to review the puzzle is.
     </p>
     <p>
       Through systematic pattern repetition, you'll increase your
