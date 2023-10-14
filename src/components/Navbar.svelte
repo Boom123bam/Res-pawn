@@ -33,7 +33,7 @@
 <nav>
   <ul class="desktop">
     <li>
-      <a class="logo" href="/">
+      <a class="link logo" href="/">
         <img src={logo} alt="ResPawn logo" />
         <h4>ResPawn</h4>
       </a>
@@ -48,7 +48,7 @@
         ? "page"
         : undefined}
     >
-      <a href="/playlists">playlists</a>
+      <a class="link" href="/playlists">playlists</a>
     </li>
     <li
       aria-current={$page.url.pathname ===
@@ -56,7 +56,9 @@
         ? "page"
         : undefined}
     >
-      <a href="/article/spaced-repetition">spaced repetition</a>
+      <a class="link" href="/article/spaced-repetition"
+        >spaced repetition</a
+      >
     </li>
     {#if $userData}
       <li class="user">

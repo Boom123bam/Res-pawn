@@ -91,8 +91,9 @@
       and dominate in games.
     </p>
     <p>
-      Go and give it a try! Explore the playlists <a href="/playlists"
-        >here</a
+      Go and give it a try! Explore the playlists <a
+        class="link color"
+        href="/playlists">here</a
       >
     </p>
     <p>Good luck and have fun!</p>
@@ -124,11 +125,5 @@
   }
   p {
     font-size: 1.25rem;
-  }
-  a {
-    color: var(--accent);
-  }
-  a:hover {
-    text-decoration: underline;
   }
 </style>
