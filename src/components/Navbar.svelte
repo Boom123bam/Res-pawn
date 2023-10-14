@@ -38,11 +38,11 @@
         <h4>ResPawn</h4>
       </a>
     </li>
-    <!-- <li
+    <li
       aria-current={$page.url.pathname === "/" ? "page" : undefined}
     >
       <a href="/">home</a>
-    </li> -->
+    </li>
     <li
       aria-current={$page.url.pathname === "/playlists"
         ? "page"
@@ -50,7 +50,7 @@
     >
       <a class="link" href="/playlists">playlists</a>
     </li>
-    <li
+    <!-- <li
       aria-current={$page.url.pathname ===
       "/article/spaced-repetition"
         ? "page"
@@ -59,7 +59,7 @@
       <a class="link" href="/article/spaced-repetition"
         >spaced repetition</a
       >
-    </li>
+    </li> -->
     {#if $userData}
       <li class="user">
         <button
@@ -207,7 +207,7 @@
     display: flex;
     /* justify-content: center; */
     align-items: center;
-    gap: 4rem;
+    gap: 3rem;
   }
   nav > ul li[aria-current="page"] {
     text-decoration: underline;
@@ -332,7 +332,16 @@
     width: 100%;
     justify-content: end;
   }
-  @media screen and (max-width: 750px) {
+  /* @media screen and (max-width: 1000px) {
+    nav > ul {
+      justify-content: space-between;
+      gap: 0;
+    }
+    nav > ul li.user {
+      margin-left: 0;
+    }
+  } */
+  @media screen and (max-width: 800px) {
     .desktop {
       display: none;
     }
