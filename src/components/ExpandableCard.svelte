@@ -7,14 +7,16 @@
 
 <div class="popup card">
   <div class="top-section">
-    <h3>{title}</h3>
     <button
       class={`dropdown${expanded ? " expanded" : ""}`}
       on:click={() => {
         expanded = !expanded;
       }}
     >
-      <Svg name="left" size="3rem" />
+      <h3>{title}</h3>
+      <div class="arrow">
+        <Svg name="left" size="3rem" />
+      </div>
     </button>
   </div>
   <div class={`expander${expanded ? " expanded" : ""}`}>
@@ -33,17 +35,18 @@
     padding: 2rem;
     width: 100%;
   }
-  .top-section {
+  button.dropdown {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 0.25rem;
   }
-  button.dropdown {
+  button.dropdown .arrow {
     transform: rotate(-90deg);
     transition: 0.5s;
   }
-  button.dropdown.expanded {
+  button.dropdown.expanded .arrow {
     transform: rotate(90deg);
   }
   .expander {
