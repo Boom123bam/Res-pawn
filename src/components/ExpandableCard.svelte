@@ -66,4 +66,9 @@
   .content {
     padding-top: 2rem;
   }
+  @media screen and (max-width: 400px) {
+    .card {
+      padding: 1.5rem;
+    }
+  }
 </style>
