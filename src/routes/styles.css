@@ -80,6 +80,37 @@ small {
   display: block;
 }
 
+@media screen and (max-width: 700px) {
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 3rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+  h2 {
+    font-size: 2.75rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  h4,
+  h5 {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 0.8rem;
+  }
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -182,15 +213,6 @@ body.dark .tiles-bg {
 .invert {
   background-color: var(--text);
   color: var(--secondary);
-}
-
-@media screen and (max-width: 700px) {
-  h1 {
-    font-size: 4rem;
-  }
-  h2 {
-    font-size: 3rem;
-  }
 }
 
 @media screen and (max-width: 600px) {

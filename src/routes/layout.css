@@ -29,3 +29,8 @@ main section:last-child {
 footer {
   margin-top: auto;
 }
+@media screen and (max-width: 500px) {
+  main section {
+    width: min(80ch, 100% - 1rem);
+  }
+}

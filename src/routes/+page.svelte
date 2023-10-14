@@ -2,6 +2,7 @@
   let howSection; // binds to html of 'how this works section'
   import Saos from "saos";
   import ChessBoard3d from "../components/ChessBoard3d.svelte";
+  import ExpandableCard from "../components/ExpandableCard.svelte";
 </script>
 
 <svelte:head>
@@ -59,10 +60,12 @@
       css_animation={"opacity:0;"}
     >
       <h5 class="subheading">
-        Practice pattern recognition with <a
+        <!-- Practice pattern recognition with <a
           class="link color"
           href="/article/spaced-repetition">spaced repetition</a
-        > by playing puzzles!
+        > by playing puzzles! -->
+        Practice pattern recognition with spaced repetition by playing
+        puzzles!
       </h5>
     </Saos>
     <div class="buttons">
@@ -102,12 +105,10 @@
       top={100}
     >
       <div class="feature">
-        <h3>20k+ Puzzles</h3>
+        <h3>Quality over Quantity</h3>
         <p>
-          ResPawn uses the top puzzles from the Lichess puzzles
-          database, so whether you're a novice or an experienced
-          player, there's always a challenge that matches your skill
-          level.
+          Repeating and mastering a select few puzzles is more
+          beneficial than skimming through countless variations.
         </p>
       </div>
     </Saos>
@@ -117,10 +118,11 @@
       top={100}
     >
       <div class="feature">
-        <h3>Quality over Quantity</h3>
+        <h3>Spaced Repetition</h3>
         <p>
-          Repeating and mastering a select few puzzles is more
-          beneficial than skimming through countless variations.
+          After a puzzle is played, you will provide a rating on how
+          challenging the puzzle was. ResPawn uses a spaced repetition
+          algorithm to determine the next time the puzzle appears.
         </p>
       </div>
     </Saos>
@@ -130,11 +132,11 @@
       top={100}
     >
       <div class="feature">
-        <h3>Spaced Repetition</h3>
+        <h3>20k+ Puzzles</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Odio impedit culpa adipisci corrupti pariatur mollitia eum
-          dignissimos delectus, aperiam suscipit.
+          Whether you're a novice or an experienced player, there's
+          always a challenge that matches your skill level. Puzzles
+          are from the Lichess puzzles database.
         </p>
       </div>
     </Saos>
@@ -217,6 +219,26 @@
       </div>
     </Saos>
   </div>
+  <ExpandableCard title="What is spaced repetition?">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+      quidem laborum nisi quis, maxime iste libero, repellendus
+      cupiditate hic quod, excepturi quibusdam sint? Eos quo cum aut
+      velit natus sunt necessitatibus animi est vitae, voluptas
+      tempora beatae nobis soluta voluptatibus quae nihil. In
+      distinctio voluptatem optio nulla sapiente esse commodi.
+    </p>
+  </ExpandableCard>
+  <ExpandableCard title="How does ResPawn use Spaced repetition?">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+      quidem laborum nisi quis, maxime iste libero, repellendus
+      cupiditate hic quod, excepturi quibusdam sint? Eos quo cum aut
+      velit natus sunt necessitatibus animi est vitae, voluptas
+      tempora beatae nobis soluta voluptatibus quae nihil. In
+      distinctio voluptatem optio nulla sapiente esse commodi.
+    </p>
+  </ExpandableCard>
 </section>
 
 <section class="bottom-cta">
@@ -226,7 +248,7 @@
     animation={"fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.1s both"}
   >
     <div class="chess-board-container">
-      <ChessBoard3d />
+      <!-- <ChessBoard3d /> -->
     </div>
   </Saos>
 
@@ -443,6 +465,12 @@
     }
     .third.card .black {
       order: 0;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .cards-container {
+      padding: 0.5rem;
+      gap: 0.5rem;
     }
   }
 
