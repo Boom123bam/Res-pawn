@@ -165,4 +165,15 @@
       -webkit-perspective: 600;
     }
   }
+  @media screen and (max-width: 400px) {
+    .container {
+      border: 0.4rem solid var(--text);
+    }
+    .container-container-container {
+      width: 12rem;
+      height: 6rem;
+      perspective: 400;
+      -webkit-perspective: 400;
+    }
+  }
 </style>
