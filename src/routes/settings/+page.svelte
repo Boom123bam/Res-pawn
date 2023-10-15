@@ -4,12 +4,6 @@
     storeSettings,
   } from "../../modules/localStorage";
   let settings = getSettings();
-  if (!settings) {
-    settings = {
-      sound: true,
-      showIndicatorOnHover: false,
-    };
-  }
 </script>
 
 <section>
