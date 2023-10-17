@@ -28,26 +28,14 @@ export async function getAllUserSeqs(userID) {
   const querySnapshot = await getDocs(q);
   const seqs = {}; // store seqs as an obj, key = seqID, value = seq data
   querySnapshot.docs.forEach((doc) => (seqs[doc.id] = doc.data())); // id: {data}
-  if (!querySnapshot.empty) {
-    return seqs;
-  } else {
-    // no docs
-    return {};
-  }
+  return querySnapshot.empty ? {} : seqs;
 }
 
 export async function getUserData(id) {
   try {
     const userDocRef = doc(db, "Users", id);
     const userDocSnap = await getDoc(userDocRef);
-    if (userDocSnap.exists()) {
-      // The document exists, get data
-      const userData = userDocSnap.data();
-      return userData;
-    } else {
-      // The document does not exist
-      return null;
-    }
+    return userDocSnap.exists() ? userDocSnap.data() : null;
   } catch (error) {
     console.error("Error getting user data document:", error);
     return null;
