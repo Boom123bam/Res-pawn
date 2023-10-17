@@ -14,15 +14,14 @@ const gradeShiftPercentage = 0.25; // positive shift % aplpied to grade
 const chanceOfRandomSeq = 0.3;
 
 function getSoonestSeq(seqsData) {
-  // gets the seq object with the soonest nextReview
-  // returns the seqID if it is before (minsLimit) mins after the current time
+  // returns the seqID of the soonest seq if it is before [minsLimit] mins after the current time
 
-  let soonestTimestamp = null; // Start with a high value
+  let soonestTimestamp = null;
   let soonestSeqID = null;
 
   const currentTimestamp = Timestamp.now();
 
-  // Calculate the timestamp x minutes later
+  // Calculate the latest time to look for seqs in
   const latestTime = new Timestamp(
     currentTimestamp.seconds + minsLimit * 60,
     currentTimestamp.nanoseconds
@@ -30,13 +29,13 @@ function getSoonestSeq(seqsData) {
 
   for (const seqID in seqsData) {
     if (seqsData.hasOwnProperty(seqID)) {
-      const timestamp = seqsData[seqID].nextReview;
+      const seqNextReview = seqsData[seqID].nextReview;
       if (
         !soonestTimestamp ||
-        timestamp.seconds < soonestTimestamp.seconds
+        seqNextReview.seconds < soonestTimestamp.seconds
       ) {
-        soonestTimestamp = timestamp;
-        if (timestamp.seconds < latestTime.seconds) {
+        soonestTimestamp = seqNextReview;
+        if (seqNextReview.seconds < latestTime.seconds) {
           soonestSeqID = seqID;
         }
       }
@@ -90,7 +89,7 @@ export function getEasinessChange(grade) {
   );
 }
 
-function clamp(value, max = Infinity, min = 0) {
+function clamp(value, max, min = 0) {
   if (value > max) return max;
   if (value < min) return min;
   return value;
@@ -109,10 +108,6 @@ export function updateSeqData(grade, seqData = null) {
     };
   }
   seqData.timesStudied++;
-  // seqData.easiness = clamp(
-  //   seqData.easiness + getEasinessChange(grade),
-  //   maxEasiness
-  // );
   seqData.easiness = getNewEasiness(seqData.easiness, grade);
   seqData.nextReview =
     // Calculate the next review time
