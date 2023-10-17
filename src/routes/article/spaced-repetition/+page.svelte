@@ -110,12 +110,15 @@
   h2 {
     margin-bottom: 1rem;
   }
+  h3 {
+    margin-top: 1.5rem;
+  }
   img {
     border: var(--border);
     border-radius: var(--br);
     width: min(100%, 45rem);
     align-self: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3.5rem;
   }
   h5,
   p {
@@ -123,5 +126,19 @@
   }
   p {
     font-size: 1.25rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    article {
+      margin: 3rem 0;
+      gap: 1.5rem;
+    }
+    h2 {
+      font-size: 2.75rem;
+      margin-bottom: 0;
+    }
+    img {
+      margin-bottom: 1rem;
+    }
   }
 </style>
