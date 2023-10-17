@@ -1,6 +1,12 @@
 import { getPlaylistData } from "./firebase";
 import { getAllUserSeqs } from "./firebase";
 
+export async function updateSessionSeqData(uid) {
+  const sessionSeqData = await getAllUserSeqs(uid);
+  storeSessionSeqData(sessionSeqData);
+  return sessionSeqData;
+}
+
 export async function getSessionSeqData() {
   // fetches session seq data from db if there is a user in session storage
   let user = getSessionUserData();

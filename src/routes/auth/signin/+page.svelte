@@ -5,7 +5,10 @@
     getUserData,
     storeAllUserSeqData,
   } from "../../../modules/firebase";
-  import { getSessionSeqData } from "../../../modules/sessionStorage";
+  import {
+    getSessionSeqData,
+    updateSessionSeqData,
+  } from "../../../modules/sessionStorage";
 
   let email = "";
   let password = "";
@@ -20,14 +23,16 @@
         email,
         password
       );
-      const userData = await getUserData(userCredential.user.uid);
-      userData.id = userCredential.user.uid;
+      // const userData = await getUserData(userCredential.user.uid);
+      // userData.id = userCredential.user.uid;
+      const uid = userCredential.user.uid;
       signedIn = true;
       const seqData = await getSessionSeqData();
       if (seqData) {
-        await storeAllUserSeqData(userCredential.user.uid, seqData);
+        await storeAllUserSeqData(uid, seqData);
         savedProgress = true;
       }
+      updateSessionSeqData(uid);
     } catch (error) {
       errorMessage = error.message;
     }
