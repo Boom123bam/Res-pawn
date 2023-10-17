@@ -10,17 +10,18 @@ export async function getSessionSeqData() {
     sessionSeqData = await getAllUserSeqs(user.uid);
   }
   if (!sessionSeqData) sessionSeqData = null;
-  storeUserSeqData(sessionSeqData);
+  storeSessionSeqData(sessionSeqData);
   return sessionSeqData;
 }
 
 export async function updateLocalPlaylistData(playlistID) {
-  let localPlaylistData = getLocalPlaylistData();
+  let localPlaylistData = getSessionPlaylistData();
   // check if local playlistData is empty or not same as route id
   if (!localPlaylistData || localPlaylistData.id != playlistID) {
-    // if so, fetch from db and store on local
+    // fetch from db and store on session
     localPlaylistData = await getPlaylistData(playlistID);
-    if (localPlaylistData) storePlaylistData(localPlaylistData);
+    if (localPlaylistData)
+      storeSessionPlaylistData(localPlaylistData);
     else {
       console.error("playlist not in session storage");
       throw Error("Playlist Not found");
@@ -29,7 +30,7 @@ export async function updateLocalPlaylistData(playlistID) {
   return localPlaylistData;
 }
 
-export function storeUserData(userData) {
+export function storeSessionUserData(userData) {
   setSessionData("user", userData);
 }
 
@@ -37,20 +38,17 @@ export function getSessionUserData() {
   return getSessionData("user");
 }
 
-export function storePlaylistData(playlistData) {
+export function storeSessionPlaylistData(playlistData) {
   setSessionData("playlist", playlistData);
 }
 
-export function getLocalPlaylistData() {
+export function getSessionPlaylistData() {
   return getSessionData("playlist");
 }
 
-export function storeUserSeqData(seqData) {
+export function storeSessionSeqData(seqData) {
   setSessionData("sequences", seqData);
 }
-// export function getSessionSeqData() {
-//   return getSessionData("sequences");
-// }
 
 function getSessionData(name) {
   if (typeof window !== "undefined") {

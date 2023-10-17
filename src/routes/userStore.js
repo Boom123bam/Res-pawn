@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { storeUserData } from "../modules/sessionStorage";
+import { storeSessionUserData } from "../modules/sessionStorage";
 
 // export const userData = writable(null);
 
@@ -9,7 +9,7 @@ function createUserData() {
   return {
     set: (data) => {
       set(data);
-      storeUserData(data);
+      storeSessionUserData(data);
     },
     subscribe,
   };
