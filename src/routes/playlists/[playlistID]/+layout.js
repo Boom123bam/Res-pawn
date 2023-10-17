@@ -1,7 +1,7 @@
 import { error } from "@sveltejs/kit";
 import {
   updateLocalPlaylistData,
-  updateLocalUserSeqData,
+  getSessionSeqData,
 } from "../../../modules/sessionStorage";
 
 export const ssr = false; // disable ssr because local storage
@@ -14,7 +14,7 @@ export async function load({ params }) {
     localPlaylistData = await updateLocalPlaylistData(
       params.playlistID
     );
-    localUserSeqData = await updateLocalUserSeqData();
+    localUserSeqData = await getSessionSeqData();
   } catch (errorObj) {
     throw error(404, errorObj.message);
   }

@@ -5,7 +5,7 @@
     getUserData,
     storeAllUserSeqData,
   } from "../../../modules/firebase";
-  import { getLocalUserSeqData } from "../../../modules/sessionStorage";
+  import { getSessionSeqData } from "../../../modules/sessionStorage";
 
   let email = "";
   let password = "";
@@ -23,7 +23,7 @@
       const userData = await getUserData(userCredential.user.uid);
       userData.id = userCredential.user.uid;
       signedIn = true;
-      const seqData = await getLocalUserSeqData();
+      const seqData = await getSessionSeqData();
       if (seqData) {
         await storeAllUserSeqData(userCredential.user.uid, seqData);
         savedProgress = true;

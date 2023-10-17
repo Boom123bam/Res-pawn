@@ -10,7 +10,7 @@
     storeAllUserSeqData,
   } from "../../../modules/firebase";
   import { userData } from "../../userStore";
-  import { getLocalUserSeqData } from "../../../modules/sessionStorage";
+  import { getSessionSeqData } from "../../../modules/sessionStorage";
 
   let username = "";
   let email = "";
@@ -47,7 +47,7 @@
       await updateProfile(newUser.user, { displayName });
       // add uid and username to database
       await addUserToCollection(newUser.user.uid, name);
-      const seqData = await getLocalUserSeqData();
+      const seqData = await getSessionSeqData();
       if (seqData) {
         await storeAllUserSeqData(newUser.user.uid, seqData);
         savedProgress = true;
