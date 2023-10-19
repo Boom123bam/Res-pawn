@@ -1,28 +1,28 @@
 <script>
-  import Board from "/src/components/Board.svelte";
   import {
     getSeqData,
     updateUserSeqData,
   } from "../../../../modules/firebase";
-  import { sequenceData } from "../../../../stores/boardStore";
   import {
     estimateGrade,
     getNextSeq,
     updateSeqData,
   } from "../../../../modules/spacedRep";
-  import GradeMenu from "../../../../components/GradeMenu.svelte";
   import { storeSessionSeqData } from "../../../../modules/sessionStorage";
+
+  import { userData } from "../../../userStore";
+  import { sequenceData } from "../../../../stores/boardStore";
+
+  import Svg from "../../../../components/Svg.svelte";
+  import Board from "/src/components/Board.svelte";
+  import Popup from "../../../../components/Popup.svelte";
+  import GradeMenu from "../../../../components/GradeMenu.svelte";
 
   export let data; // data from layout.js
 
   const { localPlaylistData, localUserSeqData } = data;
 
-  // get user data
-  import { userData } from "../../../userStore";
-  import Svg from "../../../../components/Svg.svelte";
-  import Popup from "../../../../components/Popup.svelte";
-
-  // store an object containing data of the seqs played in the current playlist
+  // store an object containing data of the played seqs in the current playlist
   const playedSeqsData = localUserSeqData
     ? filterObject(localUserSeqData, localPlaylistData.sequences)
     : {};
@@ -104,13 +104,6 @@
     );
     if (currentSeqID) loadSeq(currentSeqID);
   }
-
-  /*
-      repeat:
-      get next seq
-      play next seq
-      store int data
-      */
 </script>
 
 <svelte:head>
