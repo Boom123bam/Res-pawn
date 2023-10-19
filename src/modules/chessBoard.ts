@@ -45,7 +45,7 @@ export class ChessBoard {
 
   showPrevMove() {
     if (this.history.length > this.movesBack) {
-      this.movesBack++;
+      this.movesBack = this.movesBack + 1;
       this.chess.undo();
       return this.history[this.history.length - this.movesBack];
     }
@@ -55,9 +55,15 @@ export class ChessBoard {
     if (this.movesBack > 0) {
       const move = this.history[this.history.length - this.movesBack];
       this.makeMove(move);
-      this.movesBack--;
+      this.movesBack = this.movesBack - 1;
       return move;
     }
     return null;
+  }
+
+  undoMove() {
+    if (!this.history.length) throw Error("no moves to undo");
+    this.history.pop();
+    this.chess.undo();
   }
 }
