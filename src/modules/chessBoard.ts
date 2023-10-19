@@ -18,6 +18,12 @@ export class ChessBoard {
     this.chess.move(move);
   }
 
+  undoMove() {
+    if (!this.history.length) throw Error("no moves to undo");
+    this.history.pop();
+    this.chess.undo();
+  }
+
   getPossibleMoves(square: Square) {
     return this.chess
       .moves({
@@ -51,6 +57,7 @@ export class ChessBoard {
     }
     return null;
   }
+
   showNextMove() {
     if (this.movesBack > 0) {
       const move = this.history[this.history.length - this.movesBack];
@@ -59,11 +66,5 @@ export class ChessBoard {
       return move;
     }
     return null;
-  }
-
-  undoMove() {
-    if (!this.history.length) throw Error("no moves to undo");
-    this.history.pop();
-    this.chess.undo();
   }
 }

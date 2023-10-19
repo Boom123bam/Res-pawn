@@ -36,22 +36,15 @@
     showIndicatorOnHover: getSetting("showIndicatorOnHover"),
   };
 
-  function resetHighlights() {
-    // resets highlights and hints
-
-    display.highlightedSquares = [];
-  }
-
-  function resetHints() {
-    display.hint = false;
-    display.solution = false;
-  }
-
   sequenceData.subscribe((newSeqData) => {
     if (newSeqData && !newSeqData?.finished) {
-      handleSeqLoad(newSeqData);
+      loadSeq(newSeqData);
     }
   });
+
+  function timeout(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
   function loadAudioBuffers() {
     if (browser) {
@@ -94,7 +87,7 @@
     }
   }
 
-  async function handleSeqLoad(seqData) {
+  async function loadSeq(seqData) {
     currentSequence = {
       start: seqData.fen,
       moves: seqData.moves.split(" "),
@@ -113,6 +106,24 @@
     await timeout(100);
     await movePiece(currentSequence.moves[0]);
     updateBoard();
+  }
+
+  function finish() {
+    currentSequence.finished = true;
+    display.disabled = true;
+    // dispatch event and return stats
+    dispatch("finish", currentSequence.stats);
+  }
+
+  function resetHighlights() {
+    // resets highlights and hints
+
+    display.highlightedSquares = [];
+  }
+
+  function resetHints() {
+    display.hint = false;
+    display.solution = false;
   }
 
   function resetSequence() {
@@ -136,10 +147,6 @@
     return `${String.fromCharCode("a".charCodeAt(0) + col)}${
       8 - row
     }`;
-  }
-
-  function timeout(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   async function movePiece(move, duration = 0.1) {
@@ -182,9 +189,7 @@
 
         // check if checkmate (somtimes there are 2 answers for the last move)
         if (board.chess.isCheckmate()) {
-          currentSequence.finished = true;
-          // dispatch event and return stats
-          dispatch("finish", currentSequence.stats);
+          finish();
         } else {
           display.disabled = true;
           currentSequence.failed = true;
@@ -205,10 +210,7 @@
       !currentSequence.failed
     ) {
       // finished
-      currentSequence.finished = true;
-      display.disabled = true;
-      // dispatch event and return stats
-      dispatch("finish", currentSequence.stats);
+      finish();
     }
 
     return true;
