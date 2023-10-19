@@ -32,8 +32,8 @@
     </a>
   </div>
   <div class="contact">
-    contact: <a class="link" href="mailto:brandon.tgchf@gmail.com"
-      >brandon.tgchf@gmail.com</a
+    contact: <a class="link" href="mailto:b.tgchf2@gmail.com"
+      >b.tgchf2@gmail.com</a
     >
   </div>
 </section>
