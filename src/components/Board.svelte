@@ -8,7 +8,6 @@
   import { getSetting } from "../modules/localStorage";
   import { createEventDispatcher } from "svelte";
   import { browser } from "$app/environment";
-  import { Chess } from "chess.js";
   import { ChessBoard } from "../modules/chessBoard";
 
   // audio
@@ -23,45 +22,30 @@
   let board = new ChessBoard();
 
   const display = {
+    board: board.chess.board(),
     highlightedSquares: [],
+    selectedSquare: null,
     disabled: false,
     hint: false,
     solution: false,
     moveToPromote: null,
     movePlaying: null,
-    board: board.chess.board(),
     flipped: false,
     failed: false,
+    soundOn: getSetting("sound"),
+    showIndicatorOnHover: getSetting("showIndicatorOnHover"),
   };
 
   function resetHighlights() {
     // resets highlights and hints
 
     display.highlightedSquares = [];
-    // board.selectedSquare = null;
   }
 
   function resetHints() {
     display.hint = false;
     display.solution = false;
   }
-
-  // let board = {
-  //   chess: new Chess(),
-  //   displayer: new Chess(),
-  //   board: null,
-  //   highlightedSquares: [],
-  //   selectedSquare: null,
-  //   movesBack: 0,
-  //   disabled: false,
-  //   flipped: false,
-  //   moveToPromote: "",
-  //   lastMove: "e4d5",
-  //   movePlaying: null,
-  //   showIndicatorOnHover: getSetting("showIndicatorOnHover"),
-  //   soundOn: getSetting("sound"),
-  // };
-  // board.board = board.chess.board();
 
   sequenceData.subscribe((newSeqData) => {
     if (newSeqData && !newSeqData?.finished) {
@@ -101,14 +85,14 @@
     }
   }
 
-  // function playAudio(audioBuffer) {
-  //   if (browser) {
-  //     let source = context.createBufferSource();
-  //     source.buffer = audioBuffer;
-  //     source.connect(context.destination);
-  //     source.start();
-  //   }
-  // }
+  function playAudio(audioBuffer) {
+    if (browser) {
+      let source = context.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(context.destination);
+      source.start();
+    }
+  }
 
   async function handleSeqLoad(seqData) {
     currentSequence = {
@@ -142,13 +126,12 @@
   }
 
   function updateBoard() {
-    console.log("update");
     resetHighlights();
     board = board; //trigger re render
     display.board = board.chess.board();
   }
 
-  function getSquare(row, col) {
+  function getSquareName(row, col) {
     // convert row and col to square notation
     return `${String.fromCharCode("a".charCodeAt(0) + col)}${
       8 - row
@@ -160,7 +143,7 @@
   }
 
   async function movePiece(move, duration = 0.1) {
-    if (board.soundOn) {
+    if (display.soundOn) {
       if (board.chess.get(move.substring(2, 4))) {
         playAudio(captureBuffer);
       } else playAudio(moveBuffer);
@@ -171,13 +154,12 @@
     display.movePlaying = move;
 
     board.makeMove(move);
-    // if (board.movesBack == 0) board.lastMove = move; TODO history
     await timeout(duration * 1000);
     display.movePlaying = null;
   }
 
   async function updateSequence(move = null) {
-    // updates the currentSequence object based on the move recieved
+    // makes the move and updates the currentSequence object
     // if not move provided, it will execute the next move in the sequence
 
     // get the expected move
@@ -205,7 +187,7 @@
           dispatch("finish", currentSequence.stats);
         } else {
           display.disabled = true;
-          currentSequence.failed = board.chess.fen();
+          currentSequence.failed = true;
           currentSequence.stats.timesFailed++;
         }
       }
@@ -218,7 +200,10 @@
       updateBoard();
     }
 
-    if (board.history.length === currentSequence.moves.length) {
+    if (
+      board.history.length === currentSequence.moves.length &&
+      !currentSequence.failed
+    ) {
       // finished
       currentSequence.finished = true;
       display.disabled = true;
@@ -255,9 +240,9 @@
       // select the piece and highlight possible moves
       display.highlightedSquares = board.getPossibleMoves(id);
       if (display.highlightedSquares.length)
-        board.selectedSquare = id;
+        display.selectedSquare = id;
     } else if (display.highlightedSquares.includes(id)) {
-      handleMoveClick(board.selectedSquare + id);
+      handleMoveClick(display.selectedSquare + id);
       // check if there is a sequence
     } else {
       // un-select and un-highlight
@@ -271,12 +256,12 @@
   }
 
   function handleBackButton() {
-    console.log(board.showPrevMove());
+    board.showPrevMove();
     updateBoard();
   }
 
   function handleNextButton() {
-    console.log(board.showNextMove());
+    board.showNextMove();
     updateBoard();
   }
 
@@ -316,39 +301,39 @@
         {#each display.board as row, rowNum}
           {#each row as square, colNum}
             <Square
-              id={getSquare(rowNum, colNum)}
+              id={getSquareName(rowNum, colNum)}
               squareColor={board.chess.squareColor(
-                getSquare(rowNum, colNum)
+                getSquareName(rowNum, colNum)
               )}
               highlighted={display.highlightedSquares.includes(
-                getSquare(rowNum, colNum)
+                getSquareName(rowNum, colNum)
               )}
               {square}
               {handlePieceClick}
               hint={display.hint &&
                 currentSequence?.moves[
                   board.history.length
-                ].substring(0, 2) == getSquare(rowNum, colNum)}
+                ].substring(0, 2) == getSquareName(rowNum, colNum)}
               solution={display.solution &&
                 currentSequence?.moves[
                   board.history.length
-                ].substring(2, 4) == getSquare(rowNum, colNum)}
+                ].substring(2, 4) == getSquareName(rowNum, colNum)}
               lastMove={board.movesBack == 0 &&
                 (board.lastMove?.substring(0, 2) ==
-                  getSquare(rowNum, colNum) ||
+                  getSquareName(rowNum, colNum) ||
                   board.lastMove?.substring(2, 4) ==
-                    getSquare(rowNum, colNum))}
+                    getSquareName(rowNum, colNum))}
               order={display.flipped
                 ? 63 - (rowNum * 8 + colNum)
                 : rowNum * 8 + colNum}
               flipped={display.flipped}
               moveTo={display.movePlaying
                 ? display.movePlaying.substring(0, 2) ==
-                  getSquare(rowNum, colNum)
+                  getSquareName(rowNum, colNum)
                   ? display.movePlaying.substring(2, 4)
                   : null
                 : null}
-              showIndicatorOnHover={board.showIndicatorOnHover}
+              showIndicatorOnHover={display.showIndicatorOnHover}
             />
           {/each}
         {/each}
