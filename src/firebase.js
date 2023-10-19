@@ -3,10 +3,6 @@ import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import {
-  initializeAppCheck,
-  ReCaptchaV3Provider,
-} from "firebase/app-check";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,12 +20,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider(
-    "a6LcolbMoAAAAAKCG__tdi0n5bBvKNB_tsqM8pklb"
-  ),
-});
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
