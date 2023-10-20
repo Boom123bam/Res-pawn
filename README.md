@@ -1,6 +1,8 @@
 # ResPawn
 
-ResPawn is a chess puzzles training app with build in spaced-repetition
+### [Res-Pawn.com](https://res-pawn.com)
+
+ResPawn is a chess puzzles training app with built in spaced-repetition
 
 ## Technologies Used
 
