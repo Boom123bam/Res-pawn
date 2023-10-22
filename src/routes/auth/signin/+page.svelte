@@ -1,10 +1,7 @@
 <script>
   import { signInWithEmailAndPassword } from "@firebase/auth";
   import { auth } from "../../../firebase";
-  import {
-    getUserData,
-    storeAllUserSeqData,
-  } from "../../../modules/firebase";
+  import { storeAllUserSeqData } from "../../../modules/firebase";
   import {
     getSessionSeqData,
     updateSessionSeqData,
