@@ -2,6 +2,11 @@
   import Svg from "./Svg.svelte";
 
   export let playlistData;
+  const ratingString = playlistData.rating.length
+    ? playlistData.rating.length == 2
+      ? `${playlistData?.rating[0]}-${playlistData?.rating[1]}`
+      : `${playlistData?.rating[0]}+`
+    : "any";
 </script>
 
 <a
@@ -13,7 +18,7 @@
       class="top-banner"
       style={`background-color: ${playlistData?.color};`}
     >
-      rating: {`${playlistData?.rating[0]}-${playlistData?.rating[1]}`}
+      rating: {ratingString}
     </p>
     <div class="content">
       <h3 class="name desktop">{playlistData?.name}</h3>
