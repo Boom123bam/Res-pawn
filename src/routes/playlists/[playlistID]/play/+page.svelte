@@ -2,7 +2,7 @@
   import {
     getSeqData,
     updateUserSeqData,
-  } from "../../../../modules/firebase";
+  } from "../../../../modules/firestore";
   import {
     estimateGrade,
     getNextSeq,

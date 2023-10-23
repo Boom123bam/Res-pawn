@@ -8,7 +8,7 @@
     addUserToCollection,
     checkIfUsernameTaken,
     storeAllUserSeqData,
-  } from "../../../modules/firebase";
+  } from "../../../modules/firestore";
   import { userData } from "../../userStore";
   import { getSessionSeqData } from "../../../modules/sessionStorage";
 

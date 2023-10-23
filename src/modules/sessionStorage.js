@@ -1,5 +1,4 @@
-import { getPlaylistData } from "./firebase";
-import { getAllUserSeqs } from "./firebase";
+import { getPlaylistData, getAllUserSeqs } from "./firestore";
 
 export async function updateSessionSeqData(uid) {
   const sessionSeqData = await getAllUserSeqs(uid);

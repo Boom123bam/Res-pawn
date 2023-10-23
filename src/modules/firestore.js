@@ -133,11 +133,13 @@ export async function getAllPlaylists(amount = 10) {
   }
 }
 
-export async function createPlaylist(name, seqs) {
+export async function createPlaylist(name, color, rating, seqs) {
   // Create a new user document with the provided data
   const docRef = await addDoc(collection(db, "Playlists"), {
     name,
     sequences: seqs,
+    color,
+    rating,
   });
   console.log(`added playlist ${name} with ${seqs.length} seqs`);
 }
