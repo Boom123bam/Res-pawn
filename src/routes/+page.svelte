@@ -12,6 +12,10 @@
     name="description"
     content="Play puzzles and improve your chess skills by practicing pattern recognition with spaced repetition."
   />
+  <meta
+    name="keywords"
+    content="ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
+  />
 
   <!-- Facebook Meta Tags -->
   <meta

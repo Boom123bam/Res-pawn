@@ -6,14 +6,14 @@
 </script>
 
 <svelte:head>
-  <title>Browse Playlists</title>
+  <title>Playlists | Respawn</title>
   <meta
     name="description"
     content="Chess puzzles playlists for any levels of play. Play puzzles and improve your pattern recognition skills."
   />
   <meta
     name="keywords"
-    content="pattern recognition, chess puzzles, practice chess"
+    content="playlists, ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
   />
 </svelte:head>
 

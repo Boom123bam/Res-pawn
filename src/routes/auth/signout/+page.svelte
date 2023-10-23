@@ -21,4 +21,13 @@
   handleSignOut();
 </script>
 
+<svelte:head>
+  <title>Sign out | ResPawn</title>
+  <meta name="description" content="Sign out to ResPawn" />
+  <meta
+    name="keywords"
+    content="sign out, ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
+  />
+</svelte:head>
+
 <h3>{errorMessage}</h3>

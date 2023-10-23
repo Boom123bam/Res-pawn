@@ -9,7 +9,7 @@
   />
   <meta
     name="keywords"
-    content="pattern recognition, chess puzzles, practice chess"
+    content="ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
   />
 </svelte:head>
 

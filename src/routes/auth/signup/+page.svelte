@@ -58,6 +58,15 @@
   }
 </script>
 
+<svelte:head>
+  <title>Sign up | ResPawn</title>
+  <meta name="description" content="Sign up to ResPawn" />
+  <meta
+    name="keywords"
+    content="sign up, ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
+  />
+</svelte:head>
+
 <section>
   {#if !$userData}
     <h3>Sign Up</h3>
