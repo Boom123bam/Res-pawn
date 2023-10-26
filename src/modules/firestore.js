@@ -144,6 +144,10 @@ export async function createPlaylist(name, color, rating, seqs) {
   console.log(`added playlist ${name} with ${seqs.length} seqs`);
 }
 
+/**
+ * @param {seqId:seqData} data
+ * uploads all seqs in the data to Users/${uid}/Sequences
+ **/
 export async function storeAllUserSeqData(uid, data) {
   for (const seqID in data) {
     if (data.hasOwnProperty(seqID)) {
