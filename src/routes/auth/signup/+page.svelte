@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import {
     createUserWithEmailAndPassword,
     updateProfile,
@@ -7,16 +7,14 @@
   import {
     addUserToCollection,
     checkIfUsernameTaken,
-    storeAllUserSeqData,
   } from "../../../modules/firestore";
   import { userData } from "../../userStore";
-  import { getSessionSeqData } from "../../../modules/sessionStorage";
+  import { goto } from "$app/navigation";
 
   let username = "";
   let email = "";
   let password = "";
   let errorMessage = "";
-  let savedProgress = false;
 
   async function register(name, email, password) {
     try {
@@ -30,13 +28,14 @@
       if (usernameTaken) throw new Error("username is taken");
 
       // Not taken, register user
-      const newUser = await createUserWithEmailAndPassword(
+      const newUserCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
+      const newUser = newUserCredential.user;
 
-      const uid = newUser.user.uid;
+      const uid = newUser.uid;
       const displayName = name;
 
       // update store to show username because username is null
@@ -44,14 +43,12 @@
       userData.set(data);
 
       // add username to auth
-      await updateProfile(newUser.user, { displayName });
+      await updateProfile(newUser, { displayName });
       // add uid and username to database
-      await addUserToCollection(newUser.user.uid, name);
-      const seqData = await getSessionSeqData();
-      if (seqData) {
-        await storeAllUserSeqData(newUser.user.uid, seqData);
-        savedProgress = true;
-      }
+      await addUserToCollection(newUser.uid, name);
+
+      // redirect to verify page
+      goto(`/auth/verify`);
     } catch (err) {
       errorMessage = err.message;
     }
@@ -68,42 +65,32 @@
 </svelte:head>
 
 <section>
-  {#if !$userData}
-    <h3>Sign Up</h3>
+  <h3>Sign Up</h3>
 
-    {#if errorMessage}
-      <h4 style="color: red;">{errorMessage}</h4>
-    {/if}
-
-    <form>
-      <label for="username">Username:</label>
-      <input type="text" id="username" bind:value={username} />
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" bind:value={email} />
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" bind:value={password} />
-
-      <button
-        type="button"
-        class="cta sign-up"
-        on:click={() => {
-          register(username, email, password);
-        }}>Sign Up</button
-      >
-    </form>
-    <h4>Have an account?</h4>
-    <a href="/auth/signin" class="link color">Sign In</a>
-  {:else}
-    <h3>Already signed in</h3>
-    {#if savedProgress}
-      <h5>Progress has been saved</h5>
-    {/if}
-    <a href="/playlists">
-      <button class="cta">go to playlists</button></a
-    >
+  {#if errorMessage}
+    <h4 style="color: red;">{errorMessage}</h4>
   {/if}
+
+  <form>
+    <label for="username">Username:</label>
+    <input type="text" id="username" bind:value={username} />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" bind:value={email} />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" bind:value={password} />
+
+    <button
+      type="button"
+      class="cta sign-up"
+      on:click={() => {
+        register(username, email, password);
+      }}>Sign Up</button
+    >
+  </form>
+  <h4>Have an account?</h4>
+  <a href="/auth/signin" class="link color">Sign In</a>
 </section>
 
 <style>
