@@ -34,6 +34,7 @@
       )
     : localPlaylistData.sequences;
 
+  let closedEmailPopup = false;
   let showSeqInfoPopup = false;
   let showGradeMenu = false;
   let grade = 1;
@@ -76,7 +77,7 @@
       );
     }
     storeSessionSeqData(playedSeqsData);
-    if ($userData)
+    if ($userData && $userData.emailVerified)
       updateUserSeqData(
         $userData.uid,
         currentSeqID,
@@ -117,6 +118,16 @@
 </svelte:head>
 
 <section class="main">
+  {#if !closedEmailPopup && $userData && !$userData.emailVerified}
+    <div class="popup-wrapper">
+      <Popup on:close={() => (closedEmailPopup = true)}>
+        <h5>Verify email to save progress</h5>
+        <a href="/auth/verify">
+          <button class="cta">verify</button>
+        </a>
+      </Popup>
+    </div>
+  {/if}
   {#if showSeqInfoPopup}
     <div class="popup-wrapper">
       <Popup on:close={() => (showSeqInfoPopup = false)}>
