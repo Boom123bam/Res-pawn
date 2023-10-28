@@ -10,8 +10,8 @@
 
   auth.onAuthStateChanged(function (user) {
     if (user) {
-      const { uid, displayName } = user;
-      const data = { uid, displayName };
+      const { uid, displayName, emailVerified } = user;
+      const data = { uid, displayName, emailVerified };
       userData.set(data);
     } else {
       userData.set(null);
