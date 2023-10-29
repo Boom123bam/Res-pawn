@@ -1,10 +1,10 @@
 <script>
-  import { createPlaylist } from "../../modules/firebase";
+  import { createPlaylist } from "../../modules/firestore";
 </script>
 
 <button
   class="cta"
   on:click={() => {
-    // createPlaylist("", []);
+    // createPlaylist("Hard 2", "#ee8686", [1800], []);
   }}>add</button
 >
