@@ -16,7 +16,7 @@
 
   function sendEmail(user = auth.currentUser) {
     if (!disabled) {
-      // sendEmailVerification(user, actionCodeSettings);
+      sendEmailVerification(user, actionCodeSettings);
     }
     disabled = true;
     secsCounter = 15;
@@ -54,27 +54,32 @@
   });
 </script>
 
-<div class="flex-col">
-  {#if !verified}
-    <h3>Verification sent</h3>
-    <h6>Check your email</h6>
-    <button
-      class={`cta resend${showSentIndicator ? " sent" : ""}`}
-      on:click={() => sendEmail()}
-      {disabled}
-    >
-      resend verification
-    </button>
-    {#if secsCounter}
-      <p>try again in {secsCounter} seconds</p>
+<section>
+  <div class="flex-col">
+    {#if !verified}
+      <h3>Verification sent</h3>
+      <h6>Check your email</h6>
+      <button
+        class={`cta resend${showSentIndicator ? " sent" : ""}`}
+        on:click={() => sendEmail()}
+        {disabled}
+      >
+        resend verification
+      </button>
+      {#if secsCounter}
+        <p>try again in {secsCounter} seconds</p>
+      {/if}
+      <h6>Please sign in again after verification</h6>
+    {:else}
+      <h3>already verified</h3>
     {/if}
-    <h6>Please sign in again after verification</h6>
-  {:else}
-    <h3>already verified</h3>
-  {/if}
-</div>
+  </div>
+</section>
 
 <style>
+  section {
+    margin-top: 1rem;
+  }
   button.resend.sent:disabled {
     opacity: 1;
   }
@@ -82,6 +87,7 @@
     position: relative;
     overflow: hidden;
     transition: 0.5s;
+    border-radius: var(--br-small);
   }
 
   button.resend::after {
