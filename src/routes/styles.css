@@ -313,7 +313,7 @@ button:has(svg) {
 
 button.cta:disabled {
   /* background-color: var(--light-gray); */
-  opacity: 0.3;
+  opacity: 0.5;
   color: var(--text);
 }
 
