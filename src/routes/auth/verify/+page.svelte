@@ -19,7 +19,7 @@
       sendEmailVerification(user, actionCodeSettings);
     }
     disabled = true;
-    secsCounter = 15;
+    secsCounter = 20;
     showSentIndicator = true;
     setTimeout(() => {
       showSentIndicator = false;
@@ -64,11 +64,12 @@
         on:click={() => sendEmail()}
         {disabled}
       >
-        resend verification
+        {#if secsCounter}
+          <p>resend ({secsCounter})</p>
+        {:else}
+          resend
+        {/if}
       </button>
-      {#if secsCounter}
-        <p>try again in {secsCounter} seconds</p>
-      {/if}
       <h6>Please sign in again after verification</h6>
     {:else}
       <h3>already verified</h3>
@@ -88,6 +89,10 @@
     overflow: hidden;
     transition: 0.5s;
     border-radius: var(--br-small);
+    width: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   button.resend::after {
