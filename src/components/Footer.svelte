@@ -49,6 +49,7 @@
     gap: 1.5rem;
     padding: 2.5rem 0 3rem;
     border-top: var(--border);
+    border-top-style: dashed;
   }
   .logos {
     display: flex;
