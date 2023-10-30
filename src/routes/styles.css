@@ -310,3 +310,13 @@ button:has(svg) {
   justify-content: center;
   width: min-content;
 }
+
+button.cta:disabled {
+  /* background-color: var(--light-gray); */
+  opacity: 0.3;
+  color: var(--text);
+}
+
+button:disabled:hover {
+  cursor: not-allowed;
+}
