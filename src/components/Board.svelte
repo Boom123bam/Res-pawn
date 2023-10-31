@@ -237,7 +237,7 @@
   }
 
   function handlePieceClick(id) {
-    if (display.disabled) return;
+    if (display.disabled || board.movesBack) return;
     if (display.highlightedSquares.length == 0) {
       // select the piece and highlight possible moves
       display.highlightedSquares = board.getPossibleMoves(id);
@@ -274,6 +274,7 @@
   function handleRetryLastMoveButton() {
     display.disabled = false;
     currentSequence.failed = false;
+    board.returnToCurrentMove();
     board.undoMove();
     updateBoard();
   }
@@ -385,6 +386,7 @@
         />
         <div class="after">
           <slot name="after" />
+          {board.history}
         </div>
       </div>
     </div>

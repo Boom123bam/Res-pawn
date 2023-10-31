@@ -67,4 +67,10 @@ export class ChessBoard {
     }
     return null;
   }
+
+  returnToCurrentMove() {
+    while (this.movesBack > 0) {
+      this.showNextMove();
+    }
+  }
 }
