@@ -196,7 +196,7 @@
   nav {
     height: var(--nav-height);
     background-color: var(--secondary);
-    border-bottom: var(--border);
+    border-bottom: var(--border-light);
   }
 
   nav > ul {

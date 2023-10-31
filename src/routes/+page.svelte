@@ -299,7 +299,7 @@
   }
   .dropdown-content img {
     width: min(100%, 30rem);
-    border: var(--border);
+    border: var(--border-light);
     border-radius: var(--br-small);
   }
   @keyframes -global-slide-left {

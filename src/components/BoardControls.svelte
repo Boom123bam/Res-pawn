@@ -77,7 +77,7 @@
     /* height: 4rem; */
     background-color: var(--secondary);
     border-radius: var(--br);
-    border: var(--border);
+    border: var(--border-light);
     display: flex;
     /* gap: 1.25rem; */
     overflow: hidden;

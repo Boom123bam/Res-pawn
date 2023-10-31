@@ -45,7 +45,7 @@
 <style>
   .card {
     box-shadow: var(--shadow-down);
-    border: var(--border);
+    border: var(--border-light);
     border-radius: var(--br);
     background-color: var(--secondary);
     padding: 2px;
