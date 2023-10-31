@@ -13,7 +13,7 @@
   --accent-light: #7287f1;
   --light-gray: #eae9f2;
   --dark-gray: #333;
-  --border: 1px solid var(--text);
+  --border: 1px solid var(--light-gray);
   --br: 1rem;
   --br-small: 0.5rem;
   --shadow: 0.25rem 0.25rem 0 var(--text);
@@ -312,7 +312,6 @@ button:has(svg) {
 }
 
 button.cta:disabled {
-  /* background-color: var(--light-gray); */
   opacity: 0.5;
   color: var(--text);
 }
