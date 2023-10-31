@@ -386,7 +386,6 @@
         />
         <div class="after">
           <slot name="after" />
-          {board.history}
         </div>
       </div>
     </div>
