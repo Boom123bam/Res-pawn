@@ -25,9 +25,7 @@
       <h4 class="mobile">{playlistData?.name}</h4>
       <p class="length">{playlistData?.sequences?.length} puzzles</p>
       <p class="description">
-        {playlistData?.description
-          ? playlistData.description
-          : "no description"}
+        {playlistData?.description ? playlistData.description : ""}
       </p>
     </div>
     <div class="play-button-wrapper">
