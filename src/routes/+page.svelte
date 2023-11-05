@@ -18,10 +18,7 @@
   />
 
   <!-- Facebook Meta Tags -->
-  <meta
-    property="og:url"
-    content="https://idyllic-faloodeh-8a65c0.netlify.app/"
-  />
+  <meta property="og:url" content="https://res-pawn.com" />
   <meta property="og:type" content="website" />
   <meta
     property="og:title"
@@ -35,14 +32,8 @@
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta
-    property="twitter:domain"
-    content="idyllic-faloodeh-8a65c0.netlify.app"
-  />
-  <meta
-    property="twitter:url"
-    content="https://idyllic-faloodeh-8a65c0.netlify.app/"
-  />
+  <meta property="twitter:domain" content="res-pawn.com" />
+  <meta property="twitter:url" content="https://res-pawn.com" />
   <meta
     name="twitter:title"
     content="ResPawn - Practice Chess Pattern Recognition"
