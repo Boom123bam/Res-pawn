@@ -1,8 +1,11 @@
 # ResPawn
 
-### [Res-Pawn.com](https://res-pawn.com)
+![](banner-on-dark.png#gh-dark-mode-only)
+![](banner-on-light.png#gh-light-mode-only)
 
 ResPawn is a chess puzzles training app with built in spaced-repetition
+
+### [Res-Pawn.com](https://res-pawn.com)
 
 ## Technologies Used
 
@@ -12,6 +15,20 @@ ResPawn is a chess puzzles training app with built in spaced-repetition
 ## Contributing
 
 Pull requests are welcome.
+
+### Setup
+
+1. **Fork** the repository on GitHub.
+
+2. **Clone** your forked repository to your local machine.
+
+3. **Install** depenencies and run
+
+```
+cd ResPawn
+npm install
+npm run dev
+```
 
 ## License
 
