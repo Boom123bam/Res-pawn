@@ -10,7 +10,8 @@
   <title>ResPawn - Practice Chess Pattern Recognition</title>
   <meta
     name="description"
-    content="Play puzzles and improve your chess skills by practicing pattern recognition with spaced repetition."
+    content="ResPawn is a Chess puzzles app designed to improve pattern recognition
+    with Spaced Repetition."
   />
   <meta
     name="keywords"
@@ -26,7 +27,8 @@
   />
   <meta
     property="og:description"
-    content="Play puzzles and improve your chess skills by practicing pattern recognition with spaced repetition."
+    content="ResPawn is a Chess puzzles app designed to improve pattern recognition
+    with Spaced Repetition."
   />
   <meta property="og:image" content="/images/thumbnail.png" />
 
@@ -40,7 +42,8 @@
   />
   <meta
     name="twitter:description"
-    content="Play puzzles and improve your chess skills by practicing pattern recognition with spaced repetition."
+    content="ResPawn is a Chess puzzles app designed to improve pattern recognition
+    with Spaced Repetition."
   />
   <meta name="twitter:image" content="/images/thumbnail.png" />
 </svelte:head>
@@ -59,8 +62,8 @@
           class="link color"
           href="/article/spaced-repetition">spaced repetition</a
         > by playing puzzles! -->
-        Practice pattern recognition with spaced repetition by playing
-        puzzles!
+        ResPawn is a Chess puzzles app designed to improve pattern recognition
+        with spaced repetition.
       </h5>
     </Saos>
     <div class="buttons">
