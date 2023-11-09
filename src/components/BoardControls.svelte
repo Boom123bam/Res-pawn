@@ -17,7 +17,7 @@
       dispatch("back");
     }}
   >
-    <Svg name="left" />
+    <Svg name="expand_left" />
   </button>
   <button
     title="next move"
@@ -26,7 +26,7 @@
       dispatch("next");
     }}
   >
-    <Svg name="right" />
+    <Svg name="expand_right" />
   </button>
 
   {#if showRetryLastMove}
@@ -68,7 +68,7 @@
       dispatch("flip");
     }}
   >
-    <Svg name="flip" />
+    <Svg name="vertical_switch_alt" />
   </button>
 </div>
 

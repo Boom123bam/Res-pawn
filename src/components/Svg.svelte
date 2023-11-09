@@ -5,102 +5,79 @@
   export let focusable = false;
 
   let icons = {
-    refresh: {
+    search: {
       box: 24,
-      svg: `
-      <path d="M14 15L10 19L14 23" stroke="${color}" stroke-width="2"/>
-      <path d="M5.93782 15.5C5.16735 14.1655 4.85875 12.6141 5.05989 11.0863C5.26102 9.55856 5.96064 8.13986 7.05025 7.05025C8.13986 5.96064 9.55856 5.26102 11.0863 5.05989C12.6141 4.85875 14.1655 5.16735 15.5 5.93782C16.8345 6.70829 17.8775 7.89757 18.4672 9.32122C19.0568 10.7449 19.1603 12.3233 18.7615 13.8117C18.3627 15.3002 17.4838 16.6154 16.2613 17.5535C15.0388 18.4915 13.5409 19 12 19" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      `,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<circle cx="10.8891" cy="10.8889" r="7.77778" stroke="${color}" stroke-width="1.2"/>\n<path d="M20.5 20.5L16.5 16.5" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n</svg>\n`,
+    },
+    moon_fill: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M16.5111 2.18742C17.6157 2.27838 18.168 2.32386 18.2883 2.71023C18.4086 3.09661 17.8873 3.52336 16.8445 4.37687C14.6385 6.18252 13.2306 8.92684 13.2306 12C13.2306 15.0732 14.6385 17.8175 16.8445 19.6231C17.8873 20.4766 18.4086 20.9034 18.2883 21.2898C18.168 21.6761 17.6157 21.7216 16.5111 21.8126C16.241 21.8348 15.9679 21.8462 15.6921 21.8462C10.2542 21.8462 5.84595 17.4379 5.84595 12C5.84595 6.56212 10.2542 2.15385 15.6921 2.15385C15.9679 2.15385 16.241 2.16519 16.5111 2.18742Z" fill="${color}"/>\n</svg>\n`,
+    },
+    vertical_switch_alt: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M7.11081 21.7778L6.68655 22.202L7.11081 22.6263L7.53508 22.202L7.11081 21.7778ZM7.11081 10.7556L6.51081 10.7556L6.51081 10.7556L7.11081 10.7556ZM9.55526 10.1556C9.88663 10.1556 10.1553 9.88692 10.1553 9.55555C10.1553 9.22418 9.88663 8.95555 9.55526 8.95555L9.55526 10.1556ZM1.79766 17.3132L6.68655 22.202L7.53508 21.3535L2.64619 16.4646L1.79766 17.3132ZM7.53508 22.202L12.424 17.3132L11.5754 16.4646L6.68655 21.3535L7.53508 22.202ZM7.71081 21.7778L7.71081 10.7556L6.51081 10.7556L6.51081 21.7778L7.71081 21.7778ZM8.31081 10.1556L9.55526 10.1556L9.55526 8.95555L8.31081 8.95555L8.31081 10.1556ZM7.71081 10.7556C7.71081 10.4242 7.97944 10.1556 8.31081 10.1556L8.31081 8.95555C7.3167 8.95555 6.51081 9.76144 6.51081 10.7556L7.71081 10.7556Z" fill="${color}"/>\n<path d="M16.8889 2.22223L16.4646 1.79796L16.8889 1.3737L17.3132 1.79796L16.8889 2.22223ZM16.8889 13.2445L16.2889 13.2445L16.2889 13.2445L16.8889 13.2445ZM14.4444 15.0445C14.1131 15.0445 13.8444 14.7758 13.8444 14.4445C13.8444 14.1131 14.1131 13.8445 14.4444 13.8445L14.4444 15.0445ZM11.5757 6.68685L16.4646 1.79796L17.3132 2.64649L12.4243 7.53538L11.5757 6.68685ZM17.3132 1.79796L22.202 6.68685L21.3535 7.53538L16.4646 2.64649L17.3132 1.79796ZM17.4889 2.22223L17.4889 13.2445L16.2889 13.2445L16.2889 2.22223L17.4889 2.22223ZM15.6889 15.0445L14.4444 15.0445L14.4444 13.8445L15.6889 13.8445L15.6889 15.0445ZM17.4889 13.2445C17.4889 14.2386 16.683 15.0445 15.6889 15.0445L15.6889 13.8445C16.0203 13.8445 16.2889 13.5758 16.2889 13.2445L17.4889 13.2445Z" fill="${color}"/>\n</svg>\n`,
     },
     question: {
       box: 24,
-      svg: `
-      <circle cx="12" cy="12" r="9" stroke="${color}" stroke-width="2"/>
-      <circle cx="12" cy="18" r="0.5" fill="${color}" stroke="${color}"/>
-      <path d="M12 16V14.5811C12 13.6369 12.6042 12.7986 13.5 12.5V12.5C14.3958 12.2014 15 11.3631 15 10.4189V9.90569C15 8.30092 13.6991 7 12.0943 7H12C10.3431 7 9 8.34315 9 10V10" stroke="${color}" stroke-width="2"/>
-      `,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<circle cx="11.9999" cy="12" r="9.16667" stroke="${color}" stroke-width="1.2"/>\n<ellipse cx="11.9997" cy="18.1111" rx="0.509259" ry="0.509259" fill="${color}" stroke="${color}" stroke-width="0.6"/>\n<path d="M11.9999 16.0741V14.6289C11.9999 13.6672 12.6153 12.8134 13.5277 12.5093V12.5093C14.44 12.2051 15.0554 11.3513 15.0554 10.3896V9.86691C15.0554 8.23243 13.7304 6.90741 12.0959 6.90741H11.9999C10.3124 6.90741 8.94434 8.27543 8.94434 9.96297V9.96297" stroke="${color}" stroke-width="1.2"/>\n</svg>\n`,
     },
-    left: {
+    play_fill: {
       box: 24,
-      svg: `
-      <path d="M15 6L9 12L15 18" stroke="${color}" stroke-width="2"/>
-      `,
-    },
-    right: {
-      box: 24,
-      svg: `
-      <path d="M9 6L15 12L9 18" stroke="${color}" stroke-width="2"/>
-      `,
-    },
-    doubleRight: {
-      box: 24,
-      svg: `
-      <path d="M12 18L18 12L12 6" stroke="${color}" stroke-width="2"/>
-      <path d="M6 18L12 12L6 6" stroke="${color}" stroke-width="2"/>
-      `,
-    },
-    close: {
-      box: 24,
-      svg: `
-      <path d="M18 6L6 18" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M6 6L18 18" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      `,
-    },
-    search: {
-      box: 24,
-      svg: `
-      <circle cx="11" cy="11" r="7" stroke="${color}" stroke-width="2"/>
-      <path d="M20 20L17 17" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      `,
-    },
-    flip: {
-      box: 24,
-      svg: `
-      <path d="M8 20L7.29289 20.7071L8 21.4142L8.70711 20.7071L8 20ZM8 12L7 12L8 12ZM10 11C10.5523 11 11 10.5523 11 10C11 9.44771 10.5523 9 10 9L10 11ZM3.29289 16.7071L7.29289 20.7071L8.70711 19.2929L4.70711 15.2929L3.29289 16.7071ZM8.70711 20.7071L12.7071 16.7071L11.2929 15.2929L7.29289 19.2929L8.70711 20.7071ZM9 20L9 12L7 12L7 20L9 20ZM9 12C9 11.4477 9.44771 11 10 11L10 9C8.34315 9 7 10.3431 7 12L9 12Z" fill="${color}"/>
-      <path d="M16 4L15.2929 3.29289L16 2.58579L16.7071 3.29289L16 4ZM16 12L17 12L16 12ZM14 15C13.4477 15 13 14.5523 13 14C13 13.4477 13.4477 13 14 13L14 15ZM11.2929 7.29289L15.2929 3.29289L16.7071 4.70711L12.7071 8.70711L11.2929 7.29289ZM16.7071 3.29289L20.7071 7.29289L19.2929 8.70711L15.2929 4.70711L16.7071 3.29289ZM17 4L17 12L15 12L15 4L17 4ZM17 12C17 13.6569 15.6569 15 14 15L14 13C14.5523 13 15 12.5523 15 12L17 12Z" fill="${color}"/>
-      `,
-    },
-    burger: {
-      box: 24,
-      svg: `
-      <path d="M5 7H19" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      <path d="M5 12H19" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      <path d="M5 17H19" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      `,
-    },
-    play: {
-      box: 24,
-      svg: `
-      <path d="M16.1378 10.5689L9.60498 7.30252C8.40816 6.70411 7 7.5744 7 8.91249V15.0876C7 16.4257 8.40816 17.2959 9.60498 16.6975L16.1378 13.4311C17.3171 12.8415 17.3171 11.1586 16.1378 10.5689Z" fill="${color}"/>
-      `,
-    },
-    sun: {
-      box: 24,
-      svg: `
-      <circle cx="12" cy="12" r="3" stroke="${color}" stroke-width="2"/>
-      <path d="M12 5V3" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      <path d="M12 21V19" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      <path d="M16.9498 7.05026L18.364 5.63605" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      <path d="M5.63608 18.364L7.05029 16.9497" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      <path d="M19 12L21 12" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      <path d="M3 12L5 12" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      <path d="M16.9498 16.9497L18.364 18.364" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      <path d="M5.63608 5.63605L7.05029 7.05026" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
-      `,
-    },
-    moon: {
-      box: 24,
-      svg: `
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M15 4C15.292 4 15.438 4 15.5781 4.04183C16.192 4.22522 16.4775 4.93111 16.1637 5.48976C16.0921 5.61719 15.8744 5.82779 15.4389 6.249C13.935 7.70352 13 9.74257 13 12C13 14.2574 13.935 16.2965 15.4389 17.751C15.8744 18.1722 16.0921 18.3828 16.1637 18.5102C16.4775 19.0689 16.192 19.7748 15.5781 19.9582C15.438 20 15.292 20 15 20C10.5817 20 7 16.4183 7 12C7 7.58172 10.5817 4 15 4Z" fill="${color}"/>
-      `,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M17.517 10.0919L8.80656 5.73666C7.2108 4.93878 5.33325 6.09917 5.33325 7.88328V16.1167C5.33325 17.9008 7.2108 19.0612 8.80656 18.2633L17.517 13.9081C19.0894 13.1219 19.0894 10.8781 17.517 10.0919Z" fill="${color}"/>\n</svg>\n`,
     },
     info: {
       box: 24,
-      svg: `<circle cx="12" cy="12" r="9" stroke="${color}" stroke-width="2"/>
-      <path d="M12.5 7.5C12.5 7.77614 12.2761 8 12 8C11.7239 8 11.5 7.77614 11.5 7.5C11.5 7.22386 11.7239 7 12 7C12.2761 7 12.5 7.22386 12.5 7.5Z" fill="${color}" stroke="${color}"/>
-      <path d="M12 17V10" stroke="${color}" stroke-width="2"/>
-      `,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<circle cx="11.9999" cy="12" r="9.16667" stroke="${color}" stroke-width="1.2"/>\n<path d="M12.509 7.41667C12.509 7.69793 12.281 7.92593 11.9997 7.92593C11.7185 7.92593 11.4905 7.69793 11.4905 7.41667C11.4905 7.13541 11.7185 6.90741 11.9997 6.90741C12.281 6.90741 12.509 7.13541 12.509 7.41667Z" fill="${color}" stroke="${color}" stroke-width="0.6"/>\n<path d="M12 17.0926V9.96297" stroke="${color}" stroke-width="1.2"/>\n</svg>\n`,
     },
+    add: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M12 4L12 20" stroke="${color}" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round"/>\n<path d="M20 12L4 12" stroke="${color}" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="round"/>\n</svg>\n`,
+    },
+    refresh: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M14.241 14.0278L9.75952 18.5093L14.241 22.9907" stroke="${color}" stroke-width="1.2"/>\n<path d="M5.2083 14.588C4.31277 13.0369 3.97514 11.226 4.25154 9.45636C4.52795 7.68675 5.40174 6.06507 6.72763 4.86094C8.05353 3.65682 9.75163 2.9428 11.5396 2.83762C13.3276 2.73243 15.0977 3.24241 16.5556 4.28276C18.0135 5.32311 19.0715 6.83115 19.5535 8.55614C20.0354 10.2811 19.9125 12.1191 19.205 13.7645C18.4975 15.41 17.2482 16.7636 15.6646 17.6005C14.0811 18.4374 12.2588 18.707 10.5008 18.3646" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n</svg>\n`,
+    },
+    play: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M18.9267 11.4633L7.70866 5.85433C7.22993 5.61497 6.66667 5.96309 6.66667 6.49832V17.5017C6.66667 18.0369 7.22993 18.385 7.70866 18.1457L18.9267 12.5367C19.3689 12.3155 19.3689 11.6845 18.9267 11.4633Z" stroke="${color}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>\n</svg>\n`,
+    },
+    expand_right: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M8 4L16 12L8 20" stroke="${color}" stroke-width="1.2"/>\n</svg>\n`,
+    },
+    sun: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<circle cx="12" cy="12" r="4.28889" stroke="${color}" stroke-width="1.2"/>\n<path d="M12 3.44444V1" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M12 23V20.5556" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M18.0498 5.9503L19.7783 4.22182" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M4.22196 19.7782L5.95044 18.0497" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M20.5556 12L23 12" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M0.999891 12L3.44434 12" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M18.0498 18.0497L19.7783 19.7782" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M4.22196 4.22183L5.95044 5.95032" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n</svg>\n`,
+    },
+    edit: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M9.66914 18.2012C9.6701 18.2009 9.67106 18.2007 9.67203 18.2004C9.68188 18.198 9.69198 18.1955 9.70232 18.1929C9.8273 18.1621 9.9855 18.1231 10.1306 18.0409L10.1306 18.0409C10.2756 17.9588 10.3905 17.8432 10.4812 17.7519C10.4895 17.7436 10.4975 17.7356 10.5054 17.7277L10.0811 17.3034L10.5054 17.7277L10.5054 17.7277L19.5757 8.65741L19.5987 8.63433C19.7787 8.45445 19.9536 8.27963 20.0784 8.11603C20.2191 7.93159 20.3514 7.69281 20.3514 7.38462C20.3514 7.07642 20.2191 6.83764 20.0784 6.6532C19.9536 6.4896 19.7787 6.31478 19.5987 6.1349L19.5757 6.11182L17.8881 4.42426L17.865 4.40119C17.6851 4.22123 17.5103 4.04634 17.3467 3.92151C17.1623 3.78079 16.9235 3.64853 16.6153 3.64853C16.3071 3.64853 16.0683 3.78079 15.8839 3.92152C15.7203 4.04634 15.5455 4.22123 15.3656 4.40119C15.3579 4.40887 15.3502 4.41656 15.3425 4.42426L6.27222 13.4946C6.26438 13.5024 6.25629 13.5104 6.248 13.5187C6.1567 13.6094 6.04113 13.7243 5.959 13.8694C5.87686 14.0144 5.83782 14.1726 5.80698 14.2976C5.80418 14.3089 5.80145 14.32 5.79876 14.3308L4.87243 18.0361C4.87075 18.0428 4.869 18.0498 4.86719 18.057C4.8451 18.1449 4.81449 18.2666 4.80395 18.3744C4.79182 18.4984 4.78781 18.7696 5.00908 18.9908L5.43334 18.5666L5.00908 18.9908C5.23035 19.2121 5.50152 19.2081 5.62554 19.196C5.7333 19.1854 5.85505 19.1548 5.94294 19.1327C5.95015 19.1309 5.95712 19.1292 5.96384 19.1275L9.66914 18.2012Z" stroke="${color}" stroke-width="1.2"/>\n<path d="M13.7949 5.69231L17.1795 3.4359L20.5642 6.82051L18.3077 10.2051L13.7949 5.69231Z" fill="${color}"/>\n</svg>\n`,
+    },
+    sun_fill: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<circle cx="12" cy="12" r="4.88889" fill="${color}"/>\n<path d="M12 3.44444V1" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M12 23V20.5556" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M18.0498 5.94995L19.7783 4.22147" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M4.22196 19.7787L5.95044 18.0502" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M20.5556 12L23 12" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M0.999891 12L3.44434 12" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M18.0498 18.0501L19.7783 19.7785" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M4.22196 4.22128L5.95044 5.94976" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n</svg>\n`,
+    },
+    expand_left: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M16 4L8 12L16 20" stroke="${color}" stroke-width="1.2"/>\n</svg>\n`,
+    },
+    close_round: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M19.3334 4.66667L4.66675 19.3333" stroke="${color}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>\n<path d="M4.66658 4.66667L19.3333 19.3333" stroke="${color}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>\n</svg>\n`,
+    },
+    expand_right_double: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M12 20L20 12L12 4" stroke="${color}" stroke-width="1.2"/>\n<path d="M4 20L12 12L4 4" stroke="${color}" stroke-width="1.2"/>\n</svg>\n`,
+    },
+    menu: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M3.44434 5.88889H20.5554" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M3.44434 12H20.5554" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n<path d="M3.44434 18.1111H20.5554" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>\n</svg>\n`,
+    },
+    moon: {
+      box: 24,
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M16.1538 18.6959L15.759 19.1477L16.1538 18.6959ZM15.7852 20.8776L15.7552 20.2783L15.7852 20.8776ZM17.5494 20.4136L16.9826 20.2169L17.5494 20.4136ZM17.5494 3.58633L18.1162 3.38959L17.5494 3.58633ZM13.7112 12C13.7112 9.50958 14.8088 7.27624 16.5486 5.75592L15.759 4.85231C13.7695 6.59082 12.5112 9.14882 12.5112 12H13.7112ZM16.5486 18.2441C14.8088 16.7237 13.7112 14.4904 13.7112 12H12.5112C12.5112 14.8512 13.7695 17.4092 15.759 19.1477L16.5486 18.2441ZM15.7552 20.2783C15.6156 20.2853 15.475 20.2889 15.3335 20.2889V21.4889C15.495 21.4889 15.6556 21.4848 15.8152 21.4768L15.7552 20.2783ZM15.3335 20.2889C10.7556 20.2889 7.04458 16.5778 7.04458 12H5.84458C5.84458 17.2406 10.0929 21.4889 15.3335 21.4889V20.2889ZM7.04458 12C7.04458 7.42216 10.7556 3.7111 15.3335 3.7111V2.5111C10.0929 2.5111 5.84458 6.75942 5.84458 12H7.04458ZM15.3335 3.7111C15.475 3.7111 15.6156 3.71464 15.7552 3.72163L15.8152 2.52313C15.6556 2.51514 15.495 2.5111 15.3335 2.5111V3.7111ZM15.759 19.1477C16.2826 19.6052 16.6275 19.9083 16.8332 20.1418C17.068 20.4084 16.9287 20.372 16.9826 20.2169L18.1162 20.6104C18.3027 20.073 17.9752 19.6229 17.7337 19.3487C17.4631 19.0415 17.0438 18.6768 16.5486 18.2441L15.759 19.1477ZM15.8152 21.4768C16.3365 21.4508 16.8032 21.4293 17.1503 21.3554C17.5033 21.2803 17.9442 21.106 18.1162 20.6104L16.9826 20.2169C17.0219 20.1036 17.1245 20.134 16.9005 20.1817C16.6707 20.2306 16.3217 20.25 15.7552 20.2783L15.8152 21.4768ZM16.5486 5.75592C17.0438 5.32316 17.4631 4.95846 17.7337 4.65127C17.9752 4.37711 18.3027 3.92695 18.1162 3.38959L16.9826 3.78307C16.9287 3.62799 17.068 3.59155 16.8332 3.85813C16.6275 4.09168 16.2826 4.39473 15.759 4.85231L16.5486 5.75592ZM15.7552 3.72163C16.3217 3.74999 16.6707 3.76936 16.9005 3.81828C17.1245 3.86594 17.0219 3.89638 16.9826 3.78307L18.1162 3.38959C17.9442 2.89401 17.5033 2.71969 17.1503 2.64456C16.8032 2.57069 16.3365 2.54922 15.8152 2.52313L15.7552 3.72163Z" fill="${color}"/>\n</svg>\n`,
+    },
+
     github: {
       box: 40,
       svg: `
@@ -115,13 +92,17 @@
     },
   };
   const displayIcon = icons[name];
+  if (!displayIcon)
+    console.log(`svg with name: ${name} does not exist`);
 </script>
 
-<svg
-  class={$$props.class}
-  {focusable}
-  fill="none"
-  style={`width:${size}; height:${size}`}
-  viewBox="0 0 {displayIcon.box} {displayIcon.box}"
-  >{@html displayIcon.svg}</svg
->
+{#if displayIcon}
+  <svg
+    class={$$props.class}
+    {focusable}
+    fill="none"
+    style={`width:${size}; height:${size}`}
+    viewBox="0 0 {displayIcon.box} {displayIcon.box}"
+    >{@html displayIcon.svg}</svg
+  >
+{/if}

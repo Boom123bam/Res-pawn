@@ -15,7 +15,7 @@
     >
       <h3>{title}</h3>
       <div class="arrow">
-        <Svg name="left" size="3rem" />
+        <Svg name="expand_left" size="3rem" />
       </div>
     </button>
   </div>

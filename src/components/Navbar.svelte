@@ -108,7 +108,7 @@
         {#if theme == "dark"}
           <Svg name="sun" />
         {:else}
-          <Svg name="moon" />
+          <Svg name="moon_fill" />
         {/if}
       </button>
     </li>
@@ -123,7 +123,7 @@
     </li>
     <li class="hamburger">
       <button on:click={() => (showMobileMenu = !showMobileMenu)}>
-        <Svg name="burger" />
+        <Svg name="menu" />
       </button>
     </li>
   </ul>
@@ -182,7 +182,7 @@
                 <Svg name="sun" />
               {:else}
                 <span>dark</span>
-                <Svg name="moon" />
+                <Svg name="moon_fill" />
               {/if}
             </button>
           </li>
