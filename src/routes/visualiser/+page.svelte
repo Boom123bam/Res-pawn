@@ -110,7 +110,7 @@
   .grade-buttons button {
     border: var(--border-dark);
     padding: 1rem;
-    background-color: var(--white);
+    background-color: var(--background-alt);
   }
   .data {
     padding: 5rem 0;

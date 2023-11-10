@@ -1,6 +1,6 @@
 :root {
   --dark-square: var(--purple);
-  --light-square: var(--white);
+  --light-square: var(--background-alt);
   --hint-square: yellow;
   --max-board-size: 80rem;
   --piece-size: 80%;
@@ -36,7 +36,7 @@ body.dark {
 .board-padding {
   height: 100%;
   padding: 1rem;
-  background-color: var(--white);
+  background-color: var(--background-alt);
   border-radius: var(--br);
 }
 

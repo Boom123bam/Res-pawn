@@ -195,7 +195,7 @@
 <style>
   nav {
     height: var(--nav-height);
-    background-color: var(--white);
+    background-color: var(--background-alt);
     border-bottom: var(--border-light);
   }
 
@@ -303,7 +303,7 @@
     border-left: var(--border-dark);
     width: 50%;
     height: 100%;
-    background-color: var(--white);
+    background-color: var(--background-alt);
     transform: translateX(100%);
     align-items: end;
     text-align: right;

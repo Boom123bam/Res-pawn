@@ -30,6 +30,7 @@
 
   --text: var(--blue-900);
   --background: var(--beige);
+  --background-alt: var(--white);
   --primary: var(--blue-500);
   --pirmary-shadow: var(--blue-700);
   --secondary: var(--pink-500);
@@ -161,7 +162,7 @@ input {
   background-color: var(--gray-100);
 }
 input:focus {
-  background-color: var(--white);
+  background-color: var(--background-alt);
   outline: 1px solid var(--text);
 }
 *:focus-visible {
@@ -180,7 +181,7 @@ i {
 
 button.cta {
   background-color: var(--primary);
-  color: var(--white);
+  color: var(--background-alt);
   cursor: pointer;
   /* border: 1px solid var(--primary); */
   font-weight: 700;
@@ -202,7 +203,7 @@ button.ghost {
 }
 
 .popup {
-  background-color: var(--white);
+  background-color: var(--background-alt);
   box-shadow: var(--shadow);
   border: var(--border-dark);
 }
@@ -234,7 +235,7 @@ button.ghost {
 }
 body.dark .tiles-bg {
   color: black;
-  background-color: var(--white);
+  background-color: var(--background-alt);
   color: var(--text);
 }
 
@@ -252,7 +253,7 @@ body.dark .tiles-bg {
 
 .invert {
   background-color: var(--text);
-  color: var(--white);
+  color: var(--background-alt);
 }
 
 .flex-col {

@@ -198,7 +198,10 @@
             title="next puzzle"
             on:click={handleNext}
           >
-            <Svg name="expand_right_double" color="var(--white)" />
+            <Svg
+              name="expand_right_double"
+              color="var(--background-alt)"
+            />
           </button>
         </Board>
         <!-- {#if showGradeMenu} -->

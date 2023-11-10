@@ -469,15 +469,15 @@
     gap: 0.5rem;
   }
   .card .white {
-    background-color: var(--white);
+    background-color: var(--background-alt);
   }
   :global(body.dark) .card .black {
-    background-color: var(--white);
+    background-color: var(--background-alt);
     color: var(--text);
   }
   :global(body.dark) .card .white {
     background-color: var(--text);
-    color: var(--white);
+    color: var(--background-alt);
   }
   .third.card .black,
   .fourth.card .black {
@@ -509,7 +509,7 @@
 
   section.bottom-cta {
     background-color: var(--primary);
-    color: var(--white);
+    color: var(--background-alt);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -533,7 +533,7 @@
   }
 
   :global(body.dark) section.bottom-cta button {
-    background-color: var(--white);
+    background-color: var(--background-alt);
     color: var(--text);
   }
 

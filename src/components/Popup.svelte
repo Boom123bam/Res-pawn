@@ -10,7 +10,7 @@
 
 <div class="popup-window popup">
   <button class="close" on:click={handleClose}
-    ><Svg name="close_round" color="var(--white)" />
+    ><Svg name="close_round" color="var(--background-alt)" />
   </button>
   <slot />
 </div>

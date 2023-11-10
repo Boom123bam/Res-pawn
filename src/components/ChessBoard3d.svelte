@@ -118,12 +118,12 @@
   }
 
   :global(body.dark) .container {
-    border-color: var(--white);
+    border-color: var(--background-alt);
   }
 
   .tile {
     transition: 3s;
-    background: var(--white);
+    background: var(--background-alt);
   }
   .tile.dark {
     background: var(--text);

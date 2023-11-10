@@ -362,7 +362,10 @@
             target="_blank"
           >
             <button class="analyze" title="analyze in lichess"
-              ><Svg name="search" color="var(--white)" /></button
+              ><Svg
+                name="search"
+                color="var(--background-alt)"
+              /></button
             >
           </a>
         </div>

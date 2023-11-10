@@ -75,7 +75,7 @@
 <style>
   .board-controls {
     /* height: 4rem; */
-    background-color: var(--white);
+    background-color: var(--background-alt);
     border-radius: var(--br);
     border: var(--border-light);
     display: flex;
@@ -98,13 +98,13 @@
 
   @keyframes color-pulse {
     0% {
-      background-color: var(--white);
+      background-color: var(--background-alt);
     }
     50% {
       background-color: var(--purple);
     }
     100% {
-      background-color: var(--white);
+      background-color: var(--background-alt);
     }
   }
   @media screen and (max-width: 600px) {
