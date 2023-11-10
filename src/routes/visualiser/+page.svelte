@@ -108,9 +108,9 @@
     justify-content: center;
   }
   .grade-buttons button {
-    border: var(--border);
+    border: var(--border-dark);
     padding: 1rem;
-    background-color: var(--secondary);
+    background-color: var(--white);
   }
   .data {
     padding: 5rem 0;
@@ -144,7 +144,7 @@
     display: block;
     width: 0.5rem;
     height: 0.5rem;
-    background-color: var(--accent);
+    background-color: var(--primary);
     border-radius: 50%;
     right: -0.15rem;
     top: -0.15rem;

@@ -195,7 +195,7 @@
 <style>
   nav {
     height: var(--nav-height);
-    background-color: var(--secondary);
+    background-color: var(--white);
     border-bottom: var(--border-light);
   }
 
@@ -300,10 +300,10 @@
     align-items: center;
   }
   .mobile-menu {
-    border-left: var(--border);
+    border-left: var(--border-dark);
     width: 50%;
     height: 100%;
-    background-color: var(--secondary);
+    background-color: var(--white);
     transform: translateX(100%);
     align-items: end;
     text-align: right;

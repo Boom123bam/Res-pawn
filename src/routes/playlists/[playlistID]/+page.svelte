@@ -59,7 +59,7 @@
     padding: 5rem 0;
   }
   .hero-content-container {
-    border: 1px solid var(--secondary);
+    border: 1px solid var(--white);
     background-color: inherit;
     z-index: 5;
     padding: 3rem 2.5rem;

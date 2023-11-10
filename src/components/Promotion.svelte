@@ -72,7 +72,7 @@
   .buttons-container button:hover {
     background-color: color-mix(
       in oklab,
-      var(--primary) 50%,
+      var(--purple) 50%,
       rgba(0, 0, 0, 0) 50%
     );
   }

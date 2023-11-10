@@ -441,7 +441,7 @@
   .cards-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: var(--primary);
+    background-color: var(--purple);
     gap: 1rem;
     padding: 1.25rem;
     border-radius: var(--br);
@@ -469,15 +469,15 @@
     gap: 0.5rem;
   }
   .card .white {
-    background-color: var(--secondary);
+    background-color: var(--white);
   }
   :global(body.dark) .card .black {
-    background-color: var(--secondary);
+    background-color: var(--white);
     color: var(--text);
   }
   :global(body.dark) .card .white {
     background-color: var(--text);
-    color: var(--secondary);
+    color: var(--white);
   }
   .third.card .black,
   .fourth.card .black {
@@ -508,15 +508,15 @@
   }
 
   section.bottom-cta {
-    background-color: var(--accent);
-    color: var(--secondary);
+    background-color: var(--primary);
+    color: var(--white);
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
     padding: 6rem 0;
     align-items: center;
-    border-top: var(--border);
+    border-top: var(--border-dark);
     text-align: center;
     padding-inline: 1.5rem;
     overflow: hidden;
@@ -533,7 +533,7 @@
   }
 
   :global(body.dark) section.bottom-cta button {
-    background-color: var(--secondary);
+    background-color: var(--white);
     color: var(--text);
   }
 
@@ -548,10 +548,10 @@
       opacity: 1 !important;
     }
     section.bottom-cta button:hover {
-      background-color: var(--dark-gray);
+      background-color: var(--gray-500);
     }
     :global(body.dark) section.bottom-cta button:hover {
-      background-color: var(--dark-gray);
+      background-color: var(--gray-500);
     }
   }
 </style>

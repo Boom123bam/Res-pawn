@@ -45,7 +45,7 @@
     box-shadow: var(--shadow-down);
     border: var(--border-light);
     border-radius: var(--br);
-    background-color: var(--secondary);
+    background-color: var(--white);
     padding: 2px;
     height: 18rem;
     /* width: 18rem; */
@@ -94,7 +94,7 @@
 
   @media (hover: none) {
     .play-button-wrapper button {
-      background-color: var(--accent2);
+      background-color: var(--white);
     }
   }
 
@@ -133,7 +133,7 @@
       transition: none;
     }
     .play-button-wrapper button {
-      background-color: var(--accent2);
+      background-color: var(--white);
     }
   }
 </style>

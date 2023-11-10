@@ -108,7 +108,7 @@
     /*   transform: rotate(45deg); */
     animation: rotation 20s linear infinite;
     border: 0.75rem solid var(--text);
-    background-color: var(--primary);
+    background-color: var(--purple);
     width: 100%;
     height: 100%;
     display: grid;
@@ -118,12 +118,12 @@
   }
 
   :global(body.dark) .container {
-    border-color: var(--secondary);
+    border-color: var(--white);
   }
 
   .tile {
     transition: 3s;
-    background: var(--secondary);
+    background: var(--white);
   }
   .tile.dark {
     background: var(--text);

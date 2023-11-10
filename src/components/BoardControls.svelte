@@ -75,7 +75,7 @@
 <style>
   .board-controls {
     /* height: 4rem; */
-    background-color: var(--secondary);
+    background-color: var(--white);
     border-radius: var(--br);
     border: var(--border-light);
     display: flex;
@@ -98,13 +98,13 @@
 
   @keyframes color-pulse {
     0% {
-      background-color: var(--secondary);
+      background-color: var(--white);
     }
     50% {
-      background-color: var(--primary);
+      background-color: var(--purple);
     }
     100% {
-      background-color: var(--secondary);
+      background-color: var(--white);
     }
   }
   @media screen and (max-width: 600px) {
@@ -114,7 +114,7 @@
   }
   @media (hover: hover) {
     .board-controls button:hover {
-      background-color: var(--light-gray);
+      background-color: var(--gray-100);
     }
   }
 </style>

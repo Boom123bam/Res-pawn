@@ -114,7 +114,7 @@
     margin-top: 1.5rem;
   }
   img {
-    border: var(--border);
+    border: var(--border-dark);
     border-radius: var(--br);
     width: min(100%, 45rem);
     align-self: center;
