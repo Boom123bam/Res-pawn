@@ -68,7 +68,7 @@
     </Saos>
     <div class="buttons">
       <a href="/playlists">
-        <button class="cta float play-now"> play puzzles </button>
+        <button class="primary float play-now"> play puzzles </button>
       </a>
       <button
         on:click={() =>
@@ -378,9 +378,6 @@
     display: flex;
     gap: 0.5rem;
   }
-  section.hero > .content .buttons button {
-    border-radius: var(--br-small);
-  }
   section.bottom-cta {
     margin-bottom: 0;
   }
@@ -529,7 +526,6 @@
   section.bottom-cta button {
     background-color: var(--text);
     padding: 1.3rem 2.5rem;
-    border-radius: var(--br-small);
   }
 
   :global(body.dark) section.bottom-cta button {

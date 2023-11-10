@@ -58,7 +58,7 @@
 
       <button
         type="button"
-        class="sign-in cta"
+        class="primary sign-in"
         on:click={handleSignIn}>Sign In</button
       >
 
@@ -73,7 +73,9 @@
     {#if savedProgress}
       <h5>Progress has been saved</h5>
     {/if}
-    <a href="/"> <button class="cta home">back to home </button></a>
+    <a href="/">
+      <button class="primary home">back to home </button></a
+    >
   {/if}
 </section>
 

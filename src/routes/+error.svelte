@@ -5,7 +5,7 @@
 <section class="error">
   <h3>{$page.status} {$page.error.message}</h3>
   <a href="/">
-    <button class="cta">back to home</button>
+    <button class="primary">back to home</button>
   </a>
 </section>
 

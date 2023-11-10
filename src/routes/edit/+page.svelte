@@ -3,7 +3,7 @@
 </script>
 
 <button
-  class="cta"
+  class="primary"
   on:click={() => {
     // createPlaylist("Hard 2", "#ee8686", [1800], []);
   }}>add</button

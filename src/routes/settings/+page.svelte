@@ -27,7 +27,7 @@
     </fieldset>
     <button
       type="submit"
-      class="save cta"
+      class="primary save"
       on:click={() => storeSettings(settings)}>Save Changes</button
     >
   </form>

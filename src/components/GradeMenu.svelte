@@ -131,7 +131,7 @@
     <small>(or tap on the tiles)</small>
   </div>
   <button
-    class="next cta"
+    class="primary next"
     on:click={() => {
       handleSubmit(true);
     }}>next</button
@@ -140,7 +140,6 @@
 
 <style>
   button.next {
-    border-radius: var(--br-small);
     padding: 0.5rem 2.25rem;
   }
 

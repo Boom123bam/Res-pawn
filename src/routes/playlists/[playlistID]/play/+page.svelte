@@ -123,7 +123,7 @@
       <Popup on:close={() => (closedEmailPopup = true)}>
         <h5>Verify email to save progress</h5>
         <a href="/auth/verify">
-          <button class="cta">verify</button>
+          <button class="primary">verify</button>
         </a>
       </Popup>
     </div>
@@ -194,7 +194,9 @@
         <Board on:finish={handleSeqFinish}>
           <button
             slot="after"
-            class={`next cta${showBottomNextButton ? "" : " hide"}`}
+            class={`primary next${
+              showBottomNextButton ? "" : " hide"
+            }`}
             title="next puzzle"
             on:click={handleNext}
           >

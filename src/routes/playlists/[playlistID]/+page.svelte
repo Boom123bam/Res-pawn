@@ -34,7 +34,7 @@
     </div>
   </div>
   <a class="play" href={`/playlists/${localPlaylistData.id}/play`}>
-    <button class="cta">play</button>
+    <button class="primary">play</button>
   </a>
 </section>
 
@@ -85,7 +85,6 @@
   }
   a.play button {
     padding: 1.25rem 5rem;
-    border-radius: var(--br-small);
     font-size: 2.5rem;
     font-family: var(--font-big);
   }

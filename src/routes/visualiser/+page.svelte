@@ -89,7 +89,8 @@
       >
     {/each}
   </div>
-  <button class="cta reset" on:click={() => (data = [])}>reset</button
+  <button class="primary reset" on:click={() => (data = [])}
+    >reset</button
   >
 </section>
 

@@ -94,11 +94,11 @@
       <li class="user">
         <a href="/auth/signin">
           {#if $page.url.pathname.endsWith("/play")}
-            <button class="cta sign-in">
+            <button class="primary sign-in">
               Sign In to save progress</button
             >
           {:else}
-            <button class="cta sign-in float"> Sign In </button>
+            <button class="primary sign-in float"> Sign In </button>
           {/if}
         </a>
       </li>
@@ -287,7 +287,6 @@
   }
   button.sign-in {
     padding: 0.5rem 1rem;
-    border-radius: var(--br-small);
     font-weight: 400;
   }
   .desktop .dark-toggle {

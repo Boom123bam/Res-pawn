@@ -179,21 +179,6 @@ i {
   font-style: italic;
 }
 
-button.cta {
-  background-color: var(--primary);
-  color: var(--background-alt);
-  cursor: pointer;
-  /* border: 1px solid var(--primary); */
-  font-weight: 700;
-  padding: 1rem 1.5rem;
-}
-
-button.ghost {
-  color: var(--primary);
-  font-weight: 700;
-  padding: 1rem 1.5rem;
-}
-
 .float {
   transition: transform 0.1s, background-color 0.1s;
 }
@@ -288,57 +273,64 @@ body.dark .tiles-bg {
 }
 
 @media (hover: hover) {
-  button.ghost:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  button.cta:hover {
-    background-color: var(--blue-300);
-  }
   .float:hover {
     transform: translateY(-0.25rem);
   }
   .link:hover {
     text-decoration: underline;
   }
-  /* 
-  .link-animation {
-    position: relative;
-    text-decoration: none;
-    color: var(--text);
-  }
-
-  .link-animation:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 5%;
-    background-color: var(--text);
-    bottom: 0;
-    transition: 0.5s;
-  }
-
-  .link-animation:hover:before {
-    width: 100%;
-  } */
 }
 
-/* @media screen and (max-width: 400px) {
-  .card-grid {
-    grid-template-columns: 1fr;
+/* 
+###################
+##### buttons #####
+###################
+*/
+
+button {
+  border-radius: var(--br);
+}
+
+/* primary */
+
+button.primary {
+  background-color: var(--primary);
+  color: var(--background-alt);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+}
+
+button.primary:disabled {
+  opacity: 0.5;
+  color: var(--text);
+}
+
+@media (hover: hover) {
+  button.primary:hover {
+    background-color: var(--blue-300);
   }
-} */
+}
+
+/* ghost */
+
+button.ghost {
+  color: var(--primary);
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+}
+
+@media (hover: hover) {
+  button.ghost:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
 
 button:has(svg) {
   display: flex;
   align-items: center;
   justify-content: center;
   width: min-content;
-}
-
-button.cta:disabled {
-  opacity: 0.5;
-  color: var(--text);
 }
 
 button:disabled:hover {

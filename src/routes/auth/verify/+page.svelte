@@ -60,7 +60,7 @@
       <h3>Verification sent</h3>
       <h6>Check your email</h6>
       <button
-        class={`cta resend${showSentIndicator ? " sent" : ""}`}
+        class={`primary resend${showSentIndicator ? " sent" : ""}`}
         on:click={() => sendEmail()}
         {disabled}
       >
@@ -88,7 +88,6 @@
     position: relative;
     overflow: hidden;
     transition: 0.5s;
-    border-radius: var(--br-small);
     width: 12rem;
     display: flex;
     align-items: center;

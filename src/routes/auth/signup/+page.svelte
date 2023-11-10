@@ -83,7 +83,7 @@
 
     <button
       type="button"
-      class="cta sign-up"
+      class="primary sign-up"
       on:click={() => {
         register(username, email, password);
       }}>Sign Up</button
