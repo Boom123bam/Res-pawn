@@ -48,18 +48,18 @@
   font-size: 1.125rem;
 }
 
-/* body.dark {
-  --secondary: #10162f;
+body.dark {
+  --background-alt: #10162f;
   --background: rgb(45, 45, 45);
   --text: #d5c8bc;
-  --accent: rgb(159, 159, 255);
-  --accent2: #ac8282;
-  --border: 1px solid #555;
+  --primary: rgb(159, 159, 255);
+  --secondary: #ac8282;
+  --border-dark: 1px solid #555;
   --border-light: 1px solid #555;
-  --primary: #74708b;
+  --purple: #74708b;
   --shadow: none;
   --shadow-down: none;
-} */
+}
 
 html {
   scroll-behavior: smooth;
