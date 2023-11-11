@@ -30,7 +30,7 @@
 
 <style>
   .card {
-    box-shadow: var(--shadow-down);
+    box-shadow: var(--shadow-down) var(--border-dark-color);
     border-radius: var(--br);
     padding: 2rem;
     width: 100%;

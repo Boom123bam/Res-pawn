@@ -540,7 +540,7 @@
 
     .card:hover {
       transform: translateY(-0.25rem) scale(1.02);
-      box-shadow: var(--shadow-down);
+      box-shadow: var(--shadow-down) var(--text);
       opacity: 1 !important;
     }
     section.bottom-cta button:hover {
