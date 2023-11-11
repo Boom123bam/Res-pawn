@@ -15,7 +15,7 @@
     >
       <h3>{title}</h3>
       <div class="arrow">
-        <Svg name="expand_left" size="3rem" />
+        <Svg name="expand_left" size="2rem" />
       </div>
     </button>
   </div>
@@ -32,7 +32,7 @@
   .card {
     box-shadow: var(--shadow-down) var(--border-dark-color);
     border-radius: var(--br);
-    padding: 2rem;
+    padding: 1.5rem 2rem;
     width: 100%;
   }
   button.dropdown {
