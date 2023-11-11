@@ -68,14 +68,14 @@
     </Saos>
     <div class="buttons">
       <a href="/playlists">
-        <button class="primary float play-now"> play puzzles </button>
+        <button class="primary shadow"> play puzzles </button>
       </a>
       <button
         on:click={() =>
           howSection.scrollIntoView({
             block: "nearest",
           })}
-        class="ghost float learn-more">learn more</button
+        class="ghost learn-more">learn more</button
       >
     </div>
   </div>
@@ -85,17 +85,8 @@
     alt="hero"
     draggable="false"
   />
-  <!-- <h2>The Science of Spaced Repetition</h2>
-    <p>
-      At the core of ResPawn is the concept of spaced repetition—a
-      scientifically proven technique for optimizing memory retention.
-      We've tailored this technique specifically for chess enthusiasts
-      like you. By systematically revisiting and reinforcing chess
-      patterns, you'll sharpen your tactical skills and gain a deeper
-      understanding of the game.
-    </p> -->
 </section>
-<section class="features tiles-bg invert">
+<section class="tiles-bg invert features">
   <div class="features-container">
     <Saos
       animation={"slide-left 0.25s 0s both"}
@@ -103,10 +94,11 @@
       top={100}
     >
       <div class="feature">
-        <h3>Quality over Quantity</h3>
+        <h3 class="pink">Spaced Repetition</h3>
+        <hr />
         <p>
-          Repeating and mastering a select few puzzles is more
-          beneficial than skimming through countless variations.
+          A spaced repetition algorithm is used to determine when the
+          optimal time to present you with each puzzle is.
         </p>
       </div>
     </Saos>
@@ -116,10 +108,11 @@
       top={100}
     >
       <div class="feature">
-        <h3>Spaced Repetition</h3>
+        <h3 class="purple">20k+ Puzzles</h3>
+        <hr />
         <p>
-          A spaced repetition algorithm is used to determine when the
-          optimal time to present you with each puzzle is.
+          There's always a challenge that matches your skill level.
+          Puzzles are from the Lichess puzzles database.
         </p>
       </div>
     </Saos>
@@ -129,11 +122,11 @@
       top={100}
     >
       <div class="feature">
-        <h3>20k+ Puzzles</h3>
+        <h3 class="blue">Quality over Quantity</h3>
+        <hr />
         <p>
-          Whether you're a novice or an experienced player, there's
-          always a challenge that matches your skill level. Puzzles
-          are from the Lichess puzzles database.
+          Repeating and mastering a select few puzzles is more
+          beneficial than skimming through countless variations.
         </p>
       </div>
     </Saos>
@@ -149,16 +142,14 @@
       top={100}
     >
       <div class="card first">
-        <div class="black invert">
+        <div class="black">
           <h1>1</h1>
           <h5>Choose Your Challenge</h5>
         </div>
-        <div class="white">
-          <p>
-            Choose from a diverse range of playlists, with various
-            difficulties and themes.
-          </p>
-        </div>
+        <p>
+          Choose from a diverse range of playlists, with various
+          difficulties and themes.
+        </p>
       </div>
     </Saos>
     <Saos
@@ -167,16 +158,13 @@
       top={100}
     >
       <div class="card second">
-        <div class="black invert">
+        <div class="black">
           <h1>2</h1>
           <h5>Solve Puzzles</h5>
         </div>
-        <div class="white">
-          <p>
-            Dive into the chess puzzles and put your skills to the
-            test.
-          </p>
-        </div>
+        <p>
+          Dive into the chess puzzles and put your skills to the test.
+        </p>
       </div>
     </Saos>
     <Saos
@@ -185,16 +173,13 @@
       top={100}
     >
       <div class="card third">
-        <div class="black invert">
+        <div class="black">
           <h1>3</h1>
           <h5>Rate Your Experience</h5>
         </div>
-        <div class="white">
-          <p>
-            After each puzzle, provide feedback on its difficulty
-            level.
-          </p>
-        </div>
+        <p>
+          After each puzzle, provide feedback on its difficulty level.
+        </p>
       </div>
     </Saos>
     <Saos
@@ -203,56 +188,59 @@
       top={100}
     >
       <div class="card fourth">
-        <div class="black invert">
+        <div class="black">
           <h1>4</h1>
           <h5>Spaced Repetition</h5>
         </div>
-        <div class="white">
-          <p>
-            The algorithm determines when to reintroduce puzzles
-            you've solved to enhance your pattern recognition skills.
-          </p>
-        </div>
+        <p>
+          The algorithm determines when to reintroduce puzzles you've
+          solved to enhance your pattern recognition skills.
+        </p>
       </div>
     </Saos>
   </div>
-  <ExpandableCard title="What is Spaced Repetition?">
-    <div class="dropdown-content">
-      <img src="/images/SRgraph.png" alt="spaced repetition graph" />
-      <span><i>graph of spaced repetition</i></span>
+  <div class="expandable-cards">
+    <ExpandableCard title="What is Spaced Repetition?">
+      <div class="dropdown-content">
+        <img
+          src="/images/SRgraph.png"
+          alt="spaced repetition graph"
+        />
+        <span><i>graph of spaced repetition</i></span>
 
-      <p>
-        Spaced Repetition is a learning technique that enhances memory
-        retention through review and repetition of material over
-        increasing intervals of time (shown by the graph above). This
-        makes learning more effective and efficient. It is widely used
-        in various educational contexts to maximize the efficiency of
-        study and training.
-      </p>
-      <p>
-        <a class="link color" href="/article/spaced-repetition"
-          >learn more about Spaced Repetition</a
-        >
-      </p>
-    </div>
-  </ExpandableCard>
-  <ExpandableCard title="How does ResPawn use Spaced Repetition?">
-    <div class="dropdown-content">
-      <img
-        src="/images/feedback-system.png"
-        alt="spaced repetition graph"
-      />
-      <span><i>ResPawn feedback system</i></span>
-      <p>
-        After a puzzle is played, you will provide a rating on how
-        challenging the puzzle was (as shown by the image above).
-        ResPawn uses this rating and runs a spaced repetition
-        algorithm to determine when the puzzle appears next. A higher
-        difficulty rating will result in sooner review time, vice
-        versa.
-      </p>
-    </div>
-  </ExpandableCard>
+        <p>
+          Spaced Repetition is a learning technique that enhances
+          memory retention through review and repetition of material
+          over increasing intervals of time (shown by the graph
+          above). This makes learning more effective and efficient. It
+          is widely used in various educational contexts to maximize
+          the efficiency of study and training.
+        </p>
+        <p>
+          <a class="link color" href="/article/spaced-repetition"
+            >learn more about Spaced Repetition</a
+          >
+        </p>
+      </div>
+    </ExpandableCard>
+    <ExpandableCard title="How does ResPawn use Spaced Repetition?">
+      <div class="dropdown-content">
+        <img
+          src="/images/feedback-system.png"
+          alt="spaced repetition graph"
+        />
+        <span><i>ResPawn feedback system</i></span>
+        <p>
+          After a puzzle is played, you will provide a rating on how
+          challenging the puzzle was (as shown by the image above).
+          ResPawn uses this rating and runs a spaced repetition
+          algorithm to determine when the puzzle appears next. A
+          higher difficulty rating will result in sooner review time,
+          vice versa.
+        </p>
+      </div>
+    </ExpandableCard>
+  </div>
 </section>
 
 <section class="bottom-cta">
@@ -411,11 +399,10 @@
     padding: 7.5rem 0;
   }
   .features-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
     text-align: center;
-    width: min(90ch, 100% - 5rem);
-    gap: 3rem;
+    width: 100%;
+    justify-content: space-evenly;
     z-index: 1;
   }
 
@@ -425,6 +412,37 @@
     gap: 1rem;
     max-width: 25rem;
     margin-inline: auto;
+    width: min-content;
+  }
+
+  .features-container .feature h3 {
+    margin-left: 2rem;
+    width: max-content;
+    position: relative;
+  }
+
+  .features-container .feature h3::before {
+    content: "";
+    width: 0.85rem;
+    height: 0.85rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-2rem, -50%) rotate(45deg);
+  }
+
+  .features-container .feature h3.pink::before {
+    background-color: var(--secondary);
+  }
+  .features-container .feature h3.purple::before {
+    background-color: var(--purple);
+  }
+  .features-container .feature h3.blue::before {
+    background-color: var(--primary);
+  }
+
+  .features-container .feature hr {
+    border-top: 1px dashed var(--white);
+    height: 1px;
   }
 
   /* section.how-it-works */
@@ -432,57 +450,75 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
     padding: 5rem 0;
+  }
+  section.how-it-works h2 {
+    background: var(--background-alt);
+    padding: 1.25rem 8rem;
+    border: 1px dashed var(--gray-300);
+    border-bottom: 0;
+    border-top-right-radius: var(--br);
+    border-top-left-radius: var(--br);
   }
   .cards-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: var(--purple);
-    gap: 1rem;
+    background-color: var(--blue-100);
+    gap: var(--gap-lg);
     padding: 1.25rem;
+    border: 1px solid var(--gray-100);
     border-radius: var(--br);
     margin-bottom: 2rem;
   }
 
   .card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-radius: var(--br-small);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-inline: var(--gap-lg);
+    gap: 1rem;
+    border-radius: var(--br);
     overflow: hidden;
     aspect-ratio: 2;
     text-align: center;
     transition: transform 0.1s, box-shadow 0.1s, opacity 0.5s;
+    border: 1px solid var(--border-dark-color);
+    background-color: var(--white);
   }
-  .card .black,
-  .card .white {
+
+  .card .black {
+    height: calc(100% - var(--gap-lg) * 2);
+    aspect-ratio: 1;
+    border-radius: var(--br-small);
+    gap: var(--gap-sm);
+    background-color: var(--gray-500);
+    color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
-  }
-  .card .black {
     flex-direction: column;
-    gap: 0.5rem;
   }
-  .card .white {
-    background-color: var(--background-alt);
-  }
-  :global(body.dark) .card .black {
-    background-color: var(--background-alt);
-    color: var(--text);
-  }
-  :global(body.dark) .card .white {
-    background-color: var(--text);
-    color: var(--background-alt);
-  }
+
   .third.card .black,
   .fourth.card .black {
     order: 1;
   }
-  @media screen and (max-width: 850px) {
+
+  .expandable-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+  }
+  @media screen and (max-width: 1000px) {
     .features-container {
-      grid-template-columns: 1fr;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+  }
+  @media screen and (max-width: 850px) {
+    section.how-it-works h2 {
+      padding: 0.75rem 1.5rem;
     }
 
     .cards-container {
@@ -539,8 +575,8 @@
     }
 
     .card:hover {
-      transform: translateY(-0.25rem) scale(1.02);
-      box-shadow: var(--shadow-down) var(--text);
+      transform: translateY(calc(-1 * var(--shadow-size)));
+      box-shadow: var(--shadow-down) var(--border-dark-color);
       opacity: 1 !important;
     }
     section.bottom-cta button:hover {

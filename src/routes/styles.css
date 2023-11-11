@@ -46,6 +46,10 @@
   --shadow-size: 0.25rem;
   --shadow: 0 var(--shadow-size) 0;
   --shadow-down: 0 var(--shadow-size) 0;
+  --gap-sm: 6px;
+  --gap-md: 8px;
+  --gap-lg: 12px;
+
   --icon-size: 1.5rem;
   --nav-height: 4rem;
   font-family: var(--font-small);
@@ -219,7 +223,7 @@ i {
   left: 50%;
   background: url(/images/tiles-white.png);
   background-size: 20rem;
-  opacity: 0.1;
+  opacity: 0.05;
   transform: translate(-50%, -50%) rotate(45deg);
 }
 body.dark .tiles-bg {
@@ -446,4 +450,8 @@ button.ghost {
   button.ghost:hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
+}
+
+button.ghost:active {
+  background-color: rgba(0, 0, 0, 0.2);
 }
