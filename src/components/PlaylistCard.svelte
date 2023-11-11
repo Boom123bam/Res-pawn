@@ -71,7 +71,7 @@
     margin-bottom: 0.25rem;
   }
   p.length {
-    font-family: var(--font-big);
+    font-family: var(--fontlg);
     font-size: 1rem;
     margin-bottom: 1rem;
   }

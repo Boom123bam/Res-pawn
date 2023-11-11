@@ -45,7 +45,7 @@ body.dark {
   display: grid;
   grid-template-rows: repeat(8, 1fr);
   grid-template-columns: repeat(8, 1fr);
-  border-radius: var(--br-small);
+  border-radius: var(--br-sm);
   overflow: hidden;
 }
 
@@ -90,7 +90,7 @@ body.dark {
 @media screen and (max-width: 600px), screen and (max-height: 600px) {
   .board-padding {
     padding: 0.25rem;
-    border-radius: var(--br-small);
+    border-radius: var(--br-sm);
   }
   :root {
     --piece-size: 90%;

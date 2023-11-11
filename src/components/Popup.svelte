@@ -35,7 +35,7 @@
     background-color: var(--text);
     width: 1.5rem;
     height: 1.5rem;
-    border-radius: var(--br-small);
+    border-radius: var(--br-sm);
   }
 
   @media screen and (max-width: 500px) {

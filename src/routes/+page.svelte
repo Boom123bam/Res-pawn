@@ -282,7 +282,7 @@
   .dropdown-content img {
     width: min(100%, 30rem);
     border: var(--border-light);
-    border-radius: var(--br-small);
+    border-radius: var(--br-sm);
   }
   @keyframes -global-slide-left {
     0% {
@@ -490,7 +490,7 @@
   .card .black {
     height: calc(100% - var(--gap-lg) * 2);
     aspect-ratio: 1;
-    border-radius: var(--br-small);
+    border-radius: var(--br-sm);
     gap: var(--gap-sm);
     background-color: var(--gray-500);
     color: var(--white);

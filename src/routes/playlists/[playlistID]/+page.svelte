@@ -86,7 +86,7 @@
   a.play button {
     padding: 1.25rem 5rem;
     font-size: 2.5rem;
-    font-family: var(--font-big);
+    font-family: var(--fontlg);
   }
   section.other-playlists {
     margin-top: 3rem;

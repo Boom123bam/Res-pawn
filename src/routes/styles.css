@@ -2,8 +2,8 @@
 @import "@fontsource/fira-mono";
 
 :root {
-  --font-big: "Barlow Condensed", sans-serif;
-  --font-small: "Montserrat", sans-serif;
+  --font-lg: "Barlow Condensed", sans-serif;
+  --font-sm: "Montserrat", sans-serif;
 
   --beige: #fff3e8;
   --purple: #a8a6c2;
@@ -42,7 +42,7 @@
   --border-light: 1px solid var(--border-light-color);
 
   --br: 1rem;
-  --br-small: 0.5rem;
+  --br-sm: 0.5rem;
   --shadow-size: 0.25rem;
   --shadow: 0 var(--shadow-size) 0;
   --shadow-down: 0 var(--shadow-size) 0;
@@ -52,7 +52,7 @@
 
   --icon-size: 1.5rem;
   --nav-height: 4rem;
-  font-family: var(--font-small);
+  font-family: var(--font-sm);
   font-size: 1.125rem;
 }
 
@@ -81,7 +81,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--font-big);
+  font-family: var(--font-lg);
 }
 
 h1,

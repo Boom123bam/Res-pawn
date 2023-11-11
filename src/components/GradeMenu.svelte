@@ -213,6 +213,6 @@
   .text h2 {
     font-size: 1.25rem;
     margin-top: 0.5rem;
-    font-family: var(--font-small);
+    font-family: var(--font-sm);
   }
 </style>

@@ -58,7 +58,7 @@
     z-index: 50;
   }
   .buttons-container {
-    border-radius: var(--br-small);
+    border-radius: var(--br-sm);
     width: max(60%, 18rem);
     padding: 0.5rem 1.25rem;
     display: grid;
@@ -67,7 +67,7 @@
   }
   .buttons-container button {
     padding: 15%;
-    border-radius: var(--br-small);
+    border-radius: var(--br-sm);
   }
   .buttons-container button:hover {
     background-color: color-mix(
