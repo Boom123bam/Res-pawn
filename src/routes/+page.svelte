@@ -455,7 +455,7 @@
   section.how-it-works h2 {
     background: var(--background-alt);
     padding: 1.25rem 8rem;
-    border: 1px dashed var(--gray-300);
+    border: 1px dashed var(--border-dark-color);
     border-bottom: 0;
     border-top-right-radius: var(--br);
     border-top-left-radius: var(--br);
@@ -466,9 +466,12 @@
     background-color: var(--blue-100);
     gap: var(--gap-lg);
     padding: 1.25rem;
-    border: 1px solid var(--gray-100);
+    border: 1px solid var(--border-light-color);
     border-radius: var(--br);
     margin-bottom: 2rem;
+  }
+  :global(body.dark) .cards-container {
+    background-color: var(--gray-500);
   }
 
   .card {
@@ -484,7 +487,7 @@
     text-align: center;
     transition: transform 0.1s, box-shadow 0.1s, opacity 0.5s;
     border: 1px solid var(--border-dark-color);
-    background-color: var(--white);
+    background-color: var(--background-alt);
   }
 
   .card .black {
@@ -492,8 +495,8 @@
     aspect-ratio: 1;
     border-radius: var(--br-sm);
     gap: var(--gap-sm);
-    background-color: var(--gray-500);
-    color: var(--white);
+    background-color: var(--contrast);
+    color: var(--background-alt);
     display: flex;
     align-items: center;
     justify-content: center;
