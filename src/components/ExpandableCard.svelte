@@ -32,7 +32,7 @@
   .card {
     box-shadow: var(--shadow-down) var(--border-dark-color);
     border-radius: var(--br);
-    padding: 1.5rem 2rem;
+    padding: 2rem;
     width: 100%;
   }
   button.dropdown {
