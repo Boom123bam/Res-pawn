@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import { controlLog } from "../stores/boardStore";
   import Svg from "./Svg.svelte";
 
   export let showRetryLastMove;
@@ -14,7 +15,7 @@
   <button
     title="previous move"
     on:click={() => {
-      dispatch("back");
+      controlLog.setLastControl("back");
     }}
   >
     <Svg name="expand_left" />
@@ -23,7 +24,7 @@
     title="next move"
     class={`${flashingNext ? "flashing" : ""}`}
     on:click={() => {
-      dispatch("next");
+      controlLog.setLastControl("next");
     }}
   >
     <Svg name="expand_right" />
@@ -34,7 +35,7 @@
       class="flashing"
       title="retry last move"
       on:click={() => {
-        dispatch("retryLastMove");
+        controlLog.setLastControl("retryLastMove");
       }}
     >
       <Svg name="refresh" />
@@ -45,7 +46,7 @@
     <button
       title="hint"
       on:click={() => {
-        dispatch("hint");
+        controlLog.setLastControl("hint");
       }}
     >
       <Svg name="question" />
@@ -56,7 +57,7 @@
     <button
       title="solutoin"
       on:click={() => {
-        dispatch("solution");
+        controlLog.setLastControl("solution");
       }}
     >
       <Svg name="question" />
@@ -65,7 +66,7 @@
   <button
     title="flip board"
     on:click={() => {
-      dispatch("flip");
+      controlLog.setLastControl("flip");
     }}
   >
     <Svg name="vertical_switch_alt" />

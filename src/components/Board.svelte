@@ -4,7 +4,7 @@
   import Promotion from "./Promotion.svelte";
   import BoardControls from "./BoardControls.svelte";
   import Svg from "./Svg.svelte";
-  import { sequenceData } from "../stores/boardStore";
+  import { sequenceData, controlLog } from "../stores/boardStore";
   import { getSetting } from "../modules/localStorage";
   import { createEventDispatcher } from "svelte";
   import { browser } from "$app/environment";
@@ -39,6 +39,29 @@
   sequenceData.subscribe((newSeqData) => {
     if (newSeqData && !newSeqData?.finished) {
       loadSeq(newSeqData);
+    }
+  });
+
+  controlLog.subscribe(({ lastControl }) => {
+    if (lastControl == "back") {
+      handleBackButton();
+      return;
+    }
+    if (lastControl == "next") {
+      handleNextButton();
+      return;
+    }
+    if (lastControl == "hint") {
+      handleHintButton();
+      return;
+    }
+    if (lastControl == "solution") {
+      handleSolutionButton();
+      return;
+    }
+    if (lastControl == "flip") {
+      handleFlipButton();
+      return;
     }
   });
 
@@ -380,12 +403,6 @@
             display?.hint &&
             !display.solution}
           flashingNext={board.movesBack > 0}
-          on:back={handleBackButton}
-          on:next={handleNextButton}
-          on:hint={handleHintButton}
-          on:solution={handleSolutionButton}
-          on:flip={handleFlipButton}
-          on:retryLastMove={handleRetryLastMoveButton}
         />
         <div class="after">
           <slot name="after" />
