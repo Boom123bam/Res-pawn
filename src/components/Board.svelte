@@ -21,18 +21,20 @@
   loadAudioBuffers();
 
   const dispatch = createEventDispatcher();
-  let currentSequence = null;
+  let currentSequenceData = null;
 
   // let board = new ChessBoard();
   $board = new ChessBoard();
 
-  const display = {
+  const boardDisplayState = {
     board: $board.chess.board(),
     highlightedSquares: [],
     selectedSquare: null,
     disabled: false,
     hint: false,
     solution: false,
+    failed: false,
+    finished: false,
     moveToPromote: null,
     movePlaying: null,
     flipped: false,
@@ -120,58 +122,57 @@
   }
 
   async function loadSeq(seqData) {
-    currentSequence = {
+    currentSequenceData = {
       start: seqData.fen,
       moves: seqData.moves.split(" "),
-      failed: false,
-      finished: false,
       stats: {
         hintsUsed: 0,
         solsUsed: 0,
         timesFailed: 0,
       },
     };
-    display.flipped = currentSequence.start.split(" ")[1] === "w"; // flip board if black is first
+    boardDisplayState.flipped =
+      currentSequenceData.start.split(" ")[1] === "w"; // flip board if black is first
     resetSequence();
-    $board.load(currentSequence.start);
+    $board.load(currentSequenceData.start);
     updateBoard();
     await timeout(100);
-    await movePiece(currentSequence.moves[0]);
+    await movePiece(currentSequenceData.moves[0]);
     updateBoard();
   }
 
   function finish() {
-    currentSequence.finished = true;
-    display.disabled = true;
+    boardDisplayState.finished = true;
+    boardDisplayState.disabled = true;
     // dispatch event and return stats
-    dispatch("finish", currentSequence.stats);
+    dispatch("finish", currentSequenceData.stats);
   }
 
   function resetHighlights() {
     // resets highlights and hints
 
-    display.highlightedSquares = [];
+    boardDisplayState.highlightedSquares = [];
   }
 
   function resetHints() {
-    display.hint = false;
-    display.solution = false;
+    boardDisplayState.hint = false;
+    boardDisplayState.solution = false;
   }
 
   function resetSequence() {
     // reset seq and board
-    $board.load(currentSequence.start);
-    display.disabled = false;
+    $board.load(currentSequenceData.start);
+    boardDisplayState.disabled = false;
     resetHighlights();
     resetHints();
-    currentSequence.failed = false;
-    currentSequence.finished = false;
+    boardDisplayState.failed = false;
+    boardDisplayState.finished = false;
   }
 
   function updateBoard() {
     resetHighlights();
-    // $board = $board; //trigger re render
-    display.board = $board.chess.board();
+    $board = $board; //trigger re render
+    boardDisplayState.board = $board.chess.board();
   }
 
   function getSquareName(row, col) {
@@ -182,7 +183,7 @@
   }
 
   async function movePiece(move, duration = 0.1) {
-    if (display.soundOn) {
+    if (boardDisplayState.soundOn) {
       if ($board.chess.get(move.substring(2, 4))) {
         playAudio(captureBuffer);
       } else playAudio(moveBuffer);
@@ -190,11 +191,11 @@
 
     resetHints();
     // play animation
-    display.movePlaying = move;
+    boardDisplayState.movePlaying = move;
 
     $board.makeMove(move);
     await timeout(duration * 1000);
-    display.movePlaying = null;
+    boardDisplayState.movePlaying = null;
   }
 
   async function updateSequence(move = null) {
@@ -202,7 +203,8 @@
     // if not move provided, it will execute the next move in the sequence
 
     // get the expected move
-    const expectedMove = currentSequence.moves[$board.history.length];
+    const expectedMove =
+      currentSequenceData.moves[$board.history.length];
 
     // Check if a move is provided and validate it
     if (move) {
@@ -211,7 +213,9 @@
       updateBoard();
       if (move === expectedMove) {
         // correct move
-        if ($board.history.length !== currentSequence.moves.length) {
+        if (
+          $board.history.length !== currentSequenceData.moves.length
+        ) {
           await timeout(250);
           await updateSequence(); // auto move opposing side if not finished
           return;
@@ -223,23 +227,23 @@
         if ($board.chess.isCheckmate()) {
           finish();
         } else {
-          display.disabled = true;
-          currentSequence.failed = true;
-          currentSequence.stats.timesFailed++;
+          boardDisplayState.disabled = true;
+          boardDisplayState.failed = true;
+          currentSequenceData.stats.timesFailed++;
         }
       }
     } else {
       // auto move
       await movePiece(expectedMove);
-      if ($board.history.length == currentSequence.length - 2) {
+      if ($board.history.length == currentSequenceData.length - 2) {
         console.error(`step out of range: ${$board.history.length}`);
       }
       updateBoard();
     }
 
     if (
-      $board.history.length === currentSequence.moves.length &&
-      !currentSequence.failed
+      $board.history.length === currentSequenceData.moves.length &&
+      !boardDisplayState.failed
     ) {
       // finished
       finish();
@@ -251,12 +255,12 @@
   async function handleMoveClick(move, promoteToPiece = "") {
     if (!promoteToPiece & $board.checkIfPromotion(move)) {
       // if the move is a promotion
-      display.moveToPromote = move;
+      boardDisplayState.moveToPromote = move;
       return;
     }
 
     move += promoteToPiece;
-    if (currentSequence) {
+    if (currentSequenceData) {
       resetHints();
       if (await updateSequence(move)) {
       } else {
@@ -269,14 +273,15 @@
   }
 
   function handlePieceClick(id) {
-    if (display.disabled || $board.movesBack) return;
-    if (display.highlightedSquares.length == 0) {
+    if (boardDisplayState.disabled || $board.movesBack) return;
+    if (boardDisplayState.highlightedSquares.length == 0) {
       // select the piece and highlight possible moves
-      display.highlightedSquares = $board.getPossibleMoves(id);
-      if (display.highlightedSquares.length)
-        display.selectedSquare = id;
-    } else if (display.highlightedSquares.includes(id)) {
-      handleMoveClick(display.selectedSquare + id);
+      boardDisplayState.highlightedSquares =
+        $board.getPossibleMoves(id);
+      if (boardDisplayState.highlightedSquares.length)
+        boardDisplayState.selectedSquare = id;
+    } else if (boardDisplayState.highlightedSquares.includes(id)) {
+      handleMoveClick(boardDisplayState.selectedSquare + id);
       // check if there is a sequence
     } else {
       // un-select and un-highlight
@@ -285,8 +290,8 @@
   }
 
   function handlePromotion(e) {
-    handleMoveClick(display.moveToPromote, e.detail);
-    display.moveToPromote = "";
+    handleMoveClick(boardDisplayState.moveToPromote, e.detail);
+    boardDisplayState.moveToPromote = "";
   }
 
   function handleBackButton() {
@@ -300,57 +305,62 @@
   }
 
   function handleFlipButton() {
-    display.flipped = !display.flipped;
+    boardDisplayState.flipped = !boardDisplayState.flipped;
   }
 
   function handleRetryLastMoveButton() {
-    display.disabled = false;
-    currentSequence.failed = false;
+    boardDisplayState.disabled = false;
+    boardDisplayState.failed = false;
     $board.returnToCurrentMove();
     $board.undoMove();
     updateBoard();
   }
 
   function handleHintButton() {
-    display.hint = true;
-    currentSequence.stats.hintsUsed++;
+    boardDisplayState.hint = true;
+    currentSequenceData.stats.hintsUsed++;
   }
 
   function handleSolutionButton() {
-    display.solution = true;
-    currentSequence.stats.solsUsed++;
+    boardDisplayState.solution = true;
+    currentSequenceData.stats.solsUsed++;
   }
 </script>
 
 <div class="board-component-wrapper">
   <div class="board-wrapper">
-    {#if display.moveToPromote}
+    {#if boardDisplayState.moveToPromote}
       <Promotion
         on:promotion={handlePromotion}
-        color={board.chess.get(display.moveToPromote.substring(0, 2))
-          .color}
+        color={board.chess.get(
+          boardDisplayState.moveToPromote.substring(0, 2)
+        ).color}
       />
     {/if}
     <div class="board-padding">
-      <div class={`board${display.flipped ? " flipped" : " normal"}`}>
-        {#each display.board as row, rowNum}
+      <div
+        class={`board${
+          boardDisplayState.flipped ? " flipped" : " normal"
+        }`}
+      >
+        {#each boardDisplayState.board as row, rowNum}
           {#each row as square, colNum}
             <Square
               id={getSquareName(rowNum, colNum)}
               squareColor={$board.chess.squareColor(
                 getSquareName(rowNum, colNum)
               )}
-              highlighted={display.highlightedSquares.includes(
+              highlighted={boardDisplayState.highlightedSquares.includes(
                 getSquareName(rowNum, colNum)
               )}
               {square}
               {handlePieceClick}
-              hint={display.hint &&
-                currentSequence?.moves[
+              hint={boardDisplayState.hint &&
+                currentSequenceData?.moves[
                   $board.history.length
                 ].substring(0, 2) == getSquareName(rowNum, colNum)}
-              solution={display.solution &&
-                currentSequence?.moves[
+              solution={boardDisplayState.solution &&
+                currentSequenceData?.moves[
                   $board.history.length
                 ].substring(2, 4) == getSquareName(rowNum, colNum)}
               lastMove={$board.movesBack == 0 &&
@@ -358,17 +368,17 @@
                   getSquareName(rowNum, colNum) ||
                   $board.lastMove?.substring(2, 4) ==
                     getSquareName(rowNum, colNum))}
-              order={display.flipped
+              order={boardDisplayState.flipped
                 ? 63 - (rowNum * 8 + colNum)
                 : rowNum * 8 + colNum}
-              flipped={display.flipped}
-              moveTo={display.movePlaying
-                ? display.movePlaying.substring(0, 2) ==
+              flipped={boardDisplayState.flipped}
+              moveTo={boardDisplayState.movePlaying
+                ? boardDisplayState.movePlaying.substring(0, 2) ==
                   getSquareName(rowNum, colNum)
-                  ? display.movePlaying.substring(2, 4)
+                  ? boardDisplayState.movePlaying.substring(2, 4)
                   : null
                 : null}
-              showIndicatorOnHover={display.showIndicatorOnHover}
+              showIndicatorOnHover={boardDisplayState.showIndicatorOnHover}
             />
           {/each}
         {/each}
@@ -387,7 +397,7 @@
           > -->
           <a
             href={`https://lichess.org/analysis/standard/${$board.chess.fen()}?color=${
-              currentSequence.start.split(" ")[1] === "w"
+              currentSequenceData.start.split(" ")[1] === "w"
                 ? "black"
                 : "white"
             }`}
@@ -402,15 +412,15 @@
           </a>
         </div>
         <BoardControls
-          showRetryLastMove={currentSequence?.failed}
-          showHint={!currentSequence?.finished &&
-            !currentSequence?.failed &&
-            !display?.hint &&
+          showRetryLastMove={boardDisplayState?.failed}
+          showHint={!boardDisplayState?.finished &&
+            !boardDisplayState?.failed &&
+            !boardDisplayState?.hint &&
             $board.movesBack == 0}
-          showSol={!currentSequence?.finished &&
-            !currentSequence?.failed &&
-            display?.hint &&
-            !display.solution}
+          showSol={!boardDisplayState?.finished &&
+            !boardDisplayState?.failed &&
+            boardDisplayState?.hint &&
+            !boardDisplayState.solution}
           flashingNext={$board.movesBack > 0}
         />
         <div class="after">
