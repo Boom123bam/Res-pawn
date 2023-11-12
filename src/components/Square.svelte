@@ -117,6 +117,7 @@
     justify-content: center;
     user-select: none;
     -webkit-user-select: none;
+    border-radius: 0;
   }
   .square .indicator.col {
     bottom: 0.25em;
