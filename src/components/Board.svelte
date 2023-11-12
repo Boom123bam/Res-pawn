@@ -8,6 +8,7 @@
     sequenceData,
     controlLog,
     board,
+    controlsDisplayState,
   } from "../stores/boardStore";
   import { getSetting } from "../modules/localStorage";
   import { createEventDispatcher } from "svelte";
@@ -41,6 +42,13 @@
     failed: false,
     soundOn: getSetting("sound"),
     showIndicatorOnHover: getSetting("showIndicatorOnHover"),
+  };
+
+  $controlsDisplayState = {
+    showRetryLastMove: false,
+    showHint: false,
+    showSol: false,
+    flashingNext: false,
   };
 
   sequenceData.subscribe((newSeqData) => {
@@ -146,6 +154,26 @@
     boardDisplayState.disabled = true;
     // dispatch event and return stats
     dispatch("finish", currentSequenceData.stats);
+    updateControlsDisplayState();
+  }
+
+  function updateControlsDisplayState() {
+    console.log("update");
+    $controlsDisplayState = {
+      showRetryLastMove: boardDisplayState?.failed,
+      showHint:
+        !boardDisplayState?.finished &&
+        !boardDisplayState?.failed &&
+        !boardDisplayState?.hint &&
+        $board.movesBack == 0,
+      showSol:
+        !boardDisplayState?.finished &&
+        !boardDisplayState?.failed &&
+        boardDisplayState?.hint &&
+        !boardDisplayState.solution,
+      flashingNext: $board.movesBack > 0,
+    };
+    console.log($controlsDisplayState);
   }
 
   function resetHighlights() {
@@ -173,6 +201,7 @@
     resetHighlights();
     $board = $board; //trigger re render
     boardDisplayState.board = $board.chess.board();
+    updateControlsDisplayState();
   }
 
   function getSquareName(row, col) {
@@ -319,11 +348,13 @@
   function handleHintButton() {
     boardDisplayState.hint = true;
     currentSequenceData.stats.hintsUsed++;
+    updateControlsDisplayState();
   }
 
   function handleSolutionButton() {
     boardDisplayState.solution = true;
     currentSequenceData.stats.solsUsed++;
+    updateControlsDisplayState();
   }
 </script>
 
@@ -412,16 +443,10 @@
           </a>
         </div>
         <BoardControls
-          showRetryLastMove={boardDisplayState?.failed}
-          showHint={!boardDisplayState?.finished &&
-            !boardDisplayState?.failed &&
-            !boardDisplayState?.hint &&
-            $board.movesBack == 0}
-          showSol={!boardDisplayState?.finished &&
-            !boardDisplayState?.failed &&
-            boardDisplayState?.hint &&
-            !boardDisplayState.solution}
-          flashingNext={$board.movesBack > 0}
+          showRetryLastMove={$controlsDisplayState.showRetryLastMove}
+          showHint={$controlsDisplayState.showHint}
+          showSol={$controlsDisplayState.showSol}
+          flashingNext={$controlsDisplayState.flashingNext}
         />
         <div class="after">
           <slot name="after" />
