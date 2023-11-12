@@ -17,3 +17,7 @@ function createControlLog() {
 }
 
 export const controlLog = createControlLog();
+
+// export const currentFen = writable(null);
+
+export const board = writable(null);

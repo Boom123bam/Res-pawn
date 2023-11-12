@@ -4,7 +4,11 @@
   import Promotion from "./Promotion.svelte";
   import BoardControls from "./BoardControls.svelte";
   import Svg from "./Svg.svelte";
-  import { sequenceData, controlLog } from "../stores/boardStore";
+  import {
+    sequenceData,
+    controlLog,
+    board,
+  } from "../stores/boardStore";
   import { getSetting } from "../modules/localStorage";
   import { createEventDispatcher } from "svelte";
   import { browser } from "$app/environment";
@@ -19,10 +23,11 @@
   const dispatch = createEventDispatcher();
   let currentSequence = null;
 
-  let board = new ChessBoard();
+  // let board = new ChessBoard();
+  $board = new ChessBoard();
 
   const display = {
-    board: board.chess.board(),
+    board: $board.chess.board(),
     highlightedSquares: [],
     selectedSquare: null,
     disabled: false,
@@ -61,6 +66,10 @@
     }
     if (lastControl == "flip") {
       handleFlipButton();
+      return;
+    }
+    if (lastControl == "retry") {
+      handleRetryLastMoveButton();
       return;
     }
   });
@@ -124,7 +133,7 @@
     };
     display.flipped = currentSequence.start.split(" ")[1] === "w"; // flip board if black is first
     resetSequence();
-    board.load(currentSequence.start);
+    $board.load(currentSequence.start);
     updateBoard();
     await timeout(100);
     await movePiece(currentSequence.moves[0]);
@@ -151,7 +160,7 @@
 
   function resetSequence() {
     // reset seq and board
-    board.load(currentSequence.start);
+    $board.load(currentSequence.start);
     display.disabled = false;
     resetHighlights();
     resetHints();
@@ -161,8 +170,8 @@
 
   function updateBoard() {
     resetHighlights();
-    board = board; //trigger re render
-    display.board = board.chess.board();
+    // $board = $board; //trigger re render
+    display.board = $board.chess.board();
   }
 
   function getSquareName(row, col) {
@@ -174,7 +183,7 @@
 
   async function movePiece(move, duration = 0.1) {
     if (display.soundOn) {
-      if (board.chess.get(move.substring(2, 4))) {
+      if ($board.chess.get(move.substring(2, 4))) {
         playAudio(captureBuffer);
       } else playAudio(moveBuffer);
     }
@@ -183,7 +192,7 @@
     // play animation
     display.movePlaying = move;
 
-    board.makeMove(move);
+    $board.makeMove(move);
     await timeout(duration * 1000);
     display.movePlaying = null;
   }
@@ -193,7 +202,7 @@
     // if not move provided, it will execute the next move in the sequence
 
     // get the expected move
-    const expectedMove = currentSequence.moves[board.history.length];
+    const expectedMove = currentSequence.moves[$board.history.length];
 
     // Check if a move is provided and validate it
     if (move) {
@@ -202,7 +211,7 @@
       updateBoard();
       if (move === expectedMove) {
         // correct move
-        if (board.history.length !== currentSequence.moves.length) {
+        if ($board.history.length !== currentSequence.moves.length) {
           await timeout(250);
           await updateSequence(); // auto move opposing side if not finished
           return;
@@ -211,7 +220,7 @@
         // wrong move
 
         // check if checkmate (somtimes there are 2 answers for the last move)
-        if (board.chess.isCheckmate()) {
+        if ($board.chess.isCheckmate()) {
           finish();
         } else {
           display.disabled = true;
@@ -222,14 +231,14 @@
     } else {
       // auto move
       await movePiece(expectedMove);
-      if (board.history.length == currentSequence.length - 2) {
-        console.error(`step out of range: ${board.history.length}`);
+      if ($board.history.length == currentSequence.length - 2) {
+        console.error(`step out of range: ${$board.history.length}`);
       }
       updateBoard();
     }
 
     if (
-      board.history.length === currentSequence.moves.length &&
+      $board.history.length === currentSequence.moves.length &&
       !currentSequence.failed
     ) {
       // finished
@@ -240,7 +249,7 @@
   }
 
   async function handleMoveClick(move, promoteToPiece = "") {
-    if (!promoteToPiece & board.checkIfPromotion(move)) {
+    if (!promoteToPiece & $board.checkIfPromotion(move)) {
       // if the move is a promotion
       display.moveToPromote = move;
       return;
@@ -260,10 +269,10 @@
   }
 
   function handlePieceClick(id) {
-    if (display.disabled || board.movesBack) return;
+    if (display.disabled || $board.movesBack) return;
     if (display.highlightedSquares.length == 0) {
       // select the piece and highlight possible moves
-      display.highlightedSquares = board.getPossibleMoves(id);
+      display.highlightedSquares = $board.getPossibleMoves(id);
       if (display.highlightedSquares.length)
         display.selectedSquare = id;
     } else if (display.highlightedSquares.includes(id)) {
@@ -281,12 +290,12 @@
   }
 
   function handleBackButton() {
-    board.showPrevMove();
+    $board.showPrevMove();
     updateBoard();
   }
 
   function handleNextButton() {
-    board.showNextMove();
+    $board.showNextMove();
     updateBoard();
   }
 
@@ -297,8 +306,8 @@
   function handleRetryLastMoveButton() {
     display.disabled = false;
     currentSequence.failed = false;
-    board.returnToCurrentMove();
-    board.undoMove();
+    $board.returnToCurrentMove();
+    $board.undoMove();
     updateBoard();
   }
 
@@ -328,7 +337,7 @@
           {#each row as square, colNum}
             <Square
               id={getSquareName(rowNum, colNum)}
-              squareColor={board.chess.squareColor(
+              squareColor={$board.chess.squareColor(
                 getSquareName(rowNum, colNum)
               )}
               highlighted={display.highlightedSquares.includes(
@@ -338,16 +347,16 @@
               {handlePieceClick}
               hint={display.hint &&
                 currentSequence?.moves[
-                  board.history.length
+                  $board.history.length
                 ].substring(0, 2) == getSquareName(rowNum, colNum)}
               solution={display.solution &&
                 currentSequence?.moves[
-                  board.history.length
+                  $board.history.length
                 ].substring(2, 4) == getSquareName(rowNum, colNum)}
-              lastMove={board.movesBack == 0 &&
-                (board.lastMove?.substring(0, 2) ==
+              lastMove={$board.movesBack == 0 &&
+                ($board.lastMove?.substring(0, 2) ==
                   getSquareName(rowNum, colNum) ||
-                  board.lastMove?.substring(2, 4) ==
+                  $board.lastMove?.substring(2, 4) ==
                     getSquareName(rowNum, colNum))}
               order={display.flipped
                 ? 63 - (rowNum * 8 + colNum)
@@ -377,7 +386,7 @@
             target="_blank"
           > -->
           <a
-            href={`https://lichess.org/analysis/standard/${board.chess.fen()}?color=${
+            href={`https://lichess.org/analysis/standard/${$board.chess.fen()}?color=${
               currentSequence.start.split(" ")[1] === "w"
                 ? "black"
                 : "white"
@@ -397,12 +406,12 @@
           showHint={!currentSequence?.finished &&
             !currentSequence?.failed &&
             !display?.hint &&
-            board.movesBack == 0}
+            $board.movesBack == 0}
           showSol={!currentSequence?.finished &&
             !currentSequence?.failed &&
             display?.hint &&
             !display.solution}
-          flashingNext={board.movesBack > 0}
+          flashingNext={$board.movesBack > 0}
         />
         <div class="after">
           <slot name="after" />

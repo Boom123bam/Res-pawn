@@ -35,7 +35,7 @@
       class="flashing"
       title="retry last move"
       on:click={() => {
-        controlLog.setLastControl("retryLastMove");
+        controlLog.setLastControl("retry");
       }}
     >
       <Svg name="refresh" />
