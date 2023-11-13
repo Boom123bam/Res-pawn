@@ -2,8 +2,6 @@
   import "./Board.css";
   import Square from "./Square.svelte";
   import Promotion from "./Promotion.svelte";
-  import BoardControls from "./BoardControls.svelte";
-  import Svg from "./Svg.svelte";
   import {
     sequenceData,
     controlLog,
@@ -413,44 +411,6 @@
             />
           {/each}
         {/each}
-      </div>
-    </div>
-
-    <div class="buttons-wrapper">
-      <div class="buttons">
-        <div class="before">
-          <!-- <slot name="before" /> -->
-          <!-- <a
-            href={`https://www.chess.com/analysis?fen=${board.chess.fen()}&flip=${
-              currentSequence.start.split(" ")[1] === "w"
-            }&tab=analysis`}
-            target="_blank"
-          > -->
-          <a
-            href={`https://lichess.org/analysis/standard/${$board.chess.fen()}?color=${
-              currentSequenceData.start.split(" ")[1] === "w"
-                ? "black"
-                : "white"
-            }`}
-            target="_blank"
-          >
-            <button class="analyze" title="analyze in lichess"
-              ><Svg
-                name="search"
-                color="var(--background-alt)"
-              /></button
-            >
-          </a>
-        </div>
-        <BoardControls
-          showRetryLastMove={$controlsDisplayState.showRetryLastMove}
-          showHint={$controlsDisplayState.showHint}
-          showSol={$controlsDisplayState.showSol}
-          flashingNext={$controlsDisplayState.flashingNext}
-        />
-        <div class="after">
-          <slot name="after" />
-        </div>
       </div>
     </div>
   </div>
