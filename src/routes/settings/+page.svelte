@@ -34,6 +34,9 @@
 </section>
 
 <style>
+  section {
+    margin-top: 1rem;
+  }
   button.save {
     align-self: flex-start;
   }
@@ -63,6 +66,7 @@
     display: block;
     border-radius: var(--toggle-height);
     position: relative;
+    margin-bottom: 1rem;
   }
 
   label:after {
