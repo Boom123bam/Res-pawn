@@ -34,7 +34,7 @@
   --primary: var(--blue-500);
   --pirmary-shadow: var(--blue-700);
   --secondary: var(--pink-500);
-  --secondary-hover: var(--pink-700);
+  --secondary-shadow: var(--pink-700);
   --contrast: var(--gray-500);
   --contrast-shadow: #000;
 
@@ -309,17 +309,20 @@ button {
   border-radius: var(--br);
 }
 
-button:has(svg) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min-content;
-}
-
 @media (hover: hover) {
   button:disabled:hover {
     cursor: not-allowed;
   }
+}
+
+button:has(svg),
+button.primary,
+button.secondary,
+button.outline,
+button.contrast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button.primary,
@@ -379,7 +382,6 @@ button.primary:disabled {
   background-color: var(--blue-100);
   transform: none !important;
   color: var(--background-alt);
-  margin-bottom: 0;
 }
 
 /* secondary */
@@ -414,7 +416,6 @@ button.secondary:disabled {
   background-color: var(--pink-100);
   transform: none !important;
   color: var(--background-alt);
-  margin-bottom: 0;
 }
 
 /* outline */
@@ -453,7 +454,6 @@ button.outline:disabled {
   background-color: var(--gray-50);
   transform: none !important;
   color: var(--background-alt);
-  margin-bottom: 0;
 }
 
 /* contrast */
@@ -488,7 +488,6 @@ button.contrast:disabled {
   background-color: var(--gray-100);
   transform: none !important;
   color: var(--background-alt);
-  margin-bottom: 0;
 }
 
 button.contrast:focus-visible {
