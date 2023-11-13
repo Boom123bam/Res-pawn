@@ -207,6 +207,11 @@ i {
   border: 1px solid var(--border-dark);
 }
 
+.shadow {
+  box-shadow: inset 0px 0px 0px 1px var(--border-light),
+    var(--shadow-down) var(--border-light);
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
