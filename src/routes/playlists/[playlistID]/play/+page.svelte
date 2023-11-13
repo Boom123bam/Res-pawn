@@ -13,10 +13,14 @@
   import { userData } from "../../../userStore";
   import { sequenceData } from "../../../../stores/boardStore";
 
-  import Svg from "../../../../components/Svg.svelte";
   import Board from "/src/components/Board.svelte";
   import Popup from "../../../../components/Popup.svelte";
   import GradeMenu from "../../../../components/GradeMenu.svelte";
+  import SeqInfo from "../../../../components/SeqInfo.svelte";
+  import BoardControl from "../../../../components/BoardControl.svelte";
+  import BoardInterface from "../../../../components/BoardInterface.svelte";
+
+  let layoutContainer;
 
   export let data; // data from layout.js
 
@@ -40,6 +44,8 @@
   let grade = 1;
   let seqsPlayedInSession = 0;
 
+  let seqInfo = null;
+
   let currentSeqID = null;
   let showBottomNextButton = false;
   handleNext();
@@ -47,6 +53,13 @@
   async function loadSeq(id) {
     const data = await getSeqData(id);
     $sequenceData = data;
+    seqInfo = {
+      playlistName: localPlaylistData.name,
+      timesStudied: Object.keys(playedSeqsData).includes(currentSeqID)
+        ? playedSeqsData[currentSeqID].timesStudied
+        : 0,
+      seqData: $sequenceData,
+    };
   }
 
   function filterObject(obj, keysToKeep) {
@@ -156,72 +169,21 @@
       </Popup>
     </div>
   {/if}
-  <div class="grid-container">
-    {#if $sequenceData && currentSeqID}
-      <div class="seq-info">
-        <div class="playlist-name">
-          <small class="landscape">playing:</small>
-          <h4>{localPlaylistData.name}</h4>
-          <h6>
-            played {Object.keys(playedSeqsData).includes(currentSeqID)
-              ? playedSeqsData[currentSeqID].timesStudied
-              : "0"} times
-          </h6>
-          <small class="portrait"
-            >rating: {$sequenceData.rating}</small
-          >
-        </div>
-        <div class="puzzle-info landscape">
-          <small>puzzle: {$sequenceData.puzzleId}</small>
-          <h5>rating: {$sequenceData.rating}</h5>
-        </div>
-        <div class="to-play">
-          {#if $sequenceData.fen.split(" ")[1] === "w"}
-            <img src="/images/pieces/set3/k-b.svg" alt="black king" />
-          {:else}
-            <img src="/images/pieces/set3/k-w.svg" alt="white king" />
-          {/if}
-          <span class="landscape">to play</span>
-        </div>
-        <button
-          class="info"
-          on:click={() => (showSeqInfoPopup = true)}
-        >
-          <Svg name="info" />
-        </button>
-      </div>
-      <div class="board-container">
-        <Board on:finish={handleSeqFinish}>
-          <button
-            slot="after"
-            class={`primary next${
-              showBottomNextButton ? "" : " hide"
-            }`}
-            title="next puzzle"
-            on:click={handleNext}
-          >
-            <Svg
-              name="expand_right_double"
-              color="var(--background-alt)"
-            />
-          </button>
-        </Board>
-        <!-- {#if showGradeMenu} -->
-        <div
-          class="popup-wrapper"
-          style={`display: ${showGradeMenu ? "block" : "none"};`}
-        >
-          <GradeMenu value={grade} on:submit={handleGradeSubmit} />
-        </div>
-        <!-- {/if} -->
-      </div>
-    {:else if !currentSeqID}
-      <h2>no puzzles left</h2>
-      <!-- <button>return to ???</button> -->
-      <!-- {:else}
-        <h3>loading...</h3> -->
-    {/if}
+  <div
+    class="popup-wrapper"
+    style={`display: ${showGradeMenu ? "block" : "none"};`}
+  >
+    <GradeMenu value={grade} on:submit={handleGradeSubmit} />
   </div>
+
+  {#if $sequenceData && currentSeqID}
+    <BoardInterface on:finish={handleSeqFinish} {seqInfo} />
+  {:else if !currentSeqID}
+    <h2>no puzzles left</h2>
+    <!-- <button>return to ???</button> -->
+    <!-- {:else}
+        <h3>loading...</h3> -->
+  {/if}
 </section>
 
 <style>
@@ -230,45 +192,14 @@
     flex-direction: column;
     gap: 0.5rem;
   }
-  .seq-info {
-    /* width: 100%; */
-    margin-bottom: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* align-items: center; */
-    position: relative;
-  }
   section.main {
     height: calc(100vh - var(--nav-height));
     height: calc(100svh - var(--nav-height));
     width: min(75ch, 100% - 0.5rem);
-    /* max-height: 100svh; */
-    /* overflow: hidden; */
     display: flex;
     align-items: center;
     padding: 1rem 0;
     margin: 0;
-    /* justify-content: center; */
-  }
-  .grid-container {
-    display: grid;
-    grid-template-columns: 2fr 10fr 2fr;
-    align-items: start;
-    width: 100%;
-    height: 100%;
-  }
-  .board-container {
-    display: flex;
-    justify-content: center;
-    width: min(100vh - 10rem, 100%);
-    width: 100%;
-    /* max-width: min(100svw - 5rem, 60ch); */
-    position: relative;
-    flex-grow: 1;
-    height: 100%;
-    /* align-self: center; */
-    /* align-items: center; */
   }
   .popup-wrapper {
     position: fixed;
@@ -277,25 +208,6 @@
     transform: translate(-50%, -50%);
     z-index: 20;
     width: min(100% - 2rem, 35rem);
-  }
-  button.next {
-    border-radius: var(--br);
-    padding: 0;
-    padding-inline: 1rem;
-  }
-  .to-play {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .to-play img {
-    width: 2rem;
-  }
-  .landscape {
-    display: block;
-  }
-  .portrait {
-    display: none;
   }
   @media screen and (max-height: 600px) {
     section.main {
@@ -307,35 +219,11 @@
     section.main {
       padding: 0.5rem 0;
     }
-    .portrait {
-      display: block;
-    }
-    .landscape {
-      display: none;
-    }
-    .seq-info {
-      flex-direction: row;
-      justify-content: center;
-      margin-inline: 0.5rem;
-      margin-bottom: 0.25rem;
-    }
     .grid-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-    }
-    .to-play {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translate(calc(100% + 1rem), -50%);
-    }
-    button.info {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translate(calc(-100% - 1rem), -50%);
     }
   }
 </style>
