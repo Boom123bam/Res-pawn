@@ -156,7 +156,6 @@
   }
 
   function updateControlsDisplayState() {
-    console.log("update");
     $controlsDisplayState = {
       showRetryLastMove: boardDisplayState?.failed,
       showHint:
@@ -171,7 +170,6 @@
         !boardDisplayState.solution,
       flashingNext: $board.movesBack > 0,
     };
-    console.log($controlsDisplayState);
   }
 
   function resetHighlights() {
