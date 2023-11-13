@@ -34,7 +34,7 @@
     </div>
   </div>
   <a class="play" href={`/playlists/${localPlaylistData.id}/play`}>
-    <button class="primary">play</button>
+    <button class="primary shadow">play</button>
   </a>
 </section>
 
@@ -86,7 +86,7 @@
   a.play button {
     padding: 1.25rem 5rem;
     font-size: 2.5rem;
-    font-family: var(--fontlg);
+    font-family: var(--font-lg);
   }
   section.other-playlists {
     margin-top: 3rem;
