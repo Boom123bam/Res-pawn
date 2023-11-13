@@ -81,6 +81,9 @@ html {
 
 body {
   background-color: var(--background);
+}
+
+* {
   color: var(--text);
 }
 
@@ -238,16 +241,14 @@ i {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 body.dark .tiles-bg {
-  color: black;
   background-color: var(--background-alt);
-  color: var(--text);
 }
 
 .mobile {
   display: none;
 }
 .link.color {
-  color: var(--primary);
+  --text: var(--primary);
 }
 
 .icon {
@@ -256,8 +257,8 @@ body.dark .tiles-bg {
 }
 
 .invert {
-  background-color: var(--text);
-  color: var(--background-alt);
+  background-color: var(--blue-1100);
+  --text: var(--white);
 }
 
 .flex-col {
@@ -328,9 +329,14 @@ button.contrast {
 
 button.primary,
 button.secondary,
+button.contrast {
+  --text: var(--background-alt);
+}
+
+button.primary,
+button.secondary,
 button.outline,
 button.contrast {
-  color: var(--background-alt);
   cursor: pointer;
   font-weight: 700;
   padding: 1rem 1.5rem;
@@ -365,7 +371,7 @@ button.primary {
 
 button.primary:active {
   background-color: var(--blue-100);
-  color: var(--gray-300);
+  --text: var(--gray-300);
 }
 
 button.primary.shadow {
@@ -382,7 +388,7 @@ button.primary:disabled {
   box-shadow: none;
   background-color: var(--blue-100);
   transform: none !important;
-  color: var(--background-alt);
+  --text: var(--background-alt);
 }
 
 /* secondary */
@@ -399,7 +405,7 @@ button.secondary {
 
 button.secondary:active {
   background-color: var(--pink-100);
-  color: var(--gray-300);
+  --text: var(--gray-300);
 }
 
 button.secondary.shadow {
@@ -416,7 +422,7 @@ button.secondary:disabled {
   box-shadow: none;
   background-color: var(--pink-100);
   transform: none !important;
-  color: var(--background-alt);
+  --text: var(--background-alt);
 }
 
 /* outline */
@@ -424,7 +430,6 @@ button.secondary:disabled {
 button.outline {
   background-color: var(--background-alt);
   box-shadow: inset 0px 0px 0px 1px var(--border-light);
-  color: var(--text);
 }
 
 @media (hover: hover) {
@@ -454,7 +459,7 @@ button.outline:disabled {
   box-shadow: none;
   background-color: var(--gray-50);
   transform: none !important;
-  color: var(--background-alt);
+  --text: var(--background-alt);
 }
 
 /* contrast */
@@ -471,7 +476,7 @@ button.contrast {
 
 button.contrast:active {
   background-color: var(--gray-100);
-  color: var(--contrast);
+  --text: var(--contrast);
 }
 
 button.contrast.shadow {
@@ -488,7 +493,7 @@ button.contrast:disabled {
   box-shadow: none;
   background-color: var(--gray-100);
   transform: none !important;
-  color: var(--background-alt);
+  --text: var(--background-alt);
 }
 
 button.contrast:focus-visible {
@@ -499,7 +504,7 @@ button.contrast:focus-visible {
 /* ghost */
 
 button.ghost {
-  color: var(--primary);
+  --text: var(--primary);
   font-weight: 700;
   padding: 1rem 1.5rem;
 }

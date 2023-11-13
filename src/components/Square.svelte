@@ -128,14 +128,14 @@
     left: 0.25em;
   }
   .square.dark .indicator {
-    color: var(--light-square);
+    --text: var(--light-square);
   }
   .square .indicator {
     position: absolute;
     font-size: 1em;
     font-weight: 700;
     line-height: 75%;
-    color: var(--dark-square);
+    --text: var(--dark-square);
   }
   .square .highlight-circle {
     position: absolute;

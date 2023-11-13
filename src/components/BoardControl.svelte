@@ -19,7 +19,7 @@
         controlLog.setLastControl("back");
       }}
     >
-      <Svg name="expand_left" color="var(--background-alt)" />
+      <Svg name="expand_left" />
     </button>
     <button
       title="next move"
@@ -30,7 +30,7 @@
         controlLog.setLastControl("next");
       }}
     >
-      <Svg name="expand_right" color="var(--background-alt)" />
+      <Svg name="expand_right" />
     </button>
   </div>
 {:else if buttonType == "retry"}
@@ -87,8 +87,7 @@
     >
       <button
         class="analyse secondary shadow"
-        title="analyse in lichess"
-        ><Svg name="search" color="var(--background-alt)" /></button
+        title="analyse in lichess"><Svg name="search" /></button
       >
     </a>
   {/if}

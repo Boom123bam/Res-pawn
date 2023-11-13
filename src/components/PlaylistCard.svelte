@@ -61,7 +61,7 @@
   }
 
   :global(body.dark) .top-banner {
-    color: black;
+    --text: black;
   }
 
   .content {

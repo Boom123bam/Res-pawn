@@ -94,7 +94,7 @@
   }
   .error {
     align-self: center;
-    color: red;
+    --text: red;
   }
   h4 {
     margin-top: 3rem;

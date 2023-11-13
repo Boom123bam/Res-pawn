@@ -9,14 +9,14 @@
       href="https://github.com/Boom123bam/ResPawn"
       target="_blank"
     >
-      <Svg name="github" color="var(--text)" size="1.75rem" />
+      <Svg name="github" size="1.75rem" />
     </a>
     <a
       class="float"
       href="https://discord.gg/b83Mkaghtb"
       target="_blank"
     >
-      <Svg name="discord" color="var(--text)" size="1.75rem" />
+      <Svg name="discord" size="1.75rem" />
     </a>
   </div>
   <div class="links">

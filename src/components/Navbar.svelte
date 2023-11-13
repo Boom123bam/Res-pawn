@@ -224,7 +224,6 @@
 
   a {
     text-decoration: none;
-    color: var(--text);
     display: block;
   }
 

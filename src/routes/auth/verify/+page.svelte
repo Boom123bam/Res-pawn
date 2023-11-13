@@ -102,7 +102,7 @@
     width: 100%;
     height: 100%;
     background: rgb(85, 141, 0);
-    color: var(--background-alt);
+    --text: var(--background-alt);
     display: flex;
     align-items: center;
     justify-content: center;

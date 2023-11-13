@@ -9,8 +9,8 @@
 </script>
 
 <div class="popup-window popup">
-  <button class="close" on:click={handleClose}
-    ><Svg name="close_round" color="var(--background-alt)" />
+  <button class="close contrast" on:click={handleClose}
+    ><Svg name="close_round" />
   </button>
   <slot />
 </div>
@@ -32,9 +32,9 @@
     position: absolute;
     top: 0.6rem;
     right: 0.6rem;
-    background-color: var(--text);
     width: 1.5rem;
     height: 1.5rem;
+    padding: 0;
     border-radius: var(--br-sm);
   }
 

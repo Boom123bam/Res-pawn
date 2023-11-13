@@ -73,7 +73,7 @@ meter {
 
 /* reset default text opacity of input placeholder */
 ::placeholder {
-  color: unset;
+  --text: unset;
 }
 
 /* remove default dot (•) sign */
