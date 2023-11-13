@@ -281,7 +281,7 @@
   }
   .dropdown-content img {
     width: min(100%, 30rem);
-    border: var(--border-light);
+    border: 1px solid var(--border-light);
     border-radius: var(--br-sm);
   }
   @keyframes -global-slide-left {
@@ -455,7 +455,7 @@
   section.how-it-works h2 {
     background: var(--background-alt);
     padding: 1.25rem 8rem;
-    border: 1px dashed var(--border-dark-color);
+    border: 1px dashed var(--border-dark);
     border-bottom: 0;
     border-top-right-radius: var(--br);
     border-top-left-radius: var(--br);
@@ -466,7 +466,7 @@
     background-color: var(--blue-100);
     gap: var(--gap-lg);
     padding: 1.25rem;
-    border: 1px solid var(--border-light-color);
+    border: 1px solid var(--border-light);
     border-radius: var(--br);
     margin-bottom: 2rem;
   }
@@ -486,7 +486,7 @@
     aspect-ratio: 2;
     text-align: center;
     transition: transform 0.1s, box-shadow 0.1s, opacity 0.5s;
-    border: 1px solid var(--border-dark-color);
+    border: 1px solid var(--border-dark);
     background-color: var(--background-alt);
   }
 
@@ -552,7 +552,7 @@
     gap: 2rem;
     padding: 6rem 0;
     align-items: center;
-    border-top: var(--border-dark);
+    border-top: 1px solid var(--border-dark);
     text-align: center;
     padding-inline: 1.5rem;
     overflow: hidden;
@@ -579,7 +579,7 @@
 
     .card:hover {
       transform: translateY(calc(-1 * var(--shadow-size)));
-      box-shadow: var(--shadow-down) var(--border-dark-color);
+      box-shadow: var(--shadow-down) var(--border-dark);
       opacity: 1 !important;
     }
     section.bottom-cta button:hover {

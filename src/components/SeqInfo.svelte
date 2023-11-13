@@ -52,7 +52,7 @@
   .to-play {
     background-color: var(--background-alt);
     border-radius: var(--br);
-    border: 1px dashed var(--border-light-color);
+    border: 1px dashed var(--border-light);
   }
 
   .text-section {
@@ -72,7 +72,7 @@
     margin-bottom: 0.1rem;
   }
   .text-section hr {
-    border-top: 1px solid var(--border-light-color);
+    border-top: 1px solid var(--border-light);
     grid-area: line;
   }
 
@@ -96,7 +96,7 @@
   }
 
   .to-play hr {
-    border-left: 1px solid var(--border-light-color);
+    border-left: 1px solid var(--border-light);
   }
 
   .to-play img {

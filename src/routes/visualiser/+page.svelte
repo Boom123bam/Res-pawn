@@ -109,7 +109,7 @@
     justify-content: center;
   }
   .grade-buttons button {
-    border: var(--border-dark);
+    border: 1px solid var(--border-dark);
     padding: 1rem;
     background-color: var(--background-alt);
   }

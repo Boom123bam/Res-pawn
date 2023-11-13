@@ -165,7 +165,7 @@
   }
   .square.dark {
     background-color: var(--dark-square);
-    /* border: var(--border-dark); */
+    /* border: 1px solid var(--border-dark); */
   }
 
   .square .piece-container {

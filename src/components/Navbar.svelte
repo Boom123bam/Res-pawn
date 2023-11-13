@@ -196,7 +196,7 @@
   nav {
     height: var(--nav-height);
     background-color: var(--background-alt);
-    border-bottom: var(--border-light);
+    border-bottom: 1px solid var(--border-light);
   }
 
   nav > ul {
@@ -299,7 +299,7 @@
     align-items: center;
   }
   .mobile-menu {
-    border-left: var(--border-dark);
+    border-left: 1px solid var(--border-dark);
     width: 50%;
     height: 100%;
     background-color: var(--background-alt);

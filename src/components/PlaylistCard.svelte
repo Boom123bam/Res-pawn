@@ -42,8 +42,8 @@
 
 <style>
   .card {
-    box-shadow: var(--shadow-down) var(--border-light-color);
-    border: var(--border-light);
+    box-shadow: var(--shadow-down) var(--border-light);
+    border: 1px solid var(--border-light);
     border-radius: var(--br);
     background-color: var(--background-alt);
     padding: 2px;
