@@ -19,7 +19,6 @@
   .popup-window {
     padding: 12%;
     padding-bottom: 3.5rem;
-    border-radius: var(--br);
     display: flex;
     flex-direction: column;
     align-items: center;

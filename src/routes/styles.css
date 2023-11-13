@@ -206,8 +206,9 @@ i {
 
 .popup {
   background-color: var(--background-alt);
-  box-shadow: var(--shadow) var(--border-dark);
-  border: 1px solid var(--border-dark);
+  box-shadow: var(--shadow) #00000025;
+  border: 1px solid var(--border-light);
+  border-radius: var(--br);
 }
 
 .shadow {
