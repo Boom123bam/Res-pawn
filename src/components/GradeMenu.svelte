@@ -131,7 +131,7 @@
     <small>(or tap on the tiles)</small>
   </div>
   <button
-    class="primary next"
+    class="primary next shadow"
     on:click={() => {
       handleSubmit(true);
     }}>next</button
@@ -141,6 +141,7 @@
 <style>
   button.next {
     padding: 0.5rem 2.25rem;
+    border-radius: var(--br-sm);
   }
 
   .slider {
@@ -175,6 +176,8 @@
   }
   .button-tiles :nth-child(5) {
     background-color: #b1eb8d;
+    border-top-right-radius: var(--br-sm);
+    border-bottom-right-radius: var(--br-sm);
   }
   .button-tiles :nth-child(4) {
     background-color: #e3ef98;
@@ -187,11 +190,14 @@
   }
   .button-tiles :nth-child(1) {
     background-color: #db7676;
+    border-top-left-radius: var(--br-sm);
+    border-bottom-left-radius: var(--br-sm);
   }
   .button-tiles button {
     width: 100%;
     height: 1.5rem;
     background: black;
+    border-radius: 0;
   }
 
   .label {
