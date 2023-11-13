@@ -55,7 +55,7 @@
   --icon-size: 1.5rem;
   --nav-height: 4rem;
   font-family: var(--font-sm);
-  font-size: 1.125rem;
+  font-size: 1rem;
 }
 
 body.dark {
@@ -131,7 +131,7 @@ p {
 }
 
 small {
-  font-size: 0.5rem;
+  font-size: 0.625rem;
   display: block;
 }
 
