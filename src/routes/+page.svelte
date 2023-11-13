@@ -260,7 +260,13 @@
     top={100}
   >
     <a href="/playlists">
-      <button class="float"><h3>Browse puzzles</h3></button>
+      <button
+        class={`browse shadow ${
+          document.body.classList.contains("dark")
+            ? "outline"
+            : "contrast"
+        }`}><h3>Browse puzzles</h3></button
+      >
     </a>
   </Saos>
 </section>
@@ -496,7 +502,7 @@
     border-radius: var(--br-sm);
     gap: var(--gap-sm);
     background-color: var(--contrast);
-    color: var(--background-alt);
+    --text: var(--background-alt);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -545,7 +551,6 @@
 
   section.bottom-cta {
     background-color: var(--primary);
-    color: var(--background-alt);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -560,16 +565,13 @@
 
   section.bottom-cta h1 {
     margin-bottom: 1.5rem;
+    --text: var(--background-alt);
   }
 
-  section.bottom-cta button {
-    background-color: var(--text);
+  section.bottom-cta button.browse {
     padding: 1.3rem 2.5rem;
-  }
-
-  :global(body.dark) section.bottom-cta button {
-    background-color: var(--background-alt);
-    color: var(--text);
+    /* background-color: var(--blue-1100);
+    --text: var(--white); */
   }
 
   @media (hover: hover) {
@@ -581,12 +583,6 @@
       transform: translateY(calc(-1 * var(--shadow-size)));
       box-shadow: var(--shadow-down) var(--border-dark);
       opacity: 1 !important;
-    }
-    section.bottom-cta button:hover {
-      background-color: var(--gray-500);
-    }
-    :global(body.dark) section.bottom-cta button:hover {
-      background-color: var(--gray-500);
     }
   }
 </style>
