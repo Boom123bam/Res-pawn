@@ -13,14 +13,9 @@
   import { userData } from "../../../userStore";
   import { sequenceData } from "../../../../stores/boardStore";
 
-  import Board from "/src/components/Board.svelte";
   import Popup from "../../../../components/Popup.svelte";
   import GradeMenu from "../../../../components/GradeMenu.svelte";
-  import SeqInfo from "../../../../components/SeqInfo.svelte";
-  import BoardControl from "../../../../components/BoardControl.svelte";
   import BoardInterface from "../../../../components/BoardInterface.svelte";
-
-  let layoutContainer;
 
   export let data; // data from layout.js
 
@@ -47,7 +42,7 @@
   let seqInfo = null;
 
   let currentSeqID = null;
-  let showBottomNextButton = false;
+  let enableNextButton = false;
   handleNext();
 
   async function loadSeq(id) {
@@ -100,7 +95,7 @@
       // GO NEXT
       handleNext();
     } else {
-      showBottomNextButton = true;
+      enableNextButton = true;
     }
   }
 
@@ -110,7 +105,7 @@
   }
 
   function handleNext() {
-    showBottomNextButton = false;
+    enableNextButton = false;
     currentSeqID = getNextSeq(
       playedSeqsData,
       unplayedSeqIDs,
@@ -177,7 +172,13 @@
   </div>
 
   {#if $sequenceData && currentSeqID}
-    <BoardInterface on:finish={handleSeqFinish} {seqInfo} />
+    <BoardInterface
+      on:finish={handleSeqFinish}
+      on:next={handleNext}
+      on:morePressed={() => (showSeqInfoPopup = !showSeqInfoPopup)}
+      {seqInfo}
+      {enableNextButton}
+    />
   {:else if !currentSeqID}
     <h2>no puzzles left</h2>
     <!-- <button>return to ???</button> -->
@@ -218,12 +219,6 @@
   @media screen and (orientation: portrait) {
     section.main {
       padding: 0.5rem 0;
-    }
-    .grid-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
     }
   }
 </style>
