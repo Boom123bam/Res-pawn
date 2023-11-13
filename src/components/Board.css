@@ -1,13 +1,13 @@
 :root {
+  --light-square: var(--blue-50);
   --dark-square: var(--purple);
-  --light-square: var(--background-alt);
   --hint-square: yellow;
   --max-board-size: 80rem;
-  --piece-size: 80%;
+  --piece-size: 75%;
 }
 
 body.dark {
-  --light-square: rgb(175, 175, 175);
+  --light-square: var(--gray-300);
   --dark-square: var(--purple);
 }
 
