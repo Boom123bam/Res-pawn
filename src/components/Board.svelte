@@ -364,7 +364,7 @@
         ).color}
       />
     {/if}
-    <div class="board-padding">
+    <div class="board-padding shadow">
       <div
         class={`board${
           boardDisplayState.flipped ? " flipped" : " normal"

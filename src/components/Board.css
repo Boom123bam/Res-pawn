@@ -11,14 +11,6 @@ body.dark {
   --dark-square: var(--purple);
 }
 
-.board-wrapper {
-  touch-action: manipulation;
-  width: 100%;
-  display: inline;
-  position: relative;
-  aspect-ratio: 1 / 1;
-}
-
 .board-component-wrapper {
   container: board-container / size;
   container-name: board-container;
@@ -30,6 +22,14 @@ body.dark {
   align-items: center;
   gap: 1rem;
   position: relative;
+}
+
+.board-wrapper {
+  touch-action: manipulation;
+  width: 100%;
+  display: inline;
+  position: relative;
+  aspect-ratio: 1 / 1;
 }
 
 .board-padding {
