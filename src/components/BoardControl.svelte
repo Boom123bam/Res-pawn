@@ -80,16 +80,12 @@
 {:else if buttonType == "analyse"}
   {#if $sequenceData?.fen}
     <a
+      class="button-like secondary shadow"
       href={`https://lichess.org/analysis/standard/${$board.chess.fen()}?color=${
         $sequenceData.fen.split(" ")[1] === "w" ? "black" : "white"
       }`}
-      target="_blank"
+      target="_blank"><Svg name="search" /></a
     >
-      <button
-        class="analyse secondary shadow"
-        title="analyse in lichess"><Svg name="search" /></button
-      >
-    </a>
   {/if}
 {/if}
 

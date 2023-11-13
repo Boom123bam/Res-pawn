@@ -50,16 +50,6 @@
     >
       <a class="link" href="/playlists">playlists</a>
     </li>
-    <!-- <li
-      aria-current={$page.url.pathname ===
-      "/article/spaced-repetition"
-        ? "page"
-        : undefined}
-    >
-      <a class="link" href="/article/spaced-repetition"
-        >spaced repetition</a
-      >
-    </li> -->
     {#if $userData}
       <li class="user">
         <button
@@ -92,13 +82,11 @@
       </li>
     {:else}
       <li class="user">
-        <a href="/auth/signin">
+        <a href="/auth/signin" class="sign-in button-like primary">
           {#if $page.url.pathname.endsWith("/play")}
-            <button class="primary sign-in">
-              Sign In to save progress</button
-            >
+            Sign In to save progress
           {:else}
-            <button class="primary sign-in float"> Sign In </button>
+            Sign In
           {/if}
         </a>
       </li>
@@ -284,7 +272,7 @@
     background-color: #00000050;
     z-index: -1;
   }
-  button.sign-in {
+  a.sign-in {
     padding: 0.5rem 1rem;
     font-weight: 400;
   }

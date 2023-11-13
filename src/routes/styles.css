@@ -307,7 +307,8 @@ body.dark .tiles-bg {
 ###################
 */
 
-button {
+button,
+.button-like {
   border-radius: var(--br);
 }
 
@@ -321,7 +322,12 @@ button:has(svg),
 button.primary,
 button.secondary,
 button.outline,
-button.contrast {
+button.contrast,
+.button-like:has(svg),
+.button-like.primary,
+.button-like.secondary,
+.button-like.outline,
+.button-like.contrast {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -329,14 +335,21 @@ button.contrast {
 
 button.primary,
 button.secondary,
-button.contrast {
+button.contrast,
+.button-like.primary,
+.button-like.secondary,
+.button-like.contrast {
   --text: var(--background-alt);
 }
 
 button.primary,
 button.secondary,
 button.outline,
-button.contrast {
+button.contrast,
+.button-like.primary,
+.button-like.secondary,
+.button-like.outline,
+.button-like.contrast {
   cursor: pointer;
   font-weight: 700;
   padding: 1rem 1.5rem;
@@ -345,7 +358,10 @@ button.contrast {
 
 button.primary:focus-visible,
 button.secondary:focus-visible,
-button.outline:focus-visible {
+button.outline:focus-visible,
+.button-like.primary:focus-visible,
+.button-like.secondary:focus-visible,
+.button-like.outline:focus-visible {
   box-shadow: inset 0px 0px 0px 5px var(--gray-500) !important;
   outline-color: transparent;
 }
@@ -359,27 +375,32 @@ body.dark button.contrast:disabled {
 
 /* primary */
 
-button.primary {
+button.primary,
+.button-like.primary {
   background-color: var(--primary);
 }
 
 @media (hover: hover) {
-  button.primary:hover {
+  button.primary:hover,
+  .button-like.primary:hover {
     background-color: var(--blue-300);
   }
 }
 
-button.primary:active {
+button.primary:active,
+.button-like.primary:active {
   background-color: var(--blue-100);
   --text: var(--gray-300);
 }
 
-button.primary.shadow {
+button.primary.shadow,
+.button-like.primary.shadow {
   box-shadow: var(--shadow-down) var(--pirmary-shadow);
   margin-bottom: var(--shadow-size);
   transform: none;
 }
-button.primary.shadow:active {
+button.primary.shadow:active,
+.button-like.primary.shadow:active {
   box-shadow: 0 0 var(--pirmary-shadow);
   transform: translateY(var(--shadow-size));
 }
@@ -393,27 +414,32 @@ button.primary:disabled {
 
 /* secondary */
 
-button.secondary {
+button.secondary,
+.button-like.secondary {
   background-color: var(--secondary);
 }
 
 @media (hover: hover) {
-  button.secondary:hover {
+  button.secondary:hover,
+  .button-like.secondary:hover {
     background-color: var(--pink-300);
   }
 }
 
-button.secondary:active {
+button.secondary:active,
+.button-like.secondary:active {
   background-color: var(--pink-100);
   --text: var(--gray-300);
 }
 
-button.secondary.shadow {
+button.secondary.shadow,
+.button-like.secondary.shadow {
   box-shadow: var(--shadow-down) var(--secondary-shadow);
   margin-bottom: var(--shadow-size);
   transform: none;
 }
-button.secondary.shadow:active {
+button.secondary.shadow:active,
+.button-like.secondary.shadow:active {
   box-shadow: 0 0 var(--secondary-shadow);
   transform: translateY(var(--shadow-size));
 }
@@ -427,29 +453,34 @@ button.secondary:disabled {
 
 /* outline */
 
-button.outline {
+button.outline,
+.button-like.outline {
   background-color: var(--background-alt);
   box-shadow: inset 0px 0px 0px 1px var(--border-light);
 }
 
 @media (hover: hover) {
-  button.outline:hover {
+  button.outline:hover,
+  .button-like.outline:hover {
     background-color: var(--gray-50);
   }
 }
 
-button.outline:active {
+button.outline:active,
+.button-like.outline:active {
   background-color: var(--gray-100);
 }
 
-button.outline.shadow {
+button.outline.shadow,
+.button-like.outline.shadow {
   margin-bottom: var(--shadow-size);
   transform: none;
   box-shadow: inset 0px 0px 0px 1px var(--border-light),
     var(--shadow-down) var(--border-light);
 }
 
-button.outline.shadow:active {
+button.outline.shadow:active,
+.button-like.outline.shadow:active {
   box-shadow: inset 0px 0px 0px 1px var(--border-light),
     0 var(--border-light);
   transform: translateY(var(--shadow-size));
@@ -464,27 +495,32 @@ button.outline:disabled {
 
 /* contrast */
 
-button.contrast {
+button.contrast,
+.button-like.contrast {
   background-color: var(--contrast);
 }
 
 @media (hover: hover) {
-  button.contrast:hover {
+  button.contrast:hover,
+  .button-like.contrast:hover {
     background-color: var(--gray-300);
   }
 }
 
-button.contrast:active {
+button.contrast:active,
+.button-like.contrast:active {
   background-color: var(--gray-100);
   --text: var(--contrast);
 }
 
-button.contrast.shadow {
+button.contrast.shadow,
+.button-like.contrast.shadow {
   box-shadow: var(--shadow-down) var(--contrast-shadow);
   margin-bottom: var(--shadow-size);
   transform: none;
 }
-button.contrast.shadow:active {
+button.contrast.shadow:active,
+.button-like.contrast.shadow:active {
   box-shadow: 0 0 var(--contrast-shadow);
   transform: translateY(var(--shadow-size));
 }
@@ -496,7 +532,8 @@ button.contrast:disabled {
   --text: var(--background-alt);
 }
 
-button.contrast:focus-visible {
+button.contrast:focus-visible,
+.button-like.contrast:focus-visible {
   box-shadow: inset 0px 0px 0px 5px var(--primary) !important;
   outline-color: transparent;
 }

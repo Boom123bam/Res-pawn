@@ -59,17 +59,13 @@
       css_animation={"opacity:0;"}
     >
       <h5 class="subheading">
-        <!-- Practice pattern recognition with <a
-          class="link color"
-          href="/article/spaced-repetition">spaced repetition</a
-        > by playing puzzles! -->
-        ResPawn is a Chess puzzles app designed to improve pattern recognition
-        with spaced repetition.
+        ResPawn is a Chess puzzles app designed to improve pattern
+        recognition with spaced repetition.
       </h5>
     </Saos>
     <div class="buttons">
-      <a href="/playlists">
-        <button class="primary shadow"> play puzzles </button>
+      <a href="/playlists" class="button-like primary shadow">
+        play puzzles
       </a>
       <button
         on:click={() =>
@@ -260,15 +256,14 @@
     animation_out={"fade-out-down 0.25s both"}
     top={100}
   >
-    <a href="/playlists">
-      <button
-        class={`browse shadow ${
-          browser && document.body.classList.contains("dark")
-            ? "outline"
-            : "contrast"
-        }`}><h3>Browse puzzles</h3></button
-      >
-    </a>
+    <a
+      href="/playlists"
+      class={`button-like browse shadow ${
+        browser && document.body.classList.contains("dark")
+          ? "outline"
+          : "contrast"
+      }`}><h3>Browse puzzles</h3></a
+    >
   </Saos>
 </section>
 
@@ -569,10 +564,12 @@
     --text: var(--background-alt);
   }
 
-  section.bottom-cta button.browse {
+  section.bottom-cta .browse {
     padding: 1.3rem 2.5rem;
-    /* background-color: var(--blue-1100);
-    --text: var(--white); */
+  }
+  section.bottom-cta .browse:focus-visible {
+    box-shadow: inset 0px 0px 0px 5px var(--white) !important;
+    outline-color: transparent;
   }
 
   @media (hover: hover) {
