@@ -3,6 +3,7 @@
   import Saos from "saos";
   import ChessBoard3d from "../components/ChessBoard3d.svelte";
   import ExpandableCard from "../components/ExpandableCard.svelte";
+  import { browser } from "$app/environment";
 </script>
 
 <svelte:head>
@@ -262,7 +263,7 @@
     <a href="/playlists">
       <button
         class={`browse shadow ${
-          document.body.classList.contains("dark")
+          browser && document.body.classList.contains("dark")
             ? "outline"
             : "contrast"
         }`}><h3>Browse puzzles</h3></button
