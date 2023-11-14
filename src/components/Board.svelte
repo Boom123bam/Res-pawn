@@ -255,6 +255,7 @@
           boardDisplayState.disabled = true;
           boardDisplayState.failed = true;
           currentSequenceData.stats.timesFailed++;
+          updateControlsDisplayState();
         }
       }
     } else {
