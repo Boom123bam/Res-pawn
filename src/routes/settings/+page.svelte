@@ -1,4 +1,5 @@
 <script>
+  import { browser } from "$app/environment";
   import {
     getSettings,
     storeSettings,
@@ -8,29 +9,32 @@
 
 <section>
   <h3>Settings</h3>
-  <form>
-    <fieldset>
-      <h6>Sound</h6>
-      <input
-        type="checkbox"
-        id="sound-switch"
-        bind:checked={settings.sound}
-      />
-      <label for="sound-switch" />
-      <h6>show square name on hover</h6>
-      <input
-        type="checkbox"
-        id="squares-switch"
-        bind:checked={settings.showIndicatorOnHover}
-      />
-      <label for="squares-switch" />
-    </fieldset>
-    <button
-      type="submit"
-      class="primary save"
-      on:click={() => storeSettings(settings)}>Save Changes</button
-    >
-  </form>
+  {#if browser}
+    <!-- browser check to prevent settings = undefined -->
+    <form>
+      <fieldset>
+        <h6>Sound</h6>
+        <input
+          type="checkbox"
+          id="sound-switch"
+          bind:checked={settings.sound}
+        />
+        <label for="sound-switch" />
+        <h6>show square name on hover</h6>
+        <input
+          type="checkbox"
+          id="squares-switch"
+          bind:checked={settings.showIndicatorOnHover}
+        />
+        <label for="squares-switch" />
+      </fieldset>
+      <button
+        type="submit"
+        class="primary save"
+        on:click={() => storeSettings(settings)}>Save Changes</button
+      >
+    </form>
+  {/if}
 </section>
 
 <style>
