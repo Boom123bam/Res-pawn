@@ -105,9 +105,9 @@
       );
       display: grid;
       grid-template:
-        "info info flip"
-        "info info analyse"
-        "board  board  board "
+        "info   info    flip"
+        "info   info    analyse"
+        "board  board   board "
         "hint   arrows  next";
       column-gap: var(--gap-sm);
       row-gap: var(--gap-md);
