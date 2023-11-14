@@ -57,7 +57,6 @@
       100vw - var(--side-width) - var(--horizontal-whitespace),
       40rem
     );
-    --min-sidebar: 40rem;
     display: flex;
     gap: var(--gap-lg);
     /* width: 100%; */
@@ -68,12 +67,11 @@
     display: flex;
     flex-direction: column;
     gap: var(--gap-md);
-    height: max(var(--board-size), var(--min-sidebar));
+    height: var(--board-size);
   }
 
   .button-wrapper {
     width: 100%;
-    height: 100%;
   }
 
   .flip,
@@ -108,11 +106,12 @@
       );
       display: grid;
       grid-template:
-        "info info info info info flip"
-        "info info info info info analyse"
-        "board  board  board board board board"
-        "hint   hint   arrows  arrows  next  next";
+        "info info flip"
+        "info info analyse"
+        "board  board  board "
+        "hint   arrows  next";
       gap: var(--gap-sm);
+      grid-template-columns: 27% 1fr 27%;
     }
     .board-container {
       grid-area: board;
@@ -142,20 +141,32 @@
     .seq-info-wrapper {
       width: auto;
     }
+    button.next {
+      padding: 0;
+      margin-bottom: var(--shadow-size);
+    }
+    button.next > h4 {
+      font-size: 1rem;
+    }
+    .flip,
+    .analyse {
+      height: 100%;
+    }
   }
 
-  @media screen and (max-width: 800px) and (max-height: 700px) {
+  @media screen and (max-width: 800px) and (max-height: 750px) {
     .layout {
       --board-size: min(
         100svh - var(--nav-height) - 10rem,
-        100vw - 0.5rem,
+        100vw - 2rem,
         40rem
       );
       display: grid;
       grid-template:
-        "info info info info flip analyse"
-        "board  board  board board board board"
-        "hint   hint   arrows  arrows  next  next";
+        "info  info   info    flip   analyse"
+        "board board  board   board  board"
+        "hint  hint   arrows  next   next";
+      grid-template-columns: 12% 12% 1fr 12% 12%;
     }
   }
 </style>

@@ -71,7 +71,7 @@
       "more";
   }
 
-  .text-section h3 {
+  .text-section > h3 {
     grid-area: title;
     margin-bottom: 0.1rem;
   }
@@ -163,7 +163,7 @@
     }
   }
 
-  @media screen and (max-height: 700px) {
+  @media screen and (max-width: 800px) and (max-height: 750px) {
     .seq-info-container {
       padding-block: 0.5rem;
     }
@@ -173,6 +173,9 @@
         "title more"
         "times-played more";
       padding-inline: 0;
+    }
+    .text-section > h3 {
+      font-size: 1.25rem;
     }
     .to-play > .text {
       display: none;

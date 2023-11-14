@@ -110,7 +110,6 @@
   button,
   .arrows {
     width: 100%;
-    height: 100%;
   }
   .arrows {
     display: flex;
@@ -129,13 +128,16 @@
     padding: 0.5rem 0;
   }
 
-  @media screen and (max-height: 700px) {
+  @media screen and (max-width: 800px) {
+    .flip,
+    .analyse {
+      height: 100%;
+      padding: 0;
+    }
+  }
+  @media screen and (max-width: 800px) and (max-height: 750px) {
     .hide-small {
       display: none;
-    }
-    .analyse,
-    .flip {
-      width: 3.5rem;
     }
   }
 </style>
