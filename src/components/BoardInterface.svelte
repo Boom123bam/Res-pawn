@@ -3,6 +3,7 @@
   import Board from "./Board.svelte";
   import SeqInfo from "./SeqInfo.svelte";
   import BoardControl from "./BoardControl.svelte";
+  import Svg from "./Svg.svelte";
 
   export let seqInfo, enableNextButton;
 
@@ -14,25 +15,37 @@
     <Board on:finish={(e) => dispatch("finish", e.detail)} />
   </div>
 
-  {#if seqInfo}
-    <div class="seq-info-wrapper">
-      <SeqInfo
-        on:morePressed={() => dispatch("morePressed")}
-        {seqInfo}
-      />
+  <div class="side">
+    {#if seqInfo}
+      <div class="seq-info-wrapper">
+        <SeqInfo
+          on:morePressed={() => dispatch("morePressed")}
+          {seqInfo}
+        />
+      </div>
+    {/if}
+    <div class="flip button-wrapper">
+      <BoardControl buttonType={"flip"} />
     </div>
-  {/if}
+    <div class="hint button-wrapper">
+      <BoardControl buttonType={"hint + solution + retry"} />
+    </div>
+    <div class="arrows button-wrapper">
+      <BoardControl buttonType={"arrows"} />
+    </div>
+    <div class="analyse button-wrapper">
+      <BoardControl buttonType={"analyse"} />
+    </div>
 
-  <BoardControl buttonType={"flip"} />
-  <BoardControl buttonType={"hint + solution"} />
-  <BoardControl buttonType={"arrows"} />
-  <BoardControl buttonType={"analyse"} />
-
-  <button
-    class="next primary shadow"
-    disabled={!enableNextButton}
-    on:click={() => dispatch("next")}>next</button
-  >
+    <button
+      class="next primary shadow"
+      disabled={!enableNextButton}
+      on:click={() => dispatch("next")}
+    >
+      <h4>next</h4>
+      <Svg name="expand_right_double" />
+    </button>
+  </div>
 </div>
 
 <style>
@@ -44,23 +57,105 @@
       100vw - var(--side-width) - var(--horizontal-whitespace),
       40rem
     );
-    display: grid;
-    grid-template-columns: var(--board-size) 1fr;
-    grid-template-rows: repeat(10, 1fr);
+    --min-sidebar: 40rem;
+    display: flex;
     gap: var(--gap-lg);
+    /* width: 100%; */
+    /* height: 100%; */
+  }
+
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+    height: max(var(--board-size), var(--min-sidebar));
+  }
+
+  .button-wrapper {
     width: 100%;
     height: 100%;
   }
+
+  .flip,
+  .analyse {
+    margin-top: auto;
+  }
+
+  button.next {
+    margin-bottom: 0;
+    padding: 1.25rem 0;
+  }
+
   .board-container {
     display: flex;
     justify-content: center;
     width: var(--board-size);
     position: relative;
     flex-grow: 1;
-    height: 100%;
+    height: var(--board-size);
     grid-row: 1/-1;
   }
   .seq-info-wrapper {
     width: var(--side-width);
+  }
+
+  @media screen and (max-width: 800px) {
+    .layout {
+      --board-size: min(
+        100svh - var(--nav-height) - 15rem,
+        100vw - 2rem,
+        40rem
+      );
+      display: grid;
+      grid-template:
+        "info info info info info flip"
+        "info info info info info analyse"
+        "board  board  board board board board"
+        "hint   hint   arrows  arrows  next  next";
+      gap: var(--gap-sm);
+    }
+    .board-container {
+      grid-area: board;
+    }
+    .side {
+      display: contents;
+    }
+    .side .seq-info-wrapper {
+      grid-area: info;
+    }
+    .side .flip {
+      grid-area: flip;
+    }
+    .side .hint {
+      grid-area: hint;
+    }
+    .side .arrows {
+      grid-area: arrows;
+    }
+    .side .analyse {
+      grid-area: analyse;
+    }
+    .side .next {
+      grid-area: next;
+    }
+
+    .seq-info-wrapper {
+      width: auto;
+    }
+  }
+
+  @media screen and (max-width: 800px) and (max-height: 700px) {
+    .layout {
+      --board-size: min(
+        100svh - var(--nav-height) - 10rem,
+        100vw - 0.5rem,
+        40rem
+      );
+      display: grid;
+      grid-template:
+        "info info info info flip analyse"
+        "board  board  board board board board"
+        "hint   hint   arrows  arrows  next  next";
+    }
   }
 </style>

@@ -194,12 +194,13 @@
     gap: 0.5rem;
   }
   section.main {
-    height: calc(100vh - var(--nav-height));
+    /* height: calc(100vh - var(--nav-height)); */
     height: calc(100svh - var(--nav-height));
-    width: min(75ch, 100% - 0.5rem);
+    /* width: min(75ch, 100% - 0.5rem); */
+    width: 100%;
     display: flex;
     align-items: center;
-    padding: 1rem 0;
+    justify-content: center;
     margin: 0;
   }
   .popup-wrapper {

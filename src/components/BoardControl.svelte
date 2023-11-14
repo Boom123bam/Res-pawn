@@ -19,7 +19,7 @@
         controlLog.setLastControl("back");
       }}
     >
-      <Svg name="expand_left" />
+      <Svg size="1.25rem" name="expand_left" />
     </button>
     <button
       title="next move"
@@ -30,66 +30,88 @@
         controlLog.setLastControl("next");
       }}
     >
-      <Svg name="expand_right" />
+      <Svg size="1.25rem" name="expand_right" />
     </button>
   </div>
-{:else if buttonType == "retry"}
-  {#if $controlsDisplayState.showRetryLastMove}
+{:else if buttonType == "hint + solution + retry"}
+  {#if $controlsDisplayState.showHint}
     <button
-      class="flashing outline shadow"
-      title="retry last move"
+      title={"hint"}
+      class="outline shadow"
+      disabled={false}
       on:click={() => {
-        controlLog.setLastControl("retry");
+        controlLog.setLastControl("hint");
       }}
     >
-      <Svg name="refresh" />
+      <Svg size="1.25rem" name="question" />
+    </button>
+  {:else if $controlsDisplayState.showSol}
+    <button
+      title={"solution"}
+      class="outline shadow"
+      disabled={false}
+      on:click={() => {
+        controlLog.setLastControl("solution");
+      }}
+    >
+      <Svg size="1.25rem" name="question" />
+    </button>
+  {:else}
+    <button
+      title={$controlsDisplayState.showHint
+        ? "hint"
+        : $controlsDisplayState.showSol
+        ? "solution"
+        : "retry"}
+      class="outline shadow"
+      disabled={false}
+      on:click={() => {
+        controlLog.setLastControl(
+          $controlsDisplayState.showHint
+            ? "hint"
+            : $controlsDisplayState.showSol
+            ? "solution"
+            : "retry"
+        );
+      }}
+    >
+      <Svg size="1.25rem" name="question" />
     </button>
   {/if}
-{:else if buttonType == "hint + solution"}
-  <button
-    title={$controlsDisplayState.showHint
-      ? "hint"
-      : $controlsDisplayState.showSol
-      ? "solution"
-      : "hint/solution"}
-    class="outline shadow"
-    disabled={!$controlsDisplayState.showHint &&
-      !$controlsDisplayState.showSol}
-    on:click={() => {
-      controlLog.setLastControl(
-        $controlsDisplayState.showHint
-          ? "hint"
-          : $controlsDisplayState.showSol
-          ? "solution"
-          : null
-      );
-    }}
-  >
-    <Svg name="question" />
-  </button>
 {:else if buttonType == "flip"}
   <button
     title="flip board"
-    class="outline shadow"
+    class="flip outline shadow"
     on:click={() => {
       controlLog.setLastControl("flip");
     }}
   >
-    <Svg name="vertical_switch_alt" />
+    <Svg size="1.25rem" name="vertical_switch_alt" />
   </button>
 {:else if buttonType == "analyse"}
   {#if $sequenceData?.fen}
     <a
-      class="button-like secondary shadow"
+      class="analyse button-like secondary shadow"
       href={`https://lichess.org/analysis/standard/${$board.chess.fen()}?color=${
         $sequenceData.fen.split(" ")[1] === "w" ? "black" : "white"
       }`}
-      target="_blank"><Svg name="search" /></a
+      target="_blank"
     >
+      <div class="hide-small">
+        <b>analyse</b>
+      </div>
+      <Svg size="1.25rem" name="search" />
+    </a>
   {/if}
 {/if}
 
 <style>
+  a,
+  button,
+  .arrows {
+    width: 100%;
+    height: 100%;
+  }
   .arrows {
     display: flex;
     position: relative;
@@ -102,5 +124,18 @@
   .arrows .right {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+  .analyse {
+    padding: 0.5rem 0;
+  }
+
+  @media screen and (max-height: 700px) {
+    .hide-small {
+      display: none;
+    }
+    .analyse,
+    .flip {
+      width: 3.5rem;
+    }
   }
 </style>
