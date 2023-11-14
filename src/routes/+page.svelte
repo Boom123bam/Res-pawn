@@ -145,7 +145,7 @@
         </div>
         <p>
           Choose from a diverse range of playlists, with various
-          difficulties and themes.
+          difficulties.
         </p>
       </div>
     </Saos>
@@ -190,8 +190,8 @@
           <h5>Spaced Repetition</h5>
         </div>
         <p>
-          The algorithm determines when to reintroduce puzzles you've
-          solved to enhance your pattern recognition skills.
+          The algorithm determines when to reintroduce puzzles to
+          enhance pattern recognition.
         </p>
       </div>
     </Saos>
@@ -529,6 +529,7 @@
     .cards-container {
       max-width: 25rem;
       grid-template-columns: 1fr;
+      padding: 0.75rem;
     }
 
     .second.card .black {
