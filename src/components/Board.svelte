@@ -165,7 +165,8 @@
         boardDisplayState?.hint &&
         !boardDisplayState.solution,
     ];
-    $controlsDisplayState.flashingNext = $board.movesBack > 0;
+    $controlsDisplayState.flashingNext =
+      $board.movesBack > 0 && !retry;
 
     if (retry) {
       $controlsDisplayState.actionButton = "retry";
