@@ -36,13 +36,20 @@
 {:else if buttonType == "hint + solution + retry"}
   <button
     title={$controlsDisplayState.actionButton}
-    class="outline shadow"
+    class={`action outline shadow${
+      $controlsDisplayState.actionButton == "retry" ? " flashing" : ""
+    }`}
     disabled={$controlsDisplayState.actionButtonDisabled}
     on:click={() => {
       controlLog.setLastControl($controlsDisplayState.actionButton);
     }}
-    >{$controlsDisplayState.actionButton}
-    <Svg size="1.25rem" name="question" />
+  >
+    {$controlsDisplayState.actionButton}
+    {#if $controlsDisplayState.actionButton == "retry"}
+      <Svg size="1.25rem" name="refresh" />
+    {:else}
+      <Svg size="1.25rem" name="question" />
+    {/if}
   </button>
 {:else if buttonType == "flip"}
   <button
@@ -52,6 +59,7 @@
       controlLog.setLastControl("flip");
     }}
   >
+    <div class="hide-small">flip</div>
     <Svg size="1.25rem" name="vertical_switch_alt" />
   </button>
 {:else if buttonType == "analyse"}
@@ -63,9 +71,7 @@
       }`}
       target="_blank"
     >
-      <div class="hide-small">
-        <b>analyse</b>
-      </div>
+      <div class="hide-small">analyse</div>
       <Svg size="1.25rem" name="search" />
     </a>
   {/if}
@@ -82,6 +88,10 @@
     position: relative;
     gap: 1px;
   }
+  .flip,
+  .action {
+    font-weight: 400;
+  }
   .arrows .left {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -94,6 +104,13 @@
     padding: 0.5rem 0;
   }
 
+  .flashing.outline {
+    animation: flashing-outline 2s infinite;
+  }
+  .flashing.contrast {
+    animation: flashing-contrast 2s infinite;
+  }
+
   @media screen and (max-width: 800px) {
     .flip,
     .analyse {
@@ -104,6 +121,30 @@
   @media screen and (max-width: 800px) and (max-height: 750px) {
     .hide-small {
       display: none;
+    }
+  }
+
+  @keyframes flashing-outline {
+    0% {
+      background-color: var(--background-alt);
+    }
+    50% {
+      background-color: var(--purple);
+    }
+    100% {
+      background-color: var(--background-alt);
+    }
+  }
+
+  @keyframes flashing-contrast {
+    0% {
+      background-color: var(--contrast);
+    }
+    50% {
+      background-color: var(--purple);
+    }
+    100% {
+      background-color: var(--contrast);
     }
   }
 </style>
