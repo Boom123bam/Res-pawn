@@ -59,15 +59,14 @@
     );
     display: flex;
     gap: var(--gap-lg);
-    /* width: 100%; */
-    /* height: 100%; */
+    margin-bottom: 5%;
   }
 
   .side {
     display: flex;
     flex-direction: column;
     gap: var(--gap-md);
-    height: var(--board-size);
+    align-self: stretch;
   }
 
   .button-wrapper {
@@ -80,7 +79,6 @@
   }
 
   button.next {
-    margin-bottom: 0;
     padding: 1.25rem 0;
   }
 
@@ -90,8 +88,9 @@
     width: var(--board-size);
     position: relative;
     flex-grow: 1;
-    height: var(--board-size);
+    height: calc(var(--board-size) + var(--shadow-size));
     grid-row: 1/-1;
+    padding-bottom: var(--shadow-size);
   }
   .seq-info-wrapper {
     width: var(--side-width);
@@ -101,7 +100,7 @@
     .layout {
       --board-size: min(
         100svh - var(--nav-height) - 15rem,
-        100vw - 2rem,
+        100vw - 0.5rem,
         40rem
       );
       display: grid;
@@ -110,7 +109,8 @@
         "info info analyse"
         "board  board  board "
         "hint   arrows  next";
-      gap: var(--gap-sm);
+      column-gap: var(--gap-sm);
+      row-gap: var(--gap-md);
       grid-template-columns: 27% 1fr 27%;
     }
     .board-container {
@@ -151,14 +151,15 @@
     .flip,
     .analyse {
       height: 100%;
+      padding-bottom: var(--shadow-size);
     }
   }
 
   @media screen and (max-width: 800px) and (max-height: 750px) {
     .layout {
       --board-size: min(
-        100svh - var(--nav-height) - 10rem,
-        100vw - 2rem,
+        100svh - var(--nav-height) - 8rem,
+        100vw - 0.5rem,
         40rem
       );
       display: grid;
@@ -167,6 +168,11 @@
         "board board  board   board  board"
         "hint  hint   arrows  next   next";
       grid-template-columns: 12% 12% 1fr 12% 12%;
+    }
+  }
+  @media screen and (max-height: 800px) {
+    .layout {
+      margin-bottom: 0;
     }
   }
 </style>
