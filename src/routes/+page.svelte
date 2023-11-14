@@ -141,7 +141,7 @@
       <div class="card first">
         <div class="black">
           <h1>1</h1>
-          <h5>Choose Your Challenge</h5>
+          <p>Choose Your Challenge</p>
         </div>
         <p>
           Choose from a diverse range of playlists, with various
@@ -157,7 +157,7 @@
       <div class="card second">
         <div class="black">
           <h1>2</h1>
-          <h5>Solve Puzzles</h5>
+          <p>Solve Puzzles</p>
         </div>
         <p>
           Dive into the chess puzzles and put your skills to the test.
@@ -172,7 +172,7 @@
       <div class="card third">
         <div class="black">
           <h1>3</h1>
-          <h5>Rate Your Experience</h5>
+          <p>Rate Your Experience</p>
         </div>
         <p>
           After each puzzle, provide feedback on its difficulty level.
@@ -187,7 +187,7 @@
       <div class="card fourth">
         <div class="black">
           <h1>4</h1>
-          <h5>Spaced Repetition</h5>
+          <p>Spaced Repetition</p>
         </div>
         <p>
           The algorithm determines when to reintroduce puzzles to
@@ -503,6 +503,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 0.5rem;
   }
 
   .third.card .black,
