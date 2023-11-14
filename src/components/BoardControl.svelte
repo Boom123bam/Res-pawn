@@ -34,50 +34,16 @@
     </button>
   </div>
 {:else if buttonType == "hint + solution + retry"}
-  {#if $controlsDisplayState.showHint}
-    <button
-      title={"hint"}
-      class="outline shadow"
-      disabled={false}
-      on:click={() => {
-        controlLog.setLastControl("hint");
-      }}
-    >
-      <Svg size="1.25rem" name="question" />
-    </button>
-  {:else if $controlsDisplayState.showSol}
-    <button
-      title={"solution"}
-      class="outline shadow"
-      disabled={false}
-      on:click={() => {
-        controlLog.setLastControl("solution");
-      }}
-    >
-      <Svg size="1.25rem" name="question" />
-    </button>
-  {:else}
-    <button
-      title={$controlsDisplayState.showHint
-        ? "hint"
-        : $controlsDisplayState.showSol
-        ? "solution"
-        : "retry"}
-      class="outline shadow"
-      disabled={false}
-      on:click={() => {
-        controlLog.setLastControl(
-          $controlsDisplayState.showHint
-            ? "hint"
-            : $controlsDisplayState.showSol
-            ? "solution"
-            : "retry"
-        );
-      }}
-    >
-      <Svg size="1.25rem" name="question" />
-    </button>
-  {/if}
+  <button
+    title={$controlsDisplayState.actionButton}
+    class="outline shadow"
+    disabled={$controlsDisplayState.actionButtonDisabled}
+    on:click={() => {
+      controlLog.setLastControl($controlsDisplayState.actionButton);
+    }}
+    >{$controlsDisplayState.actionButton}
+    <Svg size="1.25rem" name="question" />
+  </button>
 {:else if buttonType == "flip"}
   <button
     title="flip board"

@@ -37,15 +37,13 @@
     moveToPromote: null,
     movePlaying: null,
     flipped: false,
-    failed: false,
     soundOn: getSetting("sound"),
     showIndicatorOnHover: getSetting("showIndicatorOnHover"),
   };
 
   $controlsDisplayState = {
-    showRetryLastMove: false,
-    showHint: false,
-    showSol: false,
+    actionButton: "hint", // hint | solution | retry
+    actionButtonDisabled: false,
     flashingNext: false,
   };
 
@@ -156,20 +154,33 @@
   }
 
   function updateControlsDisplayState() {
-    $controlsDisplayState = {
-      showRetryLastMove: boardDisplayState?.failed,
-      showHint:
-        !boardDisplayState?.finished &&
+    const [retry, hint, solution] = [
+      boardDisplayState?.failed,
+      !boardDisplayState?.finished &&
         !boardDisplayState?.failed &&
         !boardDisplayState?.hint &&
         $board.movesBack == 0,
-      showSol:
-        !boardDisplayState?.finished &&
+      !boardDisplayState?.finished &&
         !boardDisplayState?.failed &&
         boardDisplayState?.hint &&
         !boardDisplayState.solution,
-      flashingNext: $board.movesBack > 0,
-    };
+    ];
+    $controlsDisplayState.flashingNext = $board.movesBack > 0;
+
+    if (retry) {
+      $controlsDisplayState.actionButton = "retry";
+      $controlsDisplayState.actionButtonDisabled = false;
+      return;
+    } else if (hint) {
+      $controlsDisplayState.actionButton = "hint";
+      $controlsDisplayState.actionButtonDisabled = false;
+      return;
+    } else if (solution) {
+      $controlsDisplayState.actionButton = "solution";
+      $controlsDisplayState.actionButtonDisabled = false;
+      return;
+    }
+    $controlsDisplayState.actionButtonDisabled = true;
   }
 
   function resetHighlights() {
