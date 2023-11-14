@@ -95,7 +95,7 @@
 
   @media (hover: none) {
     .play-button-wrapper button {
-      background-color: var(--background-alt);
+      background-color: var(--secondary);
     }
   }
 
@@ -134,7 +134,7 @@
       transition: none;
     }
     .play-button-wrapper button {
-      background-color: var(--background-alt);
+      background-color: var(--secondary);
     }
   }
 </style>
