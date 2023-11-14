@@ -50,7 +50,7 @@
   --gap-md: 8px;
   --gap-lg: 12px;
 
-  --icon-size: 1.5rem;
+  --icon-size: 1.25rem;
   --nav-height: 4rem;
   font-family: var(--font-sm);
   font-size: 1rem;
@@ -332,6 +332,7 @@ button.contrast,
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.25rem;
 }
 
 button.primary,
@@ -353,7 +354,7 @@ button.contrast,
 .button-like.contrast {
   cursor: pointer;
   font-weight: 700;
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.125rem;
   transition: 0.2s;
 }
 
