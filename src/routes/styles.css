@@ -313,6 +313,11 @@ button,
   border-radius: var(--br);
 }
 
+button,
+svg {
+  touch-action: manipulation;
+}
+
 @media (hover: hover) {
   button:disabled:hover {
     cursor: not-allowed;
