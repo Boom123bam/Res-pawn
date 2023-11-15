@@ -8,9 +8,9 @@
 </script>
 
 {#if showBoard}
-  <div class="container-container-container">
-    <div class="container-container">
-      <div class="container">
+  <div class="chessboard-container-container">
+    <div class="chessboard-container">
+      <div aria-hidden="true" class="chessboard">
         <div class="tile" />
         <div class="tile dark" />
         <div class="tile" />
@@ -97,7 +97,7 @@
 {/if}
 
 <style>
-  .container-container-container {
+  .chessboard-container-container {
     width: 30rem;
     height: 15rem;
     perspective: 1000px;
@@ -105,7 +105,7 @@
     perspective-origin: bottom;
   }
 
-  .container-container {
+  .chessboard-container {
     padding: 15%;
     transform-origin: top;
     transform: rotatex(60deg);
@@ -115,7 +115,7 @@
     transform-style: preserve-3d;
   }
 
-  .container {
+  .chessboard {
     /*   transform: rotate(45deg); */
     animation: rotation 20s linear infinite;
     border: 0.75rem solid var(--text);
@@ -128,7 +128,7 @@
     transform-style: preserve-3d;
   }
 
-  :global(body.dark) .container {
+  :global(body.dark) .chessboard {
     border-color: var(--background-alt);
   }
 
@@ -155,10 +155,10 @@
   }
 
   @media screen and (max-width: 750px) {
-    .container {
+    .chessboard {
       border: 0.5rem solid var(--text);
     }
-    .container-container-container {
+    .chessboard-container-container {
       width: 24rem;
       height: 12rem;
       perspective: 800px;
@@ -166,10 +166,10 @@
     }
   }
   @media screen and (max-width: 600px) {
-    .container {
+    .chessboard {
       border: 0.4rem solid var(--text);
     }
-    .container-container-container {
+    .chessboard-container-container {
       width: 18rem;
       height: 9rem;
       perspective: 600px;
@@ -177,10 +177,10 @@
     }
   }
   @media screen and (max-width: 400px) {
-    .container {
+    .chessboard {
       border: 0.4rem solid var(--text);
     }
-    .container-container-container {
+    .chessboard-container-container {
       width: 14rem;
       height: 7rem;
       perspective: 400px;
