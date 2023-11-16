@@ -338,12 +338,10 @@ svg {
   }
 }
 
-button:has(svg),
 button.primary,
 button.secondary,
 button.outline,
 button.contrast,
-.button-like:has(svg),
 .button-like.primary,
 .button-like.secondary,
 .button-like.outline,
