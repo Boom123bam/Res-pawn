@@ -8,8 +8,9 @@
   } from "../modules/localStorage";
   import { browser } from "$app/environment";
   import logo from "$lib/logo.svg";
+  import { fly, scale } from "svelte/transition";
 
-  let showRightMenu = false;
+  let showDesktopPopupMenu = false;
   let showMobileMenu = false;
   let theme = "light";
 
@@ -28,21 +29,43 @@
     theme = theme == "dark" ? "light" : "dark";
     updateSettings({ theme });
   }
+
+  function toggleMobileMenu() {
+    showMobileMenu = !showMobileMenu;
+    if (browser && showMobileMenu) {
+      setTimeout(() => {
+        document.addEventListener(
+          "click",
+          () => (showMobileMenu = false),
+          {
+            once: true,
+          }
+        );
+      }, 0);
+    }
+  }
+  function toggleDesktopPopup() {
+    showDesktopPopupMenu = !showDesktopPopupMenu;
+    if (browser && showDesktopPopupMenu) {
+      setTimeout(() => {
+        document.addEventListener(
+          "click",
+          () => (showDesktopPopupMenu = false),
+          {
+            once: true,
+          }
+        );
+      }, 0);
+    }
+  }
 </script>
 
 <nav>
-  <ul class="desktop">
-    <li>
-      <a class="link logo" href="/">
-        <img src={logo} alt="ResPawn logo" />
-        <h4>ResPawn</h4>
-      </a>
-    </li>
-    <li
-      aria-current={$page.url.pathname === "/" ? "page" : undefined}
-    >
-      <a href="/">home</a>
-    </li>
+  <a class="respawn" href="/">
+    <img src={logo} alt="ResPawn logo" />
+    <h4>ResPawn</h4>
+  </a>
+  <ul class={`links${showMobileMenu ? " show-mobile" : ""}`}>
     <li
       aria-current={$page.url.pathname === "/playlists"
         ? "page"
@@ -50,49 +73,59 @@
     >
       <a class="link" href="/playlists">playlists</a>
     </li>
+    <li
+      aria-current={$page.url.pathname === "/settings"
+        ? "page"
+        : undefined}
+    >
+      <a href="/settings">settings</a>
+    </li>
     {#if $userData}
-      <li class="user">
-        <button
-          on:click={() => {
-            showRightMenu = !showRightMenu;
-          }}>{$userData.displayName}</button
+      <li class="mobile-sign-out">
+        <a href="/auth/signout">sign out</a>
+      </li>
+      <!-- {:else}
+      <li class="mobile-sign-in">
+        <a href="/auth/signin">sign in</a>
+      </li> -->
+    {/if}
+
+    {#if $userData}
+      <li class="username">
+        <button on:click={toggleDesktopPopup}
+          >{$userData.displayName}</button
         >
-        {#if showRightMenu}
-          <div class="popup-menu popup">
+        {#if showDesktopPopupMenu}
+          <div
+            in:scale
+            out:fly={{ y: 20 }}
+            class={`desktop-popup-menu popup${
+              showDesktopPopupMenu ? "" : " hidden"
+            }`}
+          >
             <ul>
               <li>
-                <a
-                  on:click={() => {
-                    showRightMenu = !showRightMenu;
-                  }}
-                  href="/settings">Settings</a
-                >
-              </li>
-              <li>
-                <a
-                  on:click={() => {
-                    showRightMenu = !showRightMenu;
-                  }}
-                  href="/auth/signout">Sign out</a
-                >
+                <a href="/auth/signout">Sign out</a>
               </li>
             </ul>
           </div>
         {/if}
       </li>
     {:else}
-      <li class="user">
-        <a href="/auth/signin" class="sign-in button-like primary">
+      <li class="sign-in">
+        <a href="/auth/signin" class="button-like primary">
+          <span>Sign In </span>
           {#if $page.url.pathname.endsWith("/play")}
-            Sign In to save progress
-          {:else}
-            Sign In
+            <span>to save progress</span>
           {/if}
         </a>
       </li>
     {/if}
-    <li class="dark-toggle" title="toggle dark mode">
+    <li class="dark-toggle">
       <button class="float" on:click={toggleDarkmode}>
+        <span class="mobile-dark-toggle-text"
+          >{theme == "dark" ? "light" : "dark"}</span
+        >
         {#if theme == "dark"}
           <Svg name="sun" />
         {:else}
@@ -100,135 +133,81 @@
         {/if}
       </button>
     </li>
-  </ul>
 
-  <ul class="mobile">
-    <li>
-      <a class="logo" href="/">
-        <img src={logo} alt="ResPawn logo" />
-        <h4>ResPawn</h4>
-      </a>
-    </li>
-    <li class="hamburger">
-      <button on:click={() => (showMobileMenu = !showMobileMenu)}>
-        <Svg name="menu" />
-      </button>
-    </li>
+    {#if $userData}
+      <li class="mobile-user-info">
+        <small>signed in as</small>{$userData.displayName}
+      </li>
+    {/if}
   </ul>
-
-  {#if showMobileMenu}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div
-      on:click={() => (showMobileMenu = !showMobileMenu)}
-      class="menu-background"
-    >
-      <div class="mobile-menu">
-        <ul>
-          <li
-            aria-current={$page.url.pathname === "/"
-              ? "page"
-              : undefined}
-          >
-            <a href="/">home</a>
-          </li>
-          <li
-            aria-current={$page.url.pathname === "/playlists"
-              ? "page"
-              : undefined}
-          >
-            <a href="/playlists">playlists</a>
-          </li>
-          {#if $userData}
-            <li>
-              <a href="/settings">settings</a>
-            </li>
-            <li class="user">
-              <a href="/auth/signout">sign out</a>
-            </li>
-            <li class="user-info">
-              <small>
-                signed in as {$userData.displayName}
-              </small>
-            </li>
-          {:else}
-            <li class="user">
-              {#if $page.url.pathname.endsWith("/play")}
-                <a href="/auth/signin">sign In to save progress</a>
-              {:else}
-                <a href="/auth/signin">sign In</a>
-              {/if}
-            </li>
-          {/if}
-          <li class="dark-toggle">
-            <button
-              on:click={toggleDarkmode}
-              title="toggle dark mode"
-            >
-              {#if theme == "dark"}
-                <span>light</span>
-                <Svg name="sun" />
-              {:else}
-                <span>dark</span>
-                <Svg name="moon_fill" />
-              {/if}
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  {/if}
+  <button class="mobile-nav-toggle" on:click={toggleMobileMenu}
+    ><Svg name="menu" /> <span class="sr-only">menu</span></button
+  >
 </nav>
 
 <style>
+  nav,
+  nav > .respawn,
+  nav > .links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   nav {
     height: var(--nav-height);
-    background-color: var(--background-alt);
+    background: var(--background-alt);
+    padding: 1rem 3rem;
+    gap: 1rem;
     border-bottom: 1px solid var(--border-light);
+    padding-inline: max(calc(40vw - 20rem), 1.5rem);
+  }
+  nav > .respawn {
+    height: 100%;
+    gap: 0.75rem;
+  }
+  nav > .respawn img {
+    transition: 0.1s;
   }
 
-  nav > ul {
-    width: min(90ch, 100% - 3rem);
-    margin: 0 auto;
-    height: 100%;
-    padding: 0;
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
+  nav > .links {
+    flex-grow: 1;
+    justify-content: start;
     gap: 3rem;
+    margin-left: 3rem;
   }
-  nav > ul li[aria-current="page"] {
-    text-decoration: underline;
-  }
-  nav > ul li {
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
-  nav > ul li.user {
+
+  nav > ul > .username,
+  nav > ul > .sign-in {
     margin-left: auto;
+    margin-right: -1.5rem;
+  }
+  nav > ul > .username {
     position: relative;
   }
-
-  a {
-    text-decoration: none;
-    display: block;
+  nav > ul > .username .desktop-popup-menu {
+    position: absolute;
+    top: 50%;
+    padding: 1rem 2rem;
+    width: max-content;
+    right: 0;
+    left: 50%;
+    translate: -50% calc(var(--nav-height) / 2 + 0.5rem);
+    transition: 0.1s;
+    z-index: -1;
+  }
+  nav > ul > .username .desktop-popup-menu.hidden {
+    translate: -50% 0;
   }
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-  }
-
-  .logo img {
-    transition: transform 0.2s;
-    width: 1.5rem;
-    height: 1.5rem;
+  nav > .mobile-nav-toggle,
+  nav > ul > .mobile-sign-out,
+  nav > ul > .mobile-user-info,
+  nav > ul .mobile-dark-toggle-text {
+    display: none;
   }
 
   @media (hover: hover) {
-    .logo:hover img {
+    nav > .respawn:hover img {
       transform: translateY(-0.25rem);
     }
     nav > ul a:hover {
@@ -236,103 +215,61 @@
     }
   }
 
-  .logo h4 {
-    font-size: 1.25rem;
-  }
-
-  a:has(img) {
-    height: 100%;
-  }
-
-  .popup-menu {
-    position: absolute;
-    right: 0;
-    /* transform: translateX(-50%); */
-    top: calc(var(--nav-height) + 0.5rem);
-    width: 10rem;
-  }
-  .popup-menu ul {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 2.5rem;
-  }
-  .mobile {
-    display: none;
-  }
-  .hamburger {
-    margin-left: auto;
-  }
-  .menu-background {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: var(--nav-height);
-    background-color: #00000050;
-    z-index: -1;
-  }
-  a.sign-in {
-    padding: 0.5rem 1rem;
-    font-weight: 400;
-  }
-  .desktop .dark-toggle {
-    margin-left: -3rem;
-  }
-  .desktop .dark-toggle button {
-    height: 100%;
-    padding-inline: 1rem;
-    display: flex;
-    align-items: center;
-  }
-  .mobile-menu {
-    border-left: 1px solid var(--border-dark);
-    width: 50%;
-    height: 100%;
-    background-color: var(--background-alt);
-    transform: translateX(100%);
-    align-items: end;
-    text-align: right;
-    padding-top: 2rem;
-  }
-  .mobile-menu ul {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  .mobile-menu a,
-  .mobile-menu button {
-    padding: 1.5rem 2rem;
-  }
-  .mobile-menu .user-info {
-    padding: 0 2rem 1rem;
-    order: 10;
-  }
-  .mobile-menu .dark-toggle {
-    margin-top: auto;
-  }
-  .mobile-menu .dark-toggle button {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    justify-content: end;
-  }
-  /* @media screen and (max-width: 1000px) {
-    nav > ul {
-      justify-content: space-between;
-      gap: 0;
+  @media (max-width: 47.5rem) {
+    nav {
+      position: relative;
     }
-    nav > ul li.user {
-      margin-left: 0;
+    nav > .respawn {
+      margin-right: auto;
     }
-  } */
-  @media screen and (max-width: 800px) {
-    .desktop {
+    nav > .links {
+      position: absolute;
+      top: var(--nav-height);
+      right: 0;
+      background-color: var(--background-alt);
+      flex-direction: column;
+      padding: 3rem 0rem 3rem 1rem;
+      width: max(50%, 15rem);
+      border-left: 1px solid var(--border-light);
+      height: calc(100svh - var(--nav-height));
+      align-items: end;
+      translate: 100%;
+      transition: translate 0.5s;
+      gap: 7.5%;
+    }
+    nav > .links > li > * {
+      padding: 1rem 2rem;
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+    nav > .links.show-mobile {
+      translate: 0;
+    }
+    nav > .mobile-nav-toggle,
+    nav > ul > .mobile-sign-out,
+    nav > ul > .mobile-user-info,
+    nav > ul .mobile-dark-toggle-text {
+      display: block;
+    }
+    nav > ul > .username {
       display: none;
     }
-    .mobile {
-      display: flex;
+    nav > ul > .sign-in {
+      margin-right: 1rem;
+      text-align: right;
+    }
+    nav > ul > .sign-in > a {
+      flex-direction: column;
+      align-items: end;
+    }
+
+    nav > ul > .dark-toggle {
+      margin-top: auto;
+      transform: none;
+    }
+    nav > ul .mobile-dark-toggle-text {
+      margin-right: 0.5rem;
     }
   }
 </style>
