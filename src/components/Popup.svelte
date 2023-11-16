@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import Svg from "./Svg.svelte";
+  import { fly, scale } from "svelte/transition";
 
   const dispatch = createEventDispatcher();
   function handleClose() {
@@ -8,7 +9,7 @@
   }
 </script>
 
-<div class="popup-window popup">
+<div class="popup-window popup" in:scale out:fly={{ y: 20 }}>
   <button class="close contrast" on:click={handleClose}
     ><Svg name="close_round" />
   </button>
