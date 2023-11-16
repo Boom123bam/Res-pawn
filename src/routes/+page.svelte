@@ -463,14 +463,16 @@
     border-top-left-radius: var(--br);
   }
   .cards-container {
+    --gap: var(--gap-lg);
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: var(--blue-100);
-    gap: var(--gap-lg);
+    gap: var(--gap);
     padding: 1.25rem;
     border: 1px solid var(--border-light);
     border-radius: var(--br);
     margin-bottom: 2rem;
+    pointer-events: none;
   }
   :global(body.dark) .cards-container {
     background-color: var(--gray-500);
@@ -480,16 +482,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding-inline: var(--gap-lg);
     gap: 1rem;
     border-radius: var(--br);
-    overflow: hidden;
+    /* overflow: hidden; */
     aspect-ratio: 2;
     text-align: center;
     transition: transform 0.1s, box-shadow 0.1s, opacity 0.5s;
     border: 1px solid var(--border-dark);
     background-color: var(--background-alt);
+    pointer-events: all;
+    position: relative;
+  }
+  .card::after {
+    position: absolute;
+    content: "";
+    inset: calc(-0.5 * var(--gap) - 1px);
   }
 
   .card .black {
@@ -509,6 +517,17 @@
   .third.card .black,
   .fourth.card .black {
     order: 1;
+  }
+
+  @media (hover: hover) {
+    .cards-container:hover .card:not(:hover) {
+      opacity: 0.5;
+    }
+
+    .card:hover {
+      transform: translateY(calc(-1 * var(--shadow-size)));
+      box-shadow: var(--shadow-down) var(--border-dark);
+    }
   }
 
   .expandable-cards {
@@ -543,7 +562,7 @@
   @media screen and (max-width: 400px) {
     .cards-container {
       padding: 0.5rem;
-      gap: 0.5rem;
+      --gap: 0.5rem;
     }
   }
 
@@ -572,17 +591,5 @@
   section.bottom-cta .browse:focus-visible {
     box-shadow: inset 0px 0px 0px 5px var(--white) !important;
     outline-color: transparent;
-  }
-
-  @media (hover: hover) {
-    .cards-container:hover .card {
-      opacity: 0.25;
-    }
-
-    .card:hover {
-      transform: translateY(calc(-1 * var(--shadow-size)));
-      box-shadow: var(--shadow-down) var(--border-dark);
-      opacity: 1 !important;
-    }
   }
 </style>
