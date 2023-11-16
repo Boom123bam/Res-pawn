@@ -44,13 +44,6 @@
   button.save {
     align-self: flex-start;
   }
-
-  :root {
-    --toggle-height: 1.5rem;
-    --toggle-width: 3rem;
-    --toggle-gap: 3px;
-  }
-
   input[type="checkbox"] {
     height: 0;
     width: 0;

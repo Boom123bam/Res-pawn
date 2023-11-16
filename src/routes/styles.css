@@ -52,6 +52,11 @@
 
   --icon-size: 1.25rem;
   --nav-height: 4rem;
+
+  --toggle-height: 1.5rem;
+  --toggle-width: 3rem;
+  --toggle-gap: 3px;
+
   font-family: var(--font-sm);
   font-size: 1rem;
 }

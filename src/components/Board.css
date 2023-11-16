@@ -1,4 +1,4 @@
-:root {
+.board {
   --light-square: var(--blue-50);
   --dark-square: var(--purple);
   --hint-square: yellow;
@@ -91,8 +91,8 @@ body.dark {
     padding: 0.25rem;
     border-radius: var(--br-sm);
   }
-  :root {
-    --piece-size: 90%;
+  .board {
+    --piece-size: 85%;
   }
 }
 
