@@ -6,7 +6,7 @@
   --piece-size: 75%;
 }
 
-body.dark {
+body.dark .board {
   --light-square: var(--gray-300);
   --dark-square: var(--purple);
 }
