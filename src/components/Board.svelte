@@ -9,7 +9,7 @@
     controlsDisplayState,
   } from "../stores/boardStore";
   import { getSetting } from "../modules/localStorage";
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onDestroy } from "svelte";
   import { browser } from "$app/environment";
   import { ChessBoard } from "../modules/chessBoard";
 
@@ -21,6 +21,13 @@
 
   const dispatch = createEventDispatcher();
   let currentSequenceData = null;
+
+  onDestroy(() => {
+    sequenceDataUnsubscribe();
+    controlLogUnsubscribe();
+    $sequenceData = null;
+    controlLog.reset();
+  });
 
   // let board = new ChessBoard();
   $board = new ChessBoard();
@@ -47,38 +54,42 @@
     flashingNext: false,
   };
 
-  sequenceData.subscribe((newSeqData) => {
-    if (newSeqData && !newSeqData?.finished) {
-      loadSeq(newSeqData);
+  let sequenceDataUnsubscribe = sequenceData.subscribe(
+    (newSeqData) => {
+      if (newSeqData && !newSeqData?.finished) {
+        loadSeq(newSeqData);
+      }
     }
-  });
+  );
 
-  controlLog.subscribe(({ lastControl }) => {
-    if (lastControl == "back") {
-      handleBackButton();
-      return;
+  let controlLogUnsubscribe = controlLog.subscribe(
+    ({ lastControl }) => {
+      if (lastControl == "back") {
+        handleBackButton();
+        return;
+      }
+      if (lastControl == "next") {
+        handleNextButton();
+        return;
+      }
+      if (lastControl == "hint") {
+        handleHintButton();
+        return;
+      }
+      if (lastControl == "solution") {
+        handleSolutionButton();
+        return;
+      }
+      if (lastControl == "flip") {
+        handleFlipButton();
+        return;
+      }
+      if (lastControl == "retry") {
+        handleRetryLastMoveButton();
+        return;
+      }
     }
-    if (lastControl == "next") {
-      handleNextButton();
-      return;
-    }
-    if (lastControl == "hint") {
-      handleHintButton();
-      return;
-    }
-    if (lastControl == "solution") {
-      handleSolutionButton();
-      return;
-    }
-    if (lastControl == "flip") {
-      handleFlipButton();
-      return;
-    }
-    if (lastControl == "retry") {
-      handleRetryLastMoveButton();
-      return;
-    }
-  });
+  );
 
   function timeout(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
