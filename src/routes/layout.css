@@ -5,12 +5,12 @@ body:focus,
 }
 
 html,
-body {
+body,
+.app {
   height: 100%;
 }
 
 .app {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
