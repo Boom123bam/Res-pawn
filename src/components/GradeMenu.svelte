@@ -20,19 +20,13 @@
   });
 
   const dispatch = createEventDispatcher();
-  // TODO fix audio play on mount
-
-  // const moveAudio = new Audio("/sound/move.mp3");
+  // TODO add audio
 
   // value ranges from 0 to 2
   export let value = 0;
 
   let slider;
 
-  // $: value,
-  //   (() => {
-  //     // moveAudio.cloneNode(true).play();
-  //   })();
   let mouseDown = false;
 
   function handleClose() {
@@ -70,52 +64,60 @@
   }
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-
 <Popup on:close={handleClose}>
-  <div class="slider" bind:this={slider}>
+  <div class="slider-container" bind:this={slider}>
     <div
       class="img-container"
       style={`${mouseDown ? "bottom:1rem" : "bottom: 0"}; left:${
         value * 40
       }%;`}
     >
-      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-      <img
+      <div
+        class="img-wrapper"
         on:mousedown={handleMouseDown}
         on:mouseup={handleMouseUp}
         on:touchstart={handleMouseDown}
         on:touchend={handleMouseUp}
-        src="/images/queen.png"
-        alt="queen slider"
-        draggable="false"
-        class="queen"
-      />
+        tabindex="0"
+        role="slider"
+        aria-valuenow={value}
+      >
+        <img
+          src="/images/queen.png"
+          alt="queen slider"
+          draggable="false"
+          class="queen"
+        />
+      </div>
     </div>
     <div class="button-tiles">
       <button
-        on:click={() => {
+        aria-label="Set Value to 0"
+        on:mousedown={() => {
           value = 0;
           // moveAudio.play();
         }}
       /><button
-        on:click={() => {
+        aria-label="Set Value to 0.5"
+        on:mousedown={() => {
           value = 0.5;
           // moveAudio.play();
         }}
       /><button
-        on:click={() => {
+        aria-label="Set Value to 1"
+        on:mousedown={() => {
           value = 1;
           // moveAudio.play();
         }}
       /><button
-        on:click={() => {
+        aria-label="Set Value to 1.5"
+        on:mousedown={() => {
           value = 1.5;
           // moveAudio.play();
         }}
       /><button
-        on:click={() => {
+        aria-label="Set Value to 2"
+        on:mousedown={() => {
           value = 2;
           // moveAudio.play();
         }}
@@ -139,12 +141,17 @@
 </Popup>
 
 <style>
+  .slider-container,
+  .text {
+    user-select: none;
+    -webkit-user-select: none;
+  }
   button.next {
     padding: 0.5rem 2.25rem;
     border-radius: var(--br-sm);
   }
 
-  .slider {
+  .slider-container {
     width: 100%;
     position: relative;
   }
@@ -156,10 +163,9 @@
     justify-content: center;
     transition: 0.1s;
   }
-  .img-container .queen {
+  .img-container .img-wrapper {
     cursor: pointer;
     width: 150%;
-    object-fit: cover;
     position: absolute;
     z-index: 10;
     overflow: visible;
@@ -167,6 +173,9 @@
     max-block-size: none;
     max-inline-size: none;
     bottom: -1.5rem;
+  }
+  .img-container .queen {
+    object-fit: cover;
   }
 
   .button-tiles {
@@ -193,11 +202,27 @@
     border-top-left-radius: var(--br-sm);
     border-bottom-left-radius: var(--br-sm);
   }
-  .button-tiles button {
+  .button-tiles > button {
     width: 100%;
     height: 1.5rem;
-    background: black;
     border-radius: 0;
+    position: relative;
+  }
+  @media (hover: hover) {
+    .button-tiles > button:hover:before {
+      content: "";
+      position: absolute;
+      background: rgba(0, 0, 0, 0.25);
+      inset: 0.55rem 1.5rem;
+      z-index: 1;
+      border-radius: 50%;
+    }
+  }
+
+  .button-tiles > button:after {
+    content: "";
+    position: absolute;
+    inset: -5rem 0 -5rem 0;
   }
 
   .label {
