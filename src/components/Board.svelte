@@ -383,7 +383,7 @@
     {#if boardDisplayState.moveToPromote}
       <Promotion
         on:promotion={handlePromotion}
-        color={board.chess.get(
+        color={$board.chess.get(
           boardDisplayState.moveToPromote.substring(0, 2)
         ).color}
       />
