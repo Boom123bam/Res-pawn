@@ -175,7 +175,7 @@
     bottom: -1.5rem;
   }
   .img-container .queen {
-    object-fit: cover;
+    width: 100%;
   }
 
   .button-tiles {
