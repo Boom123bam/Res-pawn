@@ -50,6 +50,7 @@
     }
   }
   function handleMouseDown(e) {
+    e.preventDefault();
     mouseDown = true;
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleTouchMove);
