@@ -488,7 +488,10 @@
     /* overflow: hidden; */
     aspect-ratio: 2;
     text-align: center;
-    transition: transform 0.1s, box-shadow 0.1s, opacity 0.5s;
+    transition:
+      transform 0.1s,
+      box-shadow 0.1s,
+      opacity 0.5s;
     border: 1px solid var(--border-dark);
     background-color: var(--background-alt);
     pointer-events: all;
