@@ -11,11 +11,7 @@
     >
       <Svg name="github" size="1.75rem" />
     </a>
-    <a
-      class="float"
-      href="https://discord.gg/b83Mkaghtb"
-      target="_blank"
-    >
+    <a class="float" href="" target="_blank">
       <Svg name="discord" size="1.75rem" />
     </a>
   </div>
