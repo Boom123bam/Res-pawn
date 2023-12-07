@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
   import Popup from "./Popup.svelte";
+  import Svg from "./Svg.svelte";
 
   const handleMouseMove = (e) => {
     handleMove(e.clientX);
@@ -65,7 +66,7 @@
   }
 </script>
 
-<Popup on:close={handleClose}>
+<Popup hasCloseButton={false}>
   <div class="slider-container" bind:this={slider}>
     <div
       class="img-container"
@@ -133,12 +134,17 @@
     <p>drag the queen along the tiles</p>
     <small>(or tap on the tiles)</small>
   </div>
-  <button
-    class="primary next shadow"
-    on:click={() => {
-      handleSubmit(true);
-    }}>next</button
-  >
+  <div class="buttons">
+    <button class="secondary shadow close" on:click={handleClose}>
+      <Svg name="close_round" />
+    </button>
+    <button
+      class="primary next shadow"
+      on:click={() => {
+        handleSubmit(true);
+      }}>next</button
+    >
+  </div>
 </Popup>
 
 <style>
@@ -147,9 +153,19 @@
     user-select: none;
     -webkit-user-select: none;
   }
-  button.next {
+
+  .buttons {
+    display: flex;
+    gap: var(--gap-md);
+  }
+
+  .buttons > button {
     padding: 0.5rem 2.25rem;
     border-radius: var(--br-sm);
+  }
+
+  .buttons > .close {
+    padding-inline: 1rem;
   }
 
   .slider-container {
