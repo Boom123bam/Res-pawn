@@ -71,7 +71,7 @@
         <div
             class="img-container"
             style={`${mouseDown ? "bottom:1rem" : "bottom: 0"}; left:${
-                value * 40
+                value * 33
             }%;`}
         >
             <div
@@ -99,25 +99,29 @@
                     value = 0;
                     // moveAudio.play();
                 }}
-            /><button
+            />
+            <!-- <button
                 aria-label="Set Value to 0.5"
                 on:mousedown={() => {
                     value = 0.5;
                     // moveAudio.play();
                 }}
-            /><button
+            /> -->
+            <button
                 aria-label="Set Value to 1"
                 on:mousedown={() => {
                     value = 1;
                     // moveAudio.play();
                 }}
-            /><button
+            />
+            <!-- <button
                 aria-label="Set Value to 1.5"
                 on:mousedown={() => {
                     value = 1.5;
                     // moveAudio.play();
                 }}
-            /><button
+            /> -->
+            <button
                 aria-label="Set Value to 2"
                 on:mousedown={() => {
                     value = 2;
@@ -175,14 +179,14 @@
 
     .img-container {
         position: relative;
-        width: 20%;
+        width: 33%;
         display: flex;
         justify-content: center;
         transition: 0.1s;
     }
     .img-container .img-wrapper {
         cursor: pointer;
-        width: 150%;
+        width: 100%;
         position: absolute;
         z-index: 10;
         overflow: visible;
@@ -198,22 +202,22 @@
     .button-tiles {
         display: grid;
         row-gap: 0.25rem;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
-    .button-tiles :nth-child(5) {
+    .button-tiles :nth-child(3) {
         background-color: #b1eb8d;
         border-top-right-radius: var(--br-sm);
         border-bottom-right-radius: var(--br-sm);
     }
-    .button-tiles :nth-child(4) {
+    /* .button-tiles :nth-child(4) {
         background-color: #e3ef98;
-    }
-    .button-tiles :nth-child(3) {
+    } */
+    .button-tiles :nth-child(2) {
         background-color: #f4d566;
     }
-    .button-tiles :nth-child(2) {
+    /* .button-tiles :nth-child(2) {
         background-color: #f2a864;
-    }
+    } */
     .button-tiles :nth-child(1) {
         background-color: #db7676;
         border-top-left-radius: var(--br-sm);
@@ -230,7 +234,7 @@
             content: "";
             position: absolute;
             background: rgba(0, 0, 0, 0.25);
-            inset: 0.55rem 1.5rem;
+            inset: 0.55rem 2.5rem;
             z-index: 1;
             border-radius: 50%;
         }
@@ -246,10 +250,10 @@
         text-align: center;
     }
     .label.right {
-        grid-column: 5;
+        grid-column: 3;
     }
     .label.mid {
-        grid-column: 3;
+        grid-column: 2;
     }
 
     .text {
