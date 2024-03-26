@@ -8,28 +8,23 @@
 
 <svelte:head>
     <!-- HTML Meta Tags -->
-    <title>ResPawn - Practice Chess Pattern Recognition</title>
+    <title>ResPawn - Spot Tactics, Quickly</title>
     <meta
         name="description"
-        content="ResPawn is a Chess puzzles app designed to improve pattern recognition
-    with Spaced Repetition."
+        content="Spot chess tactics quickly by drilling puzzles optimized for you"
     />
     <meta
         name="keywords"
-        content="ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
+        content="ResPawn, res-pawn, res pawn, chess tactics, chess puzzles, practice chess tactics"
     />
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://res-pawn.com" />
     <meta property="og:type" content="website" />
-    <meta
-        property="og:title"
-        content="ResPawn - Practice Chess Pattern Recognition"
-    />
+    <meta property="og:title" content="ResPawn - Spot Tactics, Quickly" />
     <meta
         property="og:description"
-        content="ResPawn is a Chess puzzles app designed to improve pattern recognition
-    with Spaced Repetition."
+        content="Spot chess tactics quickly by drilling puzzles optimized for you"
     />
     <meta property="og:image" content="/images/thumbnail.png" />
 
@@ -37,14 +32,10 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content="res-pawn.com" />
     <meta property="twitter:url" content="https://res-pawn.com" />
-    <meta
-        name="twitter:title"
-        content="ResPawn - Practice Chess Pattern Recognition"
-    />
+    <meta name="twitter:title" content="ResPawn - Spot Tactics, Quickly" />
     <meta
         name="twitter:description"
-        content="ResPawn is a Chess puzzles app designed to improve pattern recognition
-    with Spaced Repetition."
+        content="Spot chess tactics quickly by drilling puzzles optimized for you"
     />
     <meta name="twitter:image" content="/images/thumbnail.png" />
 </svelte:head>
