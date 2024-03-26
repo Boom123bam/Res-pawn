@@ -52,16 +52,13 @@
 <section class="hero">
     <div class="content">
         <Saos animation={"slide-left 0.25s"}>
-            <h1>Recognise Patterns, Fast</h1>
+            <h1>Spot Tacticts, Quickly</h1>
         </Saos>
         <Saos
             animation={"slide-left 0.25s 0.1s forwards"}
             css_animation={"opacity:0;"}
         >
-            <h5 class="subheading">
-                ResPawn is a Chess puzzles app designed to improve pattern
-                recognition with spaced repetition.
-            </h5>
+            <h5 class="subheading">By drilling puzzles optimized for you</h5>
         </Saos>
         <div class="buttons">
             <a href="/playlists" class="button-like primary shadow">
@@ -89,8 +86,8 @@
                 <h3 class="pink">Spaced Repetition</h3>
                 <hr />
                 <p>
-                    A spaced repetition algorithm is used to determine when the
-                    optimal time to present you with each puzzle is.
+                    A spaced repetition algorithm determines the optimal time to
+                    show you each puzzle.
                 </p>
             </div>
         </Saos>
@@ -103,8 +100,8 @@
                 <h3 class="purple">20k+ Puzzles</h3>
                 <hr />
                 <p>
-                    There's always a challenge that matches your skill level.
-                    Puzzles are from the Lichess puzzles database.
+                    Puzzles for all skill levels. (Extracted from Lichess
+                    puzzles database)
                 </p>
             </div>
         </Saos>
@@ -117,8 +114,8 @@
                 <h3 class="blue">Quality over Quantity</h3>
                 <hr />
                 <p>
-                    Repeating and mastering a select few puzzles is more
-                    beneficial than skimming through countless variations.
+                    Master a few patterns at a time rather than skimming through
+                    many.
                 </p>
             </div>
         </Saos>
@@ -136,12 +133,9 @@
             <div class="card first">
                 <div class="black">
                     <h1>1</h1>
-                    <p>Choose Your Challenge</p>
+                    <!-- <p>Choose Your Challenge</p> -->
                 </div>
-                <p>
-                    Choose from a diverse range of playlists, with various
-                    difficulties.
-                </p>
+                <p>Choose your current skill level.</p>
             </div>
         </Saos>
         <Saos
@@ -152,11 +146,9 @@
             <div class="card second">
                 <div class="black">
                     <h1>2</h1>
-                    <p>Solve Puzzles</p>
+                    <!-- <p>Solve Puzzles</p> -->
                 </div>
-                <p>
-                    Dive into the chess puzzles and put your skills to the test.
-                </p>
+                <p>Solve puzzles based on your level</p>
             </div>
         </Saos>
         <Saos
@@ -167,11 +159,9 @@
             <div class="card third">
                 <div class="black">
                     <h1>3</h1>
-                    <p>Rate Your Experience</p>
+                    <!-- <p>Rate Your Experience</p> -->
                 </div>
-                <p>
-                    After each puzzle, provide feedback on its difficulty level.
-                </p>
+                <p>After each puzzle, tell the algorithm how hard it was.</p>
             </div>
         </Saos>
         <Saos
@@ -182,12 +172,9 @@
             <div class="card fourth">
                 <div class="black">
                     <h1>4</h1>
-                    <p>Spaced Repetition</p>
+                    <!-- <p>Spaced Repetition</p> -->
                 </div>
-                <p>
-                    The algorithm determines when to reintroduce puzzles to
-                    enhance pattern recognition.
-                </p>
+                <p>The algorithm chooses your next puzzle.</p>
             </div>
         </Saos>
     </div>
