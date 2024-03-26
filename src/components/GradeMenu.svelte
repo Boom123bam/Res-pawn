@@ -1,9 +1,13 @@
 <script>
-    import { onMount } from "svelte";
-    import { createEventDispatcher } from "svelte";
-    import Popup from "./Popup.svelte";
-    import Svg from "./Svg.svelte";
-    import { getNewEasiness, getTimeToNextReview } from "../modules/spacedRep";
+    import { onMount } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
+    import Popup from './Popup.svelte';
+    import Svg from './Svg.svelte';
+    import {
+        formatTimePeriod,
+        getNewEasiness,
+        getTimeToNextReview,
+    } from '../modules/spacedRep';
 
     const handleMouseMove = (e) => {
         handleMove(e.clientX);
@@ -12,12 +16,12 @@
         handleMove(e.targetTouches[0].pageX);
     };
     onMount(() => {
-        window.addEventListener("mouseup", handleMouseUp);
+        window.addEventListener('mouseup', handleMouseUp);
 
         return () => {
             // this function is called when the component is destroyed
 
-            window.removeEventListener("mouseup", handleMouseUp);
+            window.removeEventListener('mouseup', handleMouseUp);
         };
     });
 
@@ -37,7 +41,7 @@
     }
 
     function handleSubmit(goNext) {
-        dispatch("submit", { value, goNext });
+        dispatch('submit', { value, goNext });
     }
 
     function handleMove(x) {
@@ -55,15 +59,15 @@
     function handleMouseDown(e) {
         e.preventDefault();
         mouseDown = true;
-        window.addEventListener("mousemove", handleMouseMove);
-        window.addEventListener("touchmove", handleTouchMove);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('touchmove', handleTouchMove);
     }
     function handleMouseUp(e) {
         if (mouseDown) {
             mouseDown = false;
             // moveAudio.play();
-            window.removeEventListener("mousemove", handleMouseMove);
-            window.removeEventListener("touchmove", handleTouchMove);
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('touchmove', handleTouchMove);
         }
     }
 </script>
@@ -72,7 +76,7 @@
     <div class="slider-container" bind:this={slider}>
         <div
             class="img-container"
-            style={`${mouseDown ? "bottom:1rem" : "bottom: 0"}; left:${
+            style={`${mouseDown ? 'bottom:1rem' : 'bottom: 0'}; left:${
                 value * 33
             }%;`}
         >
@@ -135,10 +139,12 @@
             <p class="label right">easy</p>
         </div>
     </div>
-    <div>
-        Next review: ~{getTimeToNextReview(getNewEasiness(easiness, value))} mins
-    </div>
     <div class="text">
+        <div class="next-review">
+            Next review: ~{formatTimePeriod(
+                getTimeToNextReview(getNewEasiness(easiness, value))
+            )}
+        </div>
         <h2>How hard was it?</h2>
         <p>drag the queen along the tiles</p>
         <small>(or tap on the tiles)</small>
@@ -236,7 +242,7 @@
     }
     @media (hover: hover) {
         .button-tiles > button:hover:before {
-            content: "";
+            content: '';
             position: absolute;
             background: rgba(0, 0, 0, 0.25);
             inset: 0.55rem 2.5rem;
@@ -246,7 +252,7 @@
     }
 
     .button-tiles > button:after {
-        content: "";
+        content: '';
         position: absolute;
         inset: -5rem 0 -5rem 0;
     }
@@ -271,5 +277,9 @@
         font-size: 1.25rem;
         margin-top: 0.5rem;
         font-family: var(--font-sm);
+    }
+    .next-review {
+        --text: var(--gray-300);
+        font-size: 0.75rem;
     }
 </style>
