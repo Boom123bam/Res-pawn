@@ -4,6 +4,7 @@
         updateUserSeqData,
     } from "../../../../modules/firestore";
     import {
+        defaultEasiness,
         estimateGrade,
         getNextSeq,
         updateSeqData,
@@ -38,6 +39,7 @@
     let showGradeMenu = false;
     let grade = 1;
     let seqsPlayedInSession = 0;
+    let currentEasiness = defaultEasiness;
 
     let seqInfo = null;
 
@@ -55,6 +57,10 @@
                 : 0,
             seqData: $sequenceData,
         };
+        if (playedSeqsData[currentSeqID] === undefined)
+            currentEasiness = defaultEasiness;
+        else currentEasiness = playedSeqsData[currentSeqID].easiness;
+        console.log(currentEasiness);
     }
 
     function filterObject(obj, keysToKeep) {
@@ -164,7 +170,11 @@
         class="popup-wrapper"
         style={`display: ${showGradeMenu ? "block" : "none"};`}
     >
-        <GradeMenu value={grade} on:submit={handleGradeSubmit} />
+        <GradeMenu
+            value={grade}
+            easiness={currentEasiness}
+            on:submit={handleGradeSubmit}
+        />
     </div>
 
     {#if $sequenceData && currentSeqID}

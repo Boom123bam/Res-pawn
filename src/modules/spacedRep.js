@@ -1,12 +1,14 @@
 // Module containing spaced repetition logic
 
 import { Timestamp } from 'firebase/firestore';
+// easiness is a value that is stored in the user's sequence data.
+// it is updated after each seq (using the grade provided by user) and determines the next review time
 
 // ALL percentages are in decimal (e.g. 25% = 0.25)
 
 const maxEasiness = 12;
 const minsLimit = 5; // mins in the future to look for seqs in
-const defaultEasiness = 1.5;
+export const defaultEasiness = 1.5;
 const easinessChangeMultiplier = 1.25;
 const randomNextReviewDifference = 0.15; // max % added/subtracted to next Review Time
 const gradeShiftPercentage = 0.25; // positive shift % aplpied to grade
@@ -70,10 +72,19 @@ export function estimateGrade(stats) {
     return 1.5;
 }
 
-export function getTimeToNextReview(easiness) {
+/**
+ * get time to next review time of a seq.
+ * @param {number} easiness - The easiness of the sequence
+ * @param {number} offset - number between -1 and 1. negative will decrease the base time, positive will increase. Generated randomly if not provided
+ * @returns {number} The time to next review in mins
+ */
+export function getTimeToNextReview(easiness, offset = null) {
+    if (offset === null) {
+        offset = Math.random() * 2 - 1;
+    }
     // time in mins
     const time = 5.7 * easiness ** 4.5;
-    const percentage = 1 + (Math.random() * 2 - 1) * randomNextReviewDifference;
+    const percentage = 1 + offset * randomNextReviewDifference;
     return time * percentage;
 }
 

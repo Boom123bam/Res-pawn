@@ -3,6 +3,7 @@
     import { createEventDispatcher } from "svelte";
     import Popup from "./Popup.svelte";
     import Svg from "./Svg.svelte";
+    import { getNewEasiness, getTimeToNextReview } from "../modules/spacedRep";
 
     const handleMouseMove = (e) => {
         handleMove(e.clientX);
@@ -25,6 +26,7 @@
 
     // value ranges from 0 to 2
     export let value = 0;
+    export let easiness = 0;
 
     let slider;
 
@@ -132,6 +134,9 @@
             <p class="label mid">tricky</p>
             <p class="label right">easy</p>
         </div>
+    </div>
+    <div>
+        Next review: ~{getTimeToNextReview(getNewEasiness(easiness, value))} mins
     </div>
     <div class="text">
         <h2>How hard was it?</h2>
