@@ -3,7 +3,9 @@
         getEasinessChange,
         getTimeToNextReview,
         getNewEasiness,
-    } from "../../modules/spacedRep";
+        formatTimePeriod,
+    } from '../../modules/spacedRep';
+
     const grades = [0, 0.5, 1, 1.5, 2];
     const easinessChanges = grades.map((grade) => getEasinessChange(grade));
     const defaultEasiness = 1.15;
@@ -28,39 +30,12 @@
                     e: getNewEasiness(data[data.length - 1].e, grade),
                     change,
                     time: getTimeToNextReview(
-                        getNewEasiness(data[data.length - 1].e, grade),
+                        getNewEasiness(data[data.length - 1].e, grade)
                     ),
                 },
             ];
         }
         console.log(data);
-    }
-
-    function formatTimePeriod(minutes) {
-        minutes = Math.round(minutes);
-        if (isNaN(minutes) || minutes <= 0) {
-            return "0 m";
-        }
-
-        const days = Math.floor(minutes / 1440); // 60 minutes * 24 hours
-        const hours = Math.floor((minutes % 1440) / 60);
-        const remainingMinutes = minutes % 60;
-
-        let formattedTime = "";
-
-        if (days > 0) {
-            formattedTime += `${days}d `;
-        }
-
-        if (hours > 0) {
-            formattedTime += `${hours}h `;
-        }
-
-        if (remainingMinutes > 0) {
-            formattedTime += `${remainingMinutes}m`;
-        }
-
-        return formattedTime.trim();
     }
 </script>
 
@@ -69,10 +44,10 @@
         {#each data as dataChunk}
             <div class="line-segment">
                 <div class="e">
-                    {dataChunk.e.toPrecision(7).replace(/\.?0+$/, "")}
+                    {dataChunk.e.toPrecision(7).replace(/\.?0+$/, '')}
                 </div>
                 <div class="change">
-                    {dataChunk.change >= 0 ? "+" : ""}{dataChunk.change}
+                    {dataChunk.change >= 0 ? '+' : ''}{dataChunk.change}
                 </div>
                 <div class="time">{formatTimePeriod(dataChunk.time)}</div>
             </div>
@@ -81,7 +56,7 @@
     <div class="grade-buttons">
         {#each grades as grade, i}
             <button on:click={() => handleChange(grade)}
-                >{easinessChanges[i] >= 0 ? "+" : ""}{easinessChanges[
+                >{easinessChanges[i] >= 0 ? '+' : ''}{easinessChanges[
                     i
                 ]}</button
             >
@@ -137,7 +112,7 @@
         top: 0.25rem;
     }
     .line-segment::after {
-        content: "";
+        content: '';
         display: block;
         width: 0.5rem;
         height: 0.5rem;

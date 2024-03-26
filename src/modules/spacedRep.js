@@ -122,3 +122,30 @@ export function updateSeqData(grade, seqData = null) {
         );
     return seqData;
 }
+
+export function formatTimePeriod(minutes) {
+    minutes = Math.round(minutes);
+    if (isNaN(minutes) || minutes <= 0) {
+        return '0m';
+    }
+
+    const days = Math.floor(minutes / 1440); // 60 minutes * 24 hours
+    const hours = Math.floor((minutes % 1440) / 60);
+    const remainingMinutes = minutes % 60;
+
+    let formattedTime = '';
+
+    if (days > 0) {
+        formattedTime += `${days}d `;
+    }
+
+    if (hours > 0) {
+        formattedTime += `${hours}h `;
+    }
+
+    if (remainingMinutes > 0) {
+        formattedTime += `${remainingMinutes}m`;
+    }
+
+    return formattedTime.trim();
+}
