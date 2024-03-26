@@ -67,9 +67,9 @@ export function getNextSeq(playedSeqsData, unplayedSeqsIDs, prevSeqID = null) {
 
 export function estimateGrade(stats) {
     if (stats.solsUsed || stats.timesFailed) return 0;
-    if (stats.hintsUsed > 2) return 0.5;
+    if (stats.hintsUsed > 2) return 0;
     if (stats.hintsUsed) return 1;
-    return 1.5;
+    return 2;
 }
 
 /**
