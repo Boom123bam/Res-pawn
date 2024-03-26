@@ -1,6 +1,6 @@
-import { getAllPlaylists } from "../../modules/firestore";
+import { getAllPlaylists } from '../../modules/firestore';
 
 export async function load() {
-  const playlists = await getAllPlaylists();
-  return { playlists };
+    const playlists = await getAllPlaylists();
+    return { playlists };
 }

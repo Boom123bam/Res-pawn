@@ -1,104 +1,104 @@
 .board {
-  --light-square: var(--blue-50);
-  --dark-square: var(--purple);
-  --hint-square: yellow;
-  --max-board-size: 80rem;
-  --piece-size: 75%;
+    --light-square: var(--blue-50);
+    --dark-square: var(--purple);
+    --hint-square: yellow;
+    --max-board-size: 80rem;
+    --piece-size: 75%;
 }
 
 body.dark .board {
-  --light-square: var(--gray-300);
-  --dark-square: var(--purple);
+    --light-square: var(--gray-300);
+    --dark-square: var(--purple);
 }
 
 .board-component-wrapper {
-  container: board-container / size;
-  container-name: board-container;
-  width: 100%;
+    container: board-container / size;
+    container-name: board-container;
+    width: 100%;
 
-  max-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  position: relative;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
 }
 
 .board-wrapper {
-  touch-action: manipulation;
-  width: 100%;
-  display: inline;
-  position: relative;
-  aspect-ratio: 1 / 1;
+    touch-action: manipulation;
+    width: 100%;
+    display: inline;
+    position: relative;
+    aspect-ratio: 1 / 1;
 }
 
 .board-padding {
-  height: 100%;
-  padding: 1rem;
-  background-color: var(--background-alt);
-  border-radius: var(--br);
+    height: 100%;
+    padding: 1rem;
+    background-color: var(--background-alt);
+    border-radius: var(--br);
 }
 
 .board {
-  height: 100%;
-  display: grid;
-  grid-template-rows: repeat(8, 1fr);
-  grid-template-columns: repeat(8, 1fr);
-  border-radius: var(--br-sm);
-  overflow: hidden;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    border-radius: var(--br-sm);
+    overflow: hidden;
 }
 
 .board-wrapper .buttons {
-  position: absolute;
+    position: absolute;
 }
 
 .buttons-wrapper {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, calc(100% + 0.5rem));
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, calc(100% + 0.5rem));
+    display: flex;
+    justify-content: center;
 }
 .buttons .after {
-  right: 0;
-  transform: translateX(calc(100% + 1rem));
+    right: 0;
+    transform: translateX(calc(100% + 1rem));
 }
 .buttons .before {
-  left: 0;
-  transform: translateX(calc(-100% - 1rem));
+    left: 0;
+    transform: translateX(calc(-100% - 1rem));
 }
 .buttons .before,
 .buttons .after {
-  position: absolute;
-  top: 0;
-  height: 100%;
+    position: absolute;
+    top: 0;
+    height: 100%;
 }
 .buttons .before button,
 .buttons .after button {
-  height: 100%;
+    height: 100%;
 }
 
 .analyze {
-  background-color: var(--secondary);
-  border-radius: var(--br);
-  padding-inline: 1rem;
+    background-color: var(--secondary);
+    border-radius: var(--br);
+    padding-inline: 1rem;
 }
 
 @media screen and (max-width: 600px), screen and (max-height: 600px) {
-  .board-padding {
-    padding: 0.25rem;
-    border-radius: var(--br-sm);
-  }
-  .board {
-    --piece-size: 85%;
-  }
+    .board-padding {
+        padding: 0.25rem;
+        border-radius: var(--br-sm);
+    }
+    .board {
+        --piece-size: 85%;
+    }
 }
 
 @container board-container (orientation: landscape) {
-  .board-wrapper {
-    height: 100%;
-    width: auto;
-  }
+    .board-wrapper {
+        height: 100%;
+        width: auto;
+    }
 }

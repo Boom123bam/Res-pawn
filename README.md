@@ -1,5 +1,3 @@
-
-
 ![](banner-on-dark.png#gh-dark-mode-only)
 ![](banner-on-light.png#gh-light-mode-only)
 
@@ -11,8 +9,8 @@ ResPawn is a chess puzzles training app with built in spaced-repetition
 
 ## Technologies Used
 
-- Sveltekit
-- Firebase
+-   Sveltekit
+-   Firebase
 
 ## Contributing
 
