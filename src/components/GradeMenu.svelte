@@ -140,14 +140,14 @@
         </div>
     </div>
     <div class="text">
+        <h2>How hard was it?</h2>
         <div class="next-review">
             Next review: ~{formatTimePeriod(
                 getTimeToNextReview(getNewEasiness(easiness, value))
             )}
         </div>
-        <h2>How hard was it?</h2>
-        <p>drag the queen along the tiles</p>
-        <small>(or tap on the tiles)</small>
+        <!-- <p>drag the queen along the tiles</p>
+        <small>(or tap on the tiles)</small> -->
     </div>
     <div class="buttons">
         <button class="secondary shadow close" on:click={handleClose}>
@@ -259,6 +259,7 @@
 
     .label {
         text-align: center;
+        font-size: 0.75em;
     }
     .label.right {
         grid-column: 3;
@@ -270,9 +271,9 @@
     .text {
         text-align: center;
     }
-    .text p {
+    /* .text p {
         margin-top: 0.75rem;
-    }
+    } */
     .text h2 {
         font-size: 1.25rem;
         margin-top: 0.5rem;
