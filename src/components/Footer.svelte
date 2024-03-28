@@ -1,5 +1,5 @@
 <script>
-    import Svg from "./Svg.svelte";
+    import Svg from './Svg.svelte';
 </script>
 
 <section class="footer">
@@ -11,7 +11,7 @@
         >
             <Svg name="github" size="1.75rem" />
         </a>
-        <a class="float" href="" target="_blank">
+        <a class="float" href="https://discord.gg/Ns7eggtT7R" target="_blank">
             <Svg name="discord" size="1.75rem" />
         </a>
     </div>
