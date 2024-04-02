@@ -73,13 +73,11 @@
             animation_out={'fade-out-down 0.25s both'}
             top={100}
         >
-            <div class="feature">
-                <h3 class="pink">Spaced Repetition</h3>
-                <hr />
-                <p>
-                    A spaced repetition algorithm determines the optimal time to
-                    show you each puzzle.
-                </p>
+            <div class="bullet-box red">
+                <ul>
+                    <li>Skim through random puzzles and hope they stick</li>
+                    <li><b>Slow</b> progress</li>
+                </ul>
             </div>
         </Saos>
         <Saos
@@ -87,27 +85,14 @@
             animation_out={'fade-out-down 0.25s both'}
             top={100}
         >
-            <div class="feature">
-                <h3 class="purple">20k+ Puzzles</h3>
-                <hr />
-                <p>
-                    Puzzles for all skill levels. (Extracted from Lichess
-                    puzzles database)
-                </p>
-            </div>
-        </Saos>
-        <Saos
-            animation={'slide-left 0.25s 0.2s both'}
-            animation_out={'fade-out-down 0.25s both'}
-            top={100}
-        >
-            <div class="feature">
-                <h3 class="blue">Quality over Quantity</h3>
-                <hr />
-                <p>
-                    Master a few patterns at a time rather than skimming through
-                    many.
-                </p>
+            <div class="bullet-box green">
+                <ul>
+                    <li><b>Repeat</b> and <b>master</b> patterns</li>
+                    <li>
+                        <b>Personalized</b> optimisation with spaced repetition
+                    </li>
+                    <li><b>Rapid</b> progress</li>
+                </ul>
             </div>
         </Saos>
     </div>
@@ -368,23 +353,16 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        padding: 7.5rem 0;
+        padding: 6rem 0;
+        --text: var(--background);
     }
     .features-container {
-        display: flex;
-        text-align: center;
-        width: 100%;
-        justify-content: space-evenly;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        width: min(100%, 80rem);
         z-index: 1;
-    }
-
-    .features-container .feature {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 25rem;
-        margin-inline: auto;
-        width: min-content;
+        padding-inline: 10%;
     }
 
     .features-container .feature h3 {
@@ -402,19 +380,32 @@
         transform: translate(-2rem, -50%) rotate(45deg);
     }
 
-    .features-container .feature h3.pink::before {
-        background-color: var(--secondary);
+    .features-container .bullet-box {
+        padding: var(--gap-lg);
+        border-radius: var(--br-sm);
+        padding-left: 2rem;
     }
-    .features-container .feature h3.purple::before {
-        background-color: var(--purple);
+    .features-container .bullet-box.red {
+        background-color: #6d2d2d;
     }
-    .features-container .feature h3.blue::before {
-        background-color: var(--primary);
+    .features-container .bullet-box.red ul {
+        list-style-type: '✘';
     }
-
-    .features-container .feature hr {
-        border-top: 1px dashed var(--white);
-        height: 1px;
+    .features-container .bullet-box.green {
+        background-color: #28642a;
+    }
+    .features-container .bullet-box.green ul {
+        list-style-type: '✔';
+    }
+    .features-container .bullet-box ul {
+        /* list-style-position: inside; */
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 1.5rem;
+    }
+    .features-container .bullet-box li {
+        padding-left: 0.75rem;
     }
 
     /* section.how-it-works */
@@ -510,7 +501,7 @@
     }
     @media screen and (max-width: 1000px) {
         .features-container {
-            flex-direction: column;
+            grid-template-columns: 1fr;
             gap: 2.5rem;
         }
     }
