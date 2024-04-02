@@ -28,9 +28,9 @@
         </a>
     </div>
     <div class="contact">
-        contact: <a class="link" href="mailto:b.tgchf2@gmail.com"
-            >b.tgchf2@gmail.com</a
-        >
+        Email us at <a class="link" href="mailto:contact@res-pawn.com">
+            contact@res-pawn.com
+        </a>
     </div>
 </section>
 
