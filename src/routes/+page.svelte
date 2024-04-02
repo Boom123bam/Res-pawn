@@ -354,7 +354,7 @@
         display: flex;
         justify-content: center;
         padding: 6rem 0;
-        --text: var(--background);
+        --text: var(--beige);
     }
     .features-container {
         display: grid;
