@@ -11,7 +11,7 @@ const minsLimit = 5; // mins in the future to look for seqs in
 export const defaultEasiness = 1.5;
 const easinessChangeMultiplier = 1.25;
 const randomNextReviewDifference = 0.15; // max % added/subtracted to next Review Time
-const gradeShiftPercentage = 0.25; // positive shift % aplpied to grade
+const gradeShiftPercentage = -0.25; // positive shift % aplpied to grade
 
 const chanceOfRandomSeq = 0.3;
 
