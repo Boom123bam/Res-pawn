@@ -60,7 +60,6 @@
         if (playedSeqsData[currentSeqID] === undefined)
             currentEasiness = defaultEasiness;
         else currentEasiness = playedSeqsData[currentSeqID].easiness;
-        console.log(currentEasiness);
     }
 
     function filterObject(obj, keysToKeep) {
