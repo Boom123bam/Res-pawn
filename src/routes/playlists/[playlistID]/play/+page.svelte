@@ -112,8 +112,7 @@
     function handleNext() {
         enableNextButton = false;
         currentSeqID = getNextSeq(playedSeqsData, unplayedSeqIDs, currentSeqID);
-        // cons;
-        currentSeqID = '1Us8C';
+        // currentSeqID = '1Us8C'; for testing promotion
         if (currentSeqID) loadSeq(currentSeqID);
     }
 </script>
