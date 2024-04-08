@@ -13,6 +13,7 @@
     import { ChessBoard } from '../modules/chessBoard';
     import { onMount } from 'svelte';
     import { Chessground } from 'chessground';
+    import { toDests } from '../modules/chessgroundHelper';
 
     // audio
     let moveBuffer;
@@ -184,7 +185,7 @@
         updateBoard();
         // await timeout(100);
         await movePiece(currentSequenceData.moves[0]);
-        // updateBoard();
+        updateBoard();
     }
 
     function finish() {
@@ -247,18 +248,23 @@
     }
 
     function updateBoard() {
-        console.log(1);
+        console.log('update');
         resetHighlights();
+        console.log(cg.state);
         cg.set({
             fen: $board.chess.fen(),
             orientation: boardDisplayState.flipped ? 'black' : 'white',
+            turnColor:
+                currentSequenceData.start.split(' ')[1] === 'w'
+                    ? 'black'
+                    : 'white',
             movable: {
                 color:
                     currentSequenceData.start.split(' ')[1] === 'w'
                         ? 'black'
                         : 'white',
-                // free: false,
-                // dests: toDests(chess),
+                free: false,
+                dests: toDests($board.chess),
             },
         });
         $board = $board; //trigger re render
@@ -272,6 +278,7 @@
     }
 
     async function movePiece(move, duration = 0.1) {
+        console.log('move');
         if (boardDisplayState.soundOn) {
             if ($board.chess.get(move.substring(2, 4))) {
                 playAudio(captureBuffer);
@@ -286,7 +293,6 @@
         console.log(move);
         $board.makeMove(move);
         await timeout(duration * 1000);
-        // boardDisplayState.movePlaying = null;
     }
 
     async function updateSequence(move = null) {
