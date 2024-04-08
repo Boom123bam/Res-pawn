@@ -1,7 +1,15 @@
 .board {
+    --light-square: var(--blue-50);
+    --dark-square: var(--purple);
     --piece-size: 75%;
     --highlight-square: yellow;
     --last-move-color: lightblue;
+    --selected-color: rgba(20, 85, 30, 0.5);
+}
+
+body.dark .board {
+    --light-square: var(--gray-300);
+    --dark-square: var(--purple);
 }
 
 .board-component-wrapper {
@@ -27,7 +35,7 @@
 
 .board-padding {
     height: 100%;
-    padding: 1rem;
+    padding: 0.75rem;
     background-color: var(--background-alt);
     border-radius: var(--br);
 }
@@ -43,6 +51,7 @@
     position: relative;
     display: block;
     border-radius: var(--br-sm);
+    overflow: hidden;
 }
 
 cg-helper {
@@ -85,10 +94,6 @@ cg-board square {
     height: 12.5%;
     pointer-events: none;
     opacity: 0.5;
-}
-
-cg-board square.highlight {
-    background-color: yellow;
 }
 
 cg-board square.move-dest {
@@ -139,8 +144,12 @@ cg-board square.last-move {
     background-color: var(--last-move-color);
 }
 
+cg-board square.highlight {
+    background-color: var(--highlight-square);
+}
+
 cg-board square.selected {
-    background-color: rgba(20, 85, 30, 0.5);
+    background-color: var(--last-move-color);
 }
 
 cg-board square.check {
@@ -259,18 +268,28 @@ cg-board piece.fading {
 .orientation-black .ranks coord:nth-child(2n),
 .orientation-white .files coord:nth-child(2n),
 .orientation-white .ranks coord:nth-child(2n + 1) {
-    color: var(--chess-black-background);
+    color: var(--dark-square);
 }
 
 .orientation-black .files coord:nth-child(2n),
 .orientation-black .ranks coord:nth-child(2n + 1),
 .orientation-white .files coord:nth-child(2n + 1),
 .orientation-white .ranks coord:nth-child(2n) {
-    color: var(--chess-white-background);
+    color: var(--light-square);
 }
 
 .blue .cg-wrap {
-    background-image: url('/images/board.svg');
+    height: 100%;
+    width: 100%;
+    background: conic-gradient(
+        var(--dark-square) 90deg,
+        var(--light-square) 90deg 180deg,
+        var(--dark-square) 180deg 270deg,
+        var(--light-square) 270deg
+    );
+    background-repeat: repeat;
+    background-size: 25% 25%;
+    background-position: top left;
 }
 
 .california .cg-wrap piece {
