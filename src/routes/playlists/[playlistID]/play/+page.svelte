@@ -2,21 +2,21 @@
     import {
         getSeqData,
         updateUserSeqData,
-    } from "../../../../modules/firestore";
+    } from '../../../../modules/firestore';
     import {
         defaultEasiness,
         estimateGrade,
         getNextSeq,
         updateSeqData,
-    } from "../../../../modules/spacedRep";
-    import { storeSessionSeqData } from "../../../../modules/sessionStorage";
+    } from '../../../../modules/spacedRep';
+    import { storeSessionSeqData } from '../../../../modules/sessionStorage';
 
-    import { userData } from "../../../userStore";
-    import { sequenceData } from "../../../../stores/boardStore";
+    import { userData } from '../../../userStore';
+    import { sequenceData } from '../../../../stores/boardStore';
 
-    import Popup from "../../../../components/Popup.svelte";
-    import GradeMenu from "../../../../components/GradeMenu.svelte";
-    import BoardInterface from "../../../../components/BoardInterface.svelte";
+    import Popup from '../../../../components/Popup.svelte';
+    import GradeMenu from '../../../../components/GradeMenu.svelte';
+    import BoardInterface from '../../../../components/BoardInterface.svelte';
 
     export let data; // data from layout.js
 
@@ -30,7 +30,7 @@
     // store a list the seqIDs the user has not played (in localPlaylistData.seqs and not in localUserSeqData)
     const unplayedSeqIDs = localUserSeqData
         ? localPlaylistData.sequences.filter(
-              (item) => !Object.keys(localUserSeqData).includes(item),
+              (item) => !Object.keys(localUserSeqData).includes(item)
           )
         : localPlaylistData.sequences;
 
@@ -86,7 +86,7 @@
             // not new
             playedSeqsData[currentSeqID] = updateSeqData(
                 grade,
-                playedSeqsData[currentSeqID],
+                playedSeqsData[currentSeqID]
             );
         }
         storeSessionSeqData(playedSeqsData);
@@ -94,7 +94,7 @@
             updateUserSeqData(
                 $userData.uid,
                 currentSeqID,
-                playedSeqsData[currentSeqID],
+                playedSeqsData[currentSeqID]
             ); // update data in db
         if (e.detail.goNext) {
             // GO NEXT
@@ -112,6 +112,8 @@
     function handleNext() {
         enableNextButton = false;
         currentSeqID = getNextSeq(playedSeqsData, unplayedSeqIDs, currentSeqID);
+        // cons;
+        currentSeqID = '1Us8C';
         if (currentSeqID) loadSeq(currentSeqID);
     }
 </script>
@@ -167,7 +169,7 @@
     {/if}
     <div
         class="popup-wrapper"
-        style={`display: ${showGradeMenu ? "block" : "none"};`}
+        style={`display: ${showGradeMenu ? 'block' : 'none'};`}
     >
         <GradeMenu
             value={grade}

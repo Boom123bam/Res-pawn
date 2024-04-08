@@ -102,7 +102,11 @@
             // },
         });
         cg.set({
-            movable: { events: { after: handleMoveClick } },
+            movable: {
+                events: {
+                    after: handleMoveClick,
+                },
+            },
         });
 
         sequenceDataUnsubscribe = sequenceData.subscribe((newSeqData) => {
@@ -252,9 +256,7 @@
     }
 
     function updateBoard() {
-        console.log('update');
         resetHighlights();
-        console.log(cg.state);
         cg.set({
             fen: $board.chess.fen(),
             orientation: boardDisplayState.flipped ? 'black' : 'white',
@@ -282,7 +284,6 @@
     }
 
     async function movePiece(move, duration = 0.1) {
-        console.log('move');
         if (boardDisplayState.soundOn) {
             if ($board.chess.get(move.substring(2, 4))) {
                 playAudio(captureBuffer);
@@ -294,7 +295,6 @@
         // boardDisplayState.movePlaying = move;
 
         cg.move(move.substring(0, 2), move.substring(2, 4));
-        console.log(move);
         $board.makeMove(move);
         await timeout(duration * 1000);
     }
@@ -356,13 +356,21 @@
     async function handleMoveClick(from, to) {
         // TODO fix promotion
         let move = from + to;
-        // if (!promoteToPiece & $board.checkIfPromotion(move)) {
-        //     // if the move is a promotion
-        //     boardDisplayState.moveToPromote = move;
-        //     return;
-        // }
+        // console.log($board.checkIfPromotion(move));
+        if ($board.checkIfPromotion(move)) {
+            // if the move is a promotion
+            boardDisplayState.moveToPromote = move;
+            updateBoard();
+            return;
+        }
 
-        // move += promoteToPiece;
+        if (currentSequenceData) {
+            resetHints();
+            await updateSequence(move);
+        }
+    }
+
+    async function makePromotionMove(move) {
         if (currentSequenceData) {
             resetHints();
             await updateSequence(move);
@@ -370,7 +378,8 @@
     }
 
     function handlePromotion(e) {
-        handleMoveClick(boardDisplayState.moveToPromote, e.detail);
+        // handleMoveClick(boardDisplayState.moveToPromote, e.detail);
+        makePromotionMove(boardDisplayState.moveToPromote + e.detail);
         boardDisplayState.moveToPromote = '';
     }
 
@@ -435,6 +444,14 @@
 
 <div class="board-component-wrapper blue california">
     <div class="board-wrapper">
+        {#if boardDisplayState.moveToPromote}
+            <Promotion
+                on:promotion={handlePromotion}
+                color={$board.chess.get(
+                    boardDisplayState.moveToPromote.substring(0, 2)
+                ).color}
+            />
+        {/if}
         <div class="board-padding shadow">
             <div bind:this={boardWrapper} class="board-inner-wrapper">
                 <div bind:this={chessboard} class="board" />
