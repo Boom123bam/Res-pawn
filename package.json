@@ -27,6 +27,7 @@
     "dependencies": {
         "@types/jest": "^29.5.7",
         "chess.js": "^1.0.0-beta.6",
+        "chessground": "^9.0.4",
         "firebase": "^10.3.1"
     }
 }
