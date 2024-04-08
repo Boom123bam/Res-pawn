@@ -1,17 +1,17 @@
 <script>
-    import "./Board.css";
-    import Square from "./Square.svelte";
-    import Promotion from "./Promotion.svelte";
+    import './Board.css';
+    import Square from './Square.svelte';
+    import Promotion from './Promotion.svelte';
     import {
         sequenceData,
         controlLog,
         board,
         controlsDisplayState,
-    } from "../stores/boardStore";
-    import { getSetting } from "../modules/localStorage";
-    import { createEventDispatcher, onDestroy } from "svelte";
-    import { browser } from "$app/environment";
-    import { ChessBoard } from "../modules/chessBoard";
+    } from '../stores/boardStore';
+    import { getSetting } from '../modules/localStorage';
+    import { createEventDispatcher, onDestroy } from 'svelte';
+    import { browser } from '$app/environment';
+    import { ChessBoard } from '../modules/chessBoard';
 
     // audio
     let moveBuffer;
@@ -44,12 +44,12 @@
         moveToPromote: null,
         movePlaying: null,
         flipped: false,
-        soundOn: getSetting("sound"),
-        showIndicatorOnHover: getSetting("showIndicatorOnHover"),
+        soundOn: getSetting('sound'),
+        showIndicatorOnHover: getSetting('showIndicatorOnHover'),
     };
 
     $controlsDisplayState = {
-        actionButton: "hint", // hint | solution | retry
+        actionButton: 'hint', // hint | solution | retry
         actionButtonDisabled: false,
         flashingNext: false,
     };
@@ -61,27 +61,27 @@
     });
 
     let controlLogUnsubscribe = controlLog.subscribe(({ lastControl }) => {
-        if (lastControl == "back") {
+        if (lastControl == 'back') {
             handleBackButton();
             return;
         }
-        if (lastControl == "next") {
+        if (lastControl == 'next') {
             handleNextButton();
             return;
         }
-        if (lastControl == "hint") {
+        if (lastControl == 'hint') {
             handleHintButton();
             return;
         }
-        if (lastControl == "solution") {
+        if (lastControl == 'solution') {
             handleSolutionButton();
             return;
         }
-        if (lastControl == "flip") {
+        if (lastControl == 'flip') {
             handleFlipButton();
             return;
         }
-        if (lastControl == "retry") {
+        if (lastControl == 'retry') {
             handleRetryLastMoveButton();
             return;
         }
@@ -96,7 +96,7 @@
             let AudioContext = window.AudioContext || window.webkitAudioContext;
             context = new AudioContext(); // Make it crossbrowser
             window
-                .fetch("/sfx/capture.mp3")
+                .fetch('/sfx/capture.mp3')
                 .then((response) => response.arrayBuffer())
                 .then((arrayBuffer) =>
                     context.decodeAudioData(
@@ -104,11 +104,11 @@
                         (audioBuffer) => {
                             captureBuffer = audioBuffer;
                         },
-                        (error) => console.error(error),
-                    ),
+                        (error) => console.error(error)
+                    )
                 );
             window
-                .fetch("/sfx/move.mp3")
+                .fetch('/sfx/move.mp3')
                 .then((response) => response.arrayBuffer())
                 .then((arrayBuffer) =>
                     context.decodeAudioData(
@@ -116,8 +116,8 @@
                         (audioBuffer) => {
                             moveBuffer = audioBuffer;
                         },
-                        (error) => console.error(error),
-                    ),
+                        (error) => console.error(error)
+                    )
                 );
         }
     }
@@ -134,7 +134,7 @@
     async function loadSeq(seqData) {
         currentSequenceData = {
             start: seqData.fen,
-            moves: seqData.moves.split(" "),
+            moves: seqData.moves.split(' '),
             stats: {
                 hintsUsed: 0,
                 solsUsed: 0,
@@ -142,7 +142,7 @@
             },
         };
         boardDisplayState.flipped =
-            currentSequenceData.start.split(" ")[1] === "w"; // flip board if black is first
+            currentSequenceData.start.split(' ')[1] === 'w'; // flip board if black is first
         resetSequence();
         $board.load(currentSequenceData.start);
         updateBoard();
@@ -155,7 +155,7 @@
         boardDisplayState.finished = true;
         boardDisplayState.disabled = true;
         // dispatch event and return stats
-        dispatch("finish", currentSequenceData.stats);
+        dispatch('finish', currentSequenceData.stats);
         updateControlsDisplayState();
     }
 
@@ -174,15 +174,15 @@
         $controlsDisplayState.flashingNext = $board.movesBack > 0 && !retry;
 
         if (retry) {
-            $controlsDisplayState.actionButton = "retry";
+            $controlsDisplayState.actionButton = 'retry';
             $controlsDisplayState.actionButtonDisabled = false;
             return;
         } else if (hint) {
-            $controlsDisplayState.actionButton = "hint";
+            $controlsDisplayState.actionButton = 'hint';
             $controlsDisplayState.actionButtonDisabled = false;
             return;
         } else if (solution) {
-            $controlsDisplayState.actionButton = "solution";
+            $controlsDisplayState.actionButton = 'solution';
             $controlsDisplayState.actionButtonDisabled = false;
             return;
         }
@@ -219,7 +219,7 @@
 
     function getSquareName(row, col) {
         // convert row and col to square notation
-        return `${String.fromCharCode("a".charCodeAt(0) + col)}${8 - row}`;
+        return `${String.fromCharCode('a'.charCodeAt(0) + col)}${8 - row}`;
     }
 
     async function movePiece(move, duration = 0.1) {
@@ -292,7 +292,7 @@
         return true;
     }
 
-    async function handleMoveClick(move, promoteToPiece = "") {
+    async function handleMoveClick(move, promoteToPiece = '') {
         if (!promoteToPiece & $board.checkIfPromotion(move)) {
             // if the move is a promotion
             boardDisplayState.moveToPromote = move;
@@ -330,7 +330,7 @@
 
     function handlePromotion(e) {
         handleMoveClick(boardDisplayState.moveToPromote, e.detail);
-        boardDisplayState.moveToPromote = "";
+        boardDisplayState.moveToPromote = '';
     }
 
     function handleBackButton() {
@@ -374,14 +374,14 @@
             <Promotion
                 on:promotion={handlePromotion}
                 color={$board.chess.get(
-                    boardDisplayState.moveToPromote.substring(0, 2),
+                    boardDisplayState.moveToPromote.substring(0, 2)
                 ).color}
             />
         {/if}
         <div class="board-padding shadow">
             <div
                 class={`board${
-                    boardDisplayState.flipped ? " flipped" : " normal"
+                    boardDisplayState.flipped ? ' flipped' : ' normal'
                 }`}
             >
                 {#each boardDisplayState.board as row, rowNum}
@@ -389,10 +389,10 @@
                         <Square
                             id={getSquareName(rowNum, colNum)}
                             squareColor={$board.chess.squareColor(
-                                getSquareName(rowNum, colNum),
+                                getSquareName(rowNum, colNum)
                             )}
                             highlighted={boardDisplayState.highlightedSquares.includes(
-                                getSquareName(rowNum, colNum),
+                                getSquareName(rowNum, colNum)
                             )}
                             {square}
                             {handlePieceClick}
@@ -418,11 +418,11 @@
                             moveTo={boardDisplayState.movePlaying
                                 ? boardDisplayState.movePlaying.substring(
                                       0,
-                                      2,
+                                      2
                                   ) == getSquareName(rowNum, colNum)
                                     ? boardDisplayState.movePlaying.substring(
                                           2,
-                                          4,
+                                          4
                                       )
                                     : null
                                 : null}
