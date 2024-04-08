@@ -351,23 +351,17 @@
 
     async function handleMoveClick(from, to) {
         // TODO fix promotion
-        console.log(from, to);
-        if (!promoteToPiece & $board.checkIfPromotion(move)) {
-            // if the move is a promotion
-            boardDisplayState.moveToPromote = move;
-            return;
-        }
+        let move = from + to;
+        // if (!promoteToPiece & $board.checkIfPromotion(move)) {
+        //     // if the move is a promotion
+        //     boardDisplayState.moveToPromote = move;
+        //     return;
+        // }
 
-        move += promoteToPiece;
+        // move += promoteToPiece;
         if (currentSequenceData) {
             resetHints();
-            if (await updateSequence(move)) {
-            } else {
-            }
-        } else {
-            // no sequence, move piece
-            await movePiece(move);
-            updateBoard();
+            await updateSequence(move);
         }
     }
 
