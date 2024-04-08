@@ -228,7 +228,11 @@
 
     function resetHighlights() {
         // resets highlights and hints
-
+        cg.set({
+            highlight: {
+                custom: undefined,
+            },
+        });
         boardDisplayState.highlightedSquares = [];
     }
 
@@ -365,22 +369,6 @@
         }
     }
 
-    function handlePieceClick(id) {
-        if (boardDisplayState.disabled || $board.movesBack) return;
-        if (boardDisplayState.highlightedSquares.length == 0) {
-            // select the piece and highlight possible moves
-            boardDisplayState.highlightedSquares = $board.getPossibleMoves(id);
-            if (boardDisplayState.highlightedSquares.length)
-                boardDisplayState.selectedSquare = id;
-        } else if (boardDisplayState.highlightedSquares.includes(id)) {
-            handleMoveClick(boardDisplayState.selectedSquare + id);
-            // check if there is a sequence
-        } else {
-            // un-select and un-highlight
-            resetHighlights();
-        }
-    }
-
     function handlePromotion(e) {
         handleMoveClick(boardDisplayState.moveToPromote, e.detail);
         boardDisplayState.moveToPromote = '';
@@ -410,12 +398,36 @@
 
     function handleHintButton() {
         boardDisplayState.hint = true;
+        let square = currentSequenceData?.moves[
+            $board.history.length
+        ].substring(0, 2);
+
+        cg.set({
+            highlight: {
+                custom: new Map([[square, 'highlight']]),
+            },
+        });
         currentSequenceData.stats.hintsUsed++;
         updateControlsDisplayState();
     }
 
     function handleSolutionButton() {
         boardDisplayState.solution = true;
+        let square1 = currentSequenceData?.moves[
+            $board.history.length
+        ].substring(0, 2);
+        let square2 = currentSequenceData?.moves[
+            $board.history.length
+        ].substring(2, 4);
+
+        cg.set({
+            highlight: {
+                custom: new Map([
+                    [square1, 'highlight'],
+                    [square2, 'highlight'],
+                ]),
+            },
+        });
         currentSequenceData.stats.solsUsed++;
         updateControlsDisplayState();
     }

@@ -1,5 +1,7 @@
 .board {
     --piece-size: 75%;
+    --highlight-square: yellow;
+    --last-move-color: lightblue;
 }
 
 .board-component-wrapper {
@@ -82,6 +84,11 @@ cg-board square {
     width: 12.5%;
     height: 12.5%;
     pointer-events: none;
+    opacity: 0.5;
+}
+
+cg-board square.highlight {
+    background-color: yellow;
 }
 
 cg-board square.move-dest {
@@ -129,7 +136,7 @@ cg-board square.premove-dest:hover {
 
 cg-board square.last-move {
     will-change: transform;
-    background-color: rgba(155, 199, 0, 0.41);
+    background-color: var(--last-move-color);
 }
 
 cg-board square.selected {
