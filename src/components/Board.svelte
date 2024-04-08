@@ -447,6 +447,7 @@
         {#if boardDisplayState.moveToPromote}
             <Promotion
                 on:promotion={handlePromotion}
+                on:cancel={() => (boardDisplayState.moveToPromote = '')}
                 color={$board.chess.get(
                     boardDisplayState.moveToPromote.substring(0, 2)
                 ).color}
