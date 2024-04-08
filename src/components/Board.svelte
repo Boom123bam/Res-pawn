@@ -1,17 +1,16 @@
-
 <script>
-    import "./Board.css";
+    import './Board.css';
     import {
         sequenceData,
         controlLog,
         board,
         controlsDisplayState,
-    } from "../stores/boardStore";
-    import { createEventDispatcher, onDestroy } from "svelte";
-    import { browser } from "$app/environment";
-    import { ChessBoard } from "../modules/chessBoard";
-    import { onMount } from "svelte";
-    import { Chessground } from "chessground";
+    } from '../stores/boardStore';
+    import { createEventDispatcher, onDestroy } from 'svelte';
+    import { browser } from '$app/environment';
+    import { ChessBoard } from '../modules/chessBoard';
+    import { onMount } from 'svelte';
+    import { Chessground } from 'chessground';
 
     // audio
     let moveBuffer;
@@ -31,12 +30,12 @@
 
     $board = new ChessBoard();
 
-    let chessboard
-    let boardWrapper
+    let chessboard;
+    let boardWrapper;
     onMount(() => {
         const cg = Chessground(chessboard, {
             movable: {
-                color: "white",
+                color: 'white',
                 free: false,
                 // dests: toDests(chess),
             },
@@ -55,14 +54,14 @@
             chessboard.style.width = `${boardSize}px`;
         };
 
-        window.addEventListener("resize", resizeBoard);
+        window.addEventListener('resize', resizeBoard);
         requestAnimationFrame(() => {
             resizeBoard();
         });
     });
 
     $controlsDisplayState = {
-        actionButton: "hint", // hint | solution | retry
+        actionButton: 'hint', // hint | solution | retry
         actionButtonDisabled: false,
         flashingNext: false,
     };
@@ -73,27 +72,27 @@
     });
 
     let controlLogUnsubscribe = controlLog.subscribe(({ lastControl }) => {
-        if (lastControl == "back") {
+        if (lastControl == 'back') {
             handleBackButton();
             return;
         }
-        if (lastControl == "next") {
+        if (lastControl == 'next') {
             handleNextButton();
             return;
         }
-        if (lastControl == "hint") {
+        if (lastControl == 'hint') {
             handleHintButton();
             return;
         }
-        if (lastControl == "solution") {
+        if (lastControl == 'solution') {
             handleSolutionButton();
             return;
         }
-        if (lastControl == "flip") {
+        if (lastControl == 'flip') {
             handleFlipButton();
             return;
         }
-        if (lastControl == "retry") {
+        if (lastControl == 'retry') {
             handleRetryLastMoveButton();
             return;
         }
@@ -104,7 +103,7 @@
             let AudioContext = window.AudioContext || window.webkitAudioContext;
             context = new AudioContext(); // Make it crossbrowser
             window
-                .fetch("/sfx/capture.mp3")
+                .fetch('/sfx/capture.mp3')
                 .then((response) => response.arrayBuffer())
                 .then((arrayBuffer) =>
                     context.decodeAudioData(
@@ -112,11 +111,11 @@
                         (audioBuffer) => {
                             captureBuffer = audioBuffer;
                         },
-                        (error) => console.error(error),
-                    ),
+                        (error) => console.error(error)
+                    )
                 );
             window
-                .fetch("/sfx/move.mp3")
+                .fetch('/sfx/move.mp3')
                 .then((response) => response.arrayBuffer())
                 .then((arrayBuffer) =>
                     context.decodeAudioData(
@@ -124,8 +123,8 @@
                         (audioBuffer) => {
                             moveBuffer = audioBuffer;
                         },
-                        (error) => console.error(error),
-                    ),
+                        (error) => console.error(error)
+                    )
                 );
         }
     }
@@ -140,17 +139,16 @@
     }
 
     function finish() {
-        dispatch("finish", currentSequenceData.stats);
+        dispatch('finish', currentSequenceData.stats);
     }
-
 </script>
 
 <div class="board-component-wrapper blue california">
     <div class="board-wrapper">
-            <div class="board-padding shadow">
-                <div bind:this={boardWrapper} class="board-inner-wrapper">
-                    <div bind:this={chessboard} class="board" />
-                </div>
+        <div class="board-padding shadow">
+            <div bind:this={boardWrapper} class="board-inner-wrapper">
+                <div bind:this={chessboard} class="board" />
             </div>
         </div>
+    </div>
 </div>
