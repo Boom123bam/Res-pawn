@@ -50,10 +50,13 @@
             const mouseX = x - slider.getBoundingClientRect().left;
 
             // Calculate the mouse position as a percentage
-            let intValue = Math.floor((mouseX / componentWidth) * 5);
+            // let intValue = Math.floor((mouseX / componentWidth) * 5);
+            let intValue = Math.floor((mouseX / componentWidth) * 3);
             if (intValue < 0) intValue = 0;
-            if (intValue > 4) intValue = 4;
-            value = intValue / 2;
+            // if (intValue > 4) intValue = 4;
+            if (intValue > 2) intValue = 2;
+            // value = intValue / 2;
+            value = intValue;
         }
     }
     function handleMouseDown(e) {
