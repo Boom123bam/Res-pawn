@@ -11,6 +11,8 @@ Res-pawn is a chess puzzles training app with built in spaced-repetition
 
 -   Sveltekit
 -   Firebase
+-   Chess.js
+-   Chessground (from lichess)
 
 ## Contributing
 
@@ -25,7 +27,7 @@ Pull requests are welcome.
 3. **Install** depenencies and run
 
 ```
-cd res-pawn
+cd Res-pawn
 npm install
 npm run dev
 ```
