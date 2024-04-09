@@ -340,7 +340,6 @@
     }
 
     function handlePromotion(e) {
-        // handleMoveClick(boardDisplayState.moveToPromote, e.detail);
         makePromotionMove(boardDisplayState.moveToPromote + e.detail);
         boardDisplayState.moveToPromote = '';
     }
@@ -357,6 +356,7 @@
 
     function handleFlipButton() {
         boardDisplayState.flipped = !boardDisplayState.flipped;
+        updateBoard();
     }
 
     function handleRetryLastMoveButton() {
