@@ -2,7 +2,6 @@ import { browser } from '$app/environment';
 
 const defaultSettings = {
     sound: true,
-    showIndicatorOnHover: false,
     theme: 'light',
 };
 
