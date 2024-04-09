@@ -80,9 +80,9 @@
     let sequenceDataUnsubscribe;
 
     onMount(() => {
-        cg = Chessground(chessboard, {});
-        cg.set({
+        cg = Chessground(chessboard, {
             movable: {
+                free: false,
                 events: {
                     after: handleMove,
                 },
@@ -212,8 +212,9 @@
         $controlsDisplayState.actionButtonDisabled = true;
     }
 
-    function resetHighlights() {
-        // resets highlights and hints
+    function resetHints() {
+        boardDisplayState.hint = false;
+        boardDisplayState.solution = false;
         cg.set({
             highlight: {
                 custom: undefined,
@@ -221,22 +222,15 @@
         });
     }
 
-    function resetHints() {
-        boardDisplayState.hint = false;
-        boardDisplayState.solution = false;
-    }
-
     function resetSequence() {
         // reset seq and board
         $board.load(currentSequenceData.start);
-        resetHighlights();
         resetHints();
         boardDisplayState.failed = false;
         boardDisplayState.finished = false;
     }
 
     function updateBoard() {
-        resetHighlights();
         cg.set({
             turnColor: currentSequenceData.color,
             fen: $board.chess.fen(),
