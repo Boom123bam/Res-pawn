@@ -1,7 +1,10 @@
 Bugs:
   ☐ Fix IOS sound
-  ☐ Prevent grade menu selecting in between
   ☐ Disable ability to move when viewing move history
+
 Enhancements:
   ☐ Play sound when viewing previous moves
   ☐ Arrow keys to navigate
+
+Done:
+  ✔ Prevent grade menu selecting in between @done(24-04-09 21:49)
