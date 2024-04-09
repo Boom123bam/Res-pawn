@@ -1,6 +1,6 @@
 <script>
-    import { browser } from "$app/environment";
-    import { getSettings, storeSettings } from "../../modules/localStorage";
+    import { browser } from '$app/environment';
+    import { getSettings, storeSettings } from '../../modules/localStorage';
     let settings = getSettings();
 </script>
 
@@ -17,13 +17,13 @@
                     bind:checked={settings.sound}
                 />
                 <label for="sound-switch" />
-                <h6>show square name on hover</h6>
+                <!-- <h6>show square name on hover</h6>
                 <input
                     type="checkbox"
                     id="squares-switch"
                     bind:checked={settings.showIndicatorOnHover}
                 />
-                <label for="squares-switch" />
+                <label for="squares-switch" /> -->
             </fieldset>
             <button
                 type="submit"
@@ -41,7 +41,7 @@
     button.save {
         align-self: flex-start;
     }
-    input[type="checkbox"] {
+    input[type='checkbox'] {
         height: 0;
         width: 0;
         visibility: hidden;
@@ -64,7 +64,7 @@
     }
 
     label:after {
-        content: "";
+        content: '';
         position: absolute;
         top: var(--toggle-gap);
         left: var(--toggle-gap);
