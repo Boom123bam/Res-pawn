@@ -35,18 +35,14 @@
 
     const boardDisplayState = {
         board: $board.chess.board(),
-        highlightedSquares: [],
         selectedSquare: null,
-        disabled: false,
         hint: false,
         solution: false,
         failed: false,
         finished: false,
         moveToPromote: null,
-        movePlaying: null,
         flipped: false,
         soundOn: getSetting('sound'),
-        showIndicatorOnHover: getSetting('showIndicatorOnHover'),
     };
 
     $controlsDisplayState = {
@@ -56,29 +52,25 @@
     };
 
     let controlLogUnsubscribe = controlLog.subscribe(({ lastControl }) => {
-        if (lastControl == 'back') {
-            handleBackButton();
-            return;
-        }
-        if (lastControl == 'next') {
-            handleNextButton();
-            return;
-        }
-        if (lastControl == 'hint') {
-            handleHintButton();
-            return;
-        }
-        if (lastControl == 'solution') {
-            handleSolutionButton();
-            return;
-        }
-        if (lastControl == 'flip') {
-            handleFlipButton();
-            return;
-        }
-        if (lastControl == 'retry') {
-            handleRetryLastMoveButton();
-            return;
+        switch (lastControl) {
+            case 'back':
+                handleBackButton();
+                return;
+            case 'next':
+                handleNextButton();
+                return;
+            case 'hint':
+                handleHintButton();
+                return;
+            case 'solution':
+                handleSolutionButton();
+                return;
+            case 'flip':
+                handleFlipButton();
+                return;
+            case 'retry':
+                handleRetryLastMoveButton();
+                return;
         }
     });
 
@@ -88,23 +80,11 @@
     let sequenceDataUnsubscribe;
 
     onMount(() => {
-        cg = Chessground(chessboard, {
-            // fen: $board.chess.fen(),
-            // orientation: boardDisplayState.flipped ? 'black' : 'white',
-            // movable: {
-            // color:
-            //     currentSequenceData.start.split(' ')[1] === 'w'
-            //         ? 'black'
-            //         : 'white',
-            // free: false,
-            // dests: toDests(chess),
-            // events: { after: handleMoveClick },
-            // },
-        });
+        cg = Chessground(chessboard, {});
         cg.set({
             movable: {
                 events: {
-                    after: handleMoveClick,
+                    after: handleMove,
                 },
             },
         });
@@ -123,9 +103,7 @@
         };
 
         window.addEventListener('resize', resizeBoard);
-        requestAnimationFrame(() => {
-            resizeBoard();
-        });
+        resizeBoard();
     });
 
     function timeout(ms) {
@@ -175,6 +153,7 @@
     async function loadSeq(seqData) {
         currentSequenceData = {
             start: seqData.fen,
+            color: seqData.fen.split(' ')[1] === 'w' ? 'black' : 'white',
             moves: seqData.moves.split(' '),
             stats: {
                 hintsUsed: 0,
@@ -182,19 +161,22 @@
                 timesFailed: 0,
             },
         };
-        boardDisplayState.flipped =
-            currentSequenceData.start.split(' ')[1] === 'w'; // flip board if black is first
+        boardDisplayState.flipped = currentSequenceData.color === 'black'; // flip board if black is first
         resetSequence();
         $board.load(currentSequenceData.start);
+        cg.set({
+            turnColor: currentSequenceData.color,
+            movable: {
+                color: currentSequenceData.color,
+            },
+        });
         updateBoard();
-        // await timeout(100);
         await movePiece(currentSequenceData.moves[0]);
         updateBoard();
     }
 
     function finish() {
         boardDisplayState.finished = true;
-        boardDisplayState.disabled = true;
         // dispatch event and return stats
         dispatch('finish', currentSequenceData.stats);
         updateControlsDisplayState();
@@ -237,7 +219,6 @@
                 custom: undefined,
             },
         });
-        boardDisplayState.highlightedSquares = [];
     }
 
     function resetHints() {
@@ -248,7 +229,6 @@
     function resetSequence() {
         // reset seq and board
         $board.load(currentSequenceData.start);
-        boardDisplayState.disabled = false;
         resetHighlights();
         resetHints();
         boardDisplayState.failed = false;
@@ -258,18 +238,10 @@
     function updateBoard() {
         resetHighlights();
         cg.set({
+            turnColor: currentSequenceData.color,
             fen: $board.chess.fen(),
             orientation: boardDisplayState.flipped ? 'black' : 'white',
-            turnColor:
-                currentSequenceData.start.split(' ')[1] === 'w'
-                    ? 'black'
-                    : 'white',
             movable: {
-                color:
-                    currentSequenceData.start.split(' ')[1] === 'w'
-                        ? 'black'
-                        : 'white',
-                free: false,
                 dests: toDests($board.chess),
             },
         });
@@ -278,12 +250,7 @@
         updateControlsDisplayState();
     }
 
-    function getSquareName(row, col) {
-        // convert row and col to square notation
-        return `${String.fromCharCode('a'.charCodeAt(0) + col)}${8 - row}`;
-    }
-
-    async function movePiece(move, duration = 0.1) {
+    async function movePiece(move) {
         if (boardDisplayState.soundOn) {
             if ($board.chess.get(move.substring(2, 4))) {
                 playAudio(captureBuffer);
@@ -291,12 +258,10 @@
         }
 
         resetHints();
-        // play animation
-        // boardDisplayState.movePlaying = move;
 
+        // play animation
         cg.move(move.substring(0, 2), move.substring(2, 4));
         $board.makeMove(move);
-        await timeout(duration * 1000);
     }
 
     async function updateSequence(move = null) {
@@ -316,7 +281,7 @@
                 if (
                     $board.history.length !== currentSequenceData.moves.length
                 ) {
-                    await timeout(250);
+                    await timeout(100);
                     await updateSequence(); // auto move opposing side if not finished
                     return;
                 }
@@ -327,7 +292,6 @@
                 if ($board.chess.isCheckmate()) {
                     finish();
                 } else {
-                    boardDisplayState.disabled = true;
                     boardDisplayState.failed = true;
                     currentSequenceData.stats.timesFailed++;
                     updateControlsDisplayState();
@@ -353,12 +317,10 @@
         return true;
     }
 
-    async function handleMoveClick(from, to) {
-        // TODO fix promotion
+    async function handleMove(from, to) {
         let move = from + to;
-        // console.log($board.checkIfPromotion(move));
         if ($board.checkIfPromotion(move)) {
-            // if the move is a promotion
+            // if the move is a promotion, show promotion menu
             boardDisplayState.moveToPromote = move;
             updateBoard();
             return;
@@ -398,7 +360,6 @@
     }
 
     function handleRetryLastMoveButton() {
-        boardDisplayState.disabled = false;
         boardDisplayState.failed = false;
         $board.returnToCurrentMove();
         $board.undoMove();
