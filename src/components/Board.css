@@ -131,6 +131,22 @@ cg-board square.oc.premove-dest {
     );
 }
 
+cg-board square.oc.move-dest.highlight {
+    background: radial-gradient(
+        var(--highlight-square) 0%,
+        var(--highlight-square) 80%,
+        rgba(20, 85, 0, 0.3) 80%
+    );
+}
+
+cg-board square.oc.premove-dest.highlight {
+    background: radial-gradient(
+        var(--highlight-square) 0%,
+        var(--highlight-square) 80%,
+        rgba(20, 30, 85, 0.2) 80%
+    );
+}
+
 cg-board square.move-dest:hover {
     background: rgba(20, 85, 30, 0.3);
 }
@@ -144,12 +160,12 @@ cg-board square.last-move {
     background-color: var(--last-move-color);
 }
 
-cg-board square.highlight {
-    background-color: var(--highlight-square);
-}
-
 cg-board square.selected {
     background-color: var(--last-move-color);
+}
+
+cg-board square.highlight {
+    background-color: var(--highlight-square);
 }
 
 cg-board square.check {
