@@ -146,7 +146,7 @@
         <h2>How hard was it?</h2>
         <div class="next-review">
             Next review: ~{formatTimePeriod(
-                getTimeToNextReview(getNewEasiness(easiness, value))
+                getTimeToNextReview(getNewEasiness(easiness, value), 0)
             )}
         </div>
         <!-- <p>drag the queen along the tiles</p>
