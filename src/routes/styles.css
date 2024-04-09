@@ -380,7 +380,7 @@ button.contrast,
     cursor: pointer;
     font-weight: 700;
     padding: 0.75rem 1.125rem;
-    transition: 0.2s;
+    /* transition: 0.2s; */
 }
 
 button.primary:focus-visible,
