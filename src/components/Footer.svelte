@@ -6,7 +6,7 @@
     <div class="logos">
         <a
             class="float"
-            href="https://github.com/Boom123bam/ResPawn"
+            href="https://github.com/Boom123bam/res-pawn"
             target="_blank"
         >
             <Svg name="github" size="1.75rem" />

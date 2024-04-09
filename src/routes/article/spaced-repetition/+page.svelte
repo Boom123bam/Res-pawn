@@ -8,7 +8,7 @@
     />
     <meta
         name="keywords"
-        content="ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
+        content="res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
     />
 </svelte:head>
 
@@ -59,14 +59,14 @@
             around. But finding the solution once after minutes of playing
             possible scenarios in your head doesn't guarantee that you'll spot
             it again when it comes up in a game. So, how can we increase the
-            chances of finding it in a game? That is the problem that ResPawn
-            tries to solve. Let's delve deeper into how ResPawn can elevate your
-            chess skills.
+            chances of finding it in a game? That is the problem that Res-pawn
+            tries to solve. Let's delve deeper into how Res-pawn can elevate
+            your chess skills.
         </p>
         <h3>Spaced Repetition for Chess</h3>
         <p>
             After each puzzle is played, you have the ability to rate the puzzle
-            based on how challenging it was. Based on that rating, ResPawn uses
+            based on how challenging it was. Based on that rating, Res-pawn uses
             a spaced repetition algorithm to determine when the best time to
             review the puzzle is.
         </p>
@@ -78,8 +78,8 @@
         <h3>Conclusion</h3>
         <p>
             Spaced repetition is a scientifically proven and effective technique
-            for memorisation. ResPawn leverages a spaced repetition algorithm to
-            enhance your pattern recognition skills and dominate in games.
+            for memorisation. Res-pawn leverages a spaced repetition algorithm
+            to enhance your pattern recognition skills and dominate in games.
         </p>
         <p>
             Go and give it a try! Explore the playlists <a

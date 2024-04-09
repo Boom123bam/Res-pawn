@@ -1,11 +1,11 @@
 ![](banner-on-dark.png#gh-dark-mode-only)
 ![](banner-on-light.png#gh-light-mode-only)
 
-# ResPawn
+# Res-pawn
 
-ResPawn is a chess puzzles training app with built in spaced-repetition
+Res-pawn is a chess puzzles training app with built in spaced-repetition
 
-### [Res-Pawn.com](https://res-pawn.com)
+### [Res-pawn.com](https://res-pawn.com)
 
 ## Technologies Used
 
@@ -25,7 +25,7 @@ Pull requests are welcome.
 3. **Install** depenencies and run
 
 ```
-cd ResPawn
+cd res-pawn
 npm install
 npm run dev
 ```

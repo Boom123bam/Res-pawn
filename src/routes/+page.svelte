@@ -8,20 +8,20 @@
 
 <svelte:head>
     <!-- HTML Meta Tags -->
-    <title>ResPawn - Spot Tactics, Quickly</title>
+    <title>Res-pawn - Spot Tactics, Quickly</title>
     <meta
         name="description"
         content="Spot chess tactics quickly by drilling puzzles optimized for you"
     />
     <meta
         name="keywords"
-        content="ResPawn, res-pawn, res pawn, chess tactics, chess puzzles, practice chess tactics"
+        content="res-pawn, res pawn, chess tactics, chess puzzles, practice chess tactics"
     />
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://res-pawn.com" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="ResPawn - Spot Tactics, Quickly" />
+    <meta property="og:title" content="Res-pawn - Spot Tactics, Quickly" />
     <meta
         property="og:description"
         content="Spot chess tactics quickly by drilling puzzles optimized for you"
@@ -32,7 +32,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content="res-pawn.com" />
     <meta property="twitter:url" content="https://res-pawn.com" />
-    <meta name="twitter:title" content="ResPawn - Spot Tactics, Quickly" />
+    <meta name="twitter:title" content="Res-pawn - Spot Tactics, Quickly" />
     <meta
         name="twitter:description"
         content="Spot chess tactics quickly by drilling puzzles optimized for you"
@@ -175,17 +175,17 @@
                 </p>
             </div>
         </ExpandableCard>
-        <ExpandableCard title="How does ResPawn use Spaced Repetition?">
+        <ExpandableCard title="How does Res-pawn use Spaced Repetition?">
             <div class="dropdown-content">
                 <img
                     src="/images/feedback-system.png"
                     alt="spaced repetition graph"
                 />
-                <span><i>ResPawn feedback system</i></span>
+                <span><i>Res-pawn feedback system</i></span>
                 <p>
                     After a puzzle is played, you will provide a rating on how
                     challenging the puzzle was (as shown by the image above).
-                    ResPawn uses this rating and runs a spaced repetition
+                    Res-pawn uses this rating and runs a spaced repetition
                     algorithm to determine when the puzzle appears next. A
                     higher difficulty rating will result in sooner review time,
                     vice versa.

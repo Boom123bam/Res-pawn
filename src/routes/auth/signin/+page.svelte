@@ -1,15 +1,15 @@
 <script>
-    import { signInWithEmailAndPassword } from "@firebase/auth";
-    import { auth } from "../../../firebase";
-    import { storeAllUserSeqData } from "../../../modules/firestore";
+    import { signInWithEmailAndPassword } from '@firebase/auth';
+    import { auth } from '../../../firebase';
+    import { storeAllUserSeqData } from '../../../modules/firestore';
     import {
         getSessionSeqData,
         updateSessionSeqData,
-    } from "../../../modules/sessionStorage";
+    } from '../../../modules/sessionStorage';
 
-    let email = "";
-    let password = "";
-    let errorMessage = "";
+    let email = '';
+    let password = '';
+    let errorMessage = '';
     let signedIn = false;
     let savedProgress = false;
 
@@ -18,7 +18,7 @@
             const userCredential = await signInWithEmailAndPassword(
                 auth,
                 email,
-                password,
+                password
             );
             // const userData = await getUserData(userCredential.user.uid);
             // userData.id = userCredential.user.uid;
@@ -37,11 +37,11 @@
 </script>
 
 <svelte:head>
-    <title>Sign in | ResPawn</title>
-    <meta name="description" content="Sign in to ResPawn" />
+    <title>Sign in | Res-pawn</title>
+    <meta name="description" content="Sign in to Res-pawn" />
     <meta
         name="keywords"
-        content="sign in, ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
+        content="sign in, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
     />
 </svelte:head>
 

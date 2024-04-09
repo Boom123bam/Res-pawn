@@ -1,19 +1,19 @@
 <script>
-    import PlaylistCard from "../../components/PlaylistCard.svelte";
+    import PlaylistCard from '../../components/PlaylistCard.svelte';
 
     export let data;
     const { playlists } = data;
 </script>
 
 <svelte:head>
-    <title>Playlists | Respawn</title>
+    <title>Playlists | Res-pawn</title>
     <meta
         name="description"
         content="Chess puzzles playlists for any levels of play. Play puzzles and improve your pattern recognition skills."
     />
     <meta
         name="keywords"
-        content="playlists, ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
+        content="playlists, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
     />
 </svelte:head>
 

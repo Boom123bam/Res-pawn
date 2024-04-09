@@ -2,34 +2,34 @@
     import {
         createUserWithEmailAndPassword,
         updateProfile,
-    } from "@firebase/auth";
-    import { auth } from "../../../firebase";
+    } from '@firebase/auth';
+    import { auth } from '../../../firebase';
     import {
         addUserToCollection,
         checkIfUsernameTaken,
-    } from "../../../modules/firestore";
-    import { userData } from "../../userStore";
-    import { goto } from "$app/navigation";
+    } from '../../../modules/firestore';
+    import { userData } from '../../userStore';
+    import { goto } from '$app/navigation';
 
-    let username = "";
-    let email = "";
-    let password = "";
-    let errorMessage = "";
+    let username = '';
+    let email = '';
+    let password = '';
+    let errorMessage = '';
 
     async function register(name, email, password) {
         try {
             // Check if username is long enough
             if (name.length < 5)
-                throw new Error("username must be at least 5 characters long");
+                throw new Error('username must be at least 5 characters long');
             // Check if the username is already taken
             const usernameTaken = await checkIfUsernameTaken(name);
-            if (usernameTaken) throw new Error("username is taken");
+            if (usernameTaken) throw new Error('username is taken');
 
             // Not taken, register user
             const newUserCredential = await createUserWithEmailAndPassword(
                 auth,
                 email,
-                password,
+                password
             );
             const newUser = newUserCredential.user;
 
@@ -54,11 +54,11 @@
 </script>
 
 <svelte:head>
-    <title>Sign up | ResPawn</title>
-    <meta name="description" content="Sign up to ResPawn" />
+    <title>Sign up | Res-pawn</title>
+    <meta name="description" content="Sign up to Res-pawn" />
     <meta
         name="keywords"
-        content="sign up, ResPawn, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
+        content="sign up, res-pawn, res pawn, pattern recognition, chess puzzles, practice chess"
     />
 </svelte:head>
 
