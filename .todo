@@ -1,10 +1,15 @@
 Bugs:
-  ☐ Fix IOS sound
   ☐ Disable ability to move when viewing move history
 
 Enhancements:
   ☐ Play sound when viewing previous moves
   ☐ Arrow keys to navigate
+  ☐ Fix Mobile google search result image
+  ☐ Highlight the king in check
+  ☐ Take time in to account when estimating grade
+  ☐ Limit amount of reviewing sequences
+
+Features:
 
 Done:
   ✔ Prevent grade menu selecting in between @done(24-04-09 21:49)
