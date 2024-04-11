@@ -7,9 +7,9 @@ Enhancements:
   ☐ Fix Mobile google search result image
   ☐ Highlight the king in check
   ☐ Take time in to account when estimating grade
-  ☐ Limit amount of reviewing sequences
 
 Features:
 
 Done:
+  ✔ Limit amount of reviewing sequences @done(24-04-11 08:53)
   ✔ Prevent grade menu selecting in between @done(24-04-09 21:49)

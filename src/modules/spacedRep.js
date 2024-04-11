@@ -7,13 +7,14 @@ import { Timestamp } from 'firebase/firestore';
 // ALL percentages are in decimal (e.g. 25% = 0.25)
 
 const maxEasiness = 12;
-const minsLimit = 5; // mins in the future to look for seqs in
+const minsLimit = 5; // mins in the future to look for seqs in (to count as reviewing seq)
 export const defaultEasiness = 1.5;
 const easinessChangeMultiplier = 1.25;
 const randomNextReviewDifference = 0.15; // max % added/subtracted to next Review Time
 const gradeShiftPercentage = -0.25; // positive shift % aplpied to grade
+const randomSeqThreshold = 5; // if # of reviewing seqs < this, a random seq will be picked
 
-const chanceOfRandomSeq = 0.3;
+// const chanceOfRandomSeq = 0.3;
 
 function getSoonestSeq(seqsData) {
     // returns the seqID of the soonest seq if it is before [minsLimit] mins after the current time
@@ -47,13 +48,36 @@ function getSoonestSeq(seqsData) {
     return soonestSeqID;
 }
 
+function getNumSeqToReview(seqsData) {
+    // returns the number of seq before [minsLimit] mins after the current time
+    let count = 0;
+
+    const currentTimestamp = Timestamp.now();
+
+    // Calculate the latest time to look for seqs in
+    const latestTime = new Timestamp(
+        currentTimestamp.seconds + minsLimit * 60,
+        currentTimestamp.nanoseconds
+    );
+
+    for (const seqID in seqsData) {
+        if (seqsData.hasOwnProperty(seqID)) {
+            const seqNextReview = seqsData[seqID].nextReview;
+            if (seqNextReview.seconds < latestTime.seconds) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
 function getRandomSeq(seqIDs) {
     return seqIDs[Math.floor(Math.random() * seqIDs.length)];
 }
 
 export function getNextSeq(playedSeqsData, unplayedSeqsIDs, prevSeqID = null) {
-    if (Math.random() < chanceOfRandomSeq) {
-        // play random unplayed seq
+    if (getNumSeqToReview(playedSeqsData) < randomSeqThreshold) {
         return getRandomSeq(unplayedSeqsIDs);
     }
     const soonestSeqID = getSoonestSeq(playedSeqsData);
