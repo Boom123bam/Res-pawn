@@ -9,11 +9,9 @@ export async function updateSessionSeqData(uid) {
 export async function getSessionSeqData() {
     // fetches session seq data from db if there is a user in session storage
     let user = getSessionUserData();
-    let sessionSeqData = getSessionData('sequences');
-    // if there is no seq data, fetch from database and store on session storage
-    if (user && !sessionSeqData) {
-        sessionSeqData = await getAllUserSeqs(user.uid);
-    }
+    let sessionSeqData = user
+        ? await getAllUserSeqs(user.uid)
+        : getSessionData('sequences');
     if (!sessionSeqData) sessionSeqData = null;
     storeSessionSeqData(sessionSeqData);
     return sessionSeqData;
