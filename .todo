@@ -3,7 +3,6 @@ Bugs:
 
 Enhancements:
   ☐ Play sound when viewing previous moves
-  ☐ Arrow keys to navigate
   ☐ Fix Mobile google search result image
   ☐ Highlight the king in check
   ☐ Take time in to account when estimating grade
@@ -12,5 +11,6 @@ Enhancements:
 Features:
 
 Done:
+  ✔ Arrow keys to navigate @done(24-04-15 11:36)
   ✔ Limit amount of reviewing sequences @done(24-04-11 08:53)
   ✔ Prevent grade menu selecting in between @done(24-04-09 21:49)
