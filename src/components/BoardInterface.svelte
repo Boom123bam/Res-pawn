@@ -4,10 +4,22 @@
     import SeqInfo from './SeqInfo.svelte';
     import BoardControl from './BoardControl.svelte';
     import Svg from './Svg.svelte';
+    import { controlLog } from '../stores/boardStore';
 
     export let seqInfo, enableNextButton;
 
     const dispatch = createEventDispatcher();
+
+    function onKeyDown(e) {
+        switch (e.key) {
+            case 'ArrowLeft':
+                controlLog.setLastControl('back');
+                break;
+            case 'ArrowRight':
+                controlLog.setLastControl('next');
+                break;
+        }
+    }
 </script>
 
 <div class="layout">
@@ -47,6 +59,7 @@
         </button>
     </div>
 </div>
+<svelte:window on:keydown={onKeyDown} />
 
 <style>
     .layout {
