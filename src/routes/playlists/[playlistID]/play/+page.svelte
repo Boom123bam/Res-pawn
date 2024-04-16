@@ -9,7 +9,7 @@
         getNextSeq,
         updateSeqData,
     } from '../../../../modules/spacedRep';
-    import { storeSessionSeqData } from '../../../../modules/sessionStorage';
+    import { storeLocalSeqData } from '../../../../modules/localStorage';
 
     import { userData } from '../../../userStore';
     import { sequenceData } from '../../../../stores/boardStore';
@@ -38,7 +38,7 @@
     let showSeqInfoPopup = false;
     let showGradeMenu = false;
     let grade = 1;
-    let seqsPlayedInSession = 0;
+    let seqsPlayedInLocal = 0;
     let currentEasiness = defaultEasiness;
 
     let seqInfo = null;
@@ -73,7 +73,7 @@
 
     function handleGradeSubmit(e) {
         showGradeMenu = false;
-        seqsPlayedInSession++;
+        seqsPlayedInLocal++;
         grade = e.detail.value;
 
         // if seq is new
@@ -89,7 +89,7 @@
                 playedSeqsData[currentSeqID]
             );
         }
-        storeSessionSeqData(playedSeqsData);
+        storeLocalSeqData(playedSeqsData);
         if ($userData && $userData.emailVerified)
             updateUserSeqData(
                 $userData.uid,
@@ -131,7 +131,7 @@
     {#if !closedEmailPopup && $userData && !$userData.emailVerified}
         <div class="popup-wrapper">
             <Popup on:close={() => (closedEmailPopup = true)}>
-                <h5>Verify email to save progress</h5>
+                <h5>Verify email to sync progress</h5>
                 <a href="/auth/verify">
                     <button class="primary">verify</button>
                 </a>

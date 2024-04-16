@@ -3,9 +3,9 @@
     import { auth } from '../../../firebase';
     import { storeAllUserSeqData } from '../../../modules/firestore';
     import {
-        getSessionSeqData,
-        updateSessionSeqData,
-    } from '../../../modules/sessionStorage';
+        getLocalSeqData,
+        updateLocalSeqData,
+    } from '../../../modules/localStorage';
 
     let email = '';
     let password = '';
@@ -24,12 +24,12 @@
             // userData.id = userCredential.user.uid;
             const uid = userCredential.user.uid;
             signedIn = true;
-            const seqData = await getSessionSeqData();
+            const seqData = await getLocalSeqData();
             if (seqData) {
                 await storeAllUserSeqData(uid, seqData);
                 savedProgress = true;
             }
-            updateSessionSeqData(uid);
+            updateLocalSeqData(uid);
         } catch (error) {
             errorMessage = error.message;
         }

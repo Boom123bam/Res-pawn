@@ -1,66 +1,66 @@
 import { getPlaylistData, getAllUserSeqs } from './firestore';
 
-export async function updateSessionSeqData(uid) {
-    const sessionSeqData = await getAllUserSeqs(uid);
-    storeSessionSeqData(sessionSeqData);
-    return sessionSeqData;
+export async function updateLocalSeqData(uid) {
+    const localSeqData = await getAllUserSeqs(uid);
+    storeLocalSeqData(localSeqData);
+    return localSeqData;
 }
 
-export async function getSessionSeqData() {
-    // fetches session seq data from db if there is a user in session storage
-    let user = getSessionUserData();
-    let sessionSeqData = user
+export async function getLocalSeqData() {
+    // fetches local seq data from db if there is a user in local storage
+    let user = getLocalUserData();
+    let localSeqData = user
         ? await getAllUserSeqs(user.uid)
-        : getSessionData('sequences');
-    if (!sessionSeqData) sessionSeqData = null;
-    storeSessionSeqData(sessionSeqData);
-    return sessionSeqData;
+        : getLocalData('sequences');
+    if (!localSeqData) localSeqData = null;
+    storeLocalSeqData(localSeqData);
+    return localSeqData;
 }
 
 export async function updateLocalPlaylistData(playlistID) {
-    let localPlaylistData = getSessionPlaylistData();
+    let localPlaylistData = getLocalPlaylistData();
     // check if local playlistData is empty or not same as route id
     if (!localPlaylistData || localPlaylistData.id != playlistID) {
-        // fetch from db and store on session
+        // fetch from db and store on local
         localPlaylistData = await getPlaylistData(playlistID);
-        if (localPlaylistData) storeSessionPlaylistData(localPlaylistData);
+        if (localPlaylistData) storeLocalPlaylistData(localPlaylistData);
         else {
-            console.error('playlist not in session storage');
+            console.error('playlist not in local storage');
             throw Error('Playlist Not found');
         }
     }
     return localPlaylistData;
 }
 
-export function storeSessionUserData(userData) {
-    setSessionData('user', userData);
+export function storeLocalUserData(userData) {
+    setLocalData('user', userData);
 }
 
-export function getSessionUserData() {
-    return getSessionData('user');
+export function getLocalUserData() {
+    return getLocalData('user');
 }
 
-export function storeSessionPlaylistData(playlistData) {
-    setSessionData('playlist', playlistData);
+export function storeLocalPlaylistData(playlistData) {
+    setLocalData('playlist', playlistData);
 }
 
-export function getSessionPlaylistData() {
-    return getSessionData('playlist');
+export function getLocalPlaylistData() {
+    return getLocalData('playlist');
 }
 
-export function storeSessionSeqData(seqData) {
-    setSessionData('sequences', seqData);
+export function storeLocalSeqData(seqData) {
+    setLocalData('sequences', seqData);
 }
 
-function getSessionData(name) {
+function getLocalData(name) {
     if (typeof window !== 'undefined') {
-        return JSON.parse(sessionStorage.getItem(name));
+        return JSON.parse(localStorage.getItem(name));
     }
     return null;
 }
 
-function setSessionData(name, data) {
+function setLocalData(name, data) {
     if (typeof window !== 'undefined') {
-        sessionStorage.setItem(name, JSON.stringify(data));
+        localStorage.setItem(name, JSON.stringify(data));
     }
 }

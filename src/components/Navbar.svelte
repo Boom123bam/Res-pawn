@@ -113,7 +113,7 @@
                 <a href="/auth/signin" class="button-like primary">
                     <span>Sign In </span>
                     {#if $page.url.pathname.endsWith('/play')}
-                        <span>to save progress</span>
+                        <span>to sync progress</span>
                     {/if}
                 </a>
             </li>

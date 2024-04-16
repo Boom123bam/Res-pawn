@@ -8,7 +8,7 @@
         try {
             await signOut(auth);
             if (typeof window !== 'undefined') {
-                sessionStorage.removeItem('user');
+                localStorage.removeItem('user');
             }
             goto('/auth/signin'); // Redirect to the login page
         } catch (error) {
