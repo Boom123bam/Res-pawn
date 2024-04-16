@@ -1,5 +1,5 @@
 <script>
-    let howSection; // binds to html of 'how this works section'
+    let comparisonSection; // binds to html of 'how this works section'
     import Saos from 'saos';
     import ChessBoard3d from '../components/ChessBoard3d.svelte';
     import ExpandableCard from '../components/ExpandableCard.svelte';
@@ -8,10 +8,10 @@
 
 <svelte:head>
     <!-- HTML Meta Tags -->
-    <title>Res-pawn - Spot Tactics, Quickly</title>
+    <title>Res-pawn - Boost Pattern Recognition</title>
     <meta
         name="description"
-        content="Spot chess tactics quickly by drilling puzzles optimized for you"
+        content="Chess puzzles optimized for pattern recognition"
     />
     <meta
         name="keywords"
@@ -21,10 +21,10 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://res-pawn.com" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Res-pawn - Spot Tactics, Quickly" />
+    <meta property="og:title" content="Res-pawn - Boost Pattern Recognition" />
     <meta
         property="og:description"
-        content="Spot chess tactics quickly by drilling puzzles optimized for you"
+        content="Chess puzzles optimized for pattern recognition"
     />
     <meta property="og:image" content="/images/thumbnail.png" />
 
@@ -32,10 +32,10 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content="res-pawn.com" />
     <meta property="twitter:url" content="https://res-pawn.com" />
-    <meta name="twitter:title" content="Res-pawn - Spot Tactics, Quickly" />
+    <meta name="twitter:title" content="Res-pawn - Boost Pattern Recognition" />
     <meta
         name="twitter:description"
-        content="Spot chess tactics quickly by drilling puzzles optimized for you"
+        content="Chess puzzles optimized for pattern recognition"
     />
     <meta name="twitter:image" content="/images/thumbnail.png" />
 </svelte:head>
@@ -43,13 +43,15 @@
 <section class="hero">
     <div class="content">
         <Saos animation={'slide-left 0.25s'}>
-            <h1>Spot Tacticts, Quickly</h1>
+            <h1>Boost Pattern Recognition</h1>
         </Saos>
         <Saos
             animation={'slide-left 0.25s 0.1s forwards'}
             css_animation={'opacity:0;'}
         >
-            <h5 class="subheading">By drilling puzzles optimized for you</h5>
+            <h5 class="subheading">
+                Chess puzzles optimized for pattern recognition
+            </h5>
         </Saos>
         <div class="buttons">
             <a href="/playlists" class="button-like primary shadow">
@@ -57,8 +59,9 @@
             </a>
             <button
                 on:click={() =>
-                    howSection.scrollIntoView({
-                        block: 'nearest',
+                    comparisonSection.scrollIntoView({
+                        block: 'start',
+                        behavior: 'smooth',
                     })}
                 class="ghost learn-more">learn more</button
             >
@@ -66,7 +69,7 @@
     </div>
     <img src={`/images/hero.png`} class="bg" alt="hero" draggable="false" />
 </section>
-<section class="tiles-bg invert features">
+<section class="tiles-bg invert features" bind:this={comparisonSection}>
     <div class="features-container">
         <Saos
             animation={'slide-left 0.25s 0s both'}
@@ -98,7 +101,7 @@
     </div>
 </section>
 
-<section class="how-it-works" bind:this={howSection}>
+<section class="how-it-works">
     <h2>How it works</h2>
     <div class="cards-container">
         <Saos
