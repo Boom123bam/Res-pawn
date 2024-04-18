@@ -3,7 +3,8 @@
     import { auth } from "../../../firebase";
 
     const actionCodeSettings = {
-        url: "http://localhost:5173/auth/signout",
+        // url: "http://localhost:5173/auth/signout",
+        url: "http://res-pawn.com/auth/signout",
     };
     // sign out the user redirects them to sign in page, which will save the data after sign in
     // signing out and in refreshes auth token so that email_verified is updated in firestore rules
