@@ -9,7 +9,7 @@ import { Timestamp } from "firebase/firestore";
 const maxEasiness = 12;
 const minsLimit = 5; // mins in the future to look for seqs in (to count as reviewing seq)
 export const defaultEasiness = 1.5;
-const easinessChangeMultiplier = 1;
+const easinessChangeMultiplier = 1.2;
 const randomNextReviewDifference = 0.15; // max % added/subtracted to next Review Time
 const gradeShiftPercentage = -0.05; // positive shift % aplpied to grade
 const randomSeqThreshold = 5; // if # of reviewing seqs < this, a random seq will be picked
