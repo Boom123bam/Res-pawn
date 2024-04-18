@@ -1,9 +1,9 @@
 @charset "utf-8";
-@import '@fontsource/fira-mono';
+@import "@fontsource/fira-mono";
 
 :root {
-    --font-lg: 'Barlow Condensed', sans-serif;
-    --font-sm: 'Montserrat', sans-serif;
+    --font-lg: "Barlow Condensed", sans-serif;
+    --font-sm: "Montserrat", sans-serif;
 
     --beige: #fff3e8;
     --purple: #a8a6c2;
@@ -251,7 +251,7 @@ i {
     border-bottom: 1px solid var(--border-dark);
 }
 .tiles-bg:before {
-    content: '';
+    content: "";
     background-color: var(--text);
     position: absolute;
     width: 100rem;

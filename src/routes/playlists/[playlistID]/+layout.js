@@ -1,8 +1,8 @@
-import { error } from '@sveltejs/kit';
+import { error } from "@sveltejs/kit";
 import {
     updateLocalPlaylistData,
     getLocalSeqData,
-} from '../../../modules/localStorage';
+} from "../../../modules/localStorage";
 
 export const ssr = false; // disable ssr because local storage
 

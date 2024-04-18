@@ -1,19 +1,19 @@
 <script>
-    import './Board.css';
-    import Promotion from './Promotion.svelte';
+    import "./Board.css";
+    import Promotion from "./Promotion.svelte";
     import {
         sequenceData,
         controlLog,
         board,
         controlsDisplayState,
-    } from '../stores/boardStore';
-    import { getSetting } from '../modules/localStorage';
-    import { createEventDispatcher, onDestroy } from 'svelte';
-    import { browser } from '$app/environment';
-    import { ChessBoard } from '../modules/chessBoard';
-    import { onMount } from 'svelte';
-    import { Chessground } from 'chessground';
-    import { toDests } from '../modules/chessgroundHelper';
+    } from "../stores/boardStore";
+    import { getSetting } from "../modules/localStorage";
+    import { createEventDispatcher, onDestroy } from "svelte";
+    import { browser } from "$app/environment";
+    import { ChessBoard } from "../modules/chessBoard";
+    import { onMount } from "svelte";
+    import { Chessground } from "chessground";
+    import { toDests } from "../modules/chessgroundHelper";
 
     // audio
     let moveBuffer;
@@ -42,33 +42,33 @@
         finished: false,
         moveToPromote: null,
         flipped: false,
-        soundOn: getSetting('sound'),
+        soundOn: getSetting("sound"),
     };
 
     $controlsDisplayState = {
-        actionButton: 'hint', // hint | solution | retry
+        actionButton: "hint", // hint | solution | retry
         actionButtonDisabled: false,
         flashingNext: false,
     };
 
     let controlLogUnsubscribe = controlLog.subscribe(({ lastControl }) => {
         switch (lastControl) {
-            case 'back':
+            case "back":
                 handleBackButton();
                 return;
-            case 'next':
+            case "next":
                 handleNextButton();
                 return;
-            case 'hint':
+            case "hint":
                 handleHintButton();
                 return;
-            case 'solution':
+            case "solution":
                 handleSolutionButton();
                 return;
-            case 'flip':
+            case "flip":
                 handleFlipButton();
                 return;
-            case 'retry':
+            case "retry":
                 handleRetryLastMoveButton();
                 return;
         }
@@ -102,7 +102,7 @@
             chessboard.style.width = `${boardSize}px`;
         };
 
-        window.addEventListener('resize', resizeBoard);
+        window.addEventListener("resize", resizeBoard);
         resizeBoard();
     });
 
@@ -115,7 +115,7 @@
             let AudioContext = window.AudioContext || window.webkitAudioContext;
             context = new AudioContext(); // Make it crossbrowser
             window
-                .fetch('/sfx/capture.mp3')
+                .fetch("/sfx/capture.mp3")
                 .then((response) => response.arrayBuffer())
                 .then((arrayBuffer) =>
                     context.decodeAudioData(
@@ -127,7 +127,7 @@
                     )
                 );
             window
-                .fetch('/sfx/move.mp3')
+                .fetch("/sfx/move.mp3")
                 .then((response) => response.arrayBuffer())
                 .then((arrayBuffer) =>
                     context.decodeAudioData(
@@ -153,15 +153,15 @@
     async function loadSeq(seqData) {
         currentSequenceData = {
             start: seqData.fen,
-            color: seqData.fen.split(' ')[1] === 'w' ? 'black' : 'white',
-            moves: seqData.moves.split(' '),
+            color: seqData.fen.split(" ")[1] === "w" ? "black" : "white",
+            moves: seqData.moves.split(" "),
             stats: {
                 hintsUsed: 0,
                 solsUsed: 0,
                 timesFailed: 0,
             },
         };
-        boardDisplayState.flipped = currentSequenceData.color === 'black'; // flip board if black is first
+        boardDisplayState.flipped = currentSequenceData.color === "black"; // flip board if black is first
         resetSequence();
         $board.load(currentSequenceData.start);
         cg.set({
@@ -178,7 +178,7 @@
     function finish() {
         boardDisplayState.finished = true;
         // dispatch event and return stats
-        dispatch('finish', currentSequenceData.stats);
+        dispatch("finish", currentSequenceData.stats);
         updateControlsDisplayState();
     }
 
@@ -197,15 +197,15 @@
         $controlsDisplayState.flashingNext = $board.movesBack > 0 && !retry;
 
         if (retry) {
-            $controlsDisplayState.actionButton = 'retry';
+            $controlsDisplayState.actionButton = "retry";
             $controlsDisplayState.actionButtonDisabled = false;
             return;
         } else if (hint) {
-            $controlsDisplayState.actionButton = 'hint';
+            $controlsDisplayState.actionButton = "hint";
             $controlsDisplayState.actionButtonDisabled = false;
             return;
         } else if (solution) {
-            $controlsDisplayState.actionButton = 'solution';
+            $controlsDisplayState.actionButton = "solution";
             $controlsDisplayState.actionButtonDisabled = false;
             return;
         }
@@ -234,7 +234,7 @@
         cg.set({
             turnColor: currentSequenceData.color,
             fen: $board.chess.fen(),
-            orientation: boardDisplayState.flipped ? 'black' : 'white',
+            orientation: boardDisplayState.flipped ? "black" : "white",
             movable: {
                 dests: toDests($board.chess),
             },
@@ -335,7 +335,7 @@
 
     function handlePromotion(e) {
         makePromotionMove(boardDisplayState.moveToPromote + e.detail);
-        boardDisplayState.moveToPromote = '';
+        boardDisplayState.moveToPromote = "";
     }
 
     function handleBackButton() {
@@ -368,7 +368,7 @@
 
         cg.set({
             highlight: {
-                custom: new Map([[square, 'highlight']]),
+                custom: new Map([[square, "highlight"]]),
             },
         });
         currentSequenceData.stats.hintsUsed++;
@@ -387,8 +387,8 @@
         cg.set({
             highlight: {
                 custom: new Map([
-                    [square1, 'highlight'],
-                    [square2, 'highlight'],
+                    [square1, "highlight"],
+                    [square2, "highlight"],
                 ]),
             },
         });
@@ -402,7 +402,7 @@
         {#if boardDisplayState.moveToPromote}
             <Promotion
                 on:promotion={handlePromotion}
-                on:cancel={() => (boardDisplayState.moveToPromote = '')}
+                on:cancel={() => (boardDisplayState.moveToPromote = "")}
                 color={$board.chess.get(
                     boardDisplayState.moveToPromote.substring(0, 2)
                 ).color}

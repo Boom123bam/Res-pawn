@@ -4,8 +4,8 @@
         getTimeToNextReview,
         getNewEasiness,
         formatTimePeriod,
-        defaultEasiness
-    } from '../../modules/spacedRep';
+        defaultEasiness,
+    } from "../../modules/spacedRep";
 
     const grades = [0, 1, 2];
     const easinessChanges = grades.map((grade) => getEasinessChange(grade));
@@ -29,7 +29,8 @@
                     e: getNewEasiness(data[data.length - 1].e, grade),
                     change,
                     time: getTimeToNextReview(
-                        getNewEasiness(data[data.length - 1].e, grade), 0
+                        getNewEasiness(data[data.length - 1].e, grade),
+                        0
                     ),
                 },
             ];
@@ -43,10 +44,10 @@
         {#each data as dataChunk}
             <div class="line-segment">
                 <div class="e">
-                    {dataChunk.e.toPrecision(7).replace(/\.?0+$/, '')}
+                    {dataChunk.e.toPrecision(7).replace(/\.?0+$/, "")}
                 </div>
                 <div class="change">
-                    {dataChunk.change >= 0 ? '+' : ''}{dataChunk.change}
+                    {dataChunk.change >= 0 ? "+" : ""}{dataChunk.change}
                 </div>
                 <div class="time">{formatTimePeriod(dataChunk.time)}</div>
             </div>
@@ -55,7 +56,7 @@
     <div class="grade-buttons">
         {#each grades as grade, i}
             <button on:click={() => handleClick(grade)}
-                >{easinessChanges[i] >= 0 ? '+' : ''}{easinessChanges[
+                >{easinessChanges[i] >= 0 ? "+" : ""}{easinessChanges[
                     i
                 ]}</button
             >
@@ -111,7 +112,7 @@
         top: 0.25rem;
     }
     .line-segment::after {
-        content: '';
+        content: "";
         display: block;
         width: 0.5rem;
         height: 0.5rem;

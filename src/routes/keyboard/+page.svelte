@@ -34,8 +34,8 @@
                         (audioBuffer) => {
                             captureBuffer = audioBuffer;
                         },
-                        (error) => console.error(error),
-                    ),
+                        (error) => console.error(error)
+                    )
                 );
             window
                 .fetch("/sfx/move.mp3")
@@ -46,8 +46,8 @@
                         (audioBuffer) => {
                             moveBuffer = audioBuffer;
                         },
-                        (error) => console.error(error),
-                    ),
+                        (error) => console.error(error)
+                    )
                 );
         }
     }

@@ -1,4 +1,4 @@
-import { getPlaylistData, getAllUserSeqs } from './firestore';
+import { getPlaylistData, getAllUserSeqs } from "./firestore";
 
 export async function updateLocalSeqData(uid) {
     const localSeqData = await getAllUserSeqs(uid);
@@ -11,7 +11,7 @@ export async function getLocalSeqData() {
     let user = getLocalUserData();
     let localSeqData = user
         ? await getAllUserSeqs(user.uid)
-        : getLocalData('sequences');
+        : getLocalData("sequences");
     if (!localSeqData) localSeqData = null;
     storeLocalSeqData(localSeqData);
     return localSeqData;
@@ -25,42 +25,42 @@ export async function updateLocalPlaylistData(playlistID) {
         localPlaylistData = await getPlaylistData(playlistID);
         if (localPlaylistData) storeLocalPlaylistData(localPlaylistData);
         else {
-            console.error('playlist not in local storage');
-            throw Error('Playlist Not found');
+            console.error("playlist not in local storage");
+            throw Error("Playlist Not found");
         }
     }
     return localPlaylistData;
 }
 
 export function storeLocalUserData(userData) {
-    setLocalData('user', userData);
+    setLocalData("user", userData);
 }
 
 export function getLocalUserData() {
-    return getLocalData('user');
+    return getLocalData("user");
 }
 
 export function storeLocalPlaylistData(playlistData) {
-    setLocalData('playlist', playlistData);
+    setLocalData("playlist", playlistData);
 }
 
 export function getLocalPlaylistData() {
-    return getLocalData('playlist');
+    return getLocalData("playlist");
 }
 
 export function storeLocalSeqData(seqData) {
-    setLocalData('sequences', seqData);
+    setLocalData("sequences", seqData);
 }
 
 function getLocalData(name) {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
         return JSON.parse(localStorage.getItem(name));
     }
     return null;
 }
 
 function setLocalData(name, data) {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
         localStorage.setItem(name, JSON.stringify(data));
     }
 }

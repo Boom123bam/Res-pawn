@@ -1,29 +1,29 @@
 <script>
-    import { page } from '$app/stores';
-    import { userData } from '../routes/userStore';
-    import Svg from './Svg.svelte';
-    import { getSetting, updateSettings } from '../modules/localStorage';
-    import { browser } from '$app/environment';
-    import logo from '$lib/logo.svg';
-    import { fly, scale } from 'svelte/transition';
+    import { page } from "$app/stores";
+    import { userData } from "../routes/userStore";
+    import Svg from "./Svg.svelte";
+    import { getSetting, updateSettings } from "../modules/localStorage";
+    import { browser } from "$app/environment";
+    import logo from "$lib/logo.svg";
+    import { fly, scale } from "svelte/transition";
 
     let showDesktopPopupMenu = false;
     let showMobileMenu = false;
-    let theme = 'light';
+    let theme = "light";
 
     if (browser) {
-        theme = getSetting('theme');
-        if (!theme) theme = 'light';
+        theme = getSetting("theme");
+        if (!theme) theme = "light";
 
-        if (theme == 'dark') {
-            document.body.classList.add('dark');
-        } else if (theme == 'light') {
-            document.body.classList.remove('dark');
+        if (theme == "dark") {
+            document.body.classList.add("dark");
+        } else if (theme == "light") {
+            document.body.classList.remove("dark");
         }
     }
     function toggleDarkmode() {
-        document.body.classList.toggle('dark');
-        theme = theme == 'dark' ? 'light' : 'dark';
+        document.body.classList.toggle("dark");
+        theme = theme == "dark" ? "light" : "dark";
         updateSettings({ theme });
     }
 
@@ -32,7 +32,7 @@
         if (browser && showMobileMenu) {
             setTimeout(() => {
                 document.addEventListener(
-                    'click',
+                    "click",
                     () => (showMobileMenu = false),
                     {
                         once: true,
@@ -46,7 +46,7 @@
         if (browser && showDesktopPopupMenu) {
             setTimeout(() => {
                 document.addEventListener(
-                    'click',
+                    "click",
                     () => (showDesktopPopupMenu = false),
                     {
                         once: true,
@@ -62,17 +62,17 @@
         <img src={logo} alt="Res-pawn logo" />
         <h4>Res-pawn</h4>
     </a>
-    <ul class={`links${showMobileMenu ? ' show-mobile' : ''}`}>
+    <ul class={`links${showMobileMenu ? " show-mobile" : ""}`}>
         <li
-            aria-current={$page.url.pathname === '/playlists'
-                ? 'page'
+            aria-current={$page.url.pathname === "/playlists"
+                ? "page"
                 : undefined}
         >
             <a class="link" href="/playlists">playlists</a>
         </li>
         <li
-            aria-current={$page.url.pathname === '/settings'
-                ? 'page'
+            aria-current={$page.url.pathname === "/settings"
+                ? "page"
                 : undefined}
         >
             <a href="/settings">settings</a>
@@ -97,7 +97,7 @@
                         in:scale
                         out:fly={{ y: 20 }}
                         class={`desktop-popup-menu popup${
-                            showDesktopPopupMenu ? '' : ' hidden'
+                            showDesktopPopupMenu ? "" : " hidden"
                         }`}
                     >
                         <ul>
@@ -112,7 +112,7 @@
             <li class="sign-in">
                 <a href="/auth/signin" class="button-like primary">
                     <span>Sign In </span>
-                    {#if $page.url.pathname.endsWith('/play')}
+                    {#if $page.url.pathname.endsWith("/play")}
                         <span>to sync progress</span>
                     {/if}
                 </a>
@@ -121,9 +121,9 @@
         <li class="dark-toggle">
             <button class="float" on:click={toggleDarkmode}>
                 <span class="mobile-dark-toggle-text"
-                    >{theme == 'dark' ? 'light' : 'dark'}</span
+                    >{theme == "dark" ? "light" : "dark"}</span
                 >
-                {#if theme == 'dark'}
+                {#if theme == "dark"}
                     <Svg name="sun" />
                 {:else}
                     <Svg name="moon_fill" />

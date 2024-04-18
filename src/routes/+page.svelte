@@ -1,9 +1,9 @@
 <script>
     let comparisonSection; // binds to html of 'how this works section'
-    import Saos from 'saos';
-    import ChessBoard3d from '../components/ChessBoard3d.svelte';
-    import ExpandableCard from '../components/ExpandableCard.svelte';
-    import { browser } from '$app/environment';
+    import Saos from "saos";
+    import ChessBoard3d from "../components/ChessBoard3d.svelte";
+    import ExpandableCard from "../components/ExpandableCard.svelte";
+    import { browser } from "$app/environment";
 </script>
 
 <svelte:head>
@@ -42,12 +42,12 @@
 
 <section class="hero">
     <div class="content">
-        <Saos animation={'slide-left 0.25s'}>
+        <Saos animation={"slide-left 0.25s"}>
             <h1>Boost Pattern Recognition</h1>
         </Saos>
         <Saos
-            animation={'slide-left 0.25s 0.1s forwards'}
-            css_animation={'opacity:0;'}
+            animation={"slide-left 0.25s 0.1s forwards"}
+            css_animation={"opacity:0;"}
         >
             <h5 class="subheading">
                 Chess puzzles optimized for pattern recognition
@@ -60,8 +60,8 @@
             <button
                 on:click={() =>
                     comparisonSection.scrollIntoView({
-                        block: 'start',
-                        behavior: 'smooth',
+                        block: "start",
+                        behavior: "smooth",
                     })}
                 class="ghost learn-more">learn more</button
             >
@@ -72,8 +72,8 @@
 <section class="tiles-bg invert features" bind:this={comparisonSection}>
     <div class="features-container">
         <Saos
-            animation={'slide-left 0.25s 0s both'}
-            animation_out={'fade-out-down 0.25s both'}
+            animation={"slide-left 0.25s 0s both"}
+            animation_out={"fade-out-down 0.25s both"}
             top={100}
         >
             <div class="bullet-box red">
@@ -84,8 +84,8 @@
             </div>
         </Saos>
         <Saos
-            animation={'slide-left 0.25s 0.1s both'}
-            animation_out={'fade-out-down 0.25s both'}
+            animation={"slide-left 0.25s 0.1s both"}
+            animation_out={"fade-out-down 0.25s both"}
             top={100}
         >
             <div class="bullet-box green">
@@ -105,8 +105,8 @@
     <h2>How it works</h2>
     <div class="cards-container">
         <Saos
-            animation={'scale 0.25s 0s both'}
-            animation_out={'fade-out-down 0.25s 0.1s both'}
+            animation={"scale 0.25s 0s both"}
+            animation_out={"fade-out-down 0.25s 0.1s both"}
             top={100}
         >
             <div class="card first">
@@ -118,8 +118,8 @@
             </div>
         </Saos>
         <Saos
-            animation={'scale 0.25s 0.1s both'}
-            animation_out={'fade-out-down 0.25s both'}
+            animation={"scale 0.25s 0.1s both"}
+            animation_out={"fade-out-down 0.25s both"}
             top={100}
         >
             <div class="card second">
@@ -131,8 +131,8 @@
             </div>
         </Saos>
         <Saos
-            animation={'scale 0.25s 0s both'}
-            animation_out={'fade-out-down 0.25s 0.1s both'}
+            animation={"scale 0.25s 0s both"}
+            animation_out={"fade-out-down 0.25s 0.1s both"}
             top={100}
         >
             <div class="card third">
@@ -144,8 +144,8 @@
             </div>
         </Saos>
         <Saos
-            animation={'scale 0.25s 0.1s both'}
-            animation_out={'fade-out-down 0.25s both'}
+            animation={"scale 0.25s 0.1s both"}
+            animation_out={"fade-out-down 0.25s both"}
             top={100}
         >
             <div class="card fourth">
@@ -202,7 +202,7 @@
     <h1>Start playing now</h1>
 
     <Saos
-        animation={'fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.1s both'}
+        animation={"fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275) 0.1s both"}
     >
         <div class="chess-board-container">
             <ChessBoard3d />
@@ -210,16 +210,16 @@
     </Saos>
 
     <Saos
-        animation={'fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275) both'}
-        animation_out={'fade-out-down 0.25s both'}
+        animation={"fade-in-up 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275) both"}
+        animation_out={"fade-out-down 0.25s both"}
         top={100}
     >
         <a
             href="/playlists"
             class={`button-like browse shadow ${
-                browser && document.body.classList.contains('dark')
-                    ? 'outline'
-                    : 'contrast'
+                browser && document.body.classList.contains("dark")
+                    ? "outline"
+                    : "contrast"
             }`}><h3>Browse puzzles</h3></a
         >
     </Saos>
@@ -375,7 +375,7 @@
     }
 
     .features-container .feature h3::before {
-        content: '';
+        content: "";
         width: 0.85rem;
         height: 0.85rem;
         position: absolute;
@@ -392,13 +392,13 @@
         background-color: #6d2d2d;
     }
     .features-container .bullet-box.red ul {
-        list-style-type: '✘';
+        list-style-type: "✘";
     }
     .features-container .bullet-box.green {
         background-color: #28642a;
     }
     .features-container .bullet-box.green ul {
-        list-style-type: '✔';
+        list-style-type: "✔";
     }
     .features-container .bullet-box ul {
         /* list-style-position: inside; */
@@ -463,7 +463,7 @@
     }
     .card::after {
         position: absolute;
-        content: '';
+        content: "";
         inset: calc(-0.5 * var(--gap) - 1px);
     }
 

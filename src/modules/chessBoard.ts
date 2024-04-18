@@ -1,4 +1,4 @@
-import { Chess, Square } from 'chess.js';
+import { Chess, Square } from "chess.js";
 
 export class ChessBoard {
     history: string[] = [];
@@ -19,7 +19,7 @@ export class ChessBoard {
     }
 
     undoMove() {
-        if (!this.history.length) throw Error('no moves to undo');
+        if (!this.history.length) throw Error("no moves to undo");
         this.history.pop();
         this.chess.undo();
     }
@@ -40,9 +40,9 @@ export class ChessBoard {
         // if moveTo is last row and if piece is pawn
         const piece = this.chess.get(move.substring(0, 2));
         if (
-            piece.type == 'p' &&
-            ((move[3] == '1' && piece.color == 'b') ||
-                (move[3] == '8' && piece.color == 'w'))
+            piece.type == "p" &&
+            ((move[3] == "1" && piece.color == "b") ||
+                (move[3] == "8" && piece.color == "w"))
         ) {
             return true;
         }

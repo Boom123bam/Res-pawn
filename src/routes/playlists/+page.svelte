@@ -1,5 +1,5 @@
 <script>
-    import PlaylistCard from '../../components/PlaylistCard.svelte';
+    import PlaylistCard from "../../components/PlaylistCard.svelte";
 
     export let data;
     const { playlists } = data;

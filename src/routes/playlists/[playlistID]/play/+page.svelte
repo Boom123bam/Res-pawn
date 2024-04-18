@@ -2,21 +2,21 @@
     import {
         getSeqData,
         updateUserSeqData,
-    } from '../../../../modules/firestore';
+    } from "../../../../modules/firestore";
     import {
         defaultEasiness,
         estimateGrade,
         getNextSeq,
         updateSeqData,
-    } from '../../../../modules/spacedRep';
-    import { storeLocalSeqData } from '../../../../modules/localStorage';
+    } from "../../../../modules/spacedRep";
+    import { storeLocalSeqData } from "../../../../modules/localStorage";
 
-    import { userData } from '../../../userStore';
-    import { sequenceData } from '../../../../stores/boardStore';
+    import { userData } from "../../../userStore";
+    import { sequenceData } from "../../../../stores/boardStore";
 
-    import Popup from '../../../../components/Popup.svelte';
-    import GradeMenu from '../../../../components/GradeMenu.svelte';
-    import BoardInterface from '../../../../components/BoardInterface.svelte';
+    import Popup from "../../../../components/Popup.svelte";
+    import GradeMenu from "../../../../components/GradeMenu.svelte";
+    import BoardInterface from "../../../../components/BoardInterface.svelte";
 
     export let data; // data from layout.js
 
@@ -168,7 +168,7 @@
     {/if}
     <div
         class="popup-wrapper"
-        style={`display: ${showGradeMenu ? 'block' : 'none'};`}
+        style={`display: ${showGradeMenu ? "block" : "none"};`}
     >
         <GradeMenu
             value={grade}

@@ -9,8 +9,8 @@ import {
     doc,
     orderBy,
     limit,
-} from 'firebase/firestore';
-import { db } from '../firebase';
+} from "firebase/firestore";
+import { db } from "../firebase";
 
 export async function getAllUserSeqs(userID) {
     // returns all the seqs in user/seqs
@@ -19,7 +19,7 @@ export async function getAllUserSeqs(userID) {
     // query all user seqs
     const q = query(
         seqsCollectionRef,
-        orderBy('nextReview') // first = soonest
+        orderBy("nextReview") // first = soonest
     );
 
     const querySnapshot = await getDocs(q);
@@ -30,11 +30,11 @@ export async function getAllUserSeqs(userID) {
 
 export async function getUserData(id) {
     try {
-        const userDocRef = doc(db, 'Users', id);
+        const userDocRef = doc(db, "Users", id);
         const userDocSnap = await getDoc(userDocRef);
         return userDocSnap.exists() ? userDocSnap.data() : null;
     } catch (error) {
-        console.error('Error getting user data document:', error);
+        console.error("Error getting user data document:", error);
         return null;
     }
 }
@@ -62,10 +62,10 @@ export async function getPlaylistData(id) {
 }
 
 export async function checkIfUsernameTaken(username) {
-    const usersCollection = collection(db, 'Users');
+    const usersCollection = collection(db, "Users");
     const usernameQuery = query(
         usersCollection,
-        where('username', '==', username)
+        where("username", "==", username)
     );
     const usernameQuerySnapshot = await getDocs(usernameQuery);
 
@@ -83,7 +83,7 @@ export async function addUserToCollection(userID, username) {
         };
 
         // Create a new user document with the provided data
-        await setDoc(doc(db, 'Users', userID), docData);
+        await setDoc(doc(db, "Users", userID), docData);
     } catch (error) {
         console.error(`Error adding user document with ID:${userID}`, error);
     }
@@ -108,7 +108,7 @@ export async function getAllPlaylists(amount = 10) {
     const playlistsCollectionRef = collection(db, `Playlists`);
     const q = query(
         playlistsCollectionRef,
-        orderBy('rating', 'asc'), // Sort by the first element of the "rating" list in ascending order
+        orderBy("rating", "asc"), // Sort by the first element of the "rating" list in ascending order
         limit(amount)
     );
     const querySnapshot = await getDocs(q);
@@ -126,7 +126,7 @@ export async function getAllPlaylists(amount = 10) {
 
 export async function createPlaylist(name, color, rating, seqs) {
     // Create a new user document with the provided data
-    const docRef = await addDoc(collection(db, 'Playlists'), {
+    const docRef = await addDoc(collection(db, "Playlists"), {
         name,
         sequences: seqs,
         color,

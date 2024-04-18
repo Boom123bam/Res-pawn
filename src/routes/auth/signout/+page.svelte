@@ -1,18 +1,18 @@
 <script>
-    import { signOut } from '@firebase/auth';
-    import { auth } from '../../../firebase';
-    import { goto } from '$app/navigation';
-    let errorMessage = '';
+    import { signOut } from "@firebase/auth";
+    import { auth } from "../../../firebase";
+    import { goto } from "$app/navigation";
+    let errorMessage = "";
 
     async function handleSignOut() {
         try {
             await signOut(auth);
-            if (typeof window !== 'undefined') {
-                localStorage.removeItem('user');
+            if (typeof window !== "undefined") {
+                localStorage.removeItem("user");
             }
-            goto('/auth/signin'); // Redirect to the login page
+            goto("/auth/signin"); // Redirect to the login page
         } catch (error) {
-            console.error('error signing out', error);
+            console.error("error signing out", error);
             errorMessage = error.message;
         }
     }

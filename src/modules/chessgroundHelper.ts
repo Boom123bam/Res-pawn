@@ -1,5 +1,5 @@
-import { type Key } from 'chessground/types';
-import { Chess, SQUARES } from 'chess.js';
+import { type Key } from "chessground/types";
+import { Chess, SQUARES } from "chess.js";
 
 export function toDests(chess: Chess): Map<Key, Key[]> {
     const dests = new Map();

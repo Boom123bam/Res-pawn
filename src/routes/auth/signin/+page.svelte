@@ -1,15 +1,15 @@
 <script>
-    import { signInWithEmailAndPassword } from '@firebase/auth';
-    import { auth } from '../../../firebase';
-    import { storeAllUserSeqData } from '../../../modules/firestore';
+    import { signInWithEmailAndPassword } from "@firebase/auth";
+    import { auth } from "../../../firebase";
+    import { storeAllUserSeqData } from "../../../modules/firestore";
     import {
         getLocalSeqData,
         updateLocalSeqData,
-    } from '../../../modules/localStorage';
+    } from "../../../modules/localStorage";
 
-    let email = '';
-    let password = '';
-    let errorMessage = '';
+    let email = "";
+    let password = "";
+    let errorMessage = "";
     let signedIn = false;
     let savedProgress = false;
 

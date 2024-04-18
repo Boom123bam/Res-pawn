@@ -1,6 +1,6 @@
 // Module containing spaced repetition logic
 
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from "firebase/firestore";
 // easiness is a value that is stored in the user's sequence data.
 // it is updated after each seq (using the grade provided by user) and determines the next review time
 
@@ -150,14 +150,14 @@ export function updateSeqData(grade, seqData = null) {
 export function formatTimePeriod(minutes) {
     minutes = Math.round(minutes);
     if (isNaN(minutes) || minutes <= 0) {
-        return '0m';
+        return "0m";
     }
 
     const days = Math.floor(minutes / 1440); // 60 minutes * 24 hours
     const hours = Math.floor((minutes % 1440) / 60);
     const remainingMinutes = minutes % 60;
 
-    let formattedTime = '';
+    let formattedTime = "";
 
     if (days > 0) {
         formattedTime += `${days}d `;

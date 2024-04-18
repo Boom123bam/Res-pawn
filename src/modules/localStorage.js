@@ -1,18 +1,18 @@
-import { browser } from '$app/environment';
-import { getPlaylistData, getAllUserSeqs } from './firestore';
+import { browser } from "$app/environment";
+import { getPlaylistData, getAllUserSeqs } from "./firestore";
 
 const defaultSettings = {
     sound: true,
-    theme: 'light',
+    theme: "light",
 };
 
 export function storeSettings(settings) {
-    if (browser) localStorage.setItem('settings', JSON.stringify(settings));
+    if (browser) localStorage.setItem("settings", JSON.stringify(settings));
 }
 
 export function getSettings() {
     if (browser) {
-        const settings = localStorage.getItem('settings');
+        const settings = localStorage.getItem("settings");
         if (settings) return JSON.parse(settings);
         storeSettings(defaultSettings);
         return defaultSettings;
@@ -21,7 +21,7 @@ export function getSettings() {
 
 export function getSetting(name) {
     if (browser) {
-        const settings = localStorage.getItem('settings');
+        const settings = localStorage.getItem("settings");
         if (settings) return JSON.parse(settings)[name];
         storeSettings(defaultSettings);
         return defaultSettings[name];
@@ -31,7 +31,7 @@ export function getSetting(name) {
 export function updateSettings(newSettings) {
     // uses spread operator to change only the settings provided
     if (browser) {
-        const settings = localStorage.getItem('settings');
+        const settings = localStorage.getItem("settings");
         newSettings = settings
             ? { ...JSON.parse(settings), ...newSettings }
             : {
@@ -53,7 +53,7 @@ export async function getLocalSeqData() {
     let user = getLocalUserData();
     let localSeqData = user
         ? await getAllUserSeqs(user.uid)
-        : getLocalData('sequences');
+        : getLocalData("sequences");
     if (!localSeqData) localSeqData = null;
     storeLocalSeqData(localSeqData);
     return localSeqData;
@@ -67,42 +67,42 @@ export async function updateLocalPlaylistData(playlistID) {
         localPlaylistData = await getPlaylistData(playlistID);
         if (localPlaylistData) storeLocalPlaylistData(localPlaylistData);
         else {
-            console.error('playlist not in local storage');
-            throw Error('Playlist Not found');
+            console.error("playlist not in local storage");
+            throw Error("Playlist Not found");
         }
     }
     return localPlaylistData;
 }
 
 export function storeLocalUserData(userData) {
-    setLocalData('user', userData);
+    setLocalData("user", userData);
 }
 
 export function getLocalUserData() {
-    return getLocalData('user');
+    return getLocalData("user");
 }
 
 export function storeLocalPlaylistData(playlistData) {
-    setLocalData('playlist', playlistData);
+    setLocalData("playlist", playlistData);
 }
 
 export function getLocalPlaylistData() {
-    return getLocalData('playlist');
+    return getLocalData("playlist");
 }
 
 export function storeLocalSeqData(seqData) {
-    setLocalData('sequences', seqData);
+    setLocalData("sequences", seqData);
 }
 
 function getLocalData(name) {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
         return JSON.parse(localStorage.getItem(name));
     }
     return null;
 }
 
 function setLocalData(name, data) {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
         localStorage.setItem(name, JSON.stringify(data));
     }
 }

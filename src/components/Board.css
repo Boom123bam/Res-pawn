@@ -315,51 +315,51 @@ cg-board piece.fading {
 }
 
 .california .cg-wrap piece.pawn.white {
-    background-image: url('/images/pieces/set3/p-w.svg');
+    background-image: url("/images/pieces/set3/p-w.svg");
 }
 
 .california .cg-wrap piece.bishop.white {
-    background-image: url('/images/pieces/set3/b-w.svg');
+    background-image: url("/images/pieces/set3/b-w.svg");
 }
 
 .california .cg-wrap piece.knight.white {
-    background-image: url('/images/pieces/set3/n-w.svg');
+    background-image: url("/images/pieces/set3/n-w.svg");
 }
 
 .california .cg-wrap piece.rook.white {
-    background-image: url('/images/pieces/set3/r-w.svg');
+    background-image: url("/images/pieces/set3/r-w.svg");
 }
 
 .california .cg-wrap piece.queen.white {
-    background-image: url('/images/pieces/set3/q-w.svg');
+    background-image: url("/images/pieces/set3/q-w.svg");
 }
 
 .california .cg-wrap piece.king.white {
-    background-image: url('/images/pieces/set3/k-w.svg');
+    background-image: url("/images/pieces/set3/k-w.svg");
 }
 
 .california .cg-wrap piece.pawn.black {
-    background-image: url('/images/pieces/set3/p-b.svg');
+    background-image: url("/images/pieces/set3/p-b.svg");
 }
 
 .california .cg-wrap piece.bishop.black {
-    background-image: url('/images/pieces/set3/b-b.svg');
+    background-image: url("/images/pieces/set3/b-b.svg");
 }
 
 .california .cg-wrap piece.knight.black {
-    background-image: url('/images/pieces/set3/n-b.svg');
+    background-image: url("/images/pieces/set3/n-b.svg");
 }
 
 .california .cg-wrap piece.rook.black {
-    background-image: url('/images/pieces/set3/r-b.svg');
+    background-image: url("/images/pieces/set3/r-b.svg");
 }
 
 .california .cg-wrap piece.queen.black {
-    background-image: url('/images/pieces/set3/q-b.svg');
+    background-image: url("/images/pieces/set3/q-b.svg");
 }
 
 .california .cg-wrap piece.king.black {
-    background-image: url('/images/pieces/set3/k-b.svg');
+    background-image: url("/images/pieces/set3/k-b.svg");
 }
 
 @media screen and (max-width: 600px), screen and (max-height: 600px) {

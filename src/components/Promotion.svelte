@@ -1,45 +1,45 @@
 <script>
-    import { createEventDispatcher, onMount } from 'svelte';
+    import { createEventDispatcher, onMount } from "svelte";
 
     const dispatch = createEventDispatcher();
 
     function handleSelect(piece) {
-        dispatch('promotion', piece);
+        dispatch("promotion", piece);
     }
 
     onMount(() => {
-        document.addEventListener('click', () => dispatch('cancel'), {
+        document.addEventListener("click", () => dispatch("cancel"), {
             once: true,
         });
     });
 
-    export let color = 'b';
+    export let color = "b";
 </script>
 
 <div class="board-blocker">
-    <div class={`buttons-container ${color == 'b' ? 'popup' : ''} ${color}`}>
-        <button on:click={() => handleSelect('q')}>
+    <div class={`buttons-container ${color == "b" ? "popup" : ""} ${color}`}>
+        <button on:click={() => handleSelect("q")}>
             <img
                 src={`/images/pieces/set3/q-${color}.svg`}
                 alt="queen"
                 draggable="false"
             />
         </button>
-        <button on:click={() => handleSelect('b')}>
+        <button on:click={() => handleSelect("b")}>
             <img
                 src={`/images/pieces/set3/b-${color}.svg`}
                 alt="bishop"
                 draggable="false"
             />
         </button>
-        <button on:click={() => handleSelect('r')}>
+        <button on:click={() => handleSelect("r")}>
             <img
                 src={`/images/pieces/set3/r-${color}.svg`}
                 alt="rook"
                 draggable="false"
             />
         </button>
-        <button on:click={() => handleSelect('n')}>
+        <button on:click={() => handleSelect("n")}>
             <img
                 src={`/images/pieces/set3/n-${color}.svg`}
                 alt="knight"
