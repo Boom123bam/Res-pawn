@@ -23,6 +23,7 @@ body.dark .board {
     align-items: center;
     gap: 1rem;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .board-wrapper {
