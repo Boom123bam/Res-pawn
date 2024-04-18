@@ -1,22 +1,41 @@
 <script>
-    import { sendEmailVerification } from "firebase/auth";
-    import { auth } from "../../firebase";
+    import { onMount } from "svelte";
+    import "../../components/Board.css";
+    import { Chessground } from "chessground";
 
-    function verify(user) {
-        sendEmailVerification(user);
-    }
+    let chessboard;
+    let cg;
+    onMount(() => {
+        cg = Chessground(chessboard, {
+            movable: {
+                free: false,
+            },
+        });
+
+        // const resizeBoard = () => {
+        //     const mod = boardWrapper.clientWidth % 8;
+        //     let boardSize = boardWrapper.clientWidth - mod;
+        chessboard.style.height = `300px`;
+        chessboard.style.width = `300px`;
+        // };
+
+        // window.addEventListener("resize", resizeBoard);
+        // resizeBoard();
+    });
 </script>
 
-<div class="page-content">
-    <button on:click={() => verify(auth.currentUser)}>send</button>
-    <button on:click={() => console.log(auth.currentUser.emailVerified)}
-        >ver</button
-    >
-    <h3>buttons</h3>
-    <button class="primary">button</button>
-    <button class="primary shadow">button</button>
-    <button class="secondary">button</button>
-    <button class="secondary shadow">button</button>
-    <button class="outline">button</button>
-    <button class="outline shadow">button</button>
-</div>
+<div bind:this={chessboard} class="board" />
+
+<style>
+    .board-container {
+        --board-size: 300px;
+        display: flex;
+        justify-content: center;
+        width: var(--board-size);
+        position: relative;
+        flex-grow: 1;
+        height: calc(var(--board-size) + var(--shadow-size));
+        grid-row: 1/-1;
+        padding-bottom: var(--shadow-size);
+    }
+</style>

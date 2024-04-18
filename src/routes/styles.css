@@ -335,10 +335,11 @@ button,
     border-radius: var(--br);
 }
 
-button,
+/* breaks android drag n drop */
+/* button,
 svg {
     touch-action: manipulation;
-}
+} */
 
 @media (hover: hover) {
     button:disabled:hover {

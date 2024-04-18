@@ -27,7 +27,8 @@ body.dark .board {
 }
 
 .board-wrapper {
-    touch-action: manipulation;
+    /* touch-action: manipulation; */
+    /* breaks android drag n drop */
     width: 100%;
     display: inline;
     position: relative;
@@ -309,57 +310,57 @@ cg-board piece.fading {
     background-position: top left;
 }
 
-.california .cg-wrap piece {
+.cg-wrap piece {
     background-size: var(--piece-size);
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.california .cg-wrap piece.pawn.white {
+.cg-wrap piece.pawn.white {
     background-image: url("/images/pieces/set3/p-w.svg");
 }
 
-.california .cg-wrap piece.bishop.white {
+.cg-wrap piece.bishop.white {
     background-image: url("/images/pieces/set3/b-w.svg");
 }
 
-.california .cg-wrap piece.knight.white {
+.cg-wrap piece.knight.white {
     background-image: url("/images/pieces/set3/n-w.svg");
 }
 
-.california .cg-wrap piece.rook.white {
+.cg-wrap piece.rook.white {
     background-image: url("/images/pieces/set3/r-w.svg");
 }
 
-.california .cg-wrap piece.queen.white {
+.cg-wrap piece.queen.white {
     background-image: url("/images/pieces/set3/q-w.svg");
 }
 
-.california .cg-wrap piece.king.white {
+.cg-wrap piece.king.white {
     background-image: url("/images/pieces/set3/k-w.svg");
 }
 
-.california .cg-wrap piece.pawn.black {
+.cg-wrap piece.pawn.black {
     background-image: url("/images/pieces/set3/p-b.svg");
 }
 
-.california .cg-wrap piece.bishop.black {
+.cg-wrap piece.bishop.black {
     background-image: url("/images/pieces/set3/b-b.svg");
 }
 
-.california .cg-wrap piece.knight.black {
+.cg-wrap piece.knight.black {
     background-image: url("/images/pieces/set3/n-b.svg");
 }
 
-.california .cg-wrap piece.rook.black {
+.cg-wrap piece.rook.black {
     background-image: url("/images/pieces/set3/r-b.svg");
 }
 
-.california .cg-wrap piece.queen.black {
+.cg-wrap piece.queen.black {
     background-image: url("/images/pieces/set3/q-b.svg");
 }
 
-.california .cg-wrap piece.king.black {
+.cg-wrap piece.king.black {
     background-image: url("/images/pieces/set3/k-b.svg");
 }
 
