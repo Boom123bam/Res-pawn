@@ -57,10 +57,8 @@
         border-top-right-radius: var(--br);
         border-top-left-radius: var(--br);
         padding: 0.75rem 1.75rem;
-    }
-
-    :global(body.dark) .top-banner {
-        --text: black;
+        opacity: 0.75;
+        --text: white;
     }
 
     .content {
