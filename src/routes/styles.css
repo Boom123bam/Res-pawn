@@ -335,11 +335,11 @@ button,
     border-radius: var(--br);
 }
 
-/* breaks android drag n drop */
-/* button,
+button,
 svg {
     touch-action: manipulation;
-} */
+    /* disable double tap zoom */
+}
 
 @media (hover: hover) {
     button:disabled:hover {

@@ -27,12 +27,16 @@ body.dark .board {
 }
 
 .board-wrapper {
-    /* touch-action: manipulation; */
-    /* breaks android drag n drop */
     width: 100%;
     display: inline;
     position: relative;
     aspect-ratio: 1 / 1;
+}
+
+.board button,
+.board svg {
+    touch-action: initial;
+    /* without this drag n drop will break on android */
 }
 
 .board-padding {
