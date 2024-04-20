@@ -9,7 +9,10 @@
         getNextSeq,
         updateSeqData,
     } from "../../../../modules/spacedRep";
-    import { storeLocalSeqData } from "../../../../modules/localStorage";
+    import {
+        getSetting,
+        storeLocalSeqData,
+    } from "../../../../modules/localStorage";
 
     import { userData } from "../../../userStore";
     import { sequenceData } from "../../../../stores/boardStore";
@@ -46,6 +49,9 @@
     let currentSeqID = null;
     let enableNextButton = false;
     handleNext();
+
+    let showAnimation = getSetting("showAnimation");
+    let popupDelay = getSetting("popupDelay");
 
     async function loadSeq(id) {
         const data = await getSeqData(id);
@@ -106,7 +112,9 @@
 
     function handleSeqFinish(e) {
         grade = estimateGrade(e.detail);
-        showGradeMenu = true;
+        setTimeout(() => {
+            showGradeMenu = true;
+        }, popupDelay);
     }
 
     function handleNext() {
@@ -167,8 +175,8 @@
         </div>
     {/if}
     <div
-        class="popup-wrapper"
-        style={`display: ${showGradeMenu ? "block" : "none"};`}
+        class={`popup-wrapper ${showAnimation ? "transition" : ""}`}
+        style={`visibility: ${showGradeMenu ? "visible" : "hidden"}; opacity: ${showGradeMenu ? "1" : "0"};`}
     >
         <GradeMenu
             value={grade}
@@ -216,6 +224,9 @@
         transform: translate(-50%, -50%);
         z-index: 20;
         width: min(100% - 2rem, 35rem);
+    }
+    .popup-wrapper.transition {
+        transition: 0.1s;
     }
     @media screen and (max-height: 600px) {
         section.main {

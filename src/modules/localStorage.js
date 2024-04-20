@@ -4,6 +4,8 @@ import { getPlaylistData, getAllUserSeqs } from "./firestore";
 const defaultSettings = {
     sound: true,
     theme: "light",
+    showAnimation: true,
+    popupDelay: 250,
 };
 
 export function storeSettings(settings) {
@@ -22,7 +24,14 @@ export function getSettings() {
 export function getSetting(name) {
     if (browser) {
         const settings = localStorage.getItem("settings");
-        if (settings) return JSON.parse(settings)[name];
+        if (settings) {
+            let parsedSettings = JSON.parse(settings);
+            if (parsedSettings[name] !== undefined) {
+                return parsedSettings[name];
+            }
+            updateSettings({ [name]: defaultSettings[name] });
+            return defaultSettings[name];
+        }
         storeSettings(defaultSettings);
         return defaultSettings[name];
     }

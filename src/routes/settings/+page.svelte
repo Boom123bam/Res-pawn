@@ -1,8 +1,25 @@
 <script>
     import { browser } from "$app/environment";
-    import { getSettings, storeSettings } from "../../modules/localStorage";
+    import {
+        getSetting,
+        getSettings,
+        storeSettings,
+    } from "../../modules/localStorage";
     let settings = getSettings();
+    let delayInputValue = getSetting("popupDelay");
+
+    function handleSave() {
+        const value = parseInt(delayInputValue);
+        if (!isNaN(value) && value >= 0 && value <= 3000) {
+            settings.popupDelay = value;
+        }
+        storeSettings(settings);
+    }
 </script>
+
+<svelte:head>
+    <title>Settings | Res-pawn</title>
+</svelte:head>
 
 <section>
     <h3>Settings</h3>
@@ -17,18 +34,25 @@
                     bind:checked={settings.sound}
                 />
                 <label for="sound-switch" />
-                <!-- <h6>show square name on hover</h6>
+
+                <h6>Animate popup</h6>
                 <input
                     type="checkbox"
-                    id="squares-switch"
-                    bind:checked={settings.showIndicatorOnHover}
+                    id="animation-switch"
+                    bind:checked={settings.showAnimation}
                 />
-                <label for="squares-switch" /> -->
+                <label for="animation-switch" />
+
+                <h6>Popup delay (ms)</h6>
+                <input
+                    type="text"
+                    id="numberInput"
+                    placeholder="delay in ms between 0 and 3000"
+                    bind:value={delayInputValue}
+                />
             </fieldset>
-            <button
-                type="submit"
-                class="primary save"
-                on:click={() => storeSettings(settings)}>Save Changes</button
+            <button type="submit" class="primary save" on:click={handleSave}
+                >Save Changes</button
             >
         </form>
     {/if}
