@@ -44,8 +44,11 @@
                 <p class="description">{localPlaylistData.description}</p>
             {/if}
             <h3 class="length">
-                {numPlayedSeqs}/{localPlaylistData.sequences.length} puzzles played
+                {localPlaylistData.sequences.length} puzzles
             </h3>
+            <p class="played">
+                {numPlayedSeqs} played
+            </p>
         </div>
     </div>
     <a class="play" href={`/playlists/${localPlaylistData.id}/play`}>
@@ -89,6 +92,10 @@
     }
     h3.length {
         font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    p.played {
+        opacity: 0.5;
     }
 
     a.play {
