@@ -3,10 +3,25 @@
 
     /** @type {import('./$types').PageData} */
     export let data;
-    let { localPlaylistData, playlists } = data;
+    let { localPlaylistData, localUserSeqData, playlists } = data;
+
     $: {
         localPlaylistData = data.localPlaylistData;
         playlists = data.playlists;
+    }
+    const numPlayedSeqs = countCommonItems(
+        Object.keys(localUserSeqData),
+        localPlaylistData.sequences
+    );
+
+    function countCommonItems(first, second) {
+        let count = 0;
+        first.forEach((item) => {
+            if (second.includes(item)) {
+                count++;
+            }
+        });
+        return count;
     }
 </script>
 
@@ -29,7 +44,7 @@
                 <p class="description">{localPlaylistData.description}</p>
             {/if}
             <h3 class="length">
-                {localPlaylistData.sequences.length} puzzles
+                {numPlayedSeqs}/{localPlaylistData.sequences.length} puzzles played
             </h3>
         </div>
     </div>
